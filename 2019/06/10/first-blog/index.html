@@ -1,68 +1,14 @@
-extends base
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>first-blog | JiaCc07</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="generator" content="Hexo 4.2.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">first-blog</h1><a id="logo" href="/.">JiaCc07</a><p class="description">道阻且长，行则将至✌️</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">first-blog</h1><div class="post-meta">Jun 10, 2019</div><div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用github pages服务搭建博客的好处有：</p>
+<ol>
+<li>全是静态文件，访问速度快；</li>
+<li>免费方便，不用花一分钱就可以搭建一个自由的个人博客，不需要服务器不需要后台；</li>
+<li>可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的；</li>
+</ol>
+<a id="more"></a>
 
-block title
-  title= page.title + ' | ' + config.title
-
-block content
-  .post
-    h1.post-title= page.title
-    .post-meta= page.date.format('ll')
-      if page.categories.length > 0
-        span= ' | '
-        span.category
-          for category in page.categories.toArray()
-            a(href=url_for(category.path))= category.name
-      if theme.busuanzi == true
-        script(src='https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js', async)
-        span#busuanzi_container_page_pv= ' | '
-          span#busuanzi_value_page_pv
-          span= ' ' + __('Hits')
-      if theme.wordcount == true
-        include _partial/wordcount.pug
-    if theme.disqus
-      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
-    if theme.changyan
-      a.ds-thread-count(href=url_for(page.path) + '#SOHUCS')
-        span#changyan_count_unit(style='font-size: 15px; color: #6E7173;') 0
-        span= ' ' + __('Comment')
-      script(src='https://assets.changyan.sohu.com/upload/plugins/plugins.count.js', async)
-    if theme.valine.enable
-      a.disqus-comment-count( href=url_for(page.path) + '#vcomment')
-        span.valine-comment-count(data-xid=url_for(page.path))
-        span= ' ' + __('Comment')
-    if page.toc
-      div(class='clear')
-        div(id='toc' class='toc-article')
-          div(class='toc-title')= __('contents')
-          != toc(page.content, {list_number: theme.toc_number})
-    .post-content
-      != page.content
-    if theme.donate.enable == true
-      iframe(src='/donate/?AliPayQR=' + theme.donate.alipay_qr + '&WeChatQR=' + theme.donate.wechat_qr + '&GitHub=' + theme.donate.github + '&BTCQR=' + theme.donate.btc_qr + '&BTCKEY='+ theme.donate.btc_key + '&PayPal=' + theme.donate.paypal_url, style='overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;', frameborder='0', scrolling='no')
-
-    if theme.post_copyright.enable == true && page.copyright != false
-      div
-        ul.post-copyright
-          li.post-copyright-author
-            strong= __('copyright_author_prefix')
-            = theme.post_copyright.author
-          li.post-copyright-link
-            strong= __('copyright_link_prefix')
-            a(href='/' + page.path)= page.permalink
-          li.post-copyright-license
-            strong= __('copyright_declare_prefix')
-            if theme.post_copyright.copyright_text
-              != theme.post_copyright.copyright_text
-            else
-              != __('copyright_default_text')
-      br
-
-    if theme.shareto == true
-      script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
-      a.article-share-link(data-url=page.permalink, data-id=page._id, data-qrcode=qrcode(page.permalink))= __('shareto')
-
-    include _partial/tag.pug
-    include _partial/post_nav.pug
-
-    if page.comments
-      include _partial/comments.pug
+<ol start="4">
+<li>数据绝对安全，基于github的版本管理，想恢复到哪个历史版本都行；</li>
+<li>博客内容可以轻松打包、转移、发布到其它平台；</li>
+<li>等等；</li>
+</ol>
+</div><div class="tags"><a href="/tags/web-test/">web_test</a></div><div class="post-nav"><a class="pre" href="/2020/02/28/HDU-1006-TickandTick/">HDU 1006 TickandTick</a><a class="next" href="/2019/06/10/hello-world/">Hello World</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/OJ/" style="font-size: 15px;">OJ</a> <a href="/tags/web-test/" style="font-size: 15px;">web_test</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://github.com/DoLNw" title="Github" target="_blank">Github</a><ul></ul><a href="DoLNw.github.io" title="Blog" target="_blank">Blog</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">JiaCc07 浙 ICP 备 19015996 号</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
