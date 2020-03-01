@@ -817,6 +817,11 @@ figure.highlight,
   color: #333;
   padding-top: 15px;
   overflow: hidden; }
+  @media (prefers-color-scheme: dark) {
+    figure.highlight,
+    .codeblock {
+      background: #111;
+      color: #777; } }
   figure.highlight table,
   .codeblock table {
     display: block;
@@ -860,6 +865,11 @@ figure.highlight,
     border-right: 1px solid #e6e6e6;
     padding: 0.3em 15px;
     user-select: none; }
+  @media (prefers-color-scheme: dark) {
+    figure.highlight .gutter,
+    .codeblock .gutter {
+      background: #111;
+      border-right: 1px solid #006f00; } }
   figure.highlight .code,
   .codeblock .code {
     padding: 0.3em 15px 0.3em 1em;
@@ -882,13 +892,21 @@ figure.highlight,
   user-select: none; }
 
 .highlight .comment {
-  color: #969896; }
+  color: #006f00; }
 
 .highlight .string {
-  color: #183691; }
+  color: red; }
 
 .highlight .keyword {
   color: #a71d5d; }
+
+@media (prefers-color-scheme: dark) {
+  .highlight .comment {
+    color: #006f00; }
+  .highlight .string {
+    color: orange; }
+  .highlight .keyword {
+    color: #a71d5d; } }
 
 .highlight.apacheconf .code .common,
 .highlight.apacheconf .code .nomarkup,
@@ -1336,6 +1354,9 @@ figure.highlight,
   padding: 10px;
   white-space: nowrap;
   border-top: 1px solid #eee; }
+  @media (prefers-color-scheme: dark) {
+    .post-nav {
+      border-top: 1px solid #444; } }
   .post-nav a {
     display: inline-block;
     line-height: 25px;
