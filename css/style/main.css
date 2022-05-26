@@ -1,5 +1,5 @@
 :root {
-  --main-color: #6200ee;
+  --main-color: #04dc12;
   --bg-color: #f4f4f4;
   --bg-content-color: #fff;
   --bg-menu: #eceef2;
@@ -9,7 +9,7 @@
   --body-color: #4c4d4e;
   --title-color: #50596c;
   --border-color: rgba(0,0,0,0.1);
-  --space: 3.5rem;
+  --space: 2rem;
   --content-width: 776px;
 }
 ::-webkit-scrollbar {
@@ -74,7 +74,7 @@ section {
   margin: 0 auto;
   transition: background-color 0.6s;
   padding: var(--space);
-  border-radius: 5px;
+  border-radius: 15px;
   -webkit-box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.02), 1px 1px 15px 0 rgba(0,0,0,0.03);
   box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.02), 1px 1px 15px 0 rgba(0,0,0,0.03);
   -webkit-transition: background-color 0.3s, -webkit-transform 0.3s, -webkit-box-shadow 0.6s;
@@ -148,6 +148,11 @@ s {
   box-sizing: border-box;
   font-smoothing: antialiased;
   osx-font-smoothing: grayscale;
+}
+@media screen and (min-width: 1080px) {
+  *[id] {
+    scroll-margin-top: 60px;
+  }
 }
 a {
   color: var(--main-color);
@@ -585,7 +590,7 @@ overflows table td {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin: -8px;
-  border-radius: 5px;
+  border-radius: 15px;
   -webkit-box-align: start;
   -ms-flex-align: start;
   align-items: flex-start;
@@ -600,7 +605,7 @@ overflows table td {
   margin-top: calc(2.25 * 16px + 32px);
   color: #444;
   background: #fff;
-  border-radius: 5px;
+  border-radius: 15px;
   -webkit-box-shadow: 1px 5px 15px 0 rgba(0,0,0,0.3);
   box-shadow: 1px 5px 15px 0 rgba(0,0,0,0.3);
   -webkit-box-pack: start;
@@ -746,7 +751,7 @@ overflows table td {
   margin: calc(var(--space) * -1) !important;
   margin-bottom: calc(var(--space) / 2) !important;
   overflow: hidden;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 .post-entry__header:empty,
 .post__header:empty {
@@ -1003,6 +1008,12 @@ overflows table td {
 }
 .header .header__right .dropdown-menus .dropdown-menu {
   padding: 10px;
+}
+@media screen and (min-width: 1080px) {
+  .header {
+    position: sticky;
+    backdrop-filter: blur(20px);
+  }
 }
 @media screen and (max-width: 764px) {
   .navbar__menus {
@@ -1353,4 +1364,35 @@ overflows table td {
     -webkit-transform: translateY(0);
     transform: translateY(0);
   }
+}
+.sliding-fold,
+details {
+  display: block;
+  padding: 16px;
+  margin: 20px 0;
+  background: var(--bg-content-color);
+  border: none;
+  border-radius: 4px;
+  -webkit-box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.3);
+  box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.3);
+  -webkit-transition: all 0.6s;
+  -o-transition: all 0.6s;
+  transition: all 0.6s;
+}
+.sliding-fold>summary,
+details>summary {
+  cursor: pointer;
+  outline: none;
+}
+.sliding-fold .fold-content,
+details .fold-content {
+  margin-top: 20px;
+}
+.sliding-fold .fold-content>:first-child,
+details .fold-content>:first-child {
+  margin-top: 0;
+}
+.sliding-fold .fold-content>:last-child,
+details .fold-content>:last-child {
+  margin-bottom: 0;
 }

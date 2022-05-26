@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>HDU Page11(2041～2050)递推 | 穿过海的声音</title>
+
+
+    <meta name="keywords" content="OJ">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="杭电Page11的一些细节4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HDU Page11(2041～2050)递推">
+<meta property="og:url" content="http://example.com/2020/03/15/HDU-Page11-2041%EF%BD%9E2050%E9%80%92%E6%8E%A8/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="杭电Page11的一些细节4">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-15T13:18:40.000Z">
+<meta property="article:modified_time" content="2020-03-16T14:07:20.000Z">
+<meta property="article:author" content="jcwang">
+<meta property="article:tag" content="OJ">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        HDU Page11(2041～2050)递推
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2020/03/" class="post-meta__date button">2020-03-15</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#2041-%E8%B6%85%E7%BA%A7%E6%A5%BC%E6%A2%AF"><span class="toc-number">1.</span> <span class="toc-text">2041 超级楼梯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2043-%E5%AF%86%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">2043 密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2044-%E4%B8%80%E5%8F%AA%E5%B0%8F%E8%9C%9C%E8%9C%82"><span class="toc-number">3.</span> <span class="toc-text">2044 一只小蜜蜂</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2045-%E4%B8%8D%E5%AE%B9%E6%98%93%E7%B3%BB%E5%88%97%E4%B9%8B-3-%E2%80%94%E2%80%94-LELE%E7%9A%84RPG%E9%9A%BE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">2045 不容易系列之(3)—— LELE的RPG难题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2046-%E9%AA%A8%E7%89%8C%E9%93%BA%E6%96%B9%E6%A0%BC"><span class="toc-number">5.</span> <span class="toc-text">2046 骨牌铺方格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2047%E9%98%BF%E7%89%9B%E7%9A%84EOF%E7%89%9B%E8%82%89%E4%B8%B2"><span class="toc-number">6.</span> <span class="toc-text">2047阿牛的EOF牛肉串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2048-%E7%A5%9E%E3%80%81%E4%B8%8A%E5%B8%9D%E4%BB%A5%E5%8F%8A%E8%80%81%E5%A4%A9%E7%88%B7"><span class="toc-number">7.</span> <span class="toc-text">2048 神、上帝以及老天爷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2049-%E4%B8%8D%E5%AE%B9%E6%98%93%E7%B3%BB%E5%88%97%E4%B9%8B-4-%E2%80%94%E2%80%94%E8%80%83%E6%96%B0%E9%83%8E"><span class="toc-number">8.</span> <span class="toc-text">2049 不容易系列之(4)——考新郎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2050-%E6%8A%98%E7%BA%BF%E5%88%86%E5%89%B2%E5%B9%B3%E9%9D%A2"><span class="toc-number">9.</span> <span class="toc-text">2050 折线分割平面</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#2041-%E8%B6%85%E7%BA%A7%E6%A5%BC%E6%A2%AF"><span class="toc-number">1.</span> <span class="toc-text">2041 超级楼梯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2043-%E5%AF%86%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">2043 密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2044-%E4%B8%80%E5%8F%AA%E5%B0%8F%E8%9C%9C%E8%9C%82"><span class="toc-number">3.</span> <span class="toc-text">2044 一只小蜜蜂</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2045-%E4%B8%8D%E5%AE%B9%E6%98%93%E7%B3%BB%E5%88%97%E4%B9%8B-3-%E2%80%94%E2%80%94-LELE%E7%9A%84RPG%E9%9A%BE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">2045 不容易系列之(3)—— LELE的RPG难题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2046-%E9%AA%A8%E7%89%8C%E9%93%BA%E6%96%B9%E6%A0%BC"><span class="toc-number">5.</span> <span class="toc-text">2046 骨牌铺方格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2047%E9%98%BF%E7%89%9B%E7%9A%84EOF%E7%89%9B%E8%82%89%E4%B8%B2"><span class="toc-number">6.</span> <span class="toc-text">2047阿牛的EOF牛肉串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2048-%E7%A5%9E%E3%80%81%E4%B8%8A%E5%B8%9D%E4%BB%A5%E5%8F%8A%E8%80%81%E5%A4%A9%E7%88%B7"><span class="toc-number">7.</span> <span class="toc-text">2048 神、上帝以及老天爷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2049-%E4%B8%8D%E5%AE%B9%E6%98%93%E7%B3%BB%E5%88%97%E4%B9%8B-4-%E2%80%94%E2%80%94%E8%80%83%E6%96%B0%E9%83%8E"><span class="toc-number">8.</span> <span class="toc-text">2049 不容易系列之(4)——考新郎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2050-%E6%8A%98%E7%BA%BF%E5%88%86%E5%89%B2%E5%B9%B3%E9%9D%A2"><span class="toc-number">9.</span> <span class="toc-text">2050 折线分割平面</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h3 id="2041-超级楼梯"><a href="#2041-超级楼梯" class="headerlink" title="2041 超级楼梯"></a>2041 超级楼梯</h3><p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=2041">超级楼梯</a><br><strong>需要重视</strong><br><strong>递推求解</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//f[i]表示到达台阶i的方案数，由于只能从i-1或者i-2到达台阶 i 因此f[i]=f[i-1]+f[i-2] 。</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// insert code here...</span></span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> n, m, steps[<span class="number">105</span>], maxM = <span class="number">2</span>;</span><br><span class="line">    steps[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    steps[<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="comment">//    steps[3] = 2;</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;m);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (maxM &lt; m) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">3</span>; i&lt;=m; i++) &#123;</span><br><span class="line">                steps[i] = steps[i<span class="number">-1</span>] + steps[i<span class="number">-2</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            maxM = m;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, steps[m]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2043-密码"><a href="#2043-密码" class="headerlink" title="2043 密码"></a>2043 密码</h3><p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=2043">密码</a><strong>不是递推</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// insert code here...</span></span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="type">char</span> s[<span class="number">105</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">        <span class="type">int</span> check[<span class="number">4</span>] = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, s);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">strlen</span>(s) &gt;= <span class="number">8</span> &amp;&amp; <span class="built_in">strlen</span>(s) &lt;= <span class="number">16</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="built_in">strlen</span>(s); i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (s[i] &gt;= <span class="string">&#x27;A&#x27;</span> &amp;&amp; s[i] &lt;= <span class="string">&#x27;Z&#x27;</span>)</span><br><span class="line">                    check[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (s[i] &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; s[i] &lt;= <span class="string">&#x27;z&#x27;</span>)</span><br><span class="line">                    check[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (s[i] &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; s[i] &lt;= <span class="string">&#x27;9&#x27;</span>)</span><br><span class="line">                    check[<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (s[i] == <span class="string">&#x27;~&#x27;</span> || s[i] == <span class="string">&#x27;!&#x27;</span> || s[i] == <span class="string">&#x27;@&#x27;</span> || s[i] == <span class="string">&#x27;#&#x27;</span> || s[i] == <span class="string">&#x27;$&#x27;</span> || s[i] == <span class="string">&#x27;%&#x27;</span> || s[i] == <span class="string">&#x27;^&#x27;</span>)</span><br><span class="line">                    check[<span class="number">3</span>] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> ((check[<span class="number">0</span>] + check[<span class="number">1</span>] + check[<span class="number">2</span>] + check[<span class="number">3</span>]) &gt;= <span class="number">3</span>)</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;YES\n&quot;</span>);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;NO\n&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;NO\n&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2044-一只小蜜蜂"><a href="#2044-一只小蜜蜂" class="headerlink" title="2044 一只小蜜蜂"></a>2044 一只小蜜蜂</h3><p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=2044">2044 一只小蜜蜂</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// insert code here...</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n, a, b;</span><br><span class="line">    <span class="comment">//注意这个1-50就会很长，用long int都是错误的</span></span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> f[<span class="number">105</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;a, &amp;b);</span><br><span class="line"></span><br><span class="line">        f[a] = <span class="number">1</span>;</span><br><span class="line">        f[a+<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=a+<span class="number">2</span>; i&lt;=b; i++) &#123;</span><br><span class="line">            f[i] = f[i<span class="number">-1</span>] + f[i<span class="number">-2</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, f[b]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">//int main()&#123;</span></span><br><span class="line"><span class="comment">//    long long dp[51];</span></span><br><span class="line"><span class="comment">//    int a, b, z, i;</span></span><br><span class="line"><span class="comment">//    scanf(&quot;%d&quot;, &amp;z);</span></span><br><span class="line"><span class="comment">//    dp[1] = 1;</span></span><br><span class="line"><span class="comment">//    dp[2] = 2;</span></span><br><span class="line"><span class="comment">//    for ( i=3; i&lt;=50; ++i )&#123;</span></span><br><span class="line"><span class="comment">//        dp[i] = dp[i-2]+dp[i-1];</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    while (z--)&#123;</span></span><br><span class="line"><span class="comment">//        scanf(&quot;%d%d&quot;, &amp;a, &amp;b);</span></span><br><span class="line"><span class="comment">//        printf(&quot;%lld\n&quot;, dp[b-a]);</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    return 0;</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2045-不容易系列之-3-——-LELE的RPG难题"><a href="#2045-不容易系列之-3-——-LELE的RPG难题" class="headerlink" title="2045 不容易系列之(3)—— LELE的RPG难题"></a>2045 不容易系列之(3)—— LELE的RPG难题</h3><p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=2045">不容易系列之(3)—— LELE的RPG难题</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//注意题目要求，首尾也不相同</span></span><br><span class="line"><span class="comment">//有排成一行的ｎ个方格，用红(Red)、粉(Pink)、绿(Green)三色涂每个格子，每格涂一色，要求任何相邻的方格不能同色，且首尾两格也不同色</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  n个格子合乎题目要求的涂色时（即称之为合法）对应一个映射f  使f（n）即为所求值。那么接下来分析，当涂</span></span><br><span class="line"><span class="comment"> 第n个格子的时候，即要求f（n）时，受到第n-1个格子是否与第一个格子相同的制约。那么接下来的问题是对第</span></span><br><span class="line"><span class="comment"> n-1个格子分两种情况：假定其和第一个格子不同颜色，那么也就是说前n-1个格子是合法的涂法可以写为f（n-1），</span></span><br><span class="line"><span class="comment"> 再涂最后一个格子只有一种涂法。第二种第n-1个格子和第一个相同，那么前n-1不合法，且此时第n-2个格子一定和</span></span><br><span class="line"><span class="comment"> 第一个不同，那么此时前n-2个格子必定又是合法的,且第n个格子2种涂法。那么对f（n）的贡献为f(n-2)*2，那么</span></span><br><span class="line"><span class="comment"> f(n)来源于前两种情况的和，由加法原理。f（n）=f（n-1）+f(n-2)*2;</span></span><br><span class="line"><span class="comment"> n&gt;3(注意是如何确定的)</span></span><br><span class="line"><span class="comment"> 前面的1， 2， 3要自己考虑</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// insert code here...</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="comment">//注意递归的其实数字马上很大的，要long long</span></span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> res[<span class="number">105</span>] = &#123;<span class="number">3</span>, <span class="number">6</span>, <span class="number">6</span>&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n) != EOF) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">3</span>; i&lt;n; i++) &#123;</span><br><span class="line">            res[i] = res[i<span class="number">-1</span>] + res[i<span class="number">-2</span>] * <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, res[n<span class="number">-1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2046-骨牌铺方格"><a href="#2046-骨牌铺方格" class="headerlink" title="2046 骨牌铺方格"></a>2046 骨牌铺方格</h3><p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=2046">骨牌铺方格</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// insert code here...</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n, maxN = <span class="number">2</span>;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> f[<span class="number">60</span>];</span><br><span class="line">    f[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    f[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n) != EOF) &#123;</span><br><span class="line">        <span class="keyword">if</span> (maxN &lt; n) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=maxN+<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">                f[i] = f[i<span class="number">-1</span>] + f[i<span class="number">-2</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            maxN = n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, f[n]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2047阿牛的EOF牛肉串"><a href="#2047阿牛的EOF牛肉串" class="headerlink" title="2047阿牛的EOF牛肉串"></a>2047阿牛的EOF牛肉串</h3><p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=2047">2047阿牛的EOF牛肉串</a><br><strong>注意思想与2045 不容易系列之(3)—— LELE的RPG难题</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 关于这道题我们直接考虑n为‘o’时候的情况，因为题目说只要‘oo’不相邻就算一组题解，当n为‘o’的时候，n-1只能是‘e’或者‘f’，n-2则是每组‘e’，‘o’，‘f’都可以取，</span></span><br><span class="line"><span class="comment"> 能够得到f(n)=2f(n-2);</span></span><br><span class="line"><span class="comment"> 然后考虑n不为‘0’,n为‘e’或者‘f’，则n-1对于‘e’，‘o’，‘f’都可选取，择有f(n)=2*f(n-1)，</span></span><br><span class="line"><span class="comment"> 然后换位思考，站在‘e’‘f’的角度看问题你会发现‘e’关于‘f’是对称的，即f(n)=2*(f(n-1)+f(n))</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// insert code here...</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n, maxN = <span class="number">2</span>;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> f[<span class="number">60</span>];</span><br><span class="line">    f[<span class="number">1</span>] = <span class="number">3</span>;</span><br><span class="line">    f[<span class="number">2</span>] = <span class="number">8</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n) != EOF) &#123;</span><br><span class="line">        <span class="keyword">if</span> (maxN &lt; n) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=maxN+<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">                f[i] = <span class="number">2</span>*(f[i<span class="number">-1</span>] + f[i<span class="number">-2</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            maxN = n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, f[n]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2048-神、上帝以及老天爷"><a href="#2048-神、上帝以及老天爷" class="headerlink" title="2048 神、上帝以及老天爷"></a>2048 神、上帝以及老天爷</h3><p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=2048">神、上帝以及老天爷</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">题意是给出抽奖的人数，抽中自己的名字算中奖，计算没有一个人中奖的概率</span></span><br><span class="line"><span class="comment">可以用错排+递推</span></span><br><span class="line"><span class="comment">分析：</span></span><br><span class="line"><span class="comment">全错的概率 = 全错数 / 全部情况。</span></span><br><span class="line"><span class="comment">全部情况就是N的阶乘。</span></span><br><span class="line"><span class="comment">全错数：</span></span><br><span class="line"><span class="comment"> 1.将第N个数放在k位置，有n-1种。</span></span><br><span class="line"><span class="comment">2.将第k个位置的数拿出来考虑，如果第k个数放在第N个位置，则剩下就是n-2个数全部排错情况；</span></span><br><span class="line"><span class="comment">如果第k个数不是放在第N个位置，则就是n-1个数全部排错情况（这是对的，可把k看成n，n不会放到N位置，所以算错排?）</span></span><br><span class="line"><span class="comment">因此全错数就是a(n) = (n-1)*(a(n-1) + a(n-2))</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">long</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">jieceng</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> sum = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (n) &#123;</span><br><span class="line">        sum *= n;</span><br><span class="line">        n--;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//    printf(&quot;%lld\n&quot;, sum);</span></span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// insert code here...</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n, m, maxN = <span class="number">2</span>;</span><br><span class="line">    <span class="type">double</span> f[<span class="number">60</span>];</span><br><span class="line">    f[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    f[<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;m);</span><br><span class="line">    <span class="keyword">while</span> (m--) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">        <span class="keyword">if</span> (maxN &lt; n) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=maxN+<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">                f[i] = (i<span class="number">-1</span>)*(f[i<span class="number">-1</span>] + f[i<span class="number">-2</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            maxN = n;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//        printf(&quot;%.2lf\n&quot;, f[n]);</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%.2lf%%\n&quot;</span>, f[n]*<span class="number">100.0</span>/jieceng(n));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2049-不容易系列之-4-——考新郎"><a href="#2049-不容易系列之-4-——考新郎" class="headerlink" title="2049 不容易系列之(4)——考新郎"></a>2049 不容易系列之(4)——考新郎</h3><p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=2049">不容易系列之(4)——考新郎</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 这道题是n个人，错了m个，那我们就转化为m个人全错排好了，那n-m个人坐对了，m个人全错排，</span></span><br><span class="line"><span class="comment"> n-m个人坐对的方式有c(m,n-m)（组合数）种，那n个人m个人坐对的种数就是c(m,n-m)*f(m)，</span></span><br><span class="line"><span class="comment"> 当然，有几个特殊情况需要另外讨论。比如说n=m时，组合数计算需要返回一个1，结果就是f(m)，</span></span><br><span class="line"><span class="comment"> 还有m=1时，f(1)=0，计算结果是0，而事实上计算结果是c(n,1)种，所以我们在计算完f(i)的</span></span><br><span class="line"><span class="comment"> 值以后可以把f(1)赋为1，（因为1&lt;m&lt;=n&lt;=20，所以不用考虑用到f（1）计算结果不正确）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">long</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">jieceng</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> sum = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (n) &#123;</span><br><span class="line">        sum *= n;</span><br><span class="line">        n--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">long</span> <span class="type">long</span> <span class="title function_">CMethod</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> a)</span> &#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> sum = <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=n; i&gt;n-a; i--) &#123;</span><br><span class="line">        sum *= i;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>; i&lt;=a; i++) &#123;</span><br><span class="line">        sum /= i;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// insert code here...</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> c, n, m, maxN = <span class="number">2</span>;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> f[<span class="number">60</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;c);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (c--) &#123;</span><br><span class="line">        f[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">        f[<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (maxN &lt; m) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=maxN+<span class="number">1</span>; i&lt;=m; i++) &#123;</span><br><span class="line">                f[i] = (i<span class="number">-1</span>)*(f[i<span class="number">-1</span>] + f[i<span class="number">-2</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            maxN = m;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        f[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, CMethod(n, n-m) *f[m]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2050-折线分割平面"><a href="#2050-折线分割平面" class="headerlink" title="2050 折线分割平面"></a>2050 折线分割平面</h3><p><a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_76eabc150100swg8.html">折线分割平面</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40907279/article/details/78708856">折线分割平面</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 先看N条相交的直线最多能把平面分割成多少块</span></span><br><span class="line"><span class="comment"> 当添加第N条只显示，为了使平面最多， 则第N条直线要与前面的N-1条直线都相交，且没有任何三条直线教育一个点。</span></span><br><span class="line"><span class="comment"> 则第N条直线有N-1个交点。由于每增加N个交点，就增加N+1个平面，所以用N条直线来分隔平面，</span></span><br><span class="line"><span class="comment"> 最多的数是1+1+2+3+…+n=1+n*(n+1)/2, 第一个1是原先就有一个平面</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 再看每次增加两条相互平行的直线</span></span><br><span class="line"><span class="comment"> 当第N次添加时，前面已经有2N-2条直线了，所以第N次添加时，第2N-1条直线和第2N条直线都各能增加2*（n-1）+1 个平面。</span></span><br><span class="line"><span class="comment"> 所以第N次添加增加的面数是2[2(n-1) + 1] = 4n - 2 个。因此，总面数应该是</span></span><br><span class="line"><span class="comment"> 1 + 4n(n+1)/2 - 2n = 2n2 + 1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 如果把每次加进来的平行边让它们一头相交</span></span><br><span class="line"><span class="comment"> 则平面1、3已经合为一个面，因此，每一组平行线相交后，就会较少一个面，</span></span><br><span class="line"><span class="comment"> 所以所求就是平行线分割平面数减去N，为2n2 -n + 1</span></span><br><span class="line"><span class="comment"> 利用上述总结公式f(n)=2n2 - n + 1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// insert code here...</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> c, n;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;c);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (c--) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="number">2</span> * n * n - n + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2020/03/15/HDU-Page11-2041%EF%BD%9E2050%E9%80%92%E6%8E%A8/">http://example.com/2020/03/15/HDU-Page11-2041%EF%BD%9E2050%E9%80%92%E6%8E%A8/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2020-03-16</p></div> 
+    <div class="post-entry__tags"><a href="/tags/OJ/" class="post-tags__link button"># OJ</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2020/03/15/HDU-Page11(2059%EF%BD%9E2062)/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            HDU-Page11(2059～2062)
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2020/03/15/HDU-Page11(2051%EF%BD%9E2065)/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            HDU Page11(2051～2066)
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2022 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>HDU-Page11(2059～2062) | 穿过海的声音</title>
+
+
+    <meta name="keywords" content="OJ">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="杭电Page11的一些代码8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HDU-Page11(2059～2062)">
+<meta property="og:url" content="http://example.com/2020/03/15/HDU-Page11(2059%EF%BD%9E2062)/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="杭电Page11的一些代码8">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-15T13:18:40.000Z">
+<meta property="article:modified_time" content="2020-03-30T14:05:22.000Z">
+<meta property="article:author" content="jcwang">
+<meta property="article:tag" content="OJ">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        HDU-Page11(2059～2062)
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2020/03/" class="post-meta__date button">2020-03-15</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#2059-%E9%BE%9F%E5%85%94%E8%B5%9B%E8%B7%91"><span class="toc-number">1.</span> <span class="toc-text">2059 龟兔赛跑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2060-Snooker"><span class="toc-number">2.</span> <span class="toc-text">2060 Snooker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2061-Treasure-the-new-start-freshmen"><span class="toc-number">3.</span> <span class="toc-text">2061 Treasure the new start, freshmen!</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2062-Subset-sequence"><span class="toc-number">4.</span> <span class="toc-text">2062 Subset sequence</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#2059-%E9%BE%9F%E5%85%94%E8%B5%9B%E8%B7%91"><span class="toc-number">1.</span> <span class="toc-text">2059 龟兔赛跑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2060-Snooker"><span class="toc-number">2.</span> <span class="toc-text">2060 Snooker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2061-Treasure-the-new-start-freshmen"><span class="toc-number">3.</span> <span class="toc-text">2061 Treasure the new start, freshmen!</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2062-Subset-sequence"><span class="toc-number">4.</span> <span class="toc-text">2062 Subset sequence</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h3 id="2059-龟兔赛跑"><a href="#2059-龟兔赛跑" class="headerlink" title="2059 龟兔赛跑"></a>2059 龟兔赛跑</h3><p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=2059">龟兔赛跑</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/sr_19930829/article/details/18802543">解析</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> https://blog.csdn.net/sr_19930829/article/details/18802543</span></span><br><span class="line"><span class="comment"> 动态规划题目。dp[i]数组用来保存从起点到当前第i个充电站所用的最短时间.  它等于dp[j] (j&lt;i) 所用的时间加上从j到i所用的时间取最小的那个值。   在计算的时候，可以认为乌龟都是在充电站j充满电以后再走向充电站i的，可能会有疑问，题目中不是说充电站可以充电也可以选择不充电吗，</span></span><br><span class="line"><span class="comment"> 的确是这样，这就要提前面说的最小的那个值，比如要求dp[4]， 比如要从节点2（充电站2）到4，在2充满电，经过3，这时候在节点3是不充电的，后来要从节点3到4，在3充满电，再到4，</span></span><br><span class="line"><span class="comment"> 这样就考虑到了某一个充电站充电和不充电的情况，取最小值是指（0到4时间 +dp[0], 1到4时间+dp[1] ，2到4时间+dp[2], 3到4时间+dp[3]) 的最小值（就当前节点dp[4]来说）。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// insert code here...</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> l;                         <span class="comment">//跑道的总长度</span></span><br><span class="line">    <span class="type">int</span> N, C, T;                   <span class="comment">//充电站的个数，电动车冲满电以后能行驶的距离以及每次充电所需要的时间</span></span><br><span class="line">    <span class="type">int</span> VR, VT1, VT2;              <span class="comment">//兔子跑步的速度，乌龟开电动车的速度，乌龟脚蹬电动车的速度</span></span><br><span class="line">    <span class="type">int</span> path[<span class="number">102</span>];                 <span class="comment">//各个充电站离跑道起点的距离</span></span><br><span class="line">    <span class="type">double</span> dp[<span class="number">102</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;l) != EOF) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;N, &amp;C, &amp;T);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;VR, &amp;VT1, &amp;VT2);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>; i&lt;=N; i++) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;path[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        path[<span class="number">0</span>]=<span class="number">0</span>; path[N+<span class="number">1</span>]=l;    <span class="comment">//每个充电站看作一个节点，把起点和终点也看作节点</span></span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>; i&lt;=N+<span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="type">double</span> min = <span class="number">1000000</span>;  <span class="comment">//从第J到第I个充电站的最短时间</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j&lt;i; j++) &#123;</span><br><span class="line">                <span class="type">double</span> temp;       <span class="comment">//temp是指从起点到节点i所用的时间</span></span><br><span class="line">                                   <span class="comment">//从节点j到节点i的距离大于等于C的话</span></span><br><span class="line">                <span class="keyword">if</span> (path[i] - path[j] &gt; C)</span><br><span class="line">                                   <span class="comment">//时间是起点到节点j加上从j到i这一段所用的时间（分为两部分）</span></span><br><span class="line">                    temp = dp[j] + C * <span class="number">1.0</span> / VT1 + (path[i]-path[j]-C) * <span class="number">1.0</span> / VT2;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    temp = dp[j] + (path[i] - path[j]) * <span class="number">1.0</span> / VT1;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// 和带着充满电的电动车的乌龟并列站在起跑线上,  一开始充满电</span></span><br><span class="line">                <span class="keyword">if</span> (j &gt; <span class="number">0</span>)</span><br><span class="line">                    temp += T;    <span class="comment">//在节点j充电的时间，计算的时候看作每次都是在节点j充满电再走向节点i</span></span><br><span class="line">                <span class="keyword">if</span> (temp &lt; min)</span><br><span class="line">                    min = temp;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            dp[i] = min;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="type">double</span> rt;</span><br><span class="line">        rt = l * <span class="number">1.0</span> / VR;<span class="comment">//兔子用的时间</span></span><br><span class="line">        <span class="keyword">if</span>(dp[N+<span class="number">1</span>] &lt; rt)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;What a pity rabbit!\n&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Good job,rabbit!\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2060-Snooker"><a href="#2060-Snooker" class="headerlink" title="2060 Snooker"></a>2060 Snooker</h3><p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=2060">Snooker</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/webmen/p/5739262.html">解析</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 我觉得英文的看规则的题目，不会难，难的是弄懂和逻辑</span></span><br><span class="line"><span class="comment"> 12 * 1 (12 red-ball in one shoot) + 7 * 12(after hit a red ball, a black ball which was the most valuable ball should be the target)</span></span><br><span class="line"><span class="comment"> + 2 + 3 + 4 + 5 + 6 + 7(when no red ball left, make all the color ball in hole).</span></span><br><span class="line"><span class="comment"> 然后它说的是可能赢，那么就给飞利浦第二个加数中的最好的colorball，给对手最差的喽？？？(不对，题目都有点误解)</span></span><br><span class="line"><span class="comment"> 好吧，题目中现在给的是所有ball的数量而不是红球的数量了</span></span><br><span class="line"><span class="comment"> 看一下解析</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> https://www.cnblogs.com/webmen/p/5739262.html</span></span><br><span class="line"><span class="comment"> 桌上有n个球，一人得分为a，另一人为b，问如果第一个人将n个球都打进洞后，得分能否超过（或等于）第二个人。</span></span><br><span class="line"><span class="comment"> 总共有15个红球，和6个有颜色的球，每个红球的得分为1 ，6</span></span><br><span class="line"><span class="comment"> 个有颜色的球分别为2 ， 3， 4 ，5， 6， 7 ；</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> 分析：</span></span><br><span class="line"><span class="comment"> ① 如果n&gt;6 ,</span></span><br><span class="line"><span class="comment"> 那么桌上有6个彩球和n-6个红球，但是由于有色球全部打进洞后，每个球需要额外增加黑球（最高得分）的得分；所以打进n个球的得分为：</span></span><br><span class="line"><span class="comment"> （n-6）*1+（n-6）*7+2+3+4+5+6+7</span></span><br><span class="line"><span class="comment"> ② 当 m &lt;= 6 时，</span></span><br><span class="line"><span class="comment"> 应该由价值最高的黑球（ 7 分） 向前依</span></span><br><span class="line"><span class="comment"> 次增加求和，又因为有色球满足等差数列 ，由前6项减去前 6 - m项和，所以</span></span><br><span class="line"><span class="comment"> 求得为（ 7 - m + 1 + 7 ) * m / 2 ( 这里直接通过得分来计算的）。因</span></span><br><span class="line"><span class="comment"> 此，第二种情况的得分为（ 15 - m ) *m/ 2 ;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// insert code here...</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n, pScore, oScore, leftBallNum;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;leftBallNum, &amp;pScore, &amp;oScore);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (leftBallNum &gt; <span class="number">6</span>)</span><br><span class="line">            pScore += (leftBallNum<span class="number">-6</span>) + (leftBallNum<span class="number">-6</span>) * <span class="number">7</span> + (<span class="number">2</span> + <span class="number">7</span>) * <span class="number">6</span> / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            pScore += (<span class="number">8</span>-leftBallNum + <span class="number">7</span>) * leftBallNum / <span class="number">2</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (pScore &gt;= oScore)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Yes\n&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;No\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2061-Treasure-the-new-start-freshmen"><a href="#2061-Treasure-the-new-start-freshmen" class="headerlink" title="2061 Treasure the new start, freshmen!"></a>2061 Treasure the new start, freshmen!</h3><p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=2061">Treasure the new start, freshmen!</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43900869/article/details/88673783?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task">解析</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// insert code here...</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n, m;</span><br><span class="line"><span class="comment">//    int blankFlag = 0;</span></span><br><span class="line">    <span class="type">double</span> credit, score;</span><br><span class="line">    <span class="type">char</span> className[<span class="number">100</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">while</span> (n--) &#123;</span><br><span class="line"><span class="comment">//        if (blankFlag)</span></span><br><span class="line"><span class="comment">//            printf(&quot;\n&quot;);</span></span><br><span class="line"><span class="comment">//        else</span></span><br><span class="line"><span class="comment">//            blankFlag = 1;</span></span><br><span class="line">        </span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;m);</span><br><span class="line">        <span class="type">int</span> flag = <span class="number">1</span>;</span><br><span class="line"><span class="comment">//        int creditSum = 0; //都是浮点呀, 因为这个wa了好久</span></span><br><span class="line">        <span class="type">double</span> sum = <span class="number">0.0</span>, creditSum = <span class="number">0.0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (m--) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%s %lf %lf&quot;</span>, className, &amp;credit, &amp;score);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (score &lt; <span class="number">60</span>)</span><br><span class="line">                flag = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//                printf(&quot;Sorry!\n&quot;)</span></span><br><span class="line"><span class="comment">//                </span> ; <span class="comment">//这里不能直接</span> 的，因为后面还有需要读取的课程和学分，难道不读取了吗？？？</span><br><span class="line">                         <span class="comment">//也不能直接print, 因为这里直接print的话不用回车就会输出了</span></span><br><span class="line">            </span><br><span class="line">            creditSum += credit;</span><br><span class="line">            sum += credit * score;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (flag) <span class="built_in">printf</span>(<span class="string">&quot;%.2lf\n&quot;</span>, sum * <span class="number">1.0</span> / creditSum);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;Sorry!\n&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (n != <span class="number">0</span>)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2062-Subset-sequence"><a href="#2062-Subset-sequence" class="headerlink" title="2062 Subset sequence"></a>2062 Subset sequence</h3><p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=2062">Subset sequence</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33266889/article/details/53468509">解析</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> &#123;1&#125;</span></span><br><span class="line"><span class="comment"> &#123;1,2&#125;</span></span><br><span class="line"><span class="comment"> &#123;1,2,3&#125;</span></span><br><span class="line"><span class="comment"> &#123;1,3&#125;</span></span><br><span class="line"><span class="comment"> &#123;1,3,2&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> &#123;2&#125;</span></span><br><span class="line"><span class="comment"> &#123;2,1&#125;</span></span><br><span class="line"><span class="comment"> &#123;2,1,3&#125;</span></span><br><span class="line"><span class="comment"> &#123;2,3&#125;</span></span><br><span class="line"><span class="comment"> &#123;2,3,1&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> &#123;3&#125;</span></span><br><span class="line"><span class="comment"> &#123;3,1&#125;</span></span><br><span class="line"><span class="comment"> &#123;3,1,2&#125;</span></span><br><span class="line"><span class="comment"> &#123;3,2&#125;</span></span><br><span class="line"><span class="comment"> &#123;3,2,1&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> https://blog.csdn.net/qq_33266889/article/details/53468509</span></span><br><span class="line"><span class="comment"> ①设f(n)是n个数字按照字典序所产生的子集个数，f(n) = n*( f(n-1) + 1 )，f(1)=1</span></span><br><span class="line"><span class="comment"> 这里需要强调按照字典序生成的子集，一个含有n个元素的集合真子集的个数是2^n-1，为什么按照字典序生成的子集却不符合这一规律？</span></span><br><span class="line"><span class="comment"> 因为在按字典序生成时&#123;1,2&#125;和&#123;2,1&#125;认为是两个不同的集合，所以 f(n) &gt;&gt; 2^n-1。</span></span><br><span class="line"><span class="comment"> ②设g(n)是每一组子集的个数，g(n)=f(n)/n</span></span><br><span class="line"><span class="comment"> g(n-1)=f(n-1)/(n-1)，f(n) = n*( f(n-1) + 1 )，g(n)=(n-1)*g(n-1)+1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> 从上面子集顺序可以得到一个思路，我们可以先输出开头数字，然后把问题规模缩小到( n-1 , m-(t-1)*g(n)-1 )，不断缩小规模直至找到答案。</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment"> 主要步骤：</span></span><br><span class="line"><span class="comment"> 1、求出所在组t</span></span><br><span class="line"><span class="comment"> 2、输出所在组t的首元素s[t](同一组首元素相同)</span></span><br><span class="line"><span class="comment"> 3、将该子集的下一个元素到最后一个的值+1,注意这个规律：在第i组，首元素为i，删除首元素后，在第i个子集后首元素均变大+1.</span></span><br><span class="line"><span class="comment"> 4、缩减问题规模继续执行步骤1~3</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// insert code here...</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="type">int</span> t;                              <span class="comment">// 所求子集位于分组后的第几组</span></span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> m;                        <span class="comment">// m：位于某一组的第几个子集</span></span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> g[<span class="number">21</span>] = &#123;<span class="number">0</span>&#125;;              <span class="comment">// 后面将子集分组后平均每组个数，如:c[2]表示n=2时的分组每组中子集数</span></span><br><span class="line">    <span class="type">int</span> s[<span class="number">21</span>];                          <span class="comment">// 每组首元素元素,组数&lt;=20</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">20</span>; i++) &#123;</span><br><span class="line">        g[i] = (i - <span class="number">1</span>) * g [i <span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">&quot;%d %lld&quot;</span>, &amp;n, &amp;m) != EOF) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">21</span>;i++)</span><br><span class="line">            s[i]=i;                     <span class="comment">// 每循环一次就重新归位每组首元素</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (m &amp;&amp; n) &#123;</span><br><span class="line">            <span class="comment">//以下要适当加括号, 不然优先级不对的, 特别是三目出现的时候</span></span><br><span class="line">            <span class="comment">// 得到第m个子集在分组后的第t组</span></span><br><span class="line">            t = (<span class="type">int</span>)((m / g[n]) + (m % g[n] &gt; <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>));</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, s[t]);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=t; i&lt;=n; i++) &#123;</span><br><span class="line"><span class="comment">//                s[i]++;                 // 当去掉开头数字后，大于开头数字的数+1</span></span><br><span class="line">                s[i]=s[i+<span class="number">1</span>];            <span class="comment">//在第n组中，第2个元素在第n个时变为它的下一个数, 而并不一定是++</span></span><br><span class="line">            &#125;</span><br><span class="line">            m -= ((t - <span class="number">1</span>) * g[n] + <span class="number">1</span>);  <span class="comment">// 减去(t-1组总子集数+1), m变为表示在剩余子集中位于第几个</span></span><br><span class="line">            <span class="built_in">printf</span>(m == <span class="number">0</span> ? <span class="string">&quot;\n&quot;</span> : <span class="string">&quot; &quot;</span>);</span><br><span class="line">            </span><br><span class="line">            n--;                        <span class="comment">// 规模减小, 依次递减, 直到执行上面的if代码或退出</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2020/03/15/HDU-Page11(2059%EF%BD%9E2062)/">http://example.com/2020/03/15/HDU-Page11(2059%EF%BD%9E2062)/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2020-03-30</p></div> 
+    <div class="post-entry__tags"><a href="/tags/OJ/" class="post-tags__link button"># OJ</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2020/03/22/HDU-Page11(2067%EF%BD%9E2080)%20/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            HDU Page11(2067～2080)
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2020/03/15/HDU-Page11-2041%EF%BD%9E2050%E9%80%92%E6%8E%A8/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            HDU Page11(2041～2050)递推
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2022 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
