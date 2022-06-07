@@ -25,27 +25,24 @@
     <!-- meta -->
 
 
-<title>Problems_1 | 穿过海的声音</title>
+<title>AlgorithmClassification | 穿过海的声音</title>
 
-
-    <meta name="keywords" content="mysql">
 
 
 
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="程序员经典面试题，Mysql并发读写的时候，都是需要加锁的么？ 在Mysql中有行锁，如果有多个事务同时修改同一行数据，那么需要加锁来防止并发问题。那么，如果有事务修改数据，又有事务读取这个数据，需要加锁么？ 答案是不一定，事实上，Mysql的很多数据库引擎为了提升并发性能，都做了多版本并发控制，也就是我们常说的MVCC。 在Mysql的每一行数据中，除了我们定义的数据列，还有2个隐藏的列，一个是">
+    <meta name="description" content="算法分类liuyubobobo&#x2F;Play-with-Algorithm-Interview liweiwei1419 数组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Problems_1">
-<meta property="og:url" content="http://example.com/2022/06/06/Problems-1/index.html">
+<meta property="og:title" content="AlgorithmClassification">
+<meta property="og:url" content="http://example.com/2022/06/07/AlgorithmClassification/index.html">
 <meta property="og:site_name" content="穿过海的声音">
-<meta property="og:description" content="程序员经典面试题，Mysql并发读写的时候，都是需要加锁的么？ 在Mysql中有行锁，如果有多个事务同时修改同一行数据，那么需要加锁来防止并发问题。那么，如果有事务修改数据，又有事务读取这个数据，需要加锁么？ 答案是不一定，事实上，Mysql的很多数据库引擎为了提升并发性能，都做了多版本并发控制，也就是我们常说的MVCC。 在Mysql的每一行数据中，除了我们定义的数据列，还有2个隐藏的列，一个是">
+<meta property="og:description" content="算法分类liuyubobobo&#x2F;Play-with-Algorithm-Interview liweiwei1419 数组">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-06T02:13:47.000Z">
-<meta property="article:modified_time" content="2022-06-06T15:10:03.148Z">
+<meta property="article:published_time" content="2022-06-07T08:24:51.000Z">
+<meta property="article:modified_time" content="2022-06-07T08:27:56.556Z">
 <meta property="article:author" content="jcwang">
-<meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
 
 
@@ -125,10 +122,10 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        Problems_1
+        AlgorithmClassification
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2022/06/" class="post-meta__date button">2022-06-06</a>
+        <a href="/archives/2022/06/" class="post-meta__date button">2022-06-07</a>
         
  
         
@@ -145,7 +142,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">1.</span> <span class="toc-text">数组</span></a></li></ol>
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -155,23 +152,16 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">Article Directory</div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">1.</span> <span class="toc-text">数组</span></a></li></ol>
     </div>
 
 
 <article class="post post__with-toc content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1663660217432859548&wfr=spider&for=pc">程序员经典面试题，Mysql并发读写的时候，都是需要加锁的么？</a></p>
-<p>在Mysql中有行锁，如果有多个事务同时修改同一行数据，那么需要加锁来防止并发问题。那么，如果有事务修改数据，又有事务读取这个数据，需要加锁么？</p>
-<p>答案是不一定，事实上，Mysql的很多数据库引擎为了提升并发性能，都做了多版本并发控制，也就是我们常说的MVCC。</p>
-<p>在Mysql的每一行数据中，除了我们定义的数据列，还有2个隐藏的列，一个是数据的变更时间，一个是这行数据的删除时间，当然，这个时间并不是简单的时间戳，而是一个严格递增的系统版本号。</p>
-<p>当InnoDB发生Insert事件的时候，会插入当前行并且以取得的系统版本号作为数据版本号。</p>
-<p>当InnoDB发生Delete时间的时候，不会删除当前行，而是把对应的行如果未删除，那么打上删除标记位为当前的版本号。</p>
-<p>当InnoDB发生Select操作的时候，会取当前的系统版本号，然后到数据库中进行查询，他只会查询比自己当前版本号更小的，并且没有删除版本号或者删除版本号比当前版本号更小的数据。</p>
-<p>当InnoDB发生Update事件的时候，不是直接更新旧的数据，而是插入一条新的数据，并且把版本号小于这条记录的并且没有被打上删除标记的同一主键的记录更新打上删除标记，删除版本号为当前的版本号。</p>
-<p>很显然，在这样的一种数据中，同一行数据其实在数据库中是多行的存在。这本质上是一种空间换时间的方案，在多版本控制中，我们几乎可以做到所有的读操作都是无阻塞的，可以避免加锁，这与互联网业务中，多读少写是非常契合的。当然了，在Mysql的InnoDB引擎中，只有事务级别为可重复读跟读提交才可以使用。这是为什么呢？欢迎大家关注我，共同学习，共同进步。大家的支持是我继续唠嗑的动力。</p>
-
+        <h1 id="算法分类"><a href="#算法分类" class="headerlink" title="算法分类"></a>算法分类</h1><p><a target="_blank" rel="noopener" href="https://github.com/liuyubobobo">liuyubobobo</a>&#x2F;<strong><a target="_blank" rel="noopener" href="https://github.com/liuyubobobo/Play-with-Algorithm-Interview">Play-with-Algorithm-Interview</a></strong></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/u/liweiwei1419/">liweiwei1419</a></p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2>
     </div>
     
     <div class="post__license">
@@ -182,43 +172,29 @@
             <strong>
                 Permalink: 
             </strong>
-            <a href="http://example.com/2022/06/06/Problems-1/">http://example.com/2022/06/06/Problems-1/</a>
+            <a href="http://example.com/2022/06/07/AlgorithmClassification/">http://example.com/2022/06/07/AlgorithmClassification/</a>
         </p>
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-06-06</p></div> 
-    <div class="post-entry__tags"><a href="/tags/mysql/" class="post-tags__link button"># mysql</a></div> 
+    <div class="post-footer__meta"><p>updated at 2022-06-07</p></div> 
+    <div class="post-entry__tags"></div> 
 </article>
 
 
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/2022/06/06/LeetCodeTip/" class="nav__link">
-                    <div>
-                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
-                    </div>
-                    <div>
-                        <div class="nav__label">
-                            Previous Post
-                        </div>
-                        <div class="nav__title">
-                            LeetCodeTip
-                        </div>
-                    </div>
-                </a>
-            
         </div>
         <div class="nav__next">
             
-                <a href="/2022/06/06/mysql/" class="nav__link">
+                <a href="/2022/06/06/LeetCodeTip/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             Next Post
                         </div>
                         <div class="nav__title">
-                            Mysql
+                            LeetCodeTip
                         </div>
                     </div>
                     <div>

@@ -43,7 +43,7 @@
 <meta property="og:description" content="Mysql行锁MySQL 表锁和行锁机制 分析 在执行DML操作时，会对涉及的行加锁，同时也会对该表加上意向锁。（意向共享锁：与表共享兼容，表拍他互斥。意向排它锁：都互斥。但是意向拍他之间，不会互斥，行锁可以保证的。） 后面对这张表加表锁的时候，会根据该表上的意向锁来判定是否可以加锁成功，而不用逐行在判断行锁。 总结：InnoDB的行锁是针对索引加的锁，不是针对记录加的锁。并且该索引不能失效，否则">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-06T01:34:42.000Z">
-<meta property="article:modified_time" content="2022-06-06T01:44:04.839Z">
+<meta property="article:modified_time" content="2022-06-07T01:58:44.312Z">
 <meta property="article:author" content="jcwang">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
@@ -145,7 +145,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E9%94%81"><span class="toc-number">1.</span> <span class="toc-text">行锁</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E9%94%81"><span class="toc-number">1.</span> <span class="toc-text">行锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E8%BF%98%E6%98%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">mysql是单线程还是多线程？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HAVING%E5%92%8CWHERE%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9"><span class="toc-number">3.</span> <span class="toc-text">HAVING和WHERE的异同点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL10-%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E9%9D%9Emanager%E7%9A%84%E5%91%98%E5%B7%A5emp-no"><span class="toc-number">3.0.1.</span> <span class="toc-text">SQL10 获取所有非manager的员工emp_no</span></a></li></ol></li></ol></li></ol>
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -155,7 +155,7 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">Article Directory</div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E9%94%81"><span class="toc-number">1.</span> <span class="toc-text">行锁</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E9%94%81"><span class="toc-number">1.</span> <span class="toc-text">行锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E8%BF%98%E6%98%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">mysql是单线程还是多线程？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HAVING%E5%92%8CWHERE%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9"><span class="toc-number">3.</span> <span class="toc-text">HAVING和WHERE的异同点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL10-%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E9%9D%9Emanager%E7%9A%84%E5%91%98%E5%B7%A5emp-no"><span class="toc-number">3.0.1.</span> <span class="toc-text">SQL10 获取所有非manager的员工emp_no</span></a></li></ol></li></ol></li></ol>
     </div>
 
 
@@ -171,6 +171,16 @@
 <p><strong>行锁</strong>：</p>
 <p><strong>间隙锁</strong>：防止其他事务在间隙insert，防止了了RR隔离级别的幻读。</p>
 <p><strong>临间锁</strong>：上俩综合。</p>
+<h2 id="mysql是单线程还是多线程？"><a href="#mysql是单线程还是多线程？" class="headerlink" title="mysql是单线程还是多线程？"></a><a target="_blank" rel="noopener" href="https://www.gxlcms.com/mysql-380884.html">mysql是单线程还是多线程？</a></h2><p>mysql是多线程的。mysql是一个单进程多线程的数据库，在innodb中大概3种线程为：1、主线程Master Thread；2、IO Thread线程，用于异步处理写请求；3、purge Thread线程，用于删除undo日志。</p>
+<p>主从复制的时候，从节点将从主节点read到的二进制日志通过IOThread写入到中继日志。</p>
+<h2 id="HAVING和WHERE的异同点"><a href="#HAVING和WHERE的异同点" class="headerlink" title="HAVING和WHERE的异同点"></a>HAVING和WHERE的异同点</h2><p>执行时机不同，一个在分组前，不满足where不参与分组，having对分组之后的结果进行过滤。</p>
+<p>判断条件不同，where不能对聚合函数进行判断。</p>
+<p>顺序：where &gt; 聚合函数 &gt; having。</p>
+<p>语法上:where 用表中列名，having 用 select 结果别名。</p>
+<p>影响结果范围:where 从表读出数据的行数，having 返回客户端的行数。</p>
+<p>where 可以使用索引，having 不能使用索引，只能在临时结果集操作。</p>
+<p>where后面不能使用聚集函数，having是专门使用聚集函数的。</p>
+<h4 id="SQL10-获取所有非manager的员工emp-no"><a href="#SQL10-获取所有非manager的员工emp-no" class="headerlink" title="SQL10 获取所有非manager的员工emp_no"></a><strong>SQL10</strong> <strong>获取所有非manager的员工emp_no</strong></h4><p>MySQL官方文档有说明，in关键字适合确定数量的情况，一般效率较低，不推荐使用。能用in关键字的语句都可以转化为使用join的语句，推荐使用join关键字。</p>
 
     </div>
     
@@ -187,7 +197,7 @@
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-06-06</p></div> 
+    <div class="post-footer__meta"><p>updated at 2022-06-07</p></div> 
     <div class="post-entry__tags"><a href="/tags/mysql/" class="post-tags__link button"># mysql</a></div> 
 </article>
 
