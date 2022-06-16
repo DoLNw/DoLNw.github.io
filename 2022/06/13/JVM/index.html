@@ -25,7 +25,7 @@
     <!-- meta -->
 
 
-<title>我的秋招笔记整理 | 穿过海的声音</title>
+<title>JVM | 穿过海的声音</title>
 
 
 
@@ -33,17 +33,20 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="Spring 为何需要三级缓存解决循环依赖，而不是二级缓存？">
+    <meta name="description" content="阿里二面试题：JVM 方法区和元空间什么关系？6大角度带你了解方法区 阿里二面：JVM方法区和元空间的关系到底是怎样的 方法区和永久代以及元空间有什么关系？方法区和永久代以及元空间的关系很像 Java 中接口和类的关系，类实现了接口，这里的类就可以看作是永久代和元空间，接口可以看作是方法区，也就是说永久代以及元空间是 HotSpot 虚拟机对虚拟机规范中方法区的两种实现方式。 并且，永久代是 JD">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的秋招笔记整理">
-<meta property="og:url" content="http://example.com/2022/06/07/%E6%88%91%E7%9A%84%E7%A7%8B%E6%8B%9B%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/index.html">
+<meta property="og:title" content="JVM">
+<meta property="og:url" content="http://example.com/2022/06/13/JVM/index.html">
 <meta property="og:site_name" content="穿过海的声音">
-<meta property="og:description" content="Spring 为何需要三级缓存解决循环依赖，而不是二级缓存？">
+<meta property="og:description" content="阿里二面试题：JVM 方法区和元空间什么关系？6大角度带你了解方法区 阿里二面：JVM方法区和元空间的关系到底是怎样的 方法区和永久代以及元空间有什么关系？方法区和永久代以及元空间的关系很像 Java 中接口和类的关系，类实现了接口，这里的类就可以看作是永久代和元空间，接口可以看作是方法区，也就是说永久代以及元空间是 HotSpot 虚拟机对虚拟机规范中方法区的两种实现方式。 并且，永久代是 JD">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-07T08:28:38.000Z">
-<meta property="article:modified_time" content="2022-06-09T00:52:51.475Z">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/06/13/0acb7c38c148e32c78451ff7a9cbe5f3.webp.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/06/13/Screen-Shot-2022-06-13-at-16.06.01.png">
+<meta property="article:published_time" content="2022-06-13T07:42:03.000Z">
+<meta property="article:modified_time" content="2022-06-13T08:11:52.476Z">
 <meta property="article:author" content="jcwang">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.tyzhang.top/images/2022/06/13/0acb7c38c148e32c78451ff7a9cbe5f3.webp.png">
 
 
     
@@ -122,10 +125,10 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        我的秋招笔记整理
+        JVM
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2022/06/" class="post-meta__date button">2022-06-07</a>
+        <a href="/archives/2022/06/" class="post-meta__date button">2022-06-13</a>
         
  
         
@@ -159,7 +162,13 @@
 <article class="post post__with-toc content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/zESPys72m-IcK1KtHDfkBw">Spring 为何需要三级缓存解决循环依赖，而不是二级缓存？</a></p>
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wdjnb/article/details/124250634?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-0-124250634-blog-112667921.pc_relevant_blogantidownloadv1&spm=1001.2101.3001.4242.1&utm_relevant_index=3">阿里二面试题：JVM 方法区和元空间什么关系？6大角度带你了解方法区</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_50205273/article/details/112667921">阿里二面：JVM方法区和元空间的关系到底是怎样的</a></p>
+<h1 id="方法区和永久代以及元空间有什么关系？"><a href="#方法区和永久代以及元空间有什么关系？" class="headerlink" title="方法区和永久代以及元空间有什么关系？"></a>方法区和永久代以及元空间有什么关系？</h1><p>方法区和永久代以及元空间的关系很像 Java 中接口和类的关系，类实现了接口，这里的类就可以看作是永久代和元空间，接口可以看作是方法区，也就是说永久代以及元空间是 HotSpot 虚拟机对虚拟机规范中方法区的两种实现方式。</p>
+<p>并且，永久代是 JDK 1.8 之前的方法区实现，JDK 1.8 及以后方法区的实现便成为元空间。</p>
+<h1 id="JDK-1-7-为什么要将字符串常量池移动到堆中？"><a href="#JDK-1-7-为什么要将字符串常量池移动到堆中？" class="headerlink" title="JDK 1.7 为什么要将字符串常量池移动到堆中？"></a>JDK 1.7 为什么要将字符串常量池移动到堆中？</h1><p>主要是因为永久代（方法区实现）的 GC 回收效率太低，只有在整堆收集 (Full GC)的时候才会被执行 GC。Java 程序中通常会有大量的被创建的字符串等待回收，将字符串常量池放到堆中，能够更高效及时地回收字符串内存。</p>
+<p><img src="https://pic.tyzhang.top/images/2022/06/13/0acb7c38c148e32c78451ff7a9cbe5f3.webp.png" alt="0acb7c38c148e32c78451ff7a9cbe5f3.webp.png"></p>
+<p><img src="https://pic.tyzhang.top/images/2022/06/13/Screen-Shot-2022-06-13-at-16.06.01.png" alt="Screen-Shot-2022-06-13-at-16.06.01.png"></p>
 
     </div>
     
@@ -171,12 +180,12 @@
             <strong>
                 Permalink: 
             </strong>
-            <a href="http://example.com/2022/06/07/%E6%88%91%E7%9A%84%E7%A7%8B%E6%8B%9B%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/">http://example.com/2022/06/07/%E6%88%91%E7%9A%84%E7%A7%8B%E6%8B%9B%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/</a>
+            <a href="http://example.com/2022/06/13/JVM/">http://example.com/2022/06/13/JVM/</a>
         </p>
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-06-09</p></div> 
+    <div class="post-footer__meta"><p>updated at 2022-06-13</p></div> 
     <div class="post-entry__tags"></div> 
 </article>
 
@@ -184,7 +193,7 @@
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/2022/06/13/JVM/" class="nav__link">
+                <a href="/2022/06/13/AlgorithmClassification2/" class="nav__link">
                     <div>
                         <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
                     </div>
@@ -193,7 +202,7 @@
                             Previous Post
                         </div>
                         <div class="nav__title">
-                            JVM
+                            AlgorithmClassification2
                         </div>
                     </div>
                 </a>
@@ -201,13 +210,13 @@
         </div>
         <div class="nav__next">
             
-                <a href="/2022/06/07/AlgorithmClassification/" class="nav__link">
+                <a href="/2022/06/07/%E6%88%91%E7%9A%84%E7%A7%8B%E6%8B%9B%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             Next Post
                         </div>
                         <div class="nav__title">
-                            AlgorithmClassification
+                            我的秋招笔记整理
                         </div>
                     </div>
                     <div>
