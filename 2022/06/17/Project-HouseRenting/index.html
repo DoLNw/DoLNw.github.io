@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>Project_HouseRenting | 穿过海的声音</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="项目实践：前后端分离的租房系统目前主流的前端框架中，有ReactJs、Vue.js、angularjs等，都会使用到ES6的新特性。目前最流行的前端框架Vue、Angular、React都属于SPA开发阶段（阶段四，网页其实是一个应用程序，single-page-application）。 ReactJs是一个用于构建用户界面的JavaScript框架，是Facebook开发的一款Js框架。Rea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project_HouseRenting">
+<meta property="og:url" content="http://example.com/2022/06/17/Project-HouseRenting/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="项目实践：前后端分离的租房系统目前主流的前端框架中，有ReactJs、Vue.js、angularjs等，都会使用到ES6的新特性。目前最流行的前端框架Vue、Angular、React都属于SPA开发阶段（阶段四，网页其实是一个应用程序，single-page-application）。 ReactJs是一个用于构建用户界面的JavaScript框架，是Facebook开发的一款Js框架。Rea">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-17T13:39:28.000Z">
+<meta property="article:modified_time" content="2022-06-17T15:53:26.258Z">
+<meta property="article:author" content="jcwang">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        Project_HouseRenting
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/06/" class="post-meta__date button">2022-06-17</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="项目实践：前后端分离的租房系统"><a href="#项目实践：前后端分离的租房系统" class="headerlink" title="项目实践：前后端分离的租房系统"></a>项目实践：前后端分离的租房系统</h1><p>目前主流的前端框架中，有<strong>ReactJs</strong>、Vue.js、angularjs等，都会使用到ES6的新特性。目前最流行的前端框架Vue、Angular、React都属于SPA开发阶段（阶段四，网页其实是一个应用程序，single-page-application）。</p>
+<p><strong>ReactJs</strong>是一个用于构建用户界面的JavaScript框架，是Facebook开发的一款Js框架。ReactJs圈内还有一些框架（Flux，Redux，Ant Design React）。</p>
+<p><strong>UmiJS</strong>是一个可拔插的企业级<strong>Rect应用框架</strong>，umi 可以简单地理解为 roadhog + 路由，思路类似 <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=next.js&spm=1001.2101.3001.7020">next.js</a>&#x2F;nuxt.js，辅以一套插件机制，目的是通过框架的方式简化 React 开发。</p>
+<p>安装过程中，需要用到①node.js，然后再装②yarn（因为tyarn用的是npm.taobao.org的源，速度快，可以把yarn看作优化了的npm。也可以说用yarn管理npm依赖），然后用tyarn安装③umi。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38763540/article/details/104781828">参考：umi搭建react的IDEA开发环境</a></p>
+<p>所以此项目中，使用UmiJS作为React的构建工具。（tyarn安装了umi之后，在项目中也需要用tyarn引入nmi依赖的，然后等等一些操作）</p>
+<p><a target="_blank" rel="noopener" href="https://qiaoyajun.blog.csdn.net/article/details/123399662?spm=1001.2101.3001.6650.9&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-9-123399662-blog-109550516.pc_relevant_antiscanv2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-9-123399662-blog-109550516.pc_relevant_antiscanv2&utm_relevant_index=14">react项目打包并在本地运行</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># </span><span class="language-bash">这个项目 npm run build （项目打包命令）之后，生成的事dist文件夹，而不是build文件夹</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">进入dist文件夹，启动项目</span></span><br><span class="line">live-server</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Apache dubbo是一款高性能的Java RPC框架。对SpringBoot有支持，所以后面项目中会有SpringBoot作为基础框架，使用dubbo。</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2022/06/17/Project-HouseRenting/">http://example.com/2022/06/17/Project-HouseRenting/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-06-17</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/06/16/AlgorithmNormal/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            AlgorithmNormal
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2022 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
