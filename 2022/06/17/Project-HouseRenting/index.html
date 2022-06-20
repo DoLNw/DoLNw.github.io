@@ -40,10 +40,13 @@
 <meta property="og:site_name" content="穿过海的声音">
 <meta property="og:description" content="项目实践：前后端分离的租房系统目前主流的前端框架中，有ReactJs、Vue.js、angularjs等，都会使用到ES6的新特性。目前最流行的前端框架Vue、Angular、React都属于SPA开发阶段（阶段四，网页其实是一个应用程序，single-page-application）。 ReactJs是一个用于构建用户界面的JavaScript框架，是Facebook开发的一款Js框架。Rea">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/06/18/IMG_36C837B2E889-1.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/06/18/IMG_6F1D644A6030-1.jpg">
 <meta property="article:published_time" content="2022-06-17T13:39:28.000Z">
-<meta property="article:modified_time" content="2022-06-17T15:53:26.258Z">
+<meta property="article:modified_time" content="2022-06-20T00:36:02.145Z">
 <meta property="article:author" content="jcwang">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.tyzhang.top/images/2022/06/18/IMG_36C837B2E889-1.jpg">
 
 
     
@@ -142,7 +145,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#House-Renting"><span class="toc-number">1.</span> <span class="toc-text">House Renting</span></a></li></ol>
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -152,7 +155,7 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">Article Directory</div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#House-Renting"><span class="toc-number">1.</span> <span class="toc-text">House Renting</span></a></li></ol>
     </div>
 
 
@@ -171,6 +174,24 @@
 
 
 <p>Apache dubbo是一款高性能的Java RPC框架。对SpringBoot有支持，所以后面项目中会有SpringBoot作为基础框架，使用dubbo。</p>
+<p>dubbo支持多种注册中心，推荐使用Zookeeper（即，Zookeeper是dubbo的注册中心实现）。Zookeeper是Apache Hadoop的子项目，是一个树型的目录服务，支持变更推送，适合作为Dubbo服务的注册中心，工业强度较高，可用于生产环境，并推荐使用。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># </span><span class="language-bash">服务器上启动</span></span><br><span class="line">sudo docker run --restart=always --name zk -p 2181:2181 -d zookeeper:3.5</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">安装可视化dubbo admin</span></span><br><span class="line">git clone https://github.com/apache/dubbo-admin.git</span><br><span class="line">vim /home/ubuntu/dubbo-admin/dubbo-admin-server/src/main/resources/application.properties</span><br><span class="line">cd /home/ubuntu/dubbo-admin</span><br><span class="line">mvn clean package</span><br><span class="line">mvn --projects dubbo-admin-backend spring-boot:run</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">中途装了下maven，如果JDK16的话，maven3.6.3版本太低，此处用了3.8.6</span></span><br><span class="line">wget https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz</span><br><span class="line">sudo mv apache-maven-3.8.6-bin.tar.gz /opt</span><br><span class="line">cd /opt</span><br><span class="line">sudo tar -zxvf apache-maven-3.8.6-bin.tar.gz</span><br><span class="line">export MAVEN_HOME=&quot;/opt/apache-maven-3.8.6/bin&quot;</span><br><span class="line">export PATH=&quot;$PATH:$MAVEN_HOME&quot;</span><br><span class="line">mvn --version</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">后面还是用回了jdk1.8和maven3.6.3</span></span><br><span class="line">sudo apt-get install openjdk-8-jdk</span><br><span class="line">sudo apt-get install maven</span><br><span class="line"><span class="meta"># </span><span class="language-bash">否则貌似版本问题，会出错</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://pic.tyzhang.top/images/2022/06/18/IMG_36C837B2E889-1.jpg" alt="IMG_36C837B2E889-1.jpg"></p>
+<p>Percona是MySQl的衍生版本。Percona为MySQL数据库服务器进行了改进，在功能和性能上较MySQl有显著的提升。该版本提升了在高负载情况下的InnoDB的性能，为DBA提供了一些非常有用的性能诊断工具；另外有更多的参数和命令来控制服务器行为。</p>
+<p>在本课程项目中，ORM这一层的技术选型，采用Mybatis框架作为持久层框架，原因是Mybatis对SQL语句编写更加的灵活。</p>
+<p>MybatisPlus是mybatis的插件（MP），是一个Mybatis的增强工具，以提升开发的效率。</p>
+<p>lombok提供了简单的注解形式来帮助简化消除一些必须有但显得很臃肿的java代码，特别是针对pojo，在MybatisPlus中使用lombox。</p>
+<p><img src="https://pic.tyzhang.top/images/2022/06/18/IMG_6F1D644A6030-1.jpg" alt="IMG_6F1D644A6030-1.jpg"></p>
+<h2 id="House-Renting"><a href="#House-Renting" class="headerlink" title="House Renting"></a>House Renting</h2><p>后台服务系统，采用SOA的架构思想（面向服务），使用dubbo作为服务治理框架进行搭建。</p>
+<p>增加房源数据</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">url<span class="punctuation">:</span>http<span class="punctuation">:</span><span class="comment">//127.0.0.1:18080/house/resources</span></span><br><span class="line">数据<span class="punctuation">:</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;title&quot;</span><span class="punctuation">:</span><span class="string">&quot;东方曼哈顿 3室2厅 16000元&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;buildingNum&quot;</span><span class="punctuation">:</span><span class="string">&quot;2&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;buildingUnit&quot;</span><span class="punctuation">:</span><span class="string">&quot;1&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;buildingFloorNum&quot;</span><span class="punctuation">:</span><span class="string">&quot;1&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;rent&quot;</span><span class="punctuation">:</span><span class="string">&quot;1111&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;paymentMethod&quot;</span><span class="punctuation">:</span><span class="string">&quot;1&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;rentMethod&quot;</span><span class="punctuation">:</span><span class="string">&quot;1&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;coveredArea&quot;</span><span class="punctuation">:</span><span class="string">&quot;2&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;useArea&quot;</span><span class="punctuation">:</span><span class="string">&quot;2&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;orientation&quot;</span><span class="punctuation">:</span><span class="string">&quot;南&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;decoration&quot;</span><span class="punctuation">:</span><span class="string">&quot;1&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;facilities&quot;</span><span class="punctuation">:</span><span class="string">&quot;1,2,3,8,9&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;houseDesc&quot;</span><span class="punctuation">:</span><span class="string">&quot;这个经纪人很懒，没写核心卖点&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;contact&quot;</span><span class="punctuation">:</span><span class="string">&quot;张三&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;mobile&quot;</span><span class="punctuation">:</span><span class="string">&quot;11111111111&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;time&quot;</span><span class="punctuation">:</span><span class="string">&quot;1&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;propertyCost&quot;</span><span class="punctuation">:</span><span class="string">&quot;11&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;floor&quot;</span><span class="punctuation">:</span><span class="string">&quot;1/2&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;houseType&quot;</span><span class="punctuation">:</span><span class="string">&quot; 1室1厅1卫1厨1阳台&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;estateId&quot;</span><span class="punctuation">:</span><span class="string">&quot;1005&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>由于前端系统和后台服务系统的端口不同，会导致<strong>跨域</strong>问题，通过umi提供的<strong>反向代理</strong>功能解决这个问题。</p>
 
     </div>
     
@@ -187,7 +208,7 @@
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-06-17</p></div> 
+    <div class="post-footer__meta"><p>updated at 2022-06-20</p></div> 
     <div class="post-entry__tags"></div> 
 </article>
 
