@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>DinosaurStore | 穿过海的声音</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Dinosaur Store恐龙商城是一个B2C模式的电商平台，销售自营商品给客户。  介绍1 微服务把一个单独的应用程序开发为一套小服务，每个小服务运行在自己的进程，并使用轻量级通信机制（通常是HTTP API）。 2 集群&amp;分布式集群是个物理形态，分布式（多个业务运行在不同的机器，所有业务构成一个大型的业务）是个工作方式。 3 远程调用（RPC）分布式系统中，各个服务可能处于不同的主机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DinosaurStore">
+<meta property="og:url" content="http://example.com/2022/06/22/DinosaurStore/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="Dinosaur Store恐龙商城是一个B2C模式的电商平台，销售自营商品给客户。  介绍1 微服务把一个单独的应用程序开发为一套小服务，每个小服务运行在自己的进程，并使用轻量级通信机制（通常是HTTP API）。 2 集群&amp;分布式集群是个物理形态，分布式（多个业务运行在不同的机器，所有业务构成一个大型的业务）是个工作方式。 3 远程调用（RPC）分布式系统中，各个服务可能处于不同的主机">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/06/23/-.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/06/22/-.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/06/23/Screen-Shot-2022-06-23-at-12.22.52.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/06/24/Screen-Shot-2022-06-24-at-08.51.59.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/06/24/IMG_52600B450F20-1.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/06/24/IMG_7F7DD77281F7-1.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/06/24/IMG_FA4459E5E175-1.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/06/24/IMG_5EAC21F6555D-1.jpg">
+<meta property="article:published_time" content="2022-06-22T13:03:35.000Z">
+<meta property="article:modified_time" content="2022-06-24T08:14:38.951Z">
+<meta property="article:author" content="jcwang">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.tyzhang.top/images/2022/06/23/-.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        DinosaurStore
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/06/" class="post-meta__date button">2022-06-22</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.1.</span> <span class="toc-text">1 微服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%9B%86%E7%BE%A4-amp-%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">2 集群&amp;分布式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8%EF%BC%88RPC%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">3 远程调用（RPC）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.4.</span> <span class="toc-text">4 负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AE%E8%AF%A2"><span class="toc-number">1.4.1.</span> <span class="toc-text">轮询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.4.2.</span> <span class="toc-text">最小连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%A3%E5%88%97"><span class="toc-number">1.4.3.</span> <span class="toc-text">散列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C-x2F-%E5%8F%91%E7%8E%B0-amp-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">1.5.</span> <span class="toc-text">5 服务注册&#x2F;发现&amp;注册中心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">1.6.</span> <span class="toc-text">6 配置中心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD-amp-%E6%9C%8D%E5%8A%A1%E9%99%8D%E7%BA%A7"><span class="toc-number">1.7.</span> <span class="toc-text">7 服务熔断&amp;服务降级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-API%E7%BD%91%E5%85%B3"><span class="toc-number">1.8.</span> <span class="toc-text">8 API网关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6"><span class="toc-number">1.9.</span> <span class="toc-text">整体服务框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA%EF%BC%8CSpringCloud"><span class="toc-number">2.</span> <span class="toc-text">分布式系统搭建，SpringCloud</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nacos-Server"><span class="toc-number">2.1.</span> <span class="toc-text">Nacos Server</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nacos%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.1.1.</span> <span class="toc-text">nacos注册中心服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">2.1.2.</span> <span class="toc-text">Nacos配置中心</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Open-Feign"><span class="toc-number">2.2.</span> <span class="toc-text">Open Feign</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E5%85%B3"><span class="toc-number">2.3.</span> <span class="toc-text">网关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF"><span class="toc-number">3.</span> <span class="toc-text">前端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6"><span class="toc-number">3.1.</span> <span class="toc-text">ES6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue"><span class="toc-number">3.2.</span> <span class="toc-text">Vue</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MVVM"><span class="toc-number">3.2.1.</span> <span class="toc-text">MVVM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">Vue</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Element-ui"><span class="toc-number">3.2.3.</span> <span class="toc-text">Element-ui</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Babel"><span class="toc-number">3.3.</span> <span class="toc-text">Babel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Webpack"><span class="toc-number">3.4.</span> <span class="toc-text">Webpack</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.1.</span> <span class="toc-text">1 微服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%9B%86%E7%BE%A4-amp-%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">2 集群&amp;分布式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8%EF%BC%88RPC%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">3 远程调用（RPC）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.4.</span> <span class="toc-text">4 负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AE%E8%AF%A2"><span class="toc-number">1.4.1.</span> <span class="toc-text">轮询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.4.2.</span> <span class="toc-text">最小连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%A3%E5%88%97"><span class="toc-number">1.4.3.</span> <span class="toc-text">散列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C-x2F-%E5%8F%91%E7%8E%B0-amp-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">1.5.</span> <span class="toc-text">5 服务注册&#x2F;发现&amp;注册中心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">1.6.</span> <span class="toc-text">6 配置中心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD-amp-%E6%9C%8D%E5%8A%A1%E9%99%8D%E7%BA%A7"><span class="toc-number">1.7.</span> <span class="toc-text">7 服务熔断&amp;服务降级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-API%E7%BD%91%E5%85%B3"><span class="toc-number">1.8.</span> <span class="toc-text">8 API网关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6"><span class="toc-number">1.9.</span> <span class="toc-text">整体服务框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA%EF%BC%8CSpringCloud"><span class="toc-number">2.</span> <span class="toc-text">分布式系统搭建，SpringCloud</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nacos-Server"><span class="toc-number">2.1.</span> <span class="toc-text">Nacos Server</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nacos%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.1.1.</span> <span class="toc-text">nacos注册中心服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">2.1.2.</span> <span class="toc-text">Nacos配置中心</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Open-Feign"><span class="toc-number">2.2.</span> <span class="toc-text">Open Feign</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E5%85%B3"><span class="toc-number">2.3.</span> <span class="toc-text">网关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF"><span class="toc-number">3.</span> <span class="toc-text">前端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6"><span class="toc-number">3.1.</span> <span class="toc-text">ES6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue"><span class="toc-number">3.2.</span> <span class="toc-text">Vue</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MVVM"><span class="toc-number">3.2.1.</span> <span class="toc-text">MVVM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">Vue</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Element-ui"><span class="toc-number">3.2.3.</span> <span class="toc-text">Element-ui</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Babel"><span class="toc-number">3.3.</span> <span class="toc-text">Babel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Webpack"><span class="toc-number">3.4.</span> <span class="toc-text">Webpack</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="Dinosaur-Store"><a href="#Dinosaur-Store" class="headerlink" title="Dinosaur Store"></a>Dinosaur Store</h1><p>恐龙商城是一个B2C模式的电商平台，销售自营商品给客户。</p>
+<p><img src="https://pic.tyzhang.top/images/2022/06/23/-.png" alt="-.png"></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="1-微服务"><a href="#1-微服务" class="headerlink" title="1 微服务"></a>1 微服务</h3><p>把一个单独的应用程序开发为一套小服务，每个小服务运行在自己的进程，并使用轻量级通信机制（通常是HTTP API）。</p>
+<h3 id="2-集群-amp-分布式"><a href="#2-集群-amp-分布式" class="headerlink" title="2 集群&amp;分布式"></a>2 集群&amp;分布式</h3><p>集群是个物理形态，分布式（多个业务运行在不同的机器，所有业务构成一个大型的业务）是个工作方式。</p>
+<h3 id="3-远程调用（RPC）"><a href="#3-远程调用（RPC）" class="headerlink" title="3 远程调用（RPC）"></a>3 远程调用（RPC）</h3><p>分布式系统中，各个服务可能处于不同的主机，但是服务之间不可避免相互调用。    （？Java PRC的dubbo是不是也是呢？注册中心）</p>
+<p>SpringCloud中使用HTTP+JSON的方式完成远程调用，比如订单服务给商品模块发送HTTP请求。</p>
+<h3 id="4-负载均衡"><a href="#4-负载均衡" class="headerlink" title="4 负载均衡"></a>4 负载均衡</h3><p>不能让每一台服务器太忙或者太闲。</p>
+<h4 id="轮询"><a href="#轮询" class="headerlink" title="轮询"></a>轮询</h4><h4 id="最小连接"><a href="#最小连接" class="headerlink" title="最小连接"></a>最小连接</h4><h4 id="散列"><a href="#散列" class="headerlink" title="散列"></a>散列</h4><h3 id="5-服务注册-x2F-发现-amp-注册中心"><a href="#5-服务注册-x2F-发现-amp-注册中心" class="headerlink" title="5 服务注册&#x2F;发现&amp;注册中心"></a>5 服务注册&#x2F;发现&amp;注册中心</h3><p>A调用B，但是A不知道B服务当前有多少台，那些正常，所以引入注册中心。</p>
+<p>dubbo这个Java RPC框架使用<strong>zookeeper注册中心</strong>。</p>
+<h3 id="6-配置中心"><a href="#6-配置中心" class="headerlink" title="6 配置中心"></a>6 配置中心</h3><p>每个服务可能部署在多机器，让每个服务从配置中心中获取自己的配置。</p>
+<h3 id="7-服务熔断-amp-服务降级"><a href="#7-服务熔断-amp-服务降级" class="headerlink" title="7 服务熔断&amp;服务降级"></a>7 服务熔断&amp;服务降级</h3><p>服务之间依赖，一个不可用，导致其他的可能也不可用。</p>
+<p>熔断：设置服务超时时间，若经常超时到达某个阈值，开启短路，就其他服务不在调用这个服务。</p>
+<p>降级：整体把控，高峰，资源紧张期间，让非核心业务降级，简单处理，返回null，返回异常等等</p>
+<h3 id="8-API网关"><a href="#8-API网关" class="headerlink" title="8 API网关"></a>8 API网关</h3><p>整体架构的重要组件，抽象了微服务中都需要的公共功能，同时提供了客户端负载均衡，服务自动熔断，灰度发布，统一认证，限流控制，日志统计等丰富的功能，帮助我们解决很多API管理难题。</p>
+<h3 id="整体服务框架"><a href="#整体服务框架" class="headerlink" title="整体服务框架"></a>整体服务框架</h3><p><img src="https://pic.tyzhang.top/images/2022/06/22/-.png" alt="-.png"></p>
+<p>项目中的数据表，都没有使用外建，因为数据量很大，每添加，删除都要检查外建太麻烦了。</p>
+<p>每一个微服务有自己的数据库注意是单独的数据库，不是单独的表。</p>
+<p>管理系统的前后端，使用了码云上的人人开源，在vscode中运行npm install升级的时候，会有错误，所以我尝试使用了tyarn</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tyarn install</span><br><span class="line">tyarn run dev</span><br></pre></td></tr></table></figure>
+
+<p>逆向工程开发（根据数据库，开发出他的代码），也使用人人上的代码。</p>
+<h2 id="分布式系统搭建，SpringCloud"><a href="#分布式系统搭建，SpringCloud" class="headerlink" title="分布式系统搭建，SpringCloud"></a>分布式系统搭建，SpringCloud</h2><p>此处使用SpringCloud Alibaba</p>
+<p><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-alibaba">Spring Cloud Alibaba</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/alibaba">alibaba</a>&#x2F;<strong><a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba">spring-cloud-alibaba</a></strong></p>
+<p><img src="https://pic.tyzhang.top/images/2022/06/23/Screen-Shot-2022-06-23-at-12.22.52.png" alt="Screen-Shot-2022-06-23-at-12.22.52.png"></p>
+<h3 id="Nacos-Server"><a href="#Nacos-Server" class="headerlink" title="Nacos Server"></a>Nacos Server</h3><h4 id="nacos注册中心服务器"><a href="#nacos注册中心服务器" class="headerlink" title="nacos注册中心服务器"></a>nacos注册中心服务器</h4><p><a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/blob/2.2.x/spring-cloud-alibaba-docs/src/main/asciidoc-zh/nacos-discovery.adoc">Spring Cloud Alibaba Nacos Discovery</a></p>
+<p>可以使用docker启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run --restart=always -e MODE=standalone --name nacos-test -p 8848:8848 -d nacos/nacos-server:2.0.3</span><br><span class="line"><span class="meta"># </span><span class="language-bash">账号密码都是nacos</span></span><br><span class="line"></span><br><span class="line">http://124.222.48.192:8848/nacos</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">在Docker容器退出时，默认容器内部的文件系统仍然被保留，以方便调试并保留用户数据。</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">因此，可以通过--<span class="built_in">rm</span>命令，让容器在退出时，自动清除挂在的卷，以便清除数据</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">通过命令lsof -i:8443 查看占用端口号的进程号</span></span><br></pre></td></tr></table></figure>
+
+<p>然后application.yml中配置</p>
+<p>需要有该服务的应用名字</p>
+<h4 id="Nacos配置中心"><a href="#Nacos配置中心" class="headerlink" title="Nacos配置中心"></a>Nacos配置中心</h4><p><a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/blob/2.2.x/spring-cloud-alibaba-docs/src/main/asciidoc-zh/nacos-config.adoc">Spring Cloud Alibaba Nacos Config</a></p>
+<p>需要在bootstrap.properties中配置，这个配置文件优先于application.tml文件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 如何使用nacos作为配置中心</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 1 引入依赖</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 2 创建bootstrap.properties，1当前应用名字，2配置中心服务器地址</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 3 在配置中心中添加一个默认的数据集（DataID）DinosaurStore-coupon.properties，</span></span><br><span class="line"><span class="comment"> * 默认规则，应用名.properties（本地跟配置中心的，优先使用配置中心）</span></span><br><span class="line"><span class="comment"> * 4 给 应用名.properties添加任何配置</span></span><br><span class="line"><span class="comment"> * 5 动态获取并刷新配置 <span class="doctag">@RefreshScope</span> <span class="doctag">@Value</span>(&quot;$&#123;配置项的名字&#125;&quot;)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  二、细节</span></span><br><span class="line"><span class="comment"> *  1 命名空间：做配置隔离</span></span><br><span class="line"><span class="comment"> *    默认public（保留空间）</span></span><br><span class="line"><span class="comment"> *    1、开发，测试，生产环境。所以可以创建新的名称空间，比如test、dev、prod</span></span><br><span class="line"><span class="comment"> *      然后bootstrap.properties中配置需要使用哪个命名空间下的配置</span></span><br><span class="line"><span class="comment"> *      spring.cloud.nacos.config.namespace=6b0baddd-4fa5-4e72-8586-3477d5dd0b8b</span></span><br><span class="line"><span class="comment"> *    2、每一个微服务之间互相隔离配置，每一个微服务创建一个自己的命名空间只加载自己命名空间下的配置文件</span></span><br><span class="line"><span class="comment"> *  2 配置集：所有的配置的集合</span></span><br><span class="line"><span class="comment"> *  3 配置集ID：类似于配置文件名，即：应用名.properties</span></span><br><span class="line"><span class="comment"> *  4 配置分组</span></span><br><span class="line"><span class="comment"> *    默认所有的配置集都属于：DEFAUL_TGOURP</span></span><br><span class="line"><span class="comment"> *    比如，双十一、双十二的时候，分别用不同的组名</span></span><br><span class="line"><span class="comment"> *    使用的时候，在bootstrap.properties中加入spring.cloud.nacos.config.group=group名字</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">整体使用：每个微服务创建自己的命名空间，使用配置分组区分环境，dev、test、prop</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="Open-Feign"><a href="#Open-Feign" class="headerlink" title="Open Feign"></a>Open Feign</h3><p>一个声明式的HTTP客户端</p>
+<p>会员服务（里面引入openfeign，那么就有远程调用别的服务的能力）先从注册中心看优惠券服务在哪几台机器，然后注册中心返回在的机器，然后会员服务从里面挑一台，发送请求。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * openfeign</span></span><br><span class="line"><span class="comment"> * 远程调用别的服务</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 1.引入openfeign</span></span><br><span class="line"><span class="comment"> * 2.编写一个接口，告诉SpringCloud这个接口需要调用远程服务(见feign包下的service代码，首先<span class="doctag">@FeignClient</span>中的回去注册中心找，然后找里面的方法)</span></span><br><span class="line"><span class="comment"> *   声明借口的每一个方法都是调用哪个远程服务的哪个请求</span></span><br><span class="line"><span class="comment"> * 3. 开启远程调用功能<span class="doctag">@EnableFeignClients</span>，然后指定远程调用服务的接口在哪个包里面（此处在feign下）</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h3><p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud-gateway/docs/2.2.10.BUILD-SNAPSHOT/reference/html/#glossary">Spring Cloud Gateway</a></p>
+<p>路由：ID，目的地，集合filters</p>
+<p>断言：让开发人员匹配当次请求的任何信息。断言成功，就能到达目的地。</p>
+<p>过滤器：请求或者相应都可以被修改，在请求抵达目标或者请求到达响应之后。</p>
+<p>请求到达网关，网关利用断言判断这次请求是否符合某个路有规则，若符合，则按照路有规则路由到指定地方，但是到达前需要经过一系列过滤器。</p>
+<p>SpringCloud的Gateway，是所有请求的入口</p>
+<p>1 比如，同一个服务，一个机器挂了，改到另一个机器；一个状态改到另一个状态；端口改到另一个端口。</p>
+<p>所以，给任何服务发送的请求，都先发送给网关，然后动态路由到指定位置。</p>
+<p>2 每一个请求过来，可能要加权限，限流，日志输出，把功能加载每个服务上，太多</p>
+<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><p><img src="https://pic.tyzhang.top/images/2022/06/24/Screen-Shot-2022-06-24-at-08.51.59.png" alt="Screen-Shot-2022-06-24-at-08.51.59.png"></p>
+<h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><p>ECMAScript6.0是浏览器语言的规范、标准，而js是实现。好比jdbc是标准，mysql是实现。</p>
+<h3 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h3><h4 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h4><p>M：Model，模型，包含数据和一些基本操作</p>
+<p>V：View，视图，渲染结果</p>
+<p>VM：ViewModel，模型与视图之间的双向操作（无需开发人员干预）</p>
+<ul>
+<li>只要model发生改变，view上自然表现出来（VM中封装的一些指令操作，自动的改View界面</li>
+<li>视图界面比如表单等内容改变，自动到Model中（View中的DOM Listeners自动监听）</li>
+</ul>
+<h4 id="Vue-1"><a href="#Vue-1" class="headerlink" title="Vue"></a>Vue</h4><p>Vue很强大，也有计算属性，和监听（监控一个数值的变化，从而做出相应的反应，swift里面类似的语法）</p>
+<p>组件化，页面可以划分成很多部分，不同页面也会有相同的部分，比如相同的头部导航。所以吧页面的不同部分拆分成独立的组建，然后在不同的页面就能够共享这些组件，避免重复开发。</p>
+<p>DOM（Document Object Model文档对象模型），网页中的用来表示文档中对象的标准模型，通过javascript可以对网页中的所有DOM对象进行操作。</p>
+<p><img src="https://pic.tyzhang.top/images/2022/06/24/IMG_52600B450F20-1.jpg" alt="IMG_52600B450F20-1.jpg"></p>
+<p><img src="https://pic.tyzhang.top/images/2022/06/24/IMG_7F7DD77281F7-1.jpg" alt="IMG_7F7DD77281F7-1.jpg"></p>
+<p><img src="https://pic.tyzhang.top/images/2022/06/24/IMG_FA4459E5E175-1.jpg" alt="IMG_FA4459E5E175-1.jpg"></p>
+<h4 id="Element-ui"><a href="#Element-ui" class="headerlink" title="Element-ui"></a>Element-ui</h4><p>是一款vue的<strong>组件库</strong>，一套为开发者、设计师和产品经理准备的基于Vue2.0的桌面端组件库。比如单选框、多选框等很多组件。</p>
+<p><img src="https://pic.tyzhang.top/images/2022/06/24/IMG_5EAC21F6555D-1.jpg" alt="IMG_5EAC21F6555D-1.jpg"></p>
+<p>导入其他的组件库，使用也是类似</p>
+<h3 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h3><p>是一个js编译器，可以使用es的最新语法变成，而不用担心浏览器兼容问题，它会自动转化为浏览器兼容的代码。</p>
+<h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p>自动化项目构建工具。gulp也是同类产品。</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2022/06/22/DinosaurStore/">http://example.com/2022/06/22/DinosaurStore/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-06-24</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/06/17/Project-HouseRenting/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            Project_HouseRenting
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2022 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
