@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>DinosaurStore2 | 穿过海的声音</title>
+
+
+    <meta name="keywords" content="Java, Redis, SpringCloud, Elasticsearch, nginx">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Dinosaur Store2商品点击上架之后，微服务把商品包装起来，然后远程调用es服务，将商品存储到es中，到后面便于检索。spuid中会有多个skuid，然后一个skuid会有多个attrid，当然skuid中的attrid内部不重复，每个skuid之间的attrid可能重复。然后考虑下结构，就是封装的时候，spuid中放skuidlist，list里面是多个属性，然后属性之存放是能够被检索">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DinosaurStore2">
+<meta property="og:url" content="http://example.com/2022/06/30/DinosaurStore2/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="Dinosaur Store2商品点击上架之后，微服务把商品包装起来，然后远程调用es服务，将商品存储到es中，到后面便于检索。spuid中会有多个skuid，然后一个skuid会有多个attrid，当然skuid中的attrid内部不重复，每个skuid之间的attrid可能重复。然后考虑下结构，就是封装的时候，spuid中放skuidlist，list里面是多个属性，然后属性之存放是能够被检索">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-29T16:11:10.000Z">
+<meta property="article:modified_time" content="2022-06-29T16:23:44.877Z">
+<meta property="article:author" content="jcwang">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Redis">
+<meta property="article:tag" content="SpringCloud">
+<meta property="article:tag" content="Elasticsearch">
+<meta property="article:tag" content="nginx">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        DinosaurStore2
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/06/" class="post-meta__date button">2022-06-30</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="Dinosaur-Store2"><a href="#Dinosaur-Store2" class="headerlink" title="Dinosaur Store2"></a>Dinosaur Store2</h1><p>商品点击上架之后，微服务把商品包装起来，然后远程调用es服务，将商品存储到es中，到后面便于检索。spuid中会有多个skuid，然后一个skuid会有多个attrid，当然skuid中的attrid内部不重复，每个skuid之间的attrid可能重复。然后考虑下结构，就是封装的时候，spuid中放skuidlist，list里面是多个属性，然后属性之存放是能够被检索的。</p>
+<p>还有一个主要的就是，首先在本地机子做了hosts的域名映射，然后nginx监听到这个域名的80端口的时候，反向代理给网关，网关在转给各个微服务。</p>
+<p>该项目，后台管理系统是使用前后端分离的vue框架，后台是微服务，里面划分了很多个微服务。然后介绍注册配置中心，远程调用等具体见<a target="_blank" rel="noopener" href="https://dolnw.github.io/2022/06/22/DinosaurStore/">DinosaurStore1</a>，</p>
+<p>给用户访问的商城网页，前端使用nginx进行反向代理，然后做到了动静分离。</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2022/06/30/DinosaurStore2/">http://example.com/2022/06/30/DinosaurStore2/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-06-30</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Java/" class="post-tags__link button"># Java</a><a href="/tags/Redis/" class="post-tags__link button"># Redis</a><a href="/tags/SpringCloud/" class="post-tags__link button"># SpringCloud</a><a href="/tags/Elasticsearch/" class="post-tags__link button"># Elasticsearch</a><a href="/tags/nginx/" class="post-tags__link button"># nginx</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/06/22/DinosaurStore/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            DinosaurStore
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2022 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
