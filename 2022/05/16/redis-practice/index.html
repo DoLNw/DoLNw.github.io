@@ -44,7 +44,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic.tyzhang.top/images/2022/05/26/IMG_F2CABAD1321B-1.jpg">
 <meta property="article:published_time" content="2022-05-16T01:50:56.000Z">
-<meta property="article:modified_time" content="2022-06-28T08:24:22.226Z">
+<meta property="article:modified_time" content="2022-06-30T08:20:56.613Z">
 <meta property="article:author" content="jcwang">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Redis">
@@ -193,7 +193,7 @@
 <h5 id="Redisson分布式锁三个原理"><a href="#Redisson分布式锁三个原理" class="headerlink" title="Redisson分布式锁三个原理"></a>Redisson分布式锁三个原理</h5><ul>
 <li>可重入：利用hash类型结构记录线程ID和重入次数，（不用setnx的string类型的了，所以lua需要原子操作，判断key是否存在，不存在获取，存在判断是否自己重入）</li>
 <li>可重试：利用信号量和PubSub实现等待唤醒获取锁失败的重试机制</li>
-<li>超时续约：利用watchDog，每隔一段时间重置（在锁需要无限时间的情况下）</li>
+<li>超时续约：利用watchDog，每隔一段时间重置（在锁需要无限时间-1的情况下）。而且不传时间默认加的锁时间30s，所以如果异常出错了，锁也会删除。如果主动传，那么不会续约，所以一定要传的时间大于业务时间。</li>
 </ul>
 <h5 id="Redisson分布式锁还有一个原理，主从一致性"><a href="#Redisson分布式锁还有一个原理，主从一致性" class="headerlink" title="Redisson分布式锁还有一个原理，主从一致性"></a>Redisson分布式锁还有一个原理，主从一致性</h5><p>multilock，对每一个主节点都获取锁成功，才能执行任务</p>
 <h4 id="分布式锁总结"><a href="#分布式锁总结" class="headerlink" title="分布式锁总结"></a>分布式锁总结</h4><p><img src="https://pic.tyzhang.top/images/2022/05/26/IMG_F2CABAD1321B-1.jpg" alt="IMG_F2CABAD1321B-1.jpg"></p>
@@ -245,7 +245,7 @@
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-06-28</p></div> 
+    <div class="post-footer__meta"><p>updated at 2022-06-30</p></div> 
     <div class="post-entry__tags"><a href="/tags/Java/" class="post-tags__link button"># Java</a><a href="/tags/Redis/" class="post-tags__link button"># Redis</a></div> 
 </article>
 

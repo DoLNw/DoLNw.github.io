@@ -42,8 +42,14 @@
 <meta property="og:site_name" content="穿过海的声音">
 <meta property="og:description" content="Dinosaur Store2商品点击上架之后，微服务把商品包装起来，然后远程调用es服务，将商品存储到es中，到后面便于检索。spuid中会有多个skuid，然后一个skuid会有多个attrid，当然skuid中的attrid内部不重复，每个skuid之间的attrid可能重复。然后考虑下结构，就是封装的时候，spuid中放skuidlist，list里面是多个属性，然后属性之存放是能够被检索">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/01/Screen-Shot-2022-07-01-at-10.51.55.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/06/30/Screen-Shot-2022-06-30-at-16.17.25.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/06/30/Screen-Shot-2022-06-30-at-16.42.51.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/02/Screen-Shot-2022-07-02-at-09.33.59.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/02/Screen-Shot-2022-07-02-at-23.57.24.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/03/Screen-Shot-2022-07-03-at-00.13.07.png">
 <meta property="article:published_time" content="2022-06-29T16:11:10.000Z">
-<meta property="article:modified_time" content="2022-06-29T16:23:44.877Z">
+<meta property="article:modified_time" content="2022-07-02T16:13:30.677Z">
 <meta property="article:author" content="jcwang">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Redis">
@@ -51,6 +57,7 @@
 <meta property="article:tag" content="Elasticsearch">
 <meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.tyzhang.top/images/2022/07/01/Screen-Shot-2022-07-01-at-10.51.55.png">
 
 
     
@@ -149,7 +156,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#canal"><span class="toc-number">1.</span> <span class="toc-text">canal</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES%E5%95%86%E5%9F%8E%E6%A3%80%E7%B4%A2"><span class="toc-number"></span> <span class="toc-text">ES商城检索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%86%E5%9F%8E%E4%B8%9A%E5%8A%A1%EF%BC%8C%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C"><span class="toc-number"></span> <span class="toc-text">商城业务，异步执行</span></a>
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -159,7 +166,7 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">Article Directory</div>
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#canal"><span class="toc-number">1.</span> <span class="toc-text">canal</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES%E5%95%86%E5%9F%8E%E6%A3%80%E7%B4%A2"><span class="toc-number"></span> <span class="toc-text">ES商城检索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%86%E5%9F%8E%E4%B8%9A%E5%8A%A1%EF%BC%8C%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C"><span class="toc-number"></span> <span class="toc-text">商城业务，异步执行</span></a>
     </div>
 
 
@@ -170,6 +177,64 @@
 <p>还有一个主要的就是，首先在本地机子做了hosts的域名映射，然后nginx监听到这个域名的80端口的时候，反向代理给网关，网关在转给各个微服务。</p>
 <p>该项目，后台管理系统是使用前后端分离的vue框架，后台是微服务，里面划分了很多个微服务。然后介绍注册配置中心，远程调用等具体见<a target="_blank" rel="noopener" href="https://dolnw.github.io/2022/06/22/DinosaurStore/">DinosaurStore1</a>，</p>
 <p>给用户访问的商城网页，前端使用nginx进行反向代理，然后做到了动静分离。</p>
+<p><strong>商品分类</strong>，即时性和一致性要求不高，即<strong>读多写少</strong>，或者<strong>商品介绍</strong>。   而写多读少的直接去数据库查询。</p>
+<p>本项目中商品分类的一致性解决方案：（缓存数据一致性的解决方案）</p>
+<p>1 缓存的所有数据都有过期时间，数据过期后下一次查询出发主动更新</p>
+<p>2 读写数据的时候，加上分布式的读写锁。这个在读多写少的情况下，没有多少问题。</p>
+<p>注意，商城首页中，商品的一级目录indexPage（）的缓存，使用的是springcache，然后配置失效时间，指定key，指定缓存key，只要导入springcache依赖加上注解就行。而商品的getCatalogJson（）二三级目录的缓存，使用的是分布式读写锁，然后使用redis查询不到，先更新数据库，再删除的方式，还有ttl。</p>
+<p>查询所有的一二三级目录并封装，这个访问量达，不是经常更新，而且一致性要求不高。该项目中，将所有的对象转化成JSON存储到redis，用的是StringRedisOpionts的opsforvalue，而没有用另外的hash等的类型。</p>
+<p>经常修改的数据，不写入缓存的，直接操作数据库方便。但是秒杀什么的肯定除外。先更新数据库，再删除缓存。</p>
+<p>需要解决三个问题：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 给缓存中放入json字符串，拿出来的json字符串，还能逆转为能用的对象类型。（序列化与反序列化）</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* 1 、空结果缓存，解决缓存穿透</span></span><br><span class="line"><span class="comment">* 2 、设置过期时间（加随机值），解决缓存雪崩</span></span><br><span class="line"><span class="comment">* 3 、加锁：解决缓存击穿，此处使用读写锁</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">分布式锁（①redission或者②redis的string数据类型的setnx，需要ex来处理程序异常，释放所的时候要判断是自己uuid的），性能稍微慢一点，但是相比①，不可重入，锁续期等等无；</span><br><span class="line">  ③本地悲观锁synchnorized，但是在分布式情况下，有多少个服务，还是有多少个线程能同时运行。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>springcache对上面三个问题的解决方法：（读模式的第二个，是get方法上加了本地synchnorized锁，因为是不让大量并发过来，本地锁就足够了。然后一人一单等情况就不行。）</p>
+<img src="https://pic.tyzhang.top/images/2022/07/01/Screen-Shot-2022-07-01-at-10.51.55.png" alt="Screen-Shot-2022-07-01-at-10.51.55.png" style="zoom:67%;" />
+
+
+
+<p>下面讲的是redission分布式锁</p>
+<img src="https://pic.tyzhang.top/images/2022/06/30/Screen-Shot-2022-06-30-at-16.17.25.png" alt="Screen-Shot-2022-06-30-at-16.42.51.png" style="zoom:50%;" />
+
+<p>redission的读写锁，可以<strong>保证一定能读取到最新的数据</strong>，修改期间，写锁是一个排他锁（互斥锁，<strong>写锁与读锁也互斥</strong>，就是写锁写完读锁才能读到）。读锁是一个共享锁。读读共享，只会在redis中记录好当前的读锁，只要有写，都必须等待。</p>
+<p>redission，信号量，可以做<strong>分布式限流工作</strong>，拿不到信号量的话，证明没有多余的线程来处理，tryAcquire，不等待，没有就算了，用来限流；acquire，阻塞式等待。</p>
+<p>redission闭锁：</p>
+<img src="https://pic.tyzhang.top/images/2022/06/30/Screen-Shot-2022-06-30-at-16.42.51.png" alt="Screen-Shot-2022-06-30-at-16.42.51.png" style="zoom:50%;" />
+
+
+
+
+
+
+
+<p>数据库，只承担持久化保存到一个地方；把第一次查出数据之后，写入到缓存，下次从redis中取出，加快响应。</p>
+<p>适合放入缓存的：①即时性、数据一致性要求不高的，比如<strong>商品分类</strong>；②访问量大且更新频率不高的，比如商品信息。</p>
+<h3 id="canal"><a href="#canal" class="headerlink" title="canal"></a>canal</h3><p>可以模拟一个mysql的从服务器，每次监控到mysql的更新之后，会自动更新redis缓存。就是多了一层中间件，需要多一层配置。</p>
+<h2 id="ES商城检索"><a href="#ES商城检索" class="headerlink" title="ES商城检索"></a>ES商城检索</h2><p>本项目是将商品的spu以及里面有的sku属性都装进去了。</p>
+<p>首先，将访问传入的参数封装。</p>
+<p>然后进行es检索，模糊匹配（关键词），过滤（按照属性、分类、品牌，价格区间，库存），完成排序、分页、高亮。</p>
+<p>然后对数据进行聚合，重新拿到现在我检索到的所有商品的属性，品牌的信息。</p>
+<p>最后，将得到的结果封装。然后controller将结果传给自己的html，注意，这个动态页面是放在idea中的，静态页面nginx自己返回了。</p>
+<p>然后，再点击分类页面的分类，再次重复上面的步骤，并且，达到了面包屑的效果。</p>
+<p>其中，第二步和第三步，，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SearchRequest</span> <span class="variable">searchRequest</span> <span class="operator">=</span> buildSearchRequest(param);<span class="comment">// 1 SearchRequest准备检索请求，动态构建出DSl语句</span></span><br><span class="line"><span class="type">SearchResponse</span> <span class="variable">response</span> <span class="operator">=</span> esRestClient.search(searchRequest, StoreElasticSearchConfig.COMMON_OPTIONS); <span class="comment">// 2 执行检索请求</span></span><br><span class="line">SearchResult result<span class="comment">// 3 分析响应数据，封装成我们需要的格式</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="商城业务，异步执行"><a href="#商城业务，异步执行" class="headerlink" title="商城业务，异步执行"></a>商城业务，异步执行</h2><img src="https://pic.tyzhang.top/images/2022/07/02/Screen-Shot-2022-07-02-at-09.33.59.png" alt="Screen-Shot-2022-07-02-at-09.33.59.png" style="zoom:80%;" />
+
+<p>其中，1，2，3可以并行执行，然后4，5，6等1完成后也可以并行执行</p>
+<p>代码中使用了CompletableFuture，他的.supplyAsync可以得到结果，.thenAcceptAsync可以拿到钱一次运行到的结果，.runAsync就是异步执行所以，1用了.supplyAsync，3 4 5用了.thenAcceptAsync，表示都拿到1的结果并且执行，2的话.runAsync和1并行运行就好。注意里面使用了@ConfigurationProperties(prefix &#x3D; “store.thread”)，可以在application.yaml中执行属性（导入spring-boot-configuration-processor包后有提示），然后然后就可以自己在配置文件设置ThreadPoolExecutor的属性了。</p>
+<p>注意，从index中拿到数据，使用的是提交表单（指定action），form中是减值对格式，不是json，输入的用input并指定对应的entity的name。</p>
+<p>OAuth2 社交登陆</p>
+<img src="https://pic.tyzhang.top/images/2022/07/02/Screen-Shot-2022-07-02-at-23.57.24.png" alt="Screen-Shot-2022-07-02-at-23.57.24.png" style="zoom:67%;" />
+
+<img src="https://pic.tyzhang.top/images/2022/07/03/Screen-Shot-2022-07-03-at-00.13.07.png" alt="Screen-Shot-2022-07-03-at-00.13.07.png" style="zoom:67%;" />
+
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/hO2MR4_ZJp1sfB5mHadYzw">TikTok二面: 说下二维码登录的原理？</a></p>
 
     </div>
     
@@ -186,7 +251,7 @@
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-06-30</p></div> 
+    <div class="post-footer__meta"><p>updated at 2022-07-03</p></div> 
     <div class="post-entry__tags"><a href="/tags/Java/" class="post-tags__link button"># Java</a><a href="/tags/Redis/" class="post-tags__link button"># Redis</a><a href="/tags/SpringCloud/" class="post-tags__link button"># SpringCloud</a><a href="/tags/Elasticsearch/" class="post-tags__link button"># Elasticsearch</a><a href="/tags/nginx/" class="post-tags__link button"># nginx</a></div> 
 </article>
 
