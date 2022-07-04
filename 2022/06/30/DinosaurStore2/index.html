@@ -48,8 +48,13 @@
 <meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/02/Screen-Shot-2022-07-02-at-09.33.59.png">
 <meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/02/Screen-Shot-2022-07-02-at-23.57.24.png">
 <meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/03/Screen-Shot-2022-07-03-at-00.13.07.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/03/Screen-Shot-2022-07-03-at-11.03.47.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/03/Screen-Shot-2022-07-03-at-14.08.23.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/04/image.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/04/image10d5bd91acf657f2.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/04/imaged42aad6978b25108.png">
 <meta property="article:published_time" content="2022-06-29T16:11:10.000Z">
-<meta property="article:modified_time" content="2022-07-02T16:13:30.677Z">
+<meta property="article:modified_time" content="2022-07-04T10:49:46.173Z">
 <meta property="article:author" content="jcwang">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Redis">
@@ -156,7 +161,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#canal"><span class="toc-number">1.</span> <span class="toc-text">canal</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES%E5%95%86%E5%9F%8E%E6%A3%80%E7%B4%A2"><span class="toc-number"></span> <span class="toc-text">ES商城检索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%86%E5%9F%8E%E4%B8%9A%E5%8A%A1%EF%BC%8C%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C"><span class="toc-number"></span> <span class="toc-text">商城业务，异步执行</span></a>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#canal"><span class="toc-number">1.</span> <span class="toc-text">canal</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES%E5%95%86%E5%9F%8E%E6%A3%80%E7%B4%A2"><span class="toc-number"></span> <span class="toc-text">ES商城检索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%86%E5%9F%8E%E4%B8%9A%E5%8A%A1%EF%BC%8C%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C"><span class="toc-number"></span> <span class="toc-text">商城业务，异步执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BB%E9%99%86"><span class="toc-number"></span> <span class="toc-text">登陆</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%B3%A8%E5%86%8C"><span class="toc-number">1.</span> <span class="toc-text">项目注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="toc-number">2.</span> <span class="toc-text">账号密码登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OAuth2-%E7%A4%BE%E4%BA%A4%E7%99%BB%E9%99%86"><span class="toc-number">3.</span> <span class="toc-text">OAuth2 社交登陆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TikTok%E4%BA%8C%E9%9D%A2-%E8%AF%B4%E4%B8%8B%E4%BA%8C%E7%BB%B4%E7%A0%81%E7%99%BB%E5%BD%95%E7%9A%84%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">TikTok二面: 说下二维码登录的原理？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">session共享问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%90%8C%E4%B8%80%E4%B8%AA%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8B%E5%A4%9A%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8Csession%E4%B8%8D%E8%83%BD%E5%85%B1%E4%BA%AB%E3%80%82"><span class="toc-number">5.1.</span> <span class="toc-text">1 同一个服务，分布式下多台服务器，session不能共享。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%8D%E5%90%8C%E6%9C%8D%E5%8A%A1%E4%B8%8B%EF%BC%8Csession%E4%B8%8B%E4%B8%8D%E8%83%BD%E5%85%B1%E4%BA%AB%E3%80%82"><span class="toc-number">5.2.</span> <span class="toc-text">2 不同服务下，session下不能共享。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%EF%BC%88%E9%9C%80%E8%A6%81%E5%A4%9A%E4%B8%80%E4%B8%AA%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%89"><span class="toc-number">5.3.</span> <span class="toc-text">3 单点登录（需要多一个认证中心服务器）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%AD%E7%89%A9%E8%BD%A6"><span class="toc-number">6.</span> <span class="toc-text">购物车</span></a></li></ol>
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -166,7 +171,7 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">Article Directory</div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#canal"><span class="toc-number">1.</span> <span class="toc-text">canal</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES%E5%95%86%E5%9F%8E%E6%A3%80%E7%B4%A2"><span class="toc-number"></span> <span class="toc-text">ES商城检索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%86%E5%9F%8E%E4%B8%9A%E5%8A%A1%EF%BC%8C%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C"><span class="toc-number"></span> <span class="toc-text">商城业务，异步执行</span></a>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#canal"><span class="toc-number">1.</span> <span class="toc-text">canal</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES%E5%95%86%E5%9F%8E%E6%A3%80%E7%B4%A2"><span class="toc-number"></span> <span class="toc-text">ES商城检索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%86%E5%9F%8E%E4%B8%9A%E5%8A%A1%EF%BC%8C%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C"><span class="toc-number"></span> <span class="toc-text">商城业务，异步执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BB%E9%99%86"><span class="toc-number"></span> <span class="toc-text">登陆</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%B3%A8%E5%86%8C"><span class="toc-number">1.</span> <span class="toc-text">项目注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="toc-number">2.</span> <span class="toc-text">账号密码登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OAuth2-%E7%A4%BE%E4%BA%A4%E7%99%BB%E9%99%86"><span class="toc-number">3.</span> <span class="toc-text">OAuth2 社交登陆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TikTok%E4%BA%8C%E9%9D%A2-%E8%AF%B4%E4%B8%8B%E4%BA%8C%E7%BB%B4%E7%A0%81%E7%99%BB%E5%BD%95%E7%9A%84%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">TikTok二面: 说下二维码登录的原理？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">session共享问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%90%8C%E4%B8%80%E4%B8%AA%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8B%E5%A4%9A%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8Csession%E4%B8%8D%E8%83%BD%E5%85%B1%E4%BA%AB%E3%80%82"><span class="toc-number">5.1.</span> <span class="toc-text">1 同一个服务，分布式下多台服务器，session不能共享。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%8D%E5%90%8C%E6%9C%8D%E5%8A%A1%E4%B8%8B%EF%BC%8Csession%E4%B8%8B%E4%B8%8D%E8%83%BD%E5%85%B1%E4%BA%AB%E3%80%82"><span class="toc-number">5.2.</span> <span class="toc-text">2 不同服务下，session下不能共享。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%EF%BC%88%E9%9C%80%E8%A6%81%E5%A4%9A%E4%B8%80%E4%B8%AA%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%89"><span class="toc-number">5.3.</span> <span class="toc-text">3 单点登录（需要多一个认证中心服务器）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%AD%E7%89%A9%E8%BD%A6"><span class="toc-number">6.</span> <span class="toc-text">购物车</span></a></li></ol>
     </div>
 
 
@@ -228,13 +233,49 @@
 
 <p>其中，1，2，3可以并行执行，然后4，5，6等1完成后也可以并行执行</p>
 <p>代码中使用了CompletableFuture，他的.supplyAsync可以得到结果，.thenAcceptAsync可以拿到钱一次运行到的结果，.runAsync就是异步执行所以，1用了.supplyAsync，3 4 5用了.thenAcceptAsync，表示都拿到1的结果并且执行，2的话.runAsync和1并行运行就好。注意里面使用了@ConfigurationProperties(prefix &#x3D; “store.thread”)，可以在application.yaml中执行属性（导入spring-boot-configuration-processor包后有提示），然后然后就可以自己在配置文件设置ThreadPoolExecutor的属性了。</p>
-<p>注意，从index中拿到数据，使用的是提交表单（指定action），form中是减值对格式，不是json，输入的用input并指定对应的entity的name。</p>
-<p>OAuth2 社交登陆</p>
-<img src="https://pic.tyzhang.top/images/2022/07/02/Screen-Shot-2022-07-02-at-23.57.24.png" alt="Screen-Shot-2022-07-02-at-23.57.24.png" style="zoom:67%;" />
+<h2 id="登陆"><a href="#登陆" class="headerlink" title="登陆"></a>登陆</h2><p>注意，从index中拿到数据，使用的是提交表单（指定action），form中是减值对格式，不是json，输入的用input并指定对应的entity的name。</p>
+<h3 id="项目注册"><a href="#项目注册" class="headerlink" title="项目注册"></a>项目注册</h3><p>其中的验证码，然后验证码生成放入redis中，设置过期时间5min，然后同时通过openfeign远程调用第三方服务这个微服务阿里云短信服务发送给用户，然后用户输入进行验证。然后openfeign远程调用meber微服务进行注册。后面用户的信息放到数据库之后，然后在存到springsesion中，是redis操作的。解决统一服务不同机器上（同一jsessionid），以及不同服务（指定父domain）。</p>
+<h3 id="账号密码登录"><a href="#账号密码登录" class="headerlink" title="账号密码登录"></a>账号密码登录</h3><h3 id="OAuth2-社交登陆"><a href="#OAuth2-社交登陆" class="headerlink" title="OAuth2 社交登陆"></a>OAuth2 社交登陆</h3><img src="https://pic.tyzhang.top/images/2022/07/02/Screen-Shot-2022-07-02-at-23.57.24.png" alt="Screen-Shot-2022-07-02-at-23.57.24.png" style="zoom:67%;" />
 
+<p>其中5中，除了带code，还要带应用id，应用密码（不能泄漏），是第三方应用自己后台处理的。</p>
+<p>使用code换取accesstoken，code只能用一次。</p>
+<p>同一个用户的accesstoken一段时间是不会变化的，即使获取多次。</p>
+<p>登陆成功后，将用户信息放入session中。</p>
 <img src="https://pic.tyzhang.top/images/2022/07/03/Screen-Shot-2022-07-03-at-00.13.07.png" alt="Screen-Shot-2022-07-03-at-00.13.07.png" style="zoom:67%;" />
 
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/hO2MR4_ZJp1sfB5mHadYzw">TikTok二面: 说下二维码登录的原理？</a></p>
+<p>E拿到accesstoken之后，可以用这个，发其他用户接口的请求，然后拿到微博开放的用户的信息。</p>
+<h3 id="TikTok二面-说下二维码登录的原理？"><a href="#TikTok二面-说下二维码登录的原理？" class="headerlink" title="TikTok二面: 说下二维码登录的原理？"></a><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/hO2MR4_ZJp1sfB5mHadYzw">TikTok二面: 说下二维码登录的原理？</a></h3><h3 id="session共享问题"><a href="#session共享问题" class="headerlink" title="session共享问题"></a>session共享问题</h3><p>session其实就是服务器内存里面的一个数据，可以看作是map，session会为每个浏览器的用户创建一个session对象放在sessionmanager中，创建好session后会命令浏览器保存一个cookie，下次浏览器访问的时候会带上这个服务器给我们的cookie（jsessionid这个cookie），然后服务器拿到服务器中对应的session。</p>
+<h4 id="1-同一个服务，分布式下多台服务器，session不能共享。"><a href="#1-同一个服务，分布式下多台服务器，session不能共享。" class="headerlink" title="1 同一个服务，分布式下多台服务器，session不能共享。"></a>1 同一个服务，分布式下多台服务器，session不能共享。</h4><h4 id="2-不同服务下，session下不能共享。"><a href="#2-不同服务下，session下不能共享。" class="headerlink" title="2 不同服务下，session下不能共享。"></a>2 不同服务下，session下不能共享。</h4><p>同一服务多台服务器解决：</p>
+<p>1 session，全量复制，每一个服务都存了所有的session，可扩展性就不高了</p>
+<p>2 session信息存在客户端，但是会泄漏</p>
+<p>3 hash一致性，每一次负载均衡的时候到同一个服务器。但是服务器重启可能部分session丢失，水平扩展后路由不到同一个服务端。</p>
+<p>4 后端统一存储到session。存储到数据库，<strong>redis</strong>等nosql中间件中。优点：没有安全隐患水平扩展重启扩容不丢失。</p>
+<p>   缺点：增加了一次网络调用并且需要修改应用代码，比直接从内存中拿session会慢很多。</p>
+<p> 项目使用使用<strong>SpringSession</strong>然后存到redis。</p>
+<p>不同服务之间的解决：</p>
+<p>服务器发卡的时候，就是给浏览器cookie的时候，指定domain，本来默认域名是当前的域名，可以用springsession来写，项目中使用四定义springsession来写成“dinosaurstore.com”。</p>
+<img src="https://pic.tyzhang.top/images/2022/07/03/Screen-Shot-2022-07-03-at-11.03.47.png" alt="Screen-Shot-2022-07-03-at-11.03.47.png" style="zoom:80%;" />
+
+
+
+<p>后面统一存储，前端一个卡通用，用的是同一个jsessionid。</p>
+<p>SpringSession原理</p>
+<p><img src="https://pic.tyzhang.top/images/2022/07/03/Screen-Shot-2022-07-03-at-14.08.23.png" alt="Screen-Shot-2022-07-03-at-14.08.23.png"></p>
+<p>简单来说，就是request进行了封装，本来可以request.getSession()获取原生session的，这里通过装饰着模式包装之后从sessionrepositury中拿到redis操作的session。然后也有过期时间喝自动刷新过期时间。（仿大众点评是通过两层拦截器，第一个拦截器拦截所有，redis有用户的话，刷新token，后面那个是需要拦截的请求网址，要是用户未登录，拦截到登录界面。）</p>
+<h4 id="3-单点登录（需要多一个认证中心服务器）"><a href="#3-单点登录（需要多一个认证中心服务器）" class="headerlink" title="3 单点登录（需要多一个认证中心服务器）"></a>3 单点登录（需要多一个认证中心服务器）</h4><p>比如一个公司有多个登陆，淘宝登陆了，咸鱼就不用再登陆了，但是其实他们不是父子域名的关系，怎么办呢？（当然其实这个例子不太好，这个例子其实是社交扫码登录的问题。）</p>
+<p>用的许雪里写的框架。<a target="_blank" rel="noopener" href="https://gitee.com/xuxueli0323">许雪里</a> &#x2F; <a target="_blank" rel="noopener" href="https://gitee.com/xuxueli0323/xxl-sso">xxl-sso</a></p>
+<p><img src="https://pic.tyzhang.top/images/2022/07/04/image.png" alt="image.png"></p>
+<p><img src="https://pic.tyzhang.top/images/2022/07/04/image10d5bd91acf657f2.png" alt="image10d5bd91acf657f2.png"></p>
+<img src="https://pic.tyzhang.top/images/2022/07/04/imaged42aad6978b25108.png" alt="imaged42aad6978b25108.png" style="zoom:80%;" />
+
+
+
+<p>1 上面是其中一个客户端要访问，然后发现没有登陆，然后去主登陆服务器中心登陆，登陆完后生成一个token到redis中，token是键，值里面存储用户信息。</p>
+<p>上面的9是：处理登陆请求，登陆成功保存用户登录状态信息，同时将token令牌返回出去。然后，给当前的浏览器域名（是登陆的中心的域名）留一个记号（cookie），用户token放进去。用户信息（当然是需要从mysql拿到的）存redis。</p>
+<p>其中第10步有两步，1是重定向回来，2是setcookie。</p>
+<p>2 第二个客户端再来的时候，因为1已经登陆了，第一次登陆第9步的时候存储了cookie，所以此次第4步的时候去访问登陆服务器的时候，带上cookie（里面有一个token），登陆服务器发现有这个token，那么直接让页面返回到原来的客户端服务器，然后根据这个token从redis拿到用户信息，然后存储到自己的session。</p>
+<p>总的来说，1 就是<strong>中心服务器</strong>生成一个token，然后给浏览器cookie，2 浏览器下次访问另一个客户端时，先访问认证中心的时候带上token访问，认证中心发现有，让他直接返回，3 然后客户端根据这个token从redis拿到用户信息，然后保存到session。4 下次这个客户端在访问，直接从session中拿就可以了。</p>
+<h3 id="购物车"><a href="#购物车" class="headerlink" title="购物车"></a>购物车</h3><p>上面登录好了之后，添加购物车之前，需要先登录，所以没登录的时候，使用拦截器拦截，然后ThreadLocal保存用户信息给controller使用。具体的方法见redis-practice（其中还有两层拦截器，第一层所有，刷新token，第二层拦截需要登录的，这样会话就不容易过期）。</p>
 
     </div>
     
@@ -251,7 +292,7 @@
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-07-03</p></div> 
+    <div class="post-footer__meta"><p>updated at 2022-07-04</p></div> 
     <div class="post-entry__tags"><a href="/tags/Java/" class="post-tags__link button"># Java</a><a href="/tags/Redis/" class="post-tags__link button"># Redis</a><a href="/tags/SpringCloud/" class="post-tags__link button"># SpringCloud</a><a href="/tags/Elasticsearch/" class="post-tags__link button"># Elasticsearch</a><a href="/tags/nginx/" class="post-tags__link button"># nginx</a></div> 
 </article>
 

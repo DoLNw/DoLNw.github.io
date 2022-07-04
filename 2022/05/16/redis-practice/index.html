@@ -44,7 +44,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic.tyzhang.top/images/2022/05/26/IMG_F2CABAD1321B-1.jpg">
 <meta property="article:published_time" content="2022-05-16T01:50:56.000Z">
-<meta property="article:modified_time" content="2022-06-30T08:20:56.613Z">
+<meta property="article:modified_time" content="2022-07-04T12:01:00.048Z">
 <meta property="article:author" content="jcwang">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Redis">
@@ -166,9 +166,10 @@
     <div class="post__header"></div>
     <div class="post__content">
         <h3 id="仿大众点评系统"><a href="#仿大众点评系统" class="headerlink" title="仿大众点评系统"></a>仿大众点评系统</h3><h4 id="使用redis登陆验证操作"><a href="#使用redis登陆验证操作" class="headerlink" title="使用redis登陆验证操作"></a>使用redis登陆验证操作</h4><p>后台生成一个随机的六位数验证码，存储到redis（手机号为key）。</p>
-<p>用户得到验证码后，在客户端输入，校验，若成功，保存用户到数据库，存储用户token到redis，保存用户到ThreadLocal（每一个线程内部都有一个ThreadLocal，用处见下面拦截器）</p>
-<p>下一次同一个浏览器进来时，先看基于cookie的authorization中拿用户token，有的话先从redis拿，拿不到从数据库拿。</p>
-<p>注意：一开始是校验码，用户token也是存在session中的（每一个浏览器访问时会有cookie，根据它里面的sessionID就能得到session）。因为多个tomcat之间不共享session存储空间，所以存储到了redis中，数据共享，内存存储也快，keyvalue结构，String类型。</p>
+<p>用户得到验证码后，在客户端输入，校验，若成功，①<strong>保存用户到数据库</strong>，②<strong>存储用户信息为value、token为key到redis</strong>（如果session的话不能分布式，或者springsession来操作redis），③保存用户到<strong>ThreadLocal</strong>（每一个线程内部都有一个ThreadLocal，用处见下面拦截器），浏览器拿到token为cookie。</p>
+<p>用一句话来说，在执行目标方法之前，判断用户的登录状态，并封装传递（用户信息）给controller。ThreadLocal是同一个线程的，作用域小，而且一个请求过来，拦截器，controller，service，dao都是同一个线程完成的，所以在这里面这个最合适。而session线程不一定安全？？？</p>
+<p>下一次同一个浏览器进来时，先看基于cookie的authorization中拿用户token（若有token则会有用户，不过reis用户信息30min失效），redis有的话先从redis拿（注意，用了springsession的话，说法就是从session拿，但是springsession的store type也是用的redis），拿不到证明登陆失效，重新登录并且从数据库拿然后放到threadlocal和redis中。</p>
+<p>注意：一开始 <strong>校验码</strong> 还有 <strong>用户token</strong> 都是存在session中的（每一个浏览器访问时会有cookie，根据它里面的sessionID就能得到session）。因为多个tomcat之间不共享session存储空间，所以存储到了redis中，数据共享，内存存储也快，keyvalue结构，String类型。</p>
 <p>若是没有登录的时候，需要用拦截器拦截某些需要用户登录的请求网址，所以把登陆校验流程都放到了拦截器中，但是每一个controller需要用户信息，所以存到了ThreadLocal中。（每一个进入Tomcat的请求都是一个独立的线程，将来ThreadLocal就会在线程内开辟一个空间保存对应的用户，不同用户有独立的线程）</p>
 <p>但是拦截的时候，由于设置了用户一段时间不操作任何就会登出（redis的用户token的时间），那么有些没有拦截到的就不会刷新token。所以此处优化了拦截器，放了两个拦截器，第一个拦截器拦截所有，redis有用户的话，刷新token，后面那个是需要拦截的请求网址，要是不存在，拦截到登录界面。</p>
 <h4 id="商铺缓存"><a href="#商铺缓存" class="headerlink" title="商铺缓存"></a>商铺缓存</h4><p>策略：</p>
@@ -245,7 +246,7 @@
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-06-30</p></div> 
+    <div class="post-footer__meta"><p>updated at 2022-07-04</p></div> 
     <div class="post-entry__tags"><a href="/tags/Java/" class="post-tags__link button"># Java</a><a href="/tags/Redis/" class="post-tags__link button"># Redis</a></div> 
 </article>
 
