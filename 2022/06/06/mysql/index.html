@@ -43,7 +43,7 @@
 <meta property="og:description" content="Mysql行锁MySQL 表锁和行锁机制 分析 在执行DML操作时，会对涉及的行加锁，同时也会对该表加上意向锁。（意向共享锁：与表共享兼容，表拍他互斥。意向排它锁：都互斥。但是意向拍他之间，不会互斥，行锁可以保证的。） 后面对这张表加表锁的时候，会根据该表上的意向锁来判定是否可以加锁成功，而不用逐行在判断行锁。 总结：InnoDB的行锁是针对索引加的锁，不是针对记录加的锁。并且该索引不能失效，否则">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-06T01:34:42.000Z">
-<meta property="article:modified_time" content="2022-06-07T01:58:44.312Z">
+<meta property="article:modified_time" content="2022-06-07T01:58:44.000Z">
 <meta property="article:author" content="jcwang">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
