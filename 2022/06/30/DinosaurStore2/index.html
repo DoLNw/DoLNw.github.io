@@ -74,7 +74,7 @@
 <meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/08/Screen-Shot-2022-07-08-at-16.19.42.png">
 <meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/08/Screen-Shot-2022-07-08-at-16.32.31.png">
 <meta property="article:published_time" content="2022-06-29T16:11:10.000Z">
-<meta property="article:modified_time" content="2022-07-11T07:28:18.101Z">
+<meta property="article:modified_time" content="2022-07-16T12:43:26.340Z">
 <meta property="article:author" content="jcwang">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="SpringCloud">
@@ -263,7 +263,7 @@
 <p>登陆成功后，将用户信息放入session中。</p>
 <img src="https://pic.tyzhang.top/images/2022/07/03/Screen-Shot-2022-07-03-at-00.13.07.png" alt="Screen-Shot-2022-07-03-at-00.13.07.png" style="zoom:67%;" />
 
-<p>E拿到accesstoken之后，可以用这个，发其他用户接口的请求，然后拿到微博开放的用户的信息。</p>
+<p>拿到accesstoken之后，可以用这个，发其他用户接口的请求，然后拿到微博开放的用户的信息。</p>
 <h3 id="TikTok二面-说下二维码登录的原理？"><a href="#TikTok二面-说下二维码登录的原理？" class="headerlink" title="TikTok二面: 说下二维码登录的原理？"></a><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/hO2MR4_ZJp1sfB5mHadYzw">TikTok二面: 说下二维码登录的原理？</a></h3><h3 id="session共享问题"><a href="#session共享问题" class="headerlink" title="session共享问题"></a>session共享问题</h3><p>session其实就是服务器内存里面的一个数据，可以看作是map，session会为每个浏览器的用户创建一个session对象放在sessionmanager中，创建好session后会命令浏览器保存一个cookie，下次浏览器访问的时候会带上这个服务器给我们的cookie（jsessionid这个cookie），然后服务器拿到服务器中对应的session。</p>
 <h4 id="1-同一个服务，分布式下多台服务器，session不能共享。"><a href="#1-同一个服务，分布式下多台服务器，session不能共享。" class="headerlink" title="1 同一个服务，分布式下多台服务器，session不能共享。"></a>1 同一个服务，分布式下多台服务器，session不能共享。</h4><h4 id="2-不同服务下，session下不能共享。"><a href="#2-不同服务下，session下不能共享。" class="headerlink" title="2 不同服务下，session下不能共享。"></a>2 不同服务下，session下不能共享。</h4><p>同一服务多台服务器解决：</p>
 <p>1 session，全量复制，每一个服务都存了所有的session，可扩展性就不高了</p>
@@ -308,7 +308,7 @@
 <p><strong>现在</strong>：1 orderservice  2 interceptor-&gt;address  3 远程调用购物车cart物品信息 。</p>
 <p>在2号线程中拿不到那个老请求的数据，（注意那个老请求的数据在threadlocal中的） ，所以又出现问题了。</p>
 <p>但是此处<strong>异步模式</strong>下，上面的解决方法有问题，因为feign的拦截器不在同一个线程中，拿不到老请求数据。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解决方法，在刚开始的线程中拿到老请求（就是浏览器访问controller的时候，带有cookie信息的）数据</span></span><br><span class="line">RequestContextHolder.setRequestAttributes(requestAttributes);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 然后在别的线程中把老请求set进去，达到共享目的，这样拦截器中就能拿到了</span></span><br><span class="line">RequestContextHolder.setRequestAttributes(requestAttributes);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解决方法，在刚开始的线程中拿到老请求（就是浏览器访问controller的时候，带有cookie信息的）数据</span></span><br><span class="line"><span class="type">RequestAttributes</span> <span class="variable">requestAttributes</span> <span class="operator">=</span> RequestContextHolder.getRequestAttributes();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 然后在别的线程中把老请求set进去，达到共享目的，这样拦截器中就能拿到了</span></span><br><span class="line">RequestContextHolder.setRequestAttributes(requestAttributes);</span><br></pre></td></tr></table></figure>
 
 
 
@@ -435,7 +435,7 @@
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-07-11</p></div> 
+    <div class="post-footer__meta"><p>updated at 2022-07-16</p></div> 
     <div class="post-entry__tags"><a href="/tags/Java/" class="post-tags__link button"># Java</a><a href="/tags/SpringCloud/" class="post-tags__link button"># SpringCloud</a><a href="/tags/Redis/" class="post-tags__link button"># Redis</a><a href="/tags/Elasticsearch/" class="post-tags__link button"># Elasticsearch</a><a href="/tags/nginx/" class="post-tags__link button"># nginx</a></div> 
 </article>
 
