@@ -42,13 +42,16 @@
 <meta property="og:site_name" content="穿过海的声音">
 <meta property="og:description" content="Mysql行锁MySQL 表锁和行锁机制 分析 在执行DML操作时，会对涉及的行加锁，同时也会对该表加上意向锁。（意向共享锁：与表共享兼容，表拍他互斥。意向排它锁：都互斥。但是意向拍他之间，不会互斥，行锁可以保证的。） 后面对这张表加表锁的时候，会根据该表上的意向锁来判定是否可以加锁成功，而不用逐行在判断行锁。 总结：InnoDB的行锁是针对索引加的锁，不是针对记录加的锁。并且该索引不能失效，否则">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/08/06/ifpRJK5vzec4jh6.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/06/ThdnPEwA2Su7vki.jpg">
 <meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/19/IMG_2075.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/08/06/dvIjm4FeM7VJXpG.png">
 <meta property="article:published_time" content="2022-06-06T01:34:42.000Z">
-<meta property="article:modified_time" content="2022-07-19T14:07:55.102Z">
+<meta property="article:modified_time" content="2022-08-06T03:13:17.205Z">
 <meta property="article:author" content="jcwang">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://pic.tyzhang.top/images/2022/07/19/IMG_2075.jpg">
+<meta name="twitter:image" content="https://s2.loli.net/2022/08/06/ifpRJK5vzec4jh6.png">
 
 
     
@@ -191,13 +194,16 @@
 <li><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/database/mysql/mysql-logs">MySQL三大日志(binlog、redo log和undo log)详解</a></li>
 </ul>
 <p>binlog、redolog、undolog</p>
-<p>redolog用于主机的重启恢复，会有一个二阶段提交过程，先会有redolog的准备节点，在binlog写入，再redolog的commit</p>
+<p><img src="https://s2.loli.net/2022/08/06/ifpRJK5vzec4jh6.png" alt="ifpRJK5vzec4jh6"></p>
+<p>redolog用于主机的重启恢复，会有一个二阶段提交过程（将<code>redo log</code>的写入拆成了两个步骤<code>prepare</code>和<code>commit</code>，这就是<strong>两阶段提交</strong>），先会有redolog的准备节点，在binlog写入，再redolog的commit</p>
 <p>binlog主要用于备份</p>
 <blockquote>
 <p>MySQL InnoDB 引擎使用 <strong>redo log(重做日志)</strong> 保证事务的<strong>持久性</strong>，使用 <strong>undo log(回滚日志)</strong> 来保证事务的<strong>原子性</strong>。</p>
 <p><code>MySQL</code>数据库的<strong>数据备份、主备、主主、主从</strong>都离不开<code>binlog</code>，需要依靠<code>binlog</code>来同步数据，保证数据一致性。</p>
 </blockquote>
-<p>在 <code>InnoDB</code> 存储引擎中，<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/innodb-multi-versioning.html">多版本控制 (multi versioning)</a> 就是对非锁定读的实现。如果读取的行正在执行 <code>DELETE</code> 或 <code>UPDATE</code> 操作，这时读取操作不会去等待行上锁的释放。相反地，<code>InnoDB</code> 存储引擎会去读取行的一个快照数据，对于这种读取历史数据的方式，我们叫它快照读 (snapshot read)</p>
+<p><img src="https://s2.loli.net/2022/08/06/ThdnPEwA2Su7vki.jpg" alt="ThdnPEwA2Su7vki"></p>
+<p><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/database/mysql/innodb-implementation-of-mvcc?id=innodb-%E5%AF%B9-mvcc-%E7%9A%84%E5%AE%9E%E7%8E%B0">InnoDB存储引擎对MVCC的实现</a></p>
+<p>在 <code>InnoDB</code> 存储引擎中，<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/innodb-multi-versioning.html">多版本控制 (multi versioning)</a> 就是对<strong>非锁定读</strong>的实现。如果读取的行正在执行 <code>DELETE</code> 或 <code>UPDATE</code> 操作，这时读取操作不会去等待行上锁的释放。相反地，<code>InnoDB</code> 存储引擎会去读取行的一个快照数据，对于这种读取历史数据的方式，我们叫它快照读 (snapshot read)</p>
 <p>所以说，insert是在提交事务后，undolog就能删除的，但是delete和update是需要mvcc的。</p>
 <p><code>MVCC</code> 的实现依赖于：<strong>隐藏字段、Read View、undo log</strong>。</p>
 <p><img src="https://pic.tyzhang.top/images/2022/07/19/IMG_2075.jpg" alt="IMG_2075.jpg"></p>
@@ -206,6 +212,8 @@
 </ul>
 <p>索引</p>
 <p>用B+，而不是B，而不是HashMap（哈希冲突，顺序和范围查找）</p>
+<p>而不是平衡二叉树，平衡二叉树创建删除增加更麻烦。而不是普通二叉树（深度太深）。</p>
+<p><img src="https://s2.loli.net/2022/08/06/dvIjm4FeM7VJXpG.png" alt="dvIjm4FeM7VJXpG"></p>
 
     </div>
     
@@ -222,7 +230,7 @@
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-07-19</p></div> 
+    <div class="post-footer__meta"><p>updated at 2022-08-06</p></div> 
     <div class="post-entry__tags"><a href="/tags/mysql/" class="post-tags__link button"># mysql</a></div> 
 </article>
 

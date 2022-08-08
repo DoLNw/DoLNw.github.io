@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>AlgorithmClassfication4 | 穿过海的声音</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="一些代码有关的问题关于排序的问题123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051①①Queue&lt;Integer&gt; queue &#x3D; new PriorityQueue&lt;&gt;((aa, bb) -&gt; aa - bb);①②Queue&amp;lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AlgorithmClassfication4">
+<meta property="og:url" content="http://example.com/2022/07/23/AlgorithmClassfication4/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="一些代码有关的问题关于排序的问题123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051①①Queue&lt;Integer&gt; queue &#x3D; new PriorityQueue&lt;&gt;((aa, bb) -&gt; aa - bb);①②Queue&amp;lt">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-23T14:26:53.000Z">
+<meta property="article:modified_time" content="2022-07-23T15:01:39.744Z">
+<meta property="article:author" content="jcwang">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        AlgorithmClassfication4
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/07/" class="post-meta__date button">2022-07-23</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%8E%92%E5%BA%8F%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">关于排序的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set%E5%AF%B9%E6%95%B0%E7%BB%84%E7%9A%84%E5%8E%BB%E9%87%8D%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">Set对数组的去重问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E"><span class="toc-number">3.</span> <span class="toc-text">科大讯飞</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%8E%92%E5%BA%8F%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">关于排序的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set%E5%AF%B9%E6%95%B0%E7%BB%84%E7%9A%84%E5%8E%BB%E9%87%8D%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">Set对数组的去重问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E"><span class="toc-number">3.</span> <span class="toc-text">科大讯飞</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="一些代码有关的问题"><a href="#一些代码有关的问题" class="headerlink" title="一些代码有关的问题"></a>一些代码有关的问题</h1><h2 id="关于排序的问题"><a href="#关于排序的问题" class="headerlink" title="关于排序的问题"></a>关于排序的问题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">①①Queue&lt;Integer&gt; queue = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;((aa, bb) -&gt; aa - bb);</span><br><span class="line">①②Queue&lt;Integer&gt; queue1 = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Integer&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Integer o1, Integer o2)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">②②TreeMap&lt;Integer, Integer&gt; treeMap = <span class="keyword">new</span> <span class="title class_">TreeMap</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Integer&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Integer o1, Integer o2)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">③①TreeSet&lt;Integer&gt; treeSet = <span class="keyword">new</span> <span class="title class_">TreeSet</span>&lt;&gt;((aa, bb) -&gt; aa - bb);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意，用这个的一定是封装类型的，所以比如int[]这个就很麻烦，要么数组封装成Integer[]，要么自己写个排序算法呗，或者排好后</span></span><br><span class="line"><span class="comment">// 但是对int[][]排序的时候是可以的。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyComparator</span> <span class="keyword">implements</span> <span class="title class_">Comparator</span>&lt;Integer&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Integer o1, Integer o2)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意此处只能用Integer[]的数组，所以要先吧int[]转成Integer[]</span></span><br><span class="line">Integer[] aa = <span class="keyword">new</span> <span class="title class_">Integer</span>[];</span><br><span class="line">Arrays.sort(aa,<span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Integer&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Integer o1, Integer o2)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="type">int</span>)(o2-o1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 此处由于不是封装类型，所以直接先升序排序然后翻转，其他的封装类型还有之后的int[][]就是可以直接在Arrays.sort中去写Comparator了。</span></span><br><span class="line"><span class="type">int</span>[] temp = queue.pollFirst();</span><br><span class="line">Arrays.sort(temp);</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; temp.length / <span class="number">2</span>; i++) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">tempTemp</span> <span class="operator">=</span> temp[i];</span><br><span class="line">    temp[i] = temp[temp.length - i - <span class="number">1</span>];</span><br><span class="line">    temp[temp.length - i - <span class="number">1</span>] = tempTemp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// List的数组就没什么问题了</span></span><br><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">Collections.sort(list, <span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Integer&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Integer o1, Integer o2)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="Set对数组的去重问题"><a href="#Set对数组的去重问题" class="headerlink" title="Set对数组的去重问题"></a>Set对数组的去重问题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意，HashSet对于int[]数组是无法去重的，对于Integer[]估计可以？？没验证</span></span><br><span class="line"><span class="comment">// 但是对List&lt;Integer&gt;的一定是可以的，所以需要将int[]首先转换成List&lt;Integer&gt;</span></span><br><span class="line"><span class="comment">// 两种方法</span></span><br><span class="line"><span class="comment">// 注意：下面的temp是int[]，所以第一种和第二种都是转换，但是第一种的Arrays.asList里面需要接收的是Integer[]，所以我此处是写开了，但是对于temp个数很多的，只能用下面的了，或者先for循环把temp一个个的放入integer[]中去</span></span><br><span class="line">set.add(Arrays.asList(temp[<span class="number">0</span>], temp[<span class="number">1</span>], temp[<span class="number">2</span>], temp[<span class="number">3</span>], temp[<span class="number">4</span>]));</span><br><span class="line">set.add(Arrays.stream(temp).boxed().collect(Collectors.toList()));</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>Deque&lt;int[]&gt;中存放两次temp的，深浅拷贝问题</p>
+<p>java中集合存储的元素，是对象的引用。</p>
+<p>int[]这个数组也是对象的，所以说前面的Comparator的时候对<code>int[]</code>是不能排序的，对<code>int[][]</code>可以排序的，因为Comparator的时候里面的每一个元素是<code>iny[]</code>，那么也就是对象了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//（1）如果是基本数据类型，则是value</span></span><br><span class="line"><span class="comment">//（2） 如果是复合数据类型，则是引用的地址；String b=&quot;a&quot;; lists.add(b); b=&quot;bbb&quot;;最后输出还是a，</span></span><br><span class="line"><span class="comment">//      原因是存放的不是b，而是b第一次指向的地址，修改b=”bbb”后只是修改了b指向的地址。这里因为直接更换了b指向的地址了。</span></span><br><span class="line"><span class="comment">//      比如里面存放temp数组，然后temp数组的第一个值改变了，那么集合里存放的也会改变。但是如何此时temp = new int[n]，那么temp这个东西，与集合里面的那个再也没有关系了。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 所以我一开始将int[]存放进去，然后改这个数组的时候不想影响到集合里面的那个元素，那么存放的时候就是需要放queue.offerLast(temp.clone());</span></span><br><span class="line"></span><br><span class="line">Deque&lt;List&lt;Integer&gt;&gt; deque = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">list.add(<span class="number">2</span>);</span><br><span class="line">deque.add(list);</span><br><span class="line">list.set(<span class="number">0</span>, <span class="number">123</span>);</span><br><span class="line">System.out.println(deque.peekFirst().get(<span class="number">0</span>));</span><br><span class="line"><span class="comment">// 无可厚非，这里面输出的是123还是改变的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里重新new ArrayList(list)就可以了。  注意与int[]的区别，一个是clone，另外一个是new一个新的。</span></span><br><span class="line">Deque&lt;List&lt;Integer&gt;&gt; deque = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">list.add(<span class="number">2</span>);</span><br><span class="line">deque.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(list));</span><br><span class="line">list.set(<span class="number">0</span>, <span class="number">123</span>);</span><br><span class="line">System.out.println(deque.peekFirst().get(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="科大讯飞"><a href="#科大讯飞" class="headerlink" title="科大讯飞"></a>科大讯飞</h2><p>下面附上科大讯飞的一道代码题目</p>
+<p>五个球队一次两两比赛，然后五个队伍的分数从高到底排序，去重后看看有多少种，然后判断题目给出的一个数据是否是在里面的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 注意，去重hash的写法</span></span><br><span class="line"><span class="comment"> * Arrays降序排列的写法</span></span><br><span class="line"><span class="comment"> * 存储int[的queue中放入int[]的话需要clone]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TemplateLianBiao</span> &#123;</span><br><span class="line">    <span class="comment">// 打表测试</span></span><br><span class="line">    <span class="comment">// 5个组两两比较，一共可以比赛十个场次</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Deque&lt;<span class="type">int</span>[]&gt; queue = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> in.nextInt();</span><br><span class="line">        <span class="type">int</span>[] scores = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            scores[i] = in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        Set&lt;List&lt;Integer&gt;&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        queue.offerLast(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;);</span><br><span class="line">        <span class="comment">// 0与其余比较</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> queue.size();</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>; k &lt; size; k++) &#123;</span><br><span class="line">                    <span class="type">int</span>[] temp = queue.pollFirst();</span><br><span class="line">                    temp[i] += <span class="number">3</span>;</span><br><span class="line">                    temp[j] += <span class="number">0</span>;</span><br><span class="line">                    queue.offerLast(temp.clone());</span><br><span class="line">                    temp[i] -= <span class="number">3</span>;</span><br><span class="line">                    temp[j] -= <span class="number">0</span>;</span><br><span class="line">                    temp[i] += <span class="number">1</span>;</span><br><span class="line">                    temp[j] += <span class="number">1</span>;</span><br><span class="line">                    queue.offerLast(temp.clone());</span><br><span class="line">                    temp[i] -= <span class="number">1</span>;</span><br><span class="line">                    temp[j] -= <span class="number">1</span>;</span><br><span class="line">                    temp[i] += <span class="number">0</span>;</span><br><span class="line">                    temp[j] += <span class="number">3</span>;</span><br><span class="line">                    queue.offerLast(temp.clone());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            <span class="type">int</span>[] temp = queue.pollFirst();</span><br><span class="line">            <span class="comment">// 此处由于不是封装类型，所以直接先升序排序然后翻转</span></span><br><span class="line">            Arrays.sort(temp);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; temp.length / <span class="number">2</span>; i++) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">tempTemp</span> <span class="operator">=</span> temp[i];</span><br><span class="line">                temp[i] = temp[temp.length - i - <span class="number">1</span>];</span><br><span class="line">                temp[temp.length - i - <span class="number">1</span>] = tempTemp;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//            set.add(Arrays.asList(temp[0], temp[1], temp[2], temp[3], temp[4]));</span></span><br><span class="line">            set.add(Arrays.stream(temp).boxed().collect(Collectors.toList()));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.print(a == set.size() ? <span class="string">&quot;yes&quot;</span> : <span class="string">&quot;no&quot;</span>);</span><br><span class="line">        System.out.print(set.contains(Arrays.stream(scores).boxed().collect(Collectors.toList())) ? <span class="string">&quot; yes&quot;</span> : <span class="string">&quot; no&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2022/07/23/AlgorithmClassfication4/">http://example.com/2022/07/23/AlgorithmClassfication4/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-07-23</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/08/03/Algorithm5/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            Algorithm5
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/07/18/%E6%8B%9B%E8%81%98%E4%BF%A1%E6%81%AF/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            招聘信息
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2022 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
