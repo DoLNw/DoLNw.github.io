@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>Charles | 穿过海的声音</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Charles目标 通过Charles来分析前后端的问题  能够用Charles模拟弱网测试环境  使用Charls的断点构建 异常的测试场景   简介青花瓷，一款基于HTTP协议的代理服务器，通过成为电脑或者浏览器的代理，然后截取请求和请求结果达到分析抓包的目的。跨平台 工作原理 功能 支持HTTP以及HTTPS代理  支持流量控制（弱网测试）  支持接口并发请求（性能测试，压测）  支持重发网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Charles">
+<meta property="og:url" content="http://example.com/2022/08/09/Charles/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="Charles目标 通过Charles来分析前后端的问题  能够用Charles模拟弱网测试环境  使用Charls的断点构建 异常的测试场景   简介青花瓷，一款基于HTTP协议的代理服务器，通过成为电脑或者浏览器的代理，然后截取请求和请求结果达到分析抓包的目的。跨平台 工作原理 功能 支持HTTP以及HTTPS代理  支持流量控制（弱网测试）  支持接口并发请求（性能测试，压测）  支持重发网">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/sNzWmLuYUcR5ejK.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/IxsrbFA7RScH1QG.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/6YaDkIm5cZTRN1U.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/PqIjTuYCGUkvNx2.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/vZbWQLj9PMmFhB4.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/kbveAcz5oZ6Plwh.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/38XhcRm7OFPCQej.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/FN9V3zspLKCEfat.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/KHz6GOlTtpEQ8yg.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/ntDZgy1KaMSvOGp.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/j6tvGM1HRgPBLAr.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/wnWUAtSVeljLTyg.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/7M1DBjLdElXYH6o.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/BxVjwE26eQo4ARg.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/e2DNS3fRViyqPou.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/09/NtYVzEh37SmRQ2O.png">
+<meta property="article:published_time" content="2022-08-09T00:57:13.000Z">
+<meta property="article:modified_time" content="2022-08-09T02:20:22.219Z">
+<meta property="article:author" content="jcwang">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/08/09/sNzWmLuYUcR5ejK.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        Charles
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/08/" class="post-meta__date button">2022-08-09</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87"><span class="toc-number">1.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">4.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E7%82%B9%EF%BC%88%E7%9B%B8%E5%AF%B9%E4%BA%8EFiddler%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">优点（相对于Fiddler）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">介绍总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-number">7.</span> <span class="toc-text">工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98"><span class="toc-number">8.</span> <span class="toc-text">实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E6%88%981"><span class="toc-number">8.1.</span> <span class="toc-text">实战1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTPS%E6%8A%93%E5%8C%85"><span class="toc-number">8.2.</span> <span class="toc-text">HTTPS抓包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E9%85%8D%E7%BD%AE"><span class="toc-number">8.3.</span> <span class="toc-text">流量配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E7%82%B9%E9%85%8D%E7%BD%AE"><span class="toc-number">8.4.</span> <span class="toc-text">断点配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%88%98-1"><span class="toc-number">8.4.1.</span> <span class="toc-text">实战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%93%E5%8C%85%E5%AE%9E%E6%88%98%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text">抓包实战总结</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87"><span class="toc-number">1.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">4.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E7%82%B9%EF%BC%88%E7%9B%B8%E5%AF%B9%E4%BA%8EFiddler%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">优点（相对于Fiddler）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">介绍总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-number">7.</span> <span class="toc-text">工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98"><span class="toc-number">8.</span> <span class="toc-text">实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E6%88%981"><span class="toc-number">8.1.</span> <span class="toc-text">实战1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTPS%E6%8A%93%E5%8C%85"><span class="toc-number">8.2.</span> <span class="toc-text">HTTPS抓包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E9%85%8D%E7%BD%AE"><span class="toc-number">8.3.</span> <span class="toc-text">流量配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E7%82%B9%E9%85%8D%E7%BD%AE"><span class="toc-number">8.4.</span> <span class="toc-text">断点配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%88%98-1"><span class="toc-number">8.4.1.</span> <span class="toc-text">实战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%93%E5%8C%85%E5%AE%9E%E6%88%98%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text">抓包实战总结</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="Charles"><a href="#Charles" class="headerlink" title="Charles"></a>Charles</h1><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ol>
+<li><p>通过Charles来分析前后端的问题</p>
+</li>
+<li><p>能够用Charles模拟弱网测试环境</p>
+</li>
+<li><p>使用Charls的断点构建 异常的测试场景</p>
+</li>
+</ol>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>青花瓷，一款<strong>基于HTTP协议的代理服务器</strong>，通过成为电脑或者浏览器的代理，然后截取请求和请求结果达到分析抓包的目的。跨平台</p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p><img src="https://s2.loli.net/2022/08/09/sNzWmLuYUcR5ejK.png" alt="sNzWmLuYUcR5ejK"></p>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ol>
+<li><p>支持HTTP以及HTTPS代理</p>
+</li>
+<li><p>支持流量控制（弱网测试）</p>
+</li>
+<li><p>支持接口并发请求（性能测试，压测）</p>
+</li>
+<li><p>支持重发网络请求</p>
+</li>
+<li><p>支持断点调试功能</p>
+</li>
+</ol>
+<h2 id="优点（相对于Fiddler）"><a href="#优点（相对于Fiddler）" class="headerlink" title="优点（相对于Fiddler）"></a>优点（相对于Fiddler）</h2><p><img src="https://s2.loli.net/2022/08/09/IxsrbFA7RScH1QG.png" alt="IxsrbFA7RScH1QG"></p>
+<h2 id="介绍总结"><a href="#介绍总结" class="headerlink" title="介绍总结"></a>介绍总结</h2><p>概念：代理服务器、跨平台、半免费、工作原理</p>
+<p>流量控制：支持代理、流量控制、请求重发、断点调试</p>
+<p>优点：支持多系统、页面简洁、反向代理、网络类型可选择</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p><img src="https://s2.loli.net/2022/08/09/6YaDkIm5cZTRN1U.png" alt="6YaDkIm5cZTRN1U"></p>
+<p><img src="https://s2.loli.net/2022/08/09/PqIjTuYCGUkvNx2.png" alt="PqIjTuYCGUkvNx2"></p>
+<p><img src="https://s2.loli.net/2022/08/09/vZbWQLj9PMmFhB4.png" alt="vZbWQLj9PMmFhB4"></p>
+<p><img src="https://s2.loli.net/2022/08/09/kbveAcz5oZ6Plwh.png" alt="kbveAcz5oZ6Plwh"></p>
+<p><img src="https://s2.loli.net/2022/08/09/38XhcRm7OFPCQej.png" alt="38XhcRm7OFPCQej"></p>
+<p><img src="https://s2.loli.net/2022/08/09/FN9V3zspLKCEfat.png" alt="FN9V3zspLKCEfat"></p>
+<p><img src="https://s2.loli.net/2022/08/09/KHz6GOlTtpEQ8yg.png" alt="KHz6GOlTtpEQ8yg"></p>
+<h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p>实施步骤，1. Charles代理配置 2. 客户端代理配置 3. 操作客户端软件 4. 分析请求数据</p>
+<h3 id="实战1"><a href="#实战1" class="headerlink" title="实战1"></a>实战1</h3><p>如果有一个账号，他的名称很长，出来了两个问题，“出现了系统繁忙”，而且出现了两次。</p>
+<p>发现 “出现了系统繁忙” 是在响应报文中，所以是后端发出来的</p>
+<p>而出现两次，（其实看到后台只返回了一个返回结果），所以是前端的问题。</p>
+<h3 id="HTTPS抓包"><a href="#HTTPS抓包" class="headerlink" title="HTTPS抓包"></a>HTTPS抓包</h3><p>内容会乱码，因为未配置证书抓去HTTPS，HTTPS相比HTTP多了一层安全加密的。</p>
+<p><img src="https://s2.loli.net/2022/08/09/ntDZgy1KaMSvOGp.png" alt="ntDZgy1KaMSvOGp"></p>
+<p><img src="https://s2.loli.net/2022/08/09/j6tvGM1HRgPBLAr.png" alt="j6tvGM1HRgPBLAr"></p>
+<h3 id="流量配置"><a href="#流量配置" class="headerlink" title="流量配置"></a>流量配置</h3><p><img src="https://s2.loli.net/2022/08/09/wnWUAtSVeljLTyg.png" alt="wnWUAtSVeljLTyg"></p>
+<p>可以模拟弱网，时间分析慢，页面展示状态也慢</p>
+<h3 id="断点配置"><a href="#断点配置" class="headerlink" title="断点配置"></a>断点配置</h3><p><img src="https://s2.loli.net/2022/08/09/7M1DBjLdElXYH6o.png" alt="7M1DBjLdElXYH6o"></p>
+<p><img src="https://s2.loli.net/2022/08/09/BxVjwE26eQo4ARg.png" alt="BxVjwE26eQo4ARg"></p>
+<h4 id="实战-1"><a href="#实战-1" class="headerlink" title="实战"></a>实战</h4><p><img src="https://s2.loli.net/2022/08/09/e2DNS3fRViyqPou.png" alt="e2DNS3fRViyqPou"></p>
+<h2 id="抓包实战总结"><a href="#抓包实战总结" class="headerlink" title="抓包实战总结"></a>抓包实战总结</h2><p><img src="https://s2.loli.net/2022/08/09/NtYVzEh37SmRQ2O.png" alt="NtYVzEh37SmRQ2O"></p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2022/08/09/Charles/">http://example.com/2022/08/09/Charles/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-08-09</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/08/06/%E7%9C%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BD%91%E5%9D%80/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            看的一些网址
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2022 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
