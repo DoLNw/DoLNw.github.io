@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>Stream流操作 | 穿过海的声音</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Java使用的Srteam流Lambda 表达式Lambda 表达式，也可称为闭包，它是推动 Java 8 发布的最重要新特性。 Lambda 允许把函数作为一个方法的参数（函数作为参数传递进方法中）。 使用 Lambda 表达式可以使代码变的更加简洁紧凑。  Java 常见Stream操作 Java8的Stream使用技巧归纳 场景场景一：从String读取int[]12345Scanner s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stream流操作">
+<meta property="og:url" content="http://example.com/2022/08/19/Stream%E6%B5%81%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="Java使用的Srteam流Lambda 表达式Lambda 表达式，也可称为闭包，它是推动 Java 8 发布的最重要新特性。 Lambda 允许把函数作为一个方法的参数（函数作为参数传递进方法中）。 使用 Lambda 表达式可以使代码变的更加简洁紧凑。  Java 常见Stream操作 Java8的Stream使用技巧归纳 场景场景一：从String读取int[]12345Scanner s">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/08/19/Q2KmLwFJIHpeOi4.png">
+<meta property="article:published_time" content="2022-08-19T06:50:43.000Z">
+<meta property="article:modified_time" content="2022-08-19T08:45:52.580Z">
+<meta property="article:author" content="jcwang">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/08/19/Q2KmLwFJIHpeOi4.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        Stream流操作
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/08/" class="post-meta__date button">2022-08-19</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda-%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">Lambda 表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF"><span class="toc-number">2.</span> <span class="toc-text">场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E4%B8%80%EF%BC%9A%E4%BB%8EString%E8%AF%BB%E5%8F%96int"><span class="toc-number">2.1.</span> <span class="toc-text">场景一：从String读取int[]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E4%BA%8C%EF%BC%9Aint-%E6%94%BE%E5%85%A5Set%E4%B8%AD%E5%8E%BB%E9%87%8D%E5%A4%8D"><span class="toc-number">2.2.</span> <span class="toc-text">场景二：int[]放入Set中去重复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E4%B8%89%EF%BC%9A%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC%E3%80%81%E6%B1%82%E5%92%8C%E3%80%81%E7%AD%89%E7%AD%89"><span class="toc-number">2.3.</span> <span class="toc-text">场景三：数组中的最大值、求和、等等</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E7%94%A8%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">一些用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#reduce"><span class="toc-number">3.1.</span> <span class="toc-text">reduce</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">其他方法</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda-%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">Lambda 表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF"><span class="toc-number">2.</span> <span class="toc-text">场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E4%B8%80%EF%BC%9A%E4%BB%8EString%E8%AF%BB%E5%8F%96int"><span class="toc-number">2.1.</span> <span class="toc-text">场景一：从String读取int[]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E4%BA%8C%EF%BC%9Aint-%E6%94%BE%E5%85%A5Set%E4%B8%AD%E5%8E%BB%E9%87%8D%E5%A4%8D"><span class="toc-number">2.2.</span> <span class="toc-text">场景二：int[]放入Set中去重复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E4%B8%89%EF%BC%9A%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC%E3%80%81%E6%B1%82%E5%92%8C%E3%80%81%E7%AD%89%E7%AD%89"><span class="toc-number">2.3.</span> <span class="toc-text">场景三：数组中的最大值、求和、等等</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E7%94%A8%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">一些用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#reduce"><span class="toc-number">3.1.</span> <span class="toc-text">reduce</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">其他方法</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="Java使用的Srteam流"><a href="#Java使用的Srteam流" class="headerlink" title="Java使用的Srteam流"></a>Java使用的Srteam流</h1><h2 id="Lambda-表达式"><a href="#Lambda-表达式" class="headerlink" title="Lambda 表达式"></a>Lambda 表达式</h2><p>Lambda 表达式，也可称为闭包，它是推动 Java 8 发布的最重要新特性。</p>
+<p>Lambda 允许把函数作为一个方法的参数（函数作为参数传递进方法中）。</p>
+<p>使用 Lambda 表达式可以使代码变的更加简洁紧凑。</p>
+<p><img src="https://s2.loli.net/2022/08/19/Q2KmLwFJIHpeOi4.png" alt="lambda"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43203949/article/details/124404582">Java 常见Stream操作</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/danny_idea/article/details/82560781">Java8的Stream使用技巧归纳</a></p>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><h3 id="场景一：从String读取int"><a href="#场景一：从String读取int" class="headerlink" title="场景一：从String读取int[]"></a>场景一：从String读取int[]</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="comment">// 此处直接nextLine读取，因为nextInt读取后，需要再nextLine读取换行符</span></span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> Integer.parseInt(scanner.nextLine());</span><br><span class="line"><span class="comment">// 此处先将字符串分割成String数组，然后转成IntStream，然后到int数组</span></span><br><span class="line"><span class="type">int</span>[] nums = Arrays.stream(scanner.nextLine().split(<span class="string">&quot; &quot;</span>)).mapToInt(Integer::valueOf).toArray();</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="场景二：int-放入Set中去重复"><a href="#场景二：int-放入Set中去重复" class="headerlink" title="场景二：int[]放入Set中去重复"></a>场景二：int[]放入Set中去重复</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 首先要知道Set去重复，需要放入List&lt;Integer&gt;中，所以需要int[]转List&lt;Integer&gt;</span></span><br><span class="line"><span class="type">int</span>[] nums = <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line"><span class="type">int</span>[] temp = nums.clone(); <span class="comment">// 需要进行深拷贝，在回溯中用的比较多</span></span><br><span class="line"><span class="comment">// 注意，这里的boxed装箱，用的是mapToObj(Integer::valueOf)</span></span><br><span class="line"><span class="comment">// 是int[]转Stream&lt;Integer&gt;，再转List&lt;Integer&gt;，注意与场景一的区别，一个是IntStream一个是Stream&lt;Integer&gt;</span></span><br><span class="line">List&lt;Integer&gt; list = Arrays.stream(temp).boxed().collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="场景三：数组中的最大值、求和、等等"><a href="#场景三：数组中的最大值、求和、等等" class="headerlink" title="场景三：数组中的最大值、求和、等等"></a>场景三：数组中的最大值、求和、等等</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] dp = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br><span class="line"><span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> Arrays.stream(dp).max().getAsInt();</span><br><span class="line"><span class="type">int</span> <span class="variable">ans1</span> <span class="operator">=</span> Arrays.stream(dp).sum();</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="一些用法"><a href="#一些用法" class="headerlink" title="一些用法"></a>一些用法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">String[] strs = <span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;one&quot;</span>, <span class="string">&quot;two&quot;</span>, <span class="string">&quot;three&quot;</span>, <span class="string">&quot;four&quot;</span>&#125;;</span><br><span class="line">List&lt;String&gt; collect = Arrays.stream(strs)</span><br><span class="line">    .filter(e -&gt; e.length() &gt; <span class="number">3</span>)</span><br><span class="line">    .peek(e -&gt; System.out.println(<span class="string">&quot;Filtered value: &quot;</span> + e))</span><br><span class="line">    .map(String::toUpperCase)</span><br><span class="line">    .peek(e -&gt; System.out.println(<span class="string">&quot;Mapped value: &quot;</span> + e))</span><br><span class="line">    .collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意，ForEach是消费Stream的，是Terimal的，所以ForEach之后不能collect，而使用peek可以，不消费Stream</span></span><br><span class="line"><span class="comment">// 一下是输出</span></span><br><span class="line">Filtered value: three</span><br><span class="line">Mapped value: THREE</span><br><span class="line">Filtered value: four</span><br><span class="line">Mapped value: FOUR</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>reduce这个方法的主要作用是把 Stream 元素组合起来。它提供一个起始值（种子），然后依照运算规则（BinaryOperator），和前面 Stream 的第一个、第二个、第 n 个元素组合。从这个意义上说，字符串拼接、数值的 sum、min、max、average 都是特殊的 reduce。<br>下边是使用reduce的一些常见案例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符串连接，concat = &quot;ABCD&quot;</span></span><br><span class="line"><span class="type">String</span> <span class="variable">concat</span> <span class="operator">=</span> Stream.of(<span class="string">&quot;A&quot;</span>, <span class="string">&quot;B&quot;</span>, <span class="string">&quot;C&quot;</span>, <span class="string">&quot;D&quot;</span>).reduce(<span class="string">&quot;&quot;</span>, String::concat); </span><br><span class="line"><span class="comment">// 求最小值，minValue = -3.0</span></span><br><span class="line"><span class="type">double</span> <span class="variable">minValue</span> <span class="operator">=</span> Stream.of(-<span class="number">1.5</span>, <span class="number">1.0</span>, -<span class="number">3.0</span>, -<span class="number">2.0</span>).reduce(Double.MAX_VALUE, Double::min); </span><br><span class="line"><span class="comment">// 求和，sumValue = 10, 有起始值</span></span><br><span class="line"><span class="type">int</span> <span class="variable">sumValue</span> <span class="operator">=</span> Stream.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>).reduce(<span class="number">0</span>, Integer::sum);</span><br><span class="line"><span class="comment">// 求和，sumValue = 10, 无起始值</span></span><br><span class="line">sumValue = Stream.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>).reduce(Integer::sum).get();</span><br><span class="line"><span class="comment">// 过滤，字符串连接，concat = &quot;ace&quot;</span></span><br><span class="line">concat = Stream.of(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;B&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;D&quot;</span>, <span class="string">&quot;e&quot;</span>, <span class="string">&quot;F&quot;</span>).</span><br><span class="line"> filter(x -&gt; x.compareTo(<span class="string">&quot;Z&quot;</span>) &gt; <span class="number">0</span>).</span><br><span class="line"> reduce(<span class="string">&quot;&quot;</span>, String::concat);</span><br><span class="line"></span><br><span class="line"><span class="comment">//上面代码例如第一个示例的 reduce()，第一个参数（空白字符）即为起始值，第二个参数（String::concat）为 BinaryOperator。这类有起始值的 reduce() 都返回具体的对象。而对于第四个示例没有起始值的 reduce()，由于可能没有足够的元素，返回的是 Optional，请留意这个区别。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当然，如果基本类型，可以直接像下面这样</span></span><br><span class="line"><span class="type">int</span>[] ints = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> Arrays.stream(ints).sum();</span><br><span class="line">ArrayList&lt;User&gt; users = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">users.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;ste&quot;</span>,<span class="number">12</span>,<span class="string">&quot;男&quot;</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;jack&quot;</span>,<span class="number">14</span>,<span class="string">&quot;男&quot;</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;tom&quot;</span>,<span class="number">16</span>,<span class="string">&quot;男&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算年龄均值</span></span><br><span class="line"><span class="type">double</span> <span class="variable">avg</span> <span class="operator">=</span> users.stream()</span><br><span class="line">                    .mapToInt(User::getAge)</span><br><span class="line">                    .average()</span><br><span class="line">                    .getAsDouble();</span><br><span class="line"></span><br><span class="line">ArrayList&lt;User&gt; users = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">users.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;ste&quot;</span>,<span class="number">12</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;jack&quot;</span>,<span class="number">14</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;tom&quot;</span>,<span class="number">16</span>));</span><br><span class="line"><span class="comment">//年龄最大的user</span></span><br><span class="line"><span class="type">User</span> <span class="variable">maxuser</span> <span class="operator">=</span> users.stream()</span><br><span class="line">                    .max(Comparator.comparingInt(User::getAge))</span><br><span class="line">                    .get();</span><br><span class="line"><span class="comment">//年龄最小的user</span></span><br><span class="line"><span class="type">User</span> <span class="variable">minuser</span> <span class="operator">=</span> users.stream()</span><br><span class="line">                    .min(Comparator.comparingInt(User::getAge))</span><br><span class="line">                    .get();</span><br><span class="line"></span><br><span class="line">ArrayList&lt;User&gt; users = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">users.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;ste&quot;</span>,<span class="number">12</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;jack&quot;</span>,<span class="number">14</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;tom&quot;</span>,<span class="number">16</span>));</span><br><span class="line"><span class="type">long</span> <span class="variable">count</span> <span class="operator">=</span> users.stream().count();</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h3><p>distinct去重、sorted、limit只要个数、skip去掉个数</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2022/08/19/Stream%E6%B5%81%E6%93%8D%E4%BD%9C/">http://example.com/2022/08/19/Stream%E6%B5%81%E6%93%8D%E4%BD%9C/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-08-19</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/08/17/DinosaurStore3/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            DinosaurStore3
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2022 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
