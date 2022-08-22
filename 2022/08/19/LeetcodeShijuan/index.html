@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>LeetcodeShijuan | 穿过海的声音</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="LeetCode试卷括号匹配1234567891011121314151617181920212223242526272829303132333435import java.util.*; public class Solution &amp;#123;    &#x2F;**         *         * @param s string字符串         * @return bool布尔型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetcodeShijuan">
+<meta property="og:url" content="http://example.com/2022/08/19/LeetcodeShijuan/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="LeetCode试卷括号匹配1234567891011121314151617181920212223242526272829303132333435import java.util.*; public class Solution &amp;#123;    &#x2F;**         *         * @param s string字符串         * @return bool布尔型">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/08/20/5HWfpeACFyQ3KEh.png">
+<meta property="article:published_time" content="2022-08-19T15:02:13.000Z">
+<meta property="article:modified_time" content="2022-08-21T13:20:47.137Z">
+<meta property="article:author" content="jcwang">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/08/20/5HWfpeACFyQ3KEh.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        LeetcodeShijuan
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/08/" class="post-meta__date button">2022-08-19</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D"><span class="toc-number">1.</span> <span class="toc-text">括号匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%9724"><span class="toc-number">2.</span> <span class="toc-text">算24</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%8F%E5%B0%94%E6%91%A9%E6%96%AF%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">福尔摩斯编码解码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E5%BD%B1%E9%99%A2%E9%80%89%E5%BA%A7"><span class="toc-number">4.</span> <span class="toc-text">电影院选座</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%8F%E7%90%86"><span class="toc-number">4.1.</span> <span class="toc-text">项目经理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%93%E5%BA%93%E9%85%8D%E9%80%81"><span class="toc-number">5.</span> <span class="toc-text">仓库配送</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Floyd"><span class="toc-number">5.1.</span> <span class="toc-text">1 Floyd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Dijikstra"><span class="toc-number">5.2.</span> <span class="toc-text">2 Dijikstra</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E9%AB%98%E6%95%88%E7%8E%87%E7%9A%84%E5%A4%8D%E4%B9%A0"><span class="toc-number">6.</span> <span class="toc-text">最高效率的复习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%9F%E5%90%88%EF%BC%8C%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%88%97%E5%8F%98%E7%9B%B8%E5%90%8C"><span class="toc-number">7.</span> <span class="toc-text">拟合，两个数列变相同</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">7.1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E9%A1%BE%EF%BC%8C%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">7.2.</span> <span class="toc-text">回顾，最长公共子序列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-II-095-%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">7.2.1.</span> <span class="toc-text">剑指 Offer II 095. 最长公共子序列</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E8%A1%A5"><span class="toc-number">8.</span> <span class="toc-text">修补</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E6%AD%A3%E6%95%B4%E6%95%B0%E6%93%8D%E4%BD%9C"><span class="toc-number">9.</span> <span class="toc-text">两个正整数操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%902022-08-20%E3%80%91%E7%BD%91%E6%98%93%E7%A7%8B%E6%8B%9B%E7%AC%94%E8%AF%95%E5%9B%9B%E9%81%93%E7%BC%96%E7%A8%8B%E9%A2%98"><span class="toc-number">9.1.</span> <span class="toc-text">【2022-08-20】网易秋招笔试四道编程题</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D"><span class="toc-number">1.</span> <span class="toc-text">括号匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%9724"><span class="toc-number">2.</span> <span class="toc-text">算24</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%8F%E5%B0%94%E6%91%A9%E6%96%AF%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">福尔摩斯编码解码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E5%BD%B1%E9%99%A2%E9%80%89%E5%BA%A7"><span class="toc-number">4.</span> <span class="toc-text">电影院选座</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%8F%E7%90%86"><span class="toc-number">4.1.</span> <span class="toc-text">项目经理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%93%E5%BA%93%E9%85%8D%E9%80%81"><span class="toc-number">5.</span> <span class="toc-text">仓库配送</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Floyd"><span class="toc-number">5.1.</span> <span class="toc-text">1 Floyd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Dijikstra"><span class="toc-number">5.2.</span> <span class="toc-text">2 Dijikstra</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E9%AB%98%E6%95%88%E7%8E%87%E7%9A%84%E5%A4%8D%E4%B9%A0"><span class="toc-number">6.</span> <span class="toc-text">最高效率的复习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%9F%E5%90%88%EF%BC%8C%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%88%97%E5%8F%98%E7%9B%B8%E5%90%8C"><span class="toc-number">7.</span> <span class="toc-text">拟合，两个数列变相同</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">7.1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E9%A1%BE%EF%BC%8C%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">7.2.</span> <span class="toc-text">回顾，最长公共子序列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-II-095-%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">7.2.1.</span> <span class="toc-text">剑指 Offer II 095. 最长公共子序列</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E8%A1%A5"><span class="toc-number">8.</span> <span class="toc-text">修补</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E6%AD%A3%E6%95%B4%E6%95%B0%E6%93%8D%E4%BD%9C"><span class="toc-number">9.</span> <span class="toc-text">两个正整数操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%902022-08-20%E3%80%91%E7%BD%91%E6%98%93%E7%A7%8B%E6%8B%9B%E7%AC%94%E8%AF%95%E5%9B%9B%E9%81%93%E7%BC%96%E7%A8%8B%E9%A2%98"><span class="toc-number">9.1.</span> <span class="toc-text">【2022-08-20】网易秋招笔试四道编程题</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="LeetCode试卷"><a href="#LeetCode试卷" class="headerlink" title="LeetCode试卷"></a>LeetCode试卷</h1><h2 id="括号匹配"><a href="#括号匹配" class="headerlink" title="括号匹配"></a>括号匹配</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span> s string字符串</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span> bool布尔型</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">IsValidExp</span> <span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="comment">// 使用栈</span></span><br><span class="line">        Deque&lt;Character&gt; stack = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">        Map&lt;Character, Character&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;Character, Character&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="type">char</span>[] chars = s.toCharArray();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;chars.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (chars[i] == <span class="string">&#x27;&#123;&#x27;</span>) &#123;</span><br><span class="line">                <span class="comment">// 直接存相反的</span></span><br><span class="line">                stack.offerLast(<span class="string">&#x27;&#125;&#x27;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (chars[i] == <span class="string">&#x27;[&#x27;</span>) &#123;</span><br><span class="line">                <span class="comment">// 直接存相反的</span></span><br><span class="line">                stack.offerLast(<span class="string">&#x27;]&#x27;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (chars[i] == <span class="string">&#x27;(&#x27;</span>) &#123;</span><br><span class="line">                <span class="comment">// 直接存相反的</span></span><br><span class="line">                stack.offerLast(<span class="string">&#x27;)&#x27;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!stack.isEmpty() &amp;&amp; stack.peekLast().equals(chars[i])) &#123;</span><br><span class="line">                stack.pollLast();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> stack.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="算24"><a href="#算24" class="headerlink" title="算24"></a>算24</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/24-game/solution/java-hui-su-jing-dian-mian-shi-ti-by-air-pj1k/">Java 回溯, 经典面试题</a></p>
+<p>给出4个1-10的数字，通过加减乘除，得到数字为24就算胜利。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="福尔摩斯编码解码"><a href="#福尔摩斯编码解码" class="headerlink" title="福尔摩斯编码解码"></a>福尔摩斯编码解码</h2><p><img src="https://s2.loli.net/2022/08/20/5HWfpeACFyQ3KEh.png" alt="5HWfpeACFyQ3KEh"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dp动态规划</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> scanner.nextLine();</span><br><span class="line">        <span class="type">char</span>[] chars = str.toCharArray();</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> chars.length;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) &#123; System.out.println(<span class="number">0</span>); <span class="keyword">return</span>;&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="type">long</span>[] dp = <span class="keyword">new</span> <span class="title class_">long</span>[n];</span><br><span class="line">        <span class="comment">// 边界</span></span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>; i&lt;n; i++) &#123;</span><br><span class="line">            <span class="comment">// 1位，不论01</span></span><br><span class="line">            dp[i] = dp[i-<span class="number">1</span>];</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 2位</span></span><br><span class="line">            <span class="keyword">if</span> (chars[i-<span class="number">1</span>] == <span class="string">&#x27;1&#x27;</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">1</span>) &#123; dp[i] += <span class="number">1</span>; &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i] += dp[i-<span class="number">2</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 3位</span></span><br><span class="line">            <span class="keyword">if</span> (i &gt;= <span class="number">2</span> &amp;&amp; chars[i-<span class="number">2</span>] == <span class="string">&#x27;1&#x27;</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">2</span>) &#123; dp[i] += <span class="number">1</span>; &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i] += dp[i-<span class="number">3</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        System.out.println(dp[n-<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="电影院选座"><a href="#电影院选座" class="headerlink" title="电影院选座"></a><a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/854ba943e7214cbaaab0da3f8f6d3668?tab=note"><strong>电影院选座</strong></a></h2><h3 id="项目经理"><a href="#项目经理" class="headerlink" title="项目经理"></a><a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/c497247437534a75b6bb795a0f0fa663?tab=note"><strong>项目经理</strong></a></h3><h2 id="仓库配送"><a href="#仓库配送" class="headerlink" title="仓库配送"></a><a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/2f266ebdd8ab4408bb5e0c2240453c4c?tab=note"><strong>仓库配送</strong></a></h2><p>最短路径问题</p>
+<h3 id="1-Floyd"><a href="#1-Floyd" class="headerlink" title="1 Floyd"></a>1 Floyd</h3><p>注意这一题k在最外面</p>
+<p>使用邻接矩阵，Floyd<br>最短路径的子路径仍然是最短路径<br>dp[k][i][j] 为经过前k的节点，从i到j所能得到的最短路径<br>dp[k][i][j] &#x3D; min(dp[k-1][i][k], dp[k-1][i][k], dp[k-1][k][j])<br>状态dp[k][i][j]由dp[k-1][i][j]（不经过k），dp[k-1][i,k]+dp[k-1][k][j]（经过k）转移过来，<br>很容易可以看出，dp[k]的状态完全由dp[k-1]转移过来，只要我们把k放倒最外层循环中，就能保证无后效性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Flody</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">int</span> <span class="variable">N</span> <span class="operator">=</span> scanner.nextInt(), K = scanner.nextInt(), M = scanner.nextInt();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="type">long</span> [][] g = <span class="keyword">new</span> <span class="title class_">long</span>[N+<span class="number">1</span>][N+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始化</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;= N; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt;= N; j++) &#123;</span><br><span class="line">                g[i][j] = Integer.MAX_VALUE;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; M; i++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> scanner.nextInt(), y = scanner.nextInt(), w = scanner.nextInt();</span><br><span class="line">            <span class="comment">// 注意，题目描述的是有向的</span></span><br><span class="line">            g[x][y] = w;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;= N; i++) &#123;</span><br><span class="line">            g[i][i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">1</span>; k &lt;= N; k++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= N; i++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= N; j++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (g[i][k] != Integer.MAX_VALUE &amp;&amp; g[k][j] != Integer.MAX_VALUE) &#123;</span><br><span class="line">                        g[i][j] = Math.min(g[i][j], g[i][k] + g[k][j]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 题目求的是，可以并行送货，所以只要看source到某一个的最远就好了</span></span><br><span class="line">        <span class="type">long</span> <span class="variable">ans</span> <span class="operator">=</span> Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= N; i++) &#123;</span><br><span class="line">            ans = Math.max(ans, g[K][i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(ans == Integer.MAX_VALUE ? -<span class="number">1</span> : ans);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-Dijikstra"><a href="#2-Dijikstra" class="headerlink" title="2 Dijikstra"></a>2 Dijikstra</h3><h2 id="最高效率的复习"><a href="#最高效率的复习" class="headerlink" title="最高效率的复习"></a>最高效率的复习</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41896265/article/details/126445770?spm=1001.2014.3001.5501">【2022-08-20】美团秋招笔试五道编程题</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HighestFuXi</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 思路，贪心，转换为损失的价值，然后优先补偿损失最多的</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> scanner.nextInt(), m = scanner.nextInt();</span><br><span class="line">        scanner.nextLine();</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span>[][] scores = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">2</span>][n];</span><br><span class="line">        scores[<span class="number">0</span>] = Arrays.stream(scanner.nextLine().split(<span class="string">&quot; &quot;</span>)).mapToInt(Integer::valueOf).toArray();</span><br><span class="line">        scores[<span class="number">1</span>] = Arrays.stream(scanner.nextLine().split(<span class="string">&quot; &quot;</span>)).mapToInt(Integer::valueOf).toArray();</span><br><span class="line"></span><br><span class="line">        <span class="type">double</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0.0</span>;</span><br><span class="line">        Queue&lt;Double&gt; queue = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;((a, b) -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (a.equals(b)) &#123; <span class="keyword">return</span> <span class="number">0</span>;&#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (b &gt; a) &#123; <span class="keyword">return</span> <span class="number">1</span>;&#125;   <span class="comment">// return正数代表</span></span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            ans += scores[<span class="number">0</span>][i] * <span class="number">1.0</span> / <span class="number">100</span> * scores[<span class="number">1</span>][i];</span><br><span class="line">            queue.offer((<span class="number">1</span> - scores[<span class="number">0</span>][i] * <span class="number">1.0</span> / <span class="number">100</span>) * scores[<span class="number">1</span>][i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            ans += queue.poll();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(ans);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="拟合，两个数列变相同"><a href="#拟合，两个数列变相同" class="headerlink" title="拟合，两个数列变相同"></a>拟合，两个数列变相同</h2><p>两个数列，可以去掉其中一个，步数abs（a[i]），也可以一个变成另外一个，步数abs(a[i] - b[i])，问最少步数两者相同。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>跟最长公共子序列差不多，dp[i][j]，先考虑边界，在考虑递推式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 未验证</span></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">NiHe</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> scanner.nextInt(), m = scanner.nextInt();</span><br><span class="line"></span><br><span class="line">        scanner.nextLine();</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span>[] a = Arrays.stream(scanner.nextLine().split(<span class="string">&quot; &quot;</span>)).mapToInt(Integer::valueOf).toArray();</span><br><span class="line">        <span class="type">int</span>[] b = Arrays.stream(scanner.nextLine().split(<span class="string">&quot; &quot;</span>)).mapToInt(Integer::valueOf).toArray();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 二维，第一维是数组a，0表示数组a中没有元素，第二维是数组b</span></span><br><span class="line">        <span class="type">int</span>[][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[n+<span class="number">1</span>][m+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 边界</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// b数组没有元素的时候，a数组需要吧元素全部去掉，注意下标</span></span><br><span class="line">            dp[i][<span class="number">0</span>] = dp[i-<span class="number">1</span>][<span class="number">0</span>] + Math.abs(a[i-<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; m + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            dp[<span class="number">0</span>][i] = dp[<span class="number">0</span>][i-<span class="number">1</span>] + Math.abs(b[i-<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; m + <span class="number">1</span>; j++) &#123;</span><br><span class="line">                <span class="comment">// 地推关系，ij有三个的最小值组成，一个变成另外一个（这种情况步数一样），去掉其中一个</span></span><br><span class="line">                <span class="keyword">if</span> (a[i-<span class="number">1</span>] == b[i-<span class="number">1</span>]) &#123; dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>]; &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = Math.min(dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + Math.abs(a[i-<span class="number">1</span>] - b[j-<span class="number">1</span>]),</span><br><span class="line">                            Math.min(dp[i-<span class="number">1</span>][j] + Math.abs(a[i-<span class="number">1</span>]), dp[i][j-<span class="number">1</span>] + Math.abs(b[j-<span class="number">1</span>])));</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(dp[n][m]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="回顾，最长公共子序列"><a href="#回顾，最长公共子序列" class="headerlink" title="回顾，最长公共子序列"></a>回顾，最长公共子序列</h3><h4 id="剑指-Offer-II-095-最长公共子序列"><a href="#剑指-Offer-II-095-最长公共子序列" class="headerlink" title="剑指 Offer II 095. 最长公共子序列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/qJnOS7/">剑指 Offer II 095. 最长公共子序列</a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">longestCommonSubsequence</span><span class="params">(String text1, String text2)</span> &#123;</span><br><span class="line">        <span class="comment">// 使用动态规划</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> text1.length(), m = text2.length();</span><br><span class="line">        <span class="type">char</span>[] a = text1.toCharArray();</span><br><span class="line">        <span class="type">char</span>[] b = text2.toCharArray();</span><br><span class="line">        <span class="type">int</span>[][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[n+<span class="number">1</span>][m+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 边界，有0的，都是0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">1</span>; j&lt;=m; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (a[i-<span class="number">1</span>] == b[j-<span class="number">1</span>]) &#123; <span class="comment">// 注意此处的字符串是i-1的，因为dp多了个长度为0的时候</span></span><br><span class="line">                    dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = Math.max(dp[i-<span class="number">1</span>][j], dp[i][j-<span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[n][m];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="修补"><a href="#修补" class="headerlink" title="修补"></a>修补</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 未验证</span></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">XiuBu</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> scanner.nextInt(), m = scanner.nextInt();</span><br><span class="line"></span><br><span class="line">        scanner.nextLine();</span><br><span class="line">        <span class="type">int</span>[] a = Arrays.stream(scanner.nextLine().split(<span class="string">&quot; &quot;</span>)).mapToInt(Integer::valueOf).toArray();</span><br><span class="line">        <span class="comment">// 注意，去重复，distinct()</span></span><br><span class="line">        <span class="comment">// 注意，此处升序其实不用这么麻烦，只是告诉你sorted里面也可以那样写，而且不能写在后面，因为maptoint返回IntStream，还是基本类型int，所以不能写</span></span><br><span class="line">        <span class="type">int</span>[] b = Arrays.stream(scanner.nextLine().split(<span class="string">&quot; &quot;</span>)).distinct().</span><br><span class="line">                sorted((x, y) -&gt; Integer.parseInt(x) - Integer.parseInt(y)).mapToInt(Integer::valueOf).toArray();</span><br><span class="line"></span><br><span class="line">        <span class="type">long</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 对于每一个坏的地方ai，找出b中第一个大于等于的</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = m;</span><br><span class="line">            <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> (left + (right - left &gt;&gt; <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (b[mid] == a[i]) &#123;</span><br><span class="line">                    left = right = mid;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (b[mid] &gt; a[i]) &#123;</span><br><span class="line">                    right = mid - <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    left = mid + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 有相等，就是相等</span></span><br><span class="line">            <span class="comment">// 没有相等，目前到了left &gt; right，nums[left] &gt; target，nums[right] &lt; target</span></span><br><span class="line">            <span class="comment">// 没有相等，然后由于left &gt; right，所以left可能右边出界，right可能左边出界</span></span><br><span class="line">            <span class="comment">// 这里估计肯定有，所以不考虑left出界的情况</span></span><br><span class="line">            ans += b[left];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(ans);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h2 id="两个正整数操作"><a href="#两个正整数操作" class="headerlink" title="两个正整数操作"></a>两个正整数操作</h2><h3 id="【2022-08-20】网易秋招笔试四道编程题"><a href="#【2022-08-20】网易秋招笔试四道编程题" class="headerlink" title="【2022-08-20】网易秋招笔试四道编程题"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41896265/article/details/126446061?spm=1001.2014.3001.5502">【2022-08-20】网易秋招笔试四道编程题</a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 未验证</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BeiShuZijiChongxinzuo</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 使用回溯法，把所有每个数组的结果遍历存下来</span></span><br><span class="line"><span class="comment">     * 然后用map记录当前结果下，操作的次数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">String</span> <span class="variable">A</span> <span class="operator">=</span> scanner.next(), B = scanner.next();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 存储数字AB变化后的结果，以及变化后需要的步数</span></span><br><span class="line">        Map&lt;Integer, Integer&gt; mapA = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        Map&lt;Integer, Integer&gt; mapB = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        dfs(mapA, A, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        dfs(mapB, B, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (Integer a : mapA.keySet()) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Integer b : mapB.keySet()) &#123;</span><br><span class="line">                <span class="keyword">if</span> (a % b == <span class="number">0</span> || b % a == <span class="number">0</span>) &#123;</span><br><span class="line">                    ans = Math.min(ans, mapA.get(a) + mapB.get(b));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(ans == Integer.MAX_VALUE ? -<span class="number">1</span> : ans);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用dfs得到所有的变化</span></span><br><span class="line">    <span class="comment">// 感觉对一个正数做加一个数字少一个数字的变化，用String好处理一点</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(Map&lt;Integer, Integer&gt; map, String str, <span class="type">int</span> curIndex, <span class="type">int</span> val, <span class="type">int</span> opCount)</span> &#123;</span><br><span class="line">        <span class="comment">// 选完了</span></span><br><span class="line">        <span class="keyword">if</span> (curIndex == str.length()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (val != <span class="number">0</span>) &#123;</span><br><span class="line">                map.put(val, str.length() - opCount);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 不选，表示去掉，操作次数+1</span></span><br><span class="line">        dfs(map, str, curIndex + <span class="number">1</span>, val, opCount + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 选</span></span><br><span class="line">        <span class="comment">// 回溯，其实如果val写在里面，就不需要此处加上，后面减去了</span></span><br><span class="line">        <span class="comment">// 其实val在后面也没必要减去，因为这个是局部变量，也不是引用类型</span></span><br><span class="line">        val = val * <span class="number">10</span> + (str.charAt(curIndex) - <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">        dfs(map, str, curIndex + <span class="number">1</span>, val, opCount);</span><br><span class="line">        val = (val - (str.charAt(curIndex) - <span class="string">&#x27;0&#x27;</span>)) / <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2022/08/19/LeetcodeShijuan/">http://example.com/2022/08/19/LeetcodeShijuan/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-08-21</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/08/20/SQL/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            SQL
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/08/19/Stream%E6%B5%81%E6%93%8D%E4%BD%9C/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            Stream流操作
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2022 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
