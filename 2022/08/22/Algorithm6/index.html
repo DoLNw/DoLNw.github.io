@@ -25,28 +25,22 @@
     <!-- meta -->
 
 
-<title>LeetCodeTip | 穿过海的声音</title>
+<title>Algorithm6 | 穿过海的声音</title>
 
-
-    <meta name="keywords" content="java, leetcode">
 
 
 
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="732. 我的日程安排表 III本来需要开辟一个数组存储连续的数据，但是连续的数组中有些不会存储到，那么考虑使用TreeMap 线段树 – 新手篇307. 区域和检索 - 数组可修改 区间的前缀和，可以考虑前缀数组，查询O（1），但是更新会变为O（n） 树状数组是一种可以动态维护序列前缀和的数据结构（序列下标从 11 开始） 而线段树，更新和查询都是O（logn）">
-<meta property="og:type" content="article">
-<meta property="og:title" content="LeetCodeTip">
-<meta property="og:url" content="http://example.com/2022/06/06/LeetCodeTip/index.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm6">
+<meta property="og:url" content="http://example.com/2022/08/22/Algorithm6/index.html">
 <meta property="og:site_name" content="穿过海的声音">
-<meta property="og:description" content="732. 我的日程安排表 III本来需要开辟一个数组存储连续的数据，但是连续的数组中有些不会存储到，那么考虑使用TreeMap 线段树 – 新手篇307. 区域和检索 - 数组可修改 区间的前缀和，可以考虑前缀数组，查询O（1），但是更新会变为O（n） 树状数组是一种可以动态维护序列前缀和的数据结构（序列下标从 11 开始） 而线段树，更新和查询都是O（logn）">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-06T15:08:14.000Z">
-<meta property="article:modified_time" content="2022-08-24T02:58:58.647Z">
+<meta property="article:published_time" content="2022-08-22T12:56:47.000Z">
+<meta property="article:modified_time" content="2022-08-23T03:02:27.518Z">
 <meta property="article:author" content="jcwang">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
 
 
@@ -126,10 +120,10 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        LeetCodeTip
+        Algorithm6
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2022/06/" class="post-meta__date button">2022-06-06</a>
+        <a href="/archives/2022/08/" class="post-meta__date button">2022-08-22</a>
         
  
         
@@ -146,7 +140,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#732-%E6%88%91%E7%9A%84%E6%97%A5%E7%A8%8B%E5%AE%89%E6%8E%92%E8%A1%A8-III"><span class="toc-number">1.</span> <span class="toc-text">732. 我的日程安排表 III</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91-%E2%80%93-%E6%96%B0%E6%89%8B%E7%AF%87"><span class="toc-number">2.</span> <span class="toc-text">线段树 – 新手篇</span></a></li></ol>
+            
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -156,19 +150,14 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">Article Directory</div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#732-%E6%88%91%E7%9A%84%E6%97%A5%E7%A8%8B%E5%AE%89%E6%8E%92%E8%A1%A8-III"><span class="toc-number">1.</span> <span class="toc-text">732. 我的日程安排表 III</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91-%E2%80%93-%E6%96%B0%E6%89%8B%E7%AF%87"><span class="toc-number">2.</span> <span class="toc-text">线段树 – 新手篇</span></a></li></ol>
+        
     </div>
 
 
 <article class="post post__with-toc content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <h4 id="732-我的日程安排表-III"><a href="#732-我的日程安排表-III" class="headerlink" title="732. 我的日程安排表 III"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/my-calendar-iii/">732. 我的日程安排表 III</a></h4><p>本来需要开辟一个数组存储连续的数据，但是连续的数组中有些不会存储到，那么考虑使用<strong>TreeMap</strong></p>
-<h4 id="线段树-–-新手篇"><a href="#线段树-–-新手篇" class="headerlink" title="线段树 – 新手篇"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/my-calendar-iii/solution/xian-duan-shu-by-xiaohu9527-rfzj/">线段树 – 新手篇</a></h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/range-sum-query-mutable/">307. 区域和检索 - 数组可修改</a></p>
-<p>区间的前缀和，可以考虑前缀数组，查询O（1），但是更新会变为O（n）</p>
-<p><strong>树状数组</strong>是一种可以动态维护序列前缀和的数据结构（序列下标从 11 开始）</p>
-<p>而<strong>线段树</strong>，更新和查询都是O（logn）</p>
-
+        
     </div>
     
     <div class="post__license">
@@ -179,43 +168,29 @@
             <strong>
                 Permalink: 
             </strong>
-            <a href="http://example.com/2022/06/06/LeetCodeTip/">http://example.com/2022/06/06/LeetCodeTip/</a>
+            <a href="http://example.com/2022/08/22/Algorithm6/">http://example.com/2022/08/22/Algorithm6/</a>
         </p>
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-08-24</p></div> 
-    <div class="post-entry__tags"><a href="/tags/java/" class="post-tags__link button"># java</a><a href="/tags/leetcode/" class="post-tags__link button"># leetcode</a></div> 
+    <div class="post-footer__meta"><p>updated at 2022-08-23</p></div> 
+    <div class="post-entry__tags"></div> 
 </article>
 
 
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/2022/06/07/AlgorithmClassification/" class="nav__link">
-                    <div>
-                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
-                    </div>
-                    <div>
-                        <div class="nav__label">
-                            Previous Post
-                        </div>
-                        <div class="nav__title">
-                            AlgorithmClassification
-                        </div>
-                    </div>
-                </a>
-            
         </div>
         <div class="nav__next">
             
-                <a href="/2022/06/06/Problems-1/" class="nav__link">
+                <a href="/2022/08/20/SQL/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             Next Post
                         </div>
                         <div class="nav__title">
-                            Problems_1
+                            SQL
                         </div>
                     </div>
                     <div>
