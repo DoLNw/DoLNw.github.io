@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://s2.loli.net/2022/08/11/APr8psK9lYOXyGc.png">
 <meta property="og:image" content="https://s2.loli.net/2022/08/02/Gnw45UuxdMmr2Ee.png">
 <meta property="article:published_time" content="2022-06-07T08:24:51.000Z">
-<meta property="article:modified_time" content="2022-08-25T08:10:54.626Z">
+<meta property="article:modified_time" content="2022-08-26T01:54:44.513Z">
 <meta property="article:author" content="jcwang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://s2.loli.net/2022/08/10/2hLPNmj1esyYv6o.png">
@@ -249,6 +249,7 @@
 <p>看dp数组，有多少个状态转移，第一维多少个，第二维多少个，每次状态转移花多久，相乘。（当然，也就是下面的for循环几次，循环里面的时间）</p>
 <h4 id="归纳"><a href="#归纳" class="headerlink" title="归纳"></a>归纳</h4><ol>
 <li><p><strong>最多不超过</strong>（01和完全都可），</p>
+<p>未验证，也可以dp[m+1[n+1]，然后dp[0]表示第0个什么物品都不取，所以都是0，边界就省去了。</p>
 <p>①二维dp[m][n+1]（初始化第0行，即第一个物品）  </p>
 <p>②dp[m][n+1]   </p>
 <p>③dp[n+1]，</p>
@@ -259,7 +260,8 @@
 <p>​        完全背包，使用数学方法，归纳出来的</p>
 <img src="https://s2.loli.net/2022/08/11/z9nXoybDvYk7J1P.png" alt="z9nXoybDvYk7J1P" style="zoom:50%;" /></li>
 </ol>
-<p>​        <img src="https://s2.loli.net/2022/08/11/APr8psK9lYOXyGc.png" alt="APr8psK9lYOXyGc">        </p>
+<p>​    注意上面，两者一个是本行，一个是上一行    </p>
+<p><img src="https://s2.loli.net/2022/08/11/APr8psK9lYOXyGc.png" alt="APr8psK9lYOXyGc">        </p>
 <p>空间复杂度小了，但是时间复杂度肯定是没有变化的</p>
 <ol start="2">
 <li><p><strong>恰好</strong>，调整状态定义，多增加一个哨兵0，物品编号从1开始。dp[0][0]&#x3D;0，其余都是最大值（因为后面是要求最小）。</p>
@@ -468,7 +470,7 @@
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-08-25</p></div> 
+    <div class="post-footer__meta"><p>updated at 2022-08-26</p></div> 
     <div class="post-entry__tags"></div> 
 </article>
 
