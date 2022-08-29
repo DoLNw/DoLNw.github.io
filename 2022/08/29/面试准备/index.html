@@ -43,8 +43,10 @@
 <meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen Shot 2022-08-29 at 10.15.10.png">
 <meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen Shot 2022-08-29 at 10.16.03.png">
 <meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen Shot 2022-08-29 at 10.16.22.png">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_2E888F9DFDEE-1.jpeg">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_708C58625183.jpeg">
 <meta property="article:published_time" content="2022-08-29T01:16:09.000Z">
-<meta property="article:modified_time" content="2022-08-29T02:16:38.845Z">
+<meta property="article:modified_time" content="2022-08-29T08:01:38.018Z">
 <meta property="article:author" content="jcwang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen Shot 2022-08-29 at 10.15.10.png">
@@ -146,7 +148,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%86%99%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">手写单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ThreadPoolExecutor"><span class="toc-number">2.</span> <span class="toc-text">ThreadPoolExecutor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86"><span class="toc-number">2.1.</span> <span class="toc-text">知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%86%99%E6%9C%89%E5%85%B3%E5%8F%82%E6%95%B0%E7%9A%84"><span class="toc-number">2.2.</span> <span class="toc-text">手写有关参数的</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%86%99%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">手写单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ThreadPoolExecutor"><span class="toc-number">2.</span> <span class="toc-text">ThreadPoolExecutor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86"><span class="toc-number">2.1.</span> <span class="toc-text">知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%86%99%E6%9C%89%E5%85%B3%E5%8F%82%E6%95%B0%E7%9A%84"><span class="toc-number">2.2.</span> <span class="toc-text">手写有关参数的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6"><span class="toc-number">3.</span> <span class="toc-text">Redis内存回收</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5"><span class="toc-number">3.1.</span> <span class="toc-text">Redis过期策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="toc-number">3.2.</span> <span class="toc-text">Redis淘汰策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">IO多路复用</span></a></li></ol>
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -156,7 +158,7 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">Article Directory</div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%86%99%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">手写单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ThreadPoolExecutor"><span class="toc-number">2.</span> <span class="toc-text">ThreadPoolExecutor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86"><span class="toc-number">2.1.</span> <span class="toc-text">知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%86%99%E6%9C%89%E5%85%B3%E5%8F%82%E6%95%B0%E7%9A%84"><span class="toc-number">2.2.</span> <span class="toc-text">手写有关参数的</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%86%99%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">手写单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ThreadPoolExecutor"><span class="toc-number">2.</span> <span class="toc-text">ThreadPoolExecutor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86"><span class="toc-number">2.1.</span> <span class="toc-text">知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%86%99%E6%9C%89%E5%85%B3%E5%8F%82%E6%95%B0%E7%9A%84"><span class="toc-number">2.2.</span> <span class="toc-text">手写有关参数的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6"><span class="toc-number">3.</span> <span class="toc-text">Redis内存回收</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5"><span class="toc-number">3.1.</span> <span class="toc-text">Redis过期策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="toc-number">3.2.</span> <span class="toc-text">Redis淘汰策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">IO多路复用</span></a></li></ol>
     </div>
 
 
@@ -185,7 +187,17 @@
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_19667981/article/details/124652865">Synchronized和ReentrantLock的区别</a></p>
 <p>![qubie](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-08-29 at 10.08.18.png)</p>
-<h3 id="手写有关参数的"><a href="#手写有关参数的" class="headerlink" title="手写有关参数的"></a>手写有关参数的</h3>
+<h3 id="手写有关参数的"><a href="#手写有关参数的" class="headerlink" title="手写有关参数的"></a>手写有关参数的</h3><h2 id="Redis内存回收"><a href="#Redis内存回收" class="headerlink" title="Redis内存回收"></a>Redis内存回收</h2><p>内存过期策略 + 内存淘汰策略</p>
+<h3 id="Redis过期策略"><a href="#Redis过期策略" class="headerlink" title="Redis过期策略"></a>Redis过期策略</h3><p>周期删除</p>
+<p>惰性删除：用的时候看下是否删除</p>
+<p>redis中两者相结合</p>
+<h3 id="Redis淘汰策略"><a href="#Redis淘汰策略" class="headerlink" title="Redis淘汰策略"></a>Redis淘汰策略</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/105587132">彻底弄懂Redis的内存淘汰策略</a></p>
+<p>默认：noeviction，不淘汰任何key，但是内存满时不允许写入新的数据。</p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_2E888F9DFDEE-1.jpeg" alt="IMG_2E888F9DFDEE-1"></p>
+<h2 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h2><p>![ScreenShot2022-08-29at15.09.54](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-08-29 at 15.09.54.png)</p>
+<p>![ScreenShot2022-08-29at15.11.01](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-08-29 at 15.11.01.png)</p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_708C58625183.jpeg" alt="IMG_708C58625183"></p>
+
     </div>
     
     <div class="post__license">
