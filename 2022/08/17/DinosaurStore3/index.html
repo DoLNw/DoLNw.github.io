@@ -33,15 +33,15 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="关于Kubernets运营部署Ubuntu 下安装 kubectl, kubelet, kubeadm 安装 123456789101112131415161718192021222324252627sudo suapt update &amp;&amp; apt install -y apt-transport-httpscurl https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;kuber">
+    <meta name="description" content="一些调优关于Kubernets运营部署Ubuntu 下安装 kubectl, kubelet, kubeadm 安装 123456789101112131415161718192021222324252627sudo suapt update &amp;&amp; apt install -y apt-transport-httpscurl https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;k">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DinosaurStore3">
 <meta property="og:url" content="http://example.com/2022/08/17/DinosaurStore3/index.html">
 <meta property="og:site_name" content="穿过海的声音">
-<meta property="og:description" content="关于Kubernets运营部署Ubuntu 下安装 kubectl, kubelet, kubeadm 安装 123456789101112131415161718192021222324252627sudo suapt update &amp;&amp; apt install -y apt-transport-httpscurl https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;kuber">
+<meta property="og:description" content="一些调优关于Kubernets运营部署Ubuntu 下安装 kubectl, kubelet, kubeadm 安装 123456789101112131415161718192021222324252627sudo suapt update &amp;&amp; apt install -y apt-transport-httpscurl https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;k">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-17T12:09:12.000Z">
-<meta property="article:modified_time" content="2022-08-17T13:29:41.276Z">
+<meta property="article:modified_time" content="2022-09-04T06:21:31.358Z">
 <meta property="article:author" content="jcwang">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -142,7 +142,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EKubernets%E8%BF%90%E8%90%A5%E9%83%A8%E7%BD%B2"><span class="toc-number">1.</span> <span class="toc-text">关于Kubernets运营部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%93%E5%8C%85%E8%B0%83%E8%AF%95%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">抓包调试问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">JVM调优问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98"><span class="toc-number">3.1.</span> <span class="toc-text">压力测试的一些小问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E7%A7%92%E6%9D%80"><span class="toc-number">3.2.</span> <span class="toc-text">尝试压力测试秒杀</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8E%E5%8F%B0%E4%B8%8A%E6%9E%B6%E7%A7%92%E6%9D%80%E5%95%86%E5%93%81"><span class="toc-number">3.2.1.</span> <span class="toc-text">后台上架秒杀商品</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E6%89%B9%E9%87%8F%E6%B3%A8%E5%86%8C%E7%94%A8%E6%88%B7"><span class="toc-number">3.2.2.</span> <span class="toc-text">首先批量注册用户</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%88postman%E6%B5%8B%E8%AF%95%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">先postman测试接口</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#postman%E6%B5%8B%E8%AF%95%E7%A7%92%E6%9D%80%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.2.3.</span> <span class="toc-text">postman测试秒杀接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jemeter%E5%8E%8B%E6%B5%8B"><span class="toc-number">3.2.4.</span> <span class="toc-text">jemeter压测</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">3.2.4.1.</span> <span class="toc-text">步骤：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%98%B6%E6%A2%AF%E6%B5%8B%E8%AF%95%E6%B3%95%EF%BC%9A"><span class="toc-number">3.2.4.2.</span> <span class="toc-text">使用阶梯测试法：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8E%B0%E8%B1%A1%EF%BC%9A"><span class="toc-number">3.2.4.3.</span> <span class="toc-text">现象：</span></a></li></ol></li></ol></li></ol></li></ol>
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -152,19 +152,73 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">Article Directory</div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EKubernets%E8%BF%90%E8%90%A5%E9%83%A8%E7%BD%B2"><span class="toc-number">1.</span> <span class="toc-text">关于Kubernets运营部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%93%E5%8C%85%E8%B0%83%E8%AF%95%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">抓包调试问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">JVM调优问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98"><span class="toc-number">3.1.</span> <span class="toc-text">压力测试的一些小问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E7%A7%92%E6%9D%80"><span class="toc-number">3.2.</span> <span class="toc-text">尝试压力测试秒杀</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8E%E5%8F%B0%E4%B8%8A%E6%9E%B6%E7%A7%92%E6%9D%80%E5%95%86%E5%93%81"><span class="toc-number">3.2.1.</span> <span class="toc-text">后台上架秒杀商品</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E6%89%B9%E9%87%8F%E6%B3%A8%E5%86%8C%E7%94%A8%E6%88%B7"><span class="toc-number">3.2.2.</span> <span class="toc-text">首先批量注册用户</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%88postman%E6%B5%8B%E8%AF%95%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">先postman测试接口</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#postman%E6%B5%8B%E8%AF%95%E7%A7%92%E6%9D%80%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.2.3.</span> <span class="toc-text">postman测试秒杀接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jemeter%E5%8E%8B%E6%B5%8B"><span class="toc-number">3.2.4.</span> <span class="toc-text">jemeter压测</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">3.2.4.1.</span> <span class="toc-text">步骤：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%98%B6%E6%A2%AF%E6%B5%8B%E8%AF%95%E6%B3%95%EF%BC%9A"><span class="toc-number">3.2.4.2.</span> <span class="toc-text">使用阶梯测试法：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8E%B0%E8%B1%A1%EF%BC%9A"><span class="toc-number">3.2.4.3.</span> <span class="toc-text">现象：</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
 
 
 <article class="post post__with-toc content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <h1 id="关于Kubernets运营部署"><a href="#关于Kubernets运营部署" class="headerlink" title="关于Kubernets运营部署"></a>关于Kubernets运营部署</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/FengZeng666/p/15502138.html"><a target="_blank" rel="noopener" href="https://www.cnblogs.com/FengZeng666/p/15502138.html">Ubuntu 下安装 kubectl, kubelet, kubeadm</a></a></p>
+        <h1 id="一些调优"><a href="#一些调优" class="headerlink" title="一些调优"></a>一些调优</h1><h2 id="关于Kubernets运营部署"><a href="#关于Kubernets运营部署" class="headerlink" title="关于Kubernets运营部署"></a>关于Kubernets运营部署</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/FengZeng666/p/15502138.html"><a target="_blank" rel="noopener" href="https://www.cnblogs.com/FengZeng666/p/15502138.html">Ubuntu 下安装 kubectl, kubelet, kubeadm</a></a></p>
 <p>安装</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line">apt update &amp;&amp; apt install -y apt-transport-https</span><br><span class="line">curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add - </span><br><span class="line"></span><br><span class="line">cat &lt;&lt;EOF &gt;/etc/apt/sources.list.d/kubernetes.list</span><br><span class="line">deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">apt update</span><br><span class="line"></span><br><span class="line">apt install -y kubelet kubeadm kubectl       # 教程中装的都是1.17.3</span><br><span class="line"></span><br><span class="line">systemctl enable kubelet</span><br><span class="line">systemctl start kubelet</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">master节点</span></span><br><span class="line">kubeadm init \</span><br><span class="line">--apiserver-advertise-address=124.222.48.192 \</span><br><span class="line">--image-repository registry.cn-hangzhou.aliyuncs.com/google_containers \</span><br><span class="line">--kubernetes-version   v1.24.3 \</span><br><span class="line">--service-cidr=10.96.0.0/16  \</span><br><span class="line">--pod-network-cidr=10.244.0.0/16</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
+
+
+
+
+<h2 id="抓包调试问题"><a href="#抓包调试问题" class="headerlink" title="抓包调试问题"></a>抓包调试问题</h2><h2 id="JVM调优问题"><a href="#JVM调优问题" class="headerlink" title="JVM调优问题"></a>JVM调优问题</h2><h3 id="压力测试的一些小问题"><a href="#压力测试的一些小问题" class="headerlink" title="压力测试的一些小问题"></a>压力测试的一些小问题</h3><p>![ScreenShot2022-09-01at22.20.24](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-09-01 at 22.20.24.png)</p>
+<h3 id="尝试压力测试秒杀"><a href="#尝试压力测试秒杀" class="headerlink" title="尝试压力测试秒杀"></a>尝试压力测试秒杀</h3><h4 id="后台上架秒杀商品"><a href="#后台上架秒杀商品" class="headerlink" title="后台上架秒杀商品"></a>后台上架秒杀商品</h4><p>上架的时候也是周期性上架的，首先从coupon远程调用拿到优惠的商品，然后秒杀服务器进行商品上架，上架的时候看redis中有没有这个key，没有才上架。上架需要加分布式锁，防止两个秒杀为服务同时上架。</p>
+<p>秒杀根据当前场次-该商品的sku来进行查询，点击商品后进入商品详情，然后远程调用coupon查询该商品是不是秒杀商品，然后判断时间是不是符合。</p>
+<p>所以点击商品，进入详情的时候，查询商品的库存，查询商品的图片，查询商品的其他类别的物品，还有查询商品是否是秒杀商品，这都是需要异步实现的，用到线程池的。</p>
+<p>上架秒杀商品的时候我之前是判断有key删除重新添加，但是这样会出问题，有key就不添加了呗。</p>
+<p><strong>不知道为啥，只有我这个启动的服务器上架了商品，那么redission才能tryacquire获取成功，不然的话会超时异常。（就是上架完成后，不重启服务，重启微服务貌似就没用了。）</strong></p>
+<h4 id="首先批量注册用户"><a href="#首先批量注册用户" class="headerlink" title="首先批量注册用户"></a>首先批量注册用户</h4><h5 id="先postman测试接口"><a href="#先postman测试接口" class="headerlink" title="先postman测试接口"></a>先postman测试接口</h5><p>取消注册时候的验证码输入，以及redis里面的验证码校验功能。</p>
+<p>也去除了后台，对输入数据的校验。</p>
+<p>但是注意，注册的手机号码和用户名字还得是唯一的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST:     http://auth.dinosaurstore.com:20000/register ，然后body内容如下：</span><br></pre></td></tr></table></figure>
+
+
+
+<p>![ScreenShot2022-09-02at11.59.58](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-09-02 at 11.59.58.png)</p>
+<h4 id="postman测试秒杀接口"><a href="#postman测试秒杀接口" class="headerlink" title="postman测试秒杀接口"></a>postman测试秒杀接口</h4><p>上面上架商品的时候，才会给该商品出来一个code，才能根据这个链接进行秒杀，存在了redis中（key是场次-skuid）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET:      http://seckill.dinosaurstore.com/kill?killId=14&amp;key=92c1cfe5d580498a9cd7a2dd539036c2&amp;num=1</span><br></pre></td></tr></table></figure>
+
+
+
+<p>如果只是这么写，在秒杀微服务的 拦截器里面会拦截未登录，需要先登陆。</p>
+<p>但是其实拦截器里面，是从当前服务器的浏览器给出的cookie的token中拿到的session，从里面看有没有用户，所以说用户确实要先登陆，而不是我直接url中传入用户的token就行了（这样的前提应该要每个用户先登陆一遍吧？）。所以直接还是拦截器里面将登陆用户判断删除，测试秒杀。</p>
+<p>所以测试秒杀，我关了拦截器，然后里面用户占位，setnx+ex的时候用户的key改为随机生成一串字符串。然后rabbitmq这一串消息发送，但是不开启相应的微服务接受了，我只是只是测试redis的信号量这一边即可，看看瞬间的压力测试能有多少。</p>
+<p>![ScreenShot2022-09-04at14.15.27](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-09-04 at 14.15.27.png)</p>
+<h4 id="jemeter压测"><a href="#jemeter压测" class="headerlink" title="jemeter压测"></a>jemeter压测</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42288943/article/details/101478285">009–【秒杀】进行秒杀压测</a></p>
+<p>其实不只是JVM优化的测试</p>
+<p>超卖问题，测试没有问题。商品100，用1000个线程。</p>
+<p>一人一订单问题，由于没有放用户，没有测量。</p>
+<p>首先上架，然后删除redis中所有的秒杀，然后开启服务器让他上架商品缓存到redis中去，然后找到我要的那个场次-商品对应的code，放入url中去，然后进行压测。</p>
+<p>分布式用的是信号量：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这样就好了，下面那个网redis里面放入count-1的根本不需要好嘛</span></span><br><span class="line"><span class="type">RSemaphore</span> <span class="variable">semaphore</span> <span class="operator">=</span> redissonClient.getSemaphore(SKU_STOCK_SEMAPHORE + randomCode);</span><br><span class="line"><span class="comment">//TODO 秒杀成功，快速下单</span></span><br><span class="line"><span class="comment">// 此处不能阻塞</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">semaphoreCount</span> <span class="operator">=</span> semaphore.tryAcquire(num, <span class="number">100</span>, TimeUnit.MILLISECONDS);</span><br></pre></td></tr></table></figure>
+
+<p>然后测试：100个线程进入，会有大概6个左右抢不到，也就是信号量会从100到94左右。</p>
+<p>接下去进行狠狠的压测，首先先限制一下堆内存好了，到时候再JVM调节新生代老年代大小等等</p>
+<h5 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h5><p>上架</p>
+<p>删除redis中的缓存秒杀商品</p>
+<p>开启秒杀微服务</p>
+<p>在redis中找到我要秒杀的场次-商品的code，放到url中，然后配置好</p>
+<h5 id="使用阶梯测试法："><a href="#使用阶梯测试法：" class="headerlink" title="使用阶梯测试法："></a>使用阶梯测试法：</h5><p><a target="_blank" rel="noopener" href="http://t.zoukankan.com/Frank-guo-p-14097472.html">安装插件 JMeter阶梯式加压测试插件-Stepping Thread Group解析</a></p>
+<p><a target="_blank" rel="noopener" href="http://t.zoukankan.com/shouhu-p-12547461.html">4-8（九）Jmeter性能测试之阶梯式场景（负载测试）、波浪式场景（压力测试）</a></p>
+<p><a href="">性能测试—如何确定最大并发用户数</a></p>
+<h5 id="现象："><a href="#现象：" class="headerlink" title="现象："></a>现象：</h5><p>在-Xmx和-Xms堆大小在100M的情况下，老年新生代的比例（默认说是2:1，我没有调），老年代67M，在大量并发秒杀的时候不怎么变的，就是eden大概两秒会满一次进行GC，GC了之后S0和S1会互换，S1和S0其实占用挺少的，不到1M，而且感觉秒杀的时候主要就是eden区增加变快了，其他两个区域没有影响。</p>
+<p>在1分0几秒的时候，开始出现很多的错误请求tpsTransactions Per Second（最大每秒250）开始下降，，然后响应时间变大(平均400ms左右)，而这个时候的并发量在<strong>550</strong>个活跃线程数左右。</p>
+<p>![ScreenShot2022-09-04at13.58.59](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-09-04 at 13.58.59.png)</p>
+<p>![ScreenShot2022-09-04at14.16.19](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-09-04 at 14.16.19.png)</p>
+<p>![ScreenShot2022-09-04at14.16.56](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-09-04 at 14.16.56.png)</p>
+<p>![ScreenShot2022-09-04at14.16.39](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-09-04 at 14.16.39.png)</p>
+<p>![ScreenShot2022-09-04at14.17.15](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-09-04 at 14.17.15.png)</p>
+<p>![ScreenShot2022-09-04at14.19.05](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-09-04 at 14.19.05.png)</p>
+<p>![ScreenShot2022-09-04at14.18.26](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-09-04 at 14.18.26.png)</p>
+<p>![ScreenShot2022-09-04at14.17.51](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-09-04 at 14.17.51.png)</p>
 
     </div>
     
@@ -181,7 +235,7 @@
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-08-17</p></div> 
+    <div class="post-footer__meta"><p>updated at 2022-09-04</p></div> 
     <div class="post-entry__tags"></div> 
 </article>
 
