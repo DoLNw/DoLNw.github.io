@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>Mysql | 穿过海的声音</title>
+
+
+    <meta name="keywords" content="mysql">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Mysql慢查询如何优化？（实战慢查询）1234561、若未开启慢查询，用“set global slow_query_log&#x3D;&amp;#x27;ON&amp;#x27;;”开启慢；2、用“set global slow_query_log_file&#x3D;路径”设置慢查询文件保存位置；3、用“subl 路径”查询文件即可。show variables like &amp;#x27;slow_query_log&amp;#x27;;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql">
+<meta property="og:url" content="http://example.com/2022/06/06/%E5%85%AB%E8%82%A1mysql/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="Mysql慢查询如何优化？（实战慢查询）1234561、若未开启慢查询，用“set global slow_query_log&#x3D;&amp;#x27;ON&amp;#x27;;”开启慢；2、用“set global slow_query_log_file&#x3D;路径”设置慢查询文件保存位置；3、用“subl 路径”查询文件即可。show variables like &amp;#x27;slow_query_log&amp;#x27;;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/%E7%B4%A2%E5%BC%95%E6%80%BB%E7%BB%93.drawio.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/06/ifpRJK5vzec4jh6.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/06/ThdnPEwA2Su7vki.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/19/IMG_2075.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/08/06/dvIjm4FeM7VJXpG.png">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/XRK1gp.jpg">
+<meta property="article:published_time" content="2022-06-06T01:34:42.000Z">
+<meta property="article:modified_time" content="2022-09-11T14:07:54.828Z">
+<meta property="article:author" content="jcwang">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/%E7%B4%A2%E5%BC%95%E6%80%BB%E7%BB%93.drawio.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        Mysql
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/06/" class="post-meta__date button">2022-06-06</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%85%A2%E6%9F%A5%E8%AF%A2%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%EF%BC%9F%EF%BC%88%E5%AE%9E%E6%88%98%E6%85%A2%E6%9F%A5%E8%AF%A2%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">慢查询如何优化？（实战慢查询）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8"><span class="toc-number">2.</span> <span class="toc-text">索引下推</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">3.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E9%94%81"><span class="toc-number">4.</span> <span class="toc-text">行锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E8%BF%98%E6%98%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">mysql是单线程还是多线程？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HAVING%E5%92%8CWHERE%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9"><span class="toc-number">6.</span> <span class="toc-text">HAVING和WHERE的异同点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL10-%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E9%9D%9Emanager%E7%9A%84%E5%91%98%E5%B7%A5emp-no"><span class="toc-number">6.0.1.</span> <span class="toc-text">SQL10 获取所有非manager的员工emp_no</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%81%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="toc-number">7.</span> <span class="toc-text">锁的种类</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%85%A2%E6%9F%A5%E8%AF%A2%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%EF%BC%9F%EF%BC%88%E5%AE%9E%E6%88%98%E6%85%A2%E6%9F%A5%E8%AF%A2%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">慢查询如何优化？（实战慢查询）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8"><span class="toc-number">2.</span> <span class="toc-text">索引下推</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">3.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E9%94%81"><span class="toc-number">4.</span> <span class="toc-text">行锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E8%BF%98%E6%98%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">mysql是单线程还是多线程？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HAVING%E5%92%8CWHERE%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9"><span class="toc-number">6.</span> <span class="toc-text">HAVING和WHERE的异同点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL10-%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E9%9D%9Emanager%E7%9A%84%E5%91%98%E5%B7%A5emp-no"><span class="toc-number">6.0.1.</span> <span class="toc-text">SQL10 获取所有非manager的员工emp_no</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%81%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="toc-number">7.</span> <span class="toc-text">锁的种类</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><h2 id="慢查询如何优化？（实战慢查询）"><a href="#慢查询如何优化？（实战慢查询）" class="headerlink" title="慢查询如何优化？（实战慢查询）"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/jj89929665/article/details/125199904">慢查询如何优化？（实战慢查询）</a></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、若未开启慢查询，用“set global slow_query_log=&#x27;ON&#x27;;”开启慢；2、用“set global slow_query_log_file=路径”设置慢查询文件保存位置；3、用“subl 路径”查询文件即可。</span><br><span class="line"></span><br><span class="line">show variables like &#x27;slow_query_log&#x27;;</span><br><span class="line">show variableslike &#x27;long_query_time&#x27;;</span><br><span class="line"></span><br><span class="line">SELECT * FROM `slow_log` where start_time &gt; &#x27;2019/05/19 00:00:00&#x27;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>首先在配置文件开启慢查询日志</p>
+<p>然后使用explain进行查询语句的分析</p>
+<p>1 如果没索引，加索引；有索引看是否失效？函数使用，最左原则，模糊查询等</p>
+<p>2 分页查询，越往后分页，LIMIT语句的偏移量就会越大，速度也会明显变慢。</p>
+<p>​    <strong>此在进行分页查询的时候，我们会直接通过叶子节点的双向链表进行查询，问题就出在了这里，由于页码过大，而且查询字段过多，每次查询时候需要回表，所以链表在遍历的时候时间过长，造成了性能瓶颈。</strong>这个主要出现在了需要回表</p>
+<p>​    应为查询的时候需要先查询出前面的所有记录，然后舍弃前面所有的，拿到后面的页。</p>
+<p>​    所以最好的解决办法是使用<strong>覆盖索引</strong>，先查询出该页的所有主键，然后根据主键查询。</p>
+<p>3 拆分关联查询</p>
+<p>4 分库分表</p>
+<p>5 ES中间件查询</p>
+<h2 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/mffandxx/article/details/111916252">索引知识系列二：联合索引、索引覆盖和索引下推详解</a></p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/%E7%B4%A2%E5%BC%95%E6%80%BB%E7%BB%93.drawio.png" alt="索引总结.drawio"></p>
+<h2 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_52622200/article/details/119647571">MySQL 表锁和行锁机制 分析</a></p>
+<p>在执行DML操作时，会对涉及的行加锁，同时也会对该表加上意向锁。（意向共享锁：与表共享兼容，表拍他互斥。意向排它锁：都互斥。但是意向拍他之间，不会互斥，行锁可以保证的。）</p>
+<p>后面对这张表加表锁的时候，会根据该表上的意向锁来判定是否可以加锁成功，而不用逐行在判断行锁。</p>
+<p>总结：<strong>InnoDB的行锁是针对索引加的锁，不是针对记录加的锁。并且该索引不能失效，否则都会从行锁升级为表锁</strong>。</p>
+<p>当你需要更新一张较大表的大部分甚至全表的数据时。而你又傻乎乎地用索引作为检索条件。一不小心开启了行锁(没毛病啊！保证数据的一致性！)。可MySQL却认为大量对一张表使用行锁，会导致事务执行效率低，从而可能造成其他事务长时间锁等待和更多的锁冲突问题，性能严重下降。所以MySQL会将行锁升级为表锁，即实际上并没有使用索引。</p>
+<p>行锁的劣势：开销大；加锁慢；会出现死锁<br>行锁的优势：锁的粒度小，发生锁冲突的概率低；处理并发的能力强<br>加锁的方式：自动加锁。对于UPDATE、DELETE和INSERT语句，InnoDB会自动给涉及数据集加排他锁；对于普通SELECT语句，InnoDB不会加任何锁；当然我们也可以显示的加锁：<br>共享锁：select * from tableName where … + lock in share more<br>排他锁：select * from tableName where … + for update<br>InnoDB和MyISAM的最大不同点有两个：一，InnoDB支持事务(transaction)；二，默认采用行级锁。加锁可以保证事务的一致性，可谓是有人(锁)的地方，就有江湖(事务)；我们先简单了解一下事务知识。</p>
+<p><strong>行锁</strong>：</p>
+<p><strong>间隙锁</strong>：防止其他事务在间隙insert，防止了了RR隔离级别的幻读。</p>
+<p><strong>临间锁</strong>：上俩综合。</p>
+<p><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1663660217432859548&wfr=spider&for=pc">程序员经典面试题，Mysql并发读写的时候，都是需要加锁的么？</a></p>
+<p>在Mysql中有行锁，如果有多个事务同时修改同一行数据，那么需要加锁来防止并发问题。那么，如果有事务修改数据，又有事务读取这个数据，需要加锁么？</p>
+<p>答案是不一定，事实上，Mysql的很多数据库引擎为了提升并发性能，都做了多版本并发控制，也就是我们常说的MVCC。</p>
+<p>在Mysql的每一行数据中，除了我们定义的数据列，还有2个隐藏的列，一个是数据的变更时间，一个是这行数据的删除时间，当然，这个时间并不是简单的时间戳，而是一个严格递增的系统版本号。</p>
+<p>当InnoDB发生Insert事件的时候，会插入当前行并且以取得的系统版本号作为数据版本号。</p>
+<p>当InnoDB发生Delete时间的时候，不会删除当前行，而是把对应的行如果未删除，那么打上删除标记位为当前的版本号。</p>
+<p>当InnoDB发生Select操作的时候，会取当前的系统版本号，然后到数据库中进行查询，他只会查询比自己当前版本号更小的，并且没有删除版本号或者删除版本号比当前版本号更小的数据。</p>
+<p>当InnoDB发生Update事件的时候，不是直接更新旧的数据，而是插入一条新的数据，并且把版本号小于这条记录的并且没有被打上删除标记的同一主键的记录更新打上删除标记，删除版本号为当前的版本号。</p>
+<p>很显然，在这样的一种数据中，同一行数据其实在数据库中是多行的存在。这本质上是一种空间换时间的方案，在多版本控制中，我们几乎可以做到所有的读操作都是无阻塞的，可以避免加锁，这与互联网业务中，多读少写是非常契合的。当然了，在Mysql的InnoDB引擎中，只有事务级别为可重复读跟读提交才可以使用。这是为什么呢？欢迎大家关注我，共同学习，共同进步。大家的支持是我继续唠嗑的动力。</p>
+<h2 id="mysql是单线程还是多线程？"><a href="#mysql是单线程还是多线程？" class="headerlink" title="mysql是单线程还是多线程？"></a><a target="_blank" rel="noopener" href="https://www.gxlcms.com/mysql-380884.html">mysql是单线程还是多线程？</a></h2><p>mysql是多线程的。mysql是一个单进程多线程的数据库，在innodb中大概3种线程为：1、主线程Master Thread；2、IO Thread线程，用于异步处理写请求；3、purge Thread线程，用于删除undo日志。</p>
+<p>主从复制的时候，从节点将从主节点read到的二进制日志通过IOThread写入到中继日志。</p>
+<h2 id="HAVING和WHERE的异同点"><a href="#HAVING和WHERE的异同点" class="headerlink" title="HAVING和WHERE的异同点"></a>HAVING和WHERE的异同点</h2><p>执行时机不同，一个在分组前，不满足where不参与分组，having对分组之后的结果进行过滤。</p>
+<p>判断条件不同，where不能对聚合函数进行判断。</p>
+<p>顺序：where &gt; 聚合函数 &gt; having。</p>
+<p>语法上:where 用表中列名，having 用 select 结果别名。</p>
+<p>影响结果范围:where 从表读出数据的行数，having 返回客户端的行数。</p>
+<p>where 可以使用索引，having 不能使用索引，只能在临时结果集操作。</p>
+<p>where后面不能使用聚集函数，having是专门使用聚集函数的。</p>
+<h4 id="SQL10-获取所有非manager的员工emp-no"><a href="#SQL10-获取所有非manager的员工emp-no" class="headerlink" title="SQL10 获取所有非manager的员工emp_no"></a><strong>SQL10</strong> <strong>获取所有非manager的员工emp_no</strong></h4><p>MySQL官方文档有说明，in关键字适合确定数量的情况，一般效率较低，不推荐使用。能用in关键字的语句都可以转化为使用join的语句，推荐使用join关键字。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/database/mysql/transaction-isolation-level">事务隔离级别(图文详解)</a></li>
+</ul>
+<p>MYSQL的隔离级别是基于锁和MVCC共同实现的。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/database/mysql/mysql-logs">MySQL三大日志(binlog、redo log和undo log)详解</a></li>
+</ul>
+<p>binlog、redolog、undolog</p>
+<p><img src="https://s2.loli.net/2022/08/06/ifpRJK5vzec4jh6.png" alt="ifpRJK5vzec4jh6"></p>
+<p>redolog用于主机的重启恢复，会有一个二阶段提交过程（将<code>redo log</code>的写入拆成了两个步骤<code>prepare</code>和<code>commit</code>，这就是<strong>两阶段提交</strong>），先会有redolog的准备节点，在binlog写入，再redolog的commit</p>
+<p>binlog主要用于备份</p>
+<blockquote>
+<p>MySQL InnoDB 引擎使用 <strong>redo log(重做日志)</strong> 保证事务的<strong>持久性</strong>，使用 <strong>undo log(回滚日志)</strong> 来保证事务的<strong>原子性</strong>。</p>
+<p><code>MySQL</code>数据库的<strong>数据备份、主备、主主、主从</strong>都离不开<code>binlog</code>，需要依靠<code>binlog</code>来同步数据，保证数据一致性。</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2022/08/06/ThdnPEwA2Su7vki.jpg" alt="ThdnPEwA2Su7vki"></p>
+<p><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/database/mysql/innodb-implementation-of-mvcc?id=innodb-%E5%AF%B9-mvcc-%E7%9A%84%E5%AE%9E%E7%8E%B0">InnoDB存储引擎对MVCC的实现</a></p>
+<p>在 <code>InnoDB</code> 存储引擎中，<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/innodb-multi-versioning.html">多版本控制 (multi versioning)</a> 就是对<strong>非锁定读</strong>的实现。如果读取的行正在执行 <code>DELETE</code> 或 <code>UPDATE</code> 操作，这时读取操作不会去等待行上锁的释放。相反地，<code>InnoDB</code> 存储引擎会去读取行的一个快照数据，对于这种读取历史数据的方式，我们叫它快照读 (snapshot read)</p>
+<p>所以说，insert是在提交事务后，undolog就能删除的，但是delete和update是需要mvcc的。</p>
+<p><code>MVCC</code> 的实现依赖于：<strong>隐藏字段、Read View、undo log</strong>。</p>
+<p><img src="https://pic.tyzhang.top/images/2022/07/19/IMG_2075.jpg" alt="IMG_2075.jpg"></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/database/mysql/mysql-index">MySQL数据库索引总结</a></li>
+</ul>
+<p>索引</p>
+<p>用B+，而不是B，而不是HashMap（哈希冲突，顺序和范围查找）</p>
+<p>而不是平衡二叉树，平衡二叉树创建删除增加更麻烦。而不是普通二叉树（深度太深）。</p>
+<p><img src="https://s2.loli.net/2022/08/06/dvIjm4FeM7VJXpG.png" alt="dvIjm4FeM7VJXpG"></p>
+<h2 id="锁的种类"><a href="#锁的种类" class="headerlink" title="锁的种类"></a>锁的种类</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/478bc84a7721">MySQL记录锁、间隙锁、临键锁（Next-Key Locks）详解</a></p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/XRK1gp.jpg" alt="XRK1gp"></p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2022/06/06/%E5%85%AB%E8%82%A1mysql/">http://example.com/2022/06/06/%E5%85%AB%E8%82%A1mysql/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-09-11</p></div> 
+    <div class="post-entry__tags"><a href="/tags/mysql/" class="post-tags__link button"># mysql</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/06/07/AlgorithmClassification/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            AlgorithmClassification
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/05/16/%E9%A1%B9%E7%9B%AEredis-practice/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            Redis_practice
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2022 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

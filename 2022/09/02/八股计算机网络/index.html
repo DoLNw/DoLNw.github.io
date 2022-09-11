@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>计算机网络 | 穿过海的声音</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="计算机网络关于HTTPS的SSL&#x2F;TLS的安全加密![ScreenShot2022-09-02at19.07.54](https:&#x2F;&#x2F;gitee.com&#x2F;JiaChengCC&#x2F;u-pic-chart-bed&#x2F;raw&#x2F;master&#x2F;uPic&#x2F;Screen Shot 2022-09-02 at 19.07.54.png) nginx实现 反向代理第几层？其实是第七层，所以一个缺点就是需要为所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络">
+<meta property="og:url" content="http://example.com/2022/09/02/%E5%85%AB%E8%82%A1%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="计算机网络关于HTTPS的SSL&#x2F;TLS的安全加密![ScreenShot2022-09-02at19.07.54](https:&#x2F;&#x2F;gitee.com&#x2F;JiaChengCC&#x2F;u-pic-chart-bed&#x2F;raw&#x2F;master&#x2F;uPic&#x2F;Screen Shot 2022-09-02 at 19.07.54.png) nginx实现 反向代理第几层？其实是第七层，所以一个缺点就是需要为所">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pics7.baidu.com/feed/8718367adab44aed33963cb66f5bd80ba08bfb5e.jpeg?token=6380ced5805235afc8c31b50dc71bc19">
+<meta property="og:image" content="https://pics5.baidu.com/feed/908fa0ec08fa513d0bd0919be02a0af1b3fbd9cb.jpeg?token=96305588a54c609bec90130e11f8f93c">
+<meta property="og:image" content="https://pics1.baidu.com/feed/2fdda3cc7cd98d1006392772d778e7047aec9051.jpeg?token=9f396733e7cb21654e0797605cd8d0eb">
+<meta property="article:published_time" content="2022-09-02T11:11:50.000Z">
+<meta property="article:modified_time" content="2022-09-11T12:16:23.024Z">
+<meta property="article:author" content="jcwang">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pics7.baidu.com/feed/8718367adab44aed33963cb66f5bd80ba08bfb5e.jpeg?token=6380ced5805235afc8c31b50dc71bc19">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        计算机网络
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/09/" class="post-meta__date button">2022-09-02</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EHTTPS%E7%9A%84SSL-x2F-TLS%E7%9A%84%E5%AE%89%E5%85%A8%E5%8A%A0%E5%AF%86"><span class="toc-number">1.</span> <span class="toc-text">关于HTTPS的SSL&#x2F;TLS的安全加密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81NIO%E3%80%81BIO%E3%80%81AIO"><span class="toc-number">1.1.</span> <span class="toc-text">二、NIO、BIO、AIO</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EHTTPS%E7%9A%84SSL-x2F-TLS%E7%9A%84%E5%AE%89%E5%85%A8%E5%8A%A0%E5%AF%86"><span class="toc-number">1.</span> <span class="toc-text">关于HTTPS的SSL&#x2F;TLS的安全加密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81NIO%E3%80%81BIO%E3%80%81AIO"><span class="toc-number">1.1.</span> <span class="toc-text">二、NIO、BIO、AIO</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><h2 id="关于HTTPS的SSL-x2F-TLS的安全加密"><a href="#关于HTTPS的SSL-x2F-TLS的安全加密" class="headerlink" title="关于HTTPS的SSL&#x2F;TLS的安全加密"></a>关于HTTPS的SSL&#x2F;TLS的安全加密</h2><p>![ScreenShot2022-09-02at19.07.54](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screen</a> Shot 2022-09-02 at 19.07.54.png)</p>
+<h1 id="nginx实现-反向代理"><a href="#nginx实现-反向代理" class="headerlink" title="nginx实现 反向代理"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_21134059/article/details/122648461">nginx实现 反向代理</a></h1><p>第几层？其实是<strong>第七层</strong>，所以一个缺点就是需要为所以就必须为每一种应用服务专门开发一个反向代理服务器。</p>
+<p>所以我开的每一个微服务都需要进行反向代理，不对，我是直接代理给了网关的，网关进行转发的。</p>
+<p>然后网关转发，反向代理，到底哪里出了问题？怎么调试出来？我用了tcpdum抓取回环包dump到cap文件，然后用wireshark查看，看是ip:端口怎么转发的，然后看哪一步中断了，可能就是哪里有问题了。</p>
+<h3 id="二、NIO、BIO、AIO"><a href="#二、NIO、BIO、AIO" class="headerlink" title="二、NIO、BIO、AIO"></a>二、NIO、BIO、AIO</h3><blockquote>
+<p>自己写的：</p>
+<p>同步指的是第二段，读取数据的时候，是<strong>回调</strong>告诉完成，还是等待完成。<br>阻塞指的是，第一阶段的时候，阻塞等待知道有数据，还是轮训或者非阻塞比如epoll告诉有通知。阻塞指的是调用者是否会挂起等待。</p>
+</blockquote>
+<blockquote>
+<p><strong>面试官：“你能说一下网络IO模型吗？”</strong></p>
+</blockquote>
+<blockquote>
+<p>我：“网络IO模型有BIO、NIO、AIO ”。 自己加入的：当然还有信号驱动，IO多路复用</p>
+</blockquote>
+<blockquote>
+<p><strong>面试官：“他们分别代表什么，有什么区别吗？”</strong></p>
+</blockquote>
+<blockquote>
+<p>BIO：同步阻塞IO。<br>NIO：同步非阻塞IO。<br>AIO：异步非阻塞IO。</p>
+</blockquote>
+<blockquote>
+<p><strong>面试官：“BIO为什么是同步阻塞IO，他阻塞的是谁跟谁之间的关联？”。</strong></p>
+</blockquote>
+<blockquote>
+<p>首先在网络编程中，客户端给服务端发送消息大约分为两个个步骤。<br>1、发起连接。<br>2、发送数据。</p>
+</blockquote>
+<blockquote>
+<p>在BIO中每一个连接都需要分配一个线程来执行，假如A客户端连接了服务器，但是还没有发送消息，这个时候B客户端向服务器发送连接请求，这个时候服务器是没有办法处理B客户端的连接请求的。</p>
+</blockquote>
+<p><img src="https://pics7.baidu.com/feed/8718367adab44aed33963cb66f5bd80ba08bfb5e.jpeg?token=6380ced5805235afc8c31b50dc71bc19" alt="img"></p>
+<blockquote>
+<p>因为一个线程处理了一个客户端的连接后就阻塞住，并等待处理该客户端发送过来的数据。处理完该客户端的数据后才能处理其他客户端的连接请求。</p>
+</blockquote>
+<p><img src="https://pics5.baidu.com/feed/908fa0ec08fa513d0bd0919be02a0af1b3fbd9cb.jpeg?token=96305588a54c609bec90130e11f8f93c" alt="img"></p>
+<blockquote>
+<p><strong>面试官：“那你这个是只有一个线程的时候，那我弄多个线程不就好了，来一个请求连接我弄一个线程”。</strong></p>
+</blockquote>
+<blockquote>
+<p>我：“那假如有一万个连接请求同时过来，那你开启一万个线程服务端不就崩了嘛。”</p>
+</blockquote>
+<blockquote>
+<p><strong>面试官：“那我弄一个线程池呢，我最大线程数最多弄500呢？”。</strong></p>
+</blockquote>
+<blockquote>
+<p>我：“那假如有500线程只请求连接，并不发送数据呢，那你这个线程池不也一样废了吗。这500个请求连接上了还没有发送数据，那么线程池的500个线程就没办法去处理别的请求，这样照样废废了。”</p>
+</blockquote>
+<blockquote>
+<p><strong>面试官：“那咋办呢？”。</strong></p>
+</blockquote>
+<blockquote>
+<p>我：“别慌，哥有办法，可以使用NIO同步非阻塞，这样就不需要很多线程，一个线程也能处理很多的请求连接和请求数据。”</p>
+</blockquote>
+<blockquote>
+<p><strong>面试官：NIO他是怎么实现一个线程处理多个连接请求和多个请求数据的呢？”。</strong></p>
+</blockquote>
+<blockquote>
+<p>我：“NIO会将获取的请求连接放入到一个数组中，然后再遍历这个数据查看这些连接有没有数据发送过来。”</p>
+</blockquote>
+<p><img src="https://pics1.baidu.com/feed/2fdda3cc7cd98d1006392772d778e7047aec9051.jpeg?token=9f396733e7cb21654e0797605cd8d0eb" alt="img"></p>
+<blockquote>
+<p><strong>面试官：“这招高啊”。</strong></p>
+</blockquote>
+<blockquote>
+<p>我：“那必须滴。”</p>
+</blockquote>
+<blockquote>
+<p><strong>面试官：“但是有个问题啊，如果B和C只连接了，但是一直没有发送数据，那每次还循环判断他俩有没有发送数据的请求是不是有点多余了，能不能在我知道B和C肯定发送了数据的情况下再去遍历他呢？”。</strong></p>
+</blockquote>
+<blockquote>
+<p>我：“那你让客户B和客户C发送数据的时候给你打一个电话不就行了，然后你就只遍历他俩。”</p>
+</blockquote>
+<blockquote>
+<p><strong>面试官：“他们也不能够给我打呀，你再想一个别的办法”。</strong></p>
+</blockquote>
+<blockquote>
+<p>我：“可以引入Epoll，在JDK1.5开始引入了epoll通过事件响应来优化NIO，原理是客户端的每一次连接和每一次发送数据都看作是一个事件，每次发生事件会注册到服务端的一个集合中去，然后客户端只需要遍历这个集合就可以了。”</p>
+</blockquote>
+<blockquote>
+<p><strong>面试官：“那AIO有什么特点呢？”</strong></p>
+</blockquote>
+<blockquote>
+<p>我：“AIO是异步非阻塞，他对于客户端的连接请求和发送数据请求是用不同的线程来处理的，他是通过回调来通知服务端程序去启动线程处理，适用于长连接的场景。”</p>
+</blockquote>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2022/09/02/%E5%85%AB%E8%82%A1%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">http://example.com/2022/09/02/%E5%85%AB%E8%82%A1%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-09-11</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/09/02/%E5%85%AB%E8%82%A1%20%E9%9D%A2%E8%AF%95%E9%9C%80%E8%A6%81%E5%A4%9A%E6%AC%A1%E5%81%9A%E7%9A%84%E7%BC%96%E7%A8%8B/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            面试需要多次做的编程
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/08/29/%E5%85%AB%E8%82%A1%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            面试准备
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2022 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
