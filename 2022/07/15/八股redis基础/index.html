@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>八股redis基础 | 穿过海的声音</title>
+
+
+    <meta name="keywords" content="Java, Redis">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="redis数据结构等一些内容整理，基本数据类型及底层、缓存雪崩击穿、发布订阅、一些大型应用场景。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="八股redis基础">
+<meta property="og:url" content="http://example.com/2022/07/15/%E5%85%AB%E8%82%A1redis%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="redis数据结构等一些内容整理，基本数据类型及底层、缓存雪崩击穿、发布订阅、一些大型应用场景。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_C90E028F35B5-1.jpeg">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_C1D12C84936E-1.jpeg">
+<meta property="og:image" content="http://example.com/Users/dinosaur/Library/Application%20Support/typora-user-images/image-20220909162340144.png">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Sf400z.png">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/05/26/IMG_0301A08F2931-1.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/05/26/IMG_5AD953718C41-1.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/05/26/IMG_F7B6AAA32E9D-1.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/05/26/IMG_2015.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/05/26/IMG_09705D2FEE35-1.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/05/26/IMG_33E435DAFCBC-1.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/05/26/IMG_2026.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/05/26/IMG_2047.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/05/26/IMG_2056.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/05/26/IMG_2060.jpg">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_774E6EEFDCFA-1.jpeg">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_0938744922C1-1.jpeg">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_AA378D9760E3-1.jpeg">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_FB0211CF5CF3-1.jpeg">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/jIjxBw.png">
+<meta property="article:published_time" content="2022-07-15T01:11:20.000Z">
+<meta property="article:modified_time" content="2022-10-15T06:14:03.437Z">
+<meta property="article:author" content="jcwang">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Redis">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_C90E028F35B5-1.jpeg">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        八股redis基础
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/07/" class="post-meta__date button">2022-07-15</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#String"><span class="toc-number">1.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hash"><span class="toc-number">2.</span> <span class="toc-text">Hash</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List"><span class="toc-number">3.</span> <span class="toc-text">List</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set"><span class="toc-number">4.</span> <span class="toc-text">Set</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SortedSet-ZSet"><span class="toc-number">5.</span> <span class="toc-text">SortedSet(ZSet)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8redis%E5%81%9A%E5%BB%B6%E8%BF%9F%E9%98%9F%E5%88%97"><span class="toc-number">5.1.</span> <span class="toc-text">使用redis做延迟队列</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GEO%E5%92%8CBitMap"><span class="toc-number">6.</span> <span class="toc-text">GEO和BitMap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8BStream%EF%BC%8C%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-number">7.</span> <span class="toc-text">新的数据类型Stream，消息队列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-Pipeline-%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number"></span> <span class="toc-text">Redis Pipeline 原理及注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F"><span class="toc-number"></span> <span class="toc-text">缓存穿透</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9"><span class="toc-number"></span> <span class="toc-text">缓存雪崩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF"><span class="toc-number"></span> <span class="toc-text">缓存击穿</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">持久化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E4%BB%8E%E5%92%8C%E5%93%A8%E5%85%B5%EF%BC%88%E9%AB%98%E5%8F%AF%E7%94%A8%E3%80%81%E9%AB%98%E5%B9%B6%E5%8F%91%E8%AF%BB%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">主从和哨兵（高可用、高并发读）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%89%87%EF%BC%88%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E9%AB%98%E5%B9%B6%E5%8F%91%E5%86%99%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">分片（海量数据存储、高并发写）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="toc-number">4.</span> <span class="toc-text">多级缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#OpenResty"><span class="toc-number">4.1.</span> <span class="toc-text">OpenResty</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Redis%E7%BC%93%E5%AD%98%E9%A2%84%E7%83%AD"><span class="toc-number">4.2.</span> <span class="toc-text">Redis缓存预热</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%90%8C%E6%AD%A5"><span class="toc-number">5.</span> <span class="toc-text">缓存同步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AOP%EF%BC%9A%E4%BA%8B%E5%8A%A1%E3%80%81%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-number">6.</span> <span class="toc-text">AOP：事务、动态代理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SDS%E5%8A%A8%E6%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">7.</span> <span class="toc-text">SDS动态字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IntSet"><span class="toc-number">8.</span> <span class="toc-text">IntSet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dict"><span class="toc-number">9.</span> <span class="toc-text">Dict</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ZipList"><span class="toc-number">10.</span> <span class="toc-text">ZipList</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#QuickList"><span class="toc-number">11.</span> <span class="toc-text">QuickList</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SkipList%E8%B7%B3%E8%A1%A8"><span class="toc-number">12.</span> <span class="toc-text">SkipList跳表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RedisObject"><span class="toc-number">13.</span> <span class="toc-text">RedisObject</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%98%AF%E5%A6%82%E4%BD%95%E7%9A%84"><span class="toc-number">14.</span> <span class="toc-text">五种数据结构是如何的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6"><span class="toc-number">15.</span> <span class="toc-text">内存回收</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%85%B3%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85"><span class="toc-number"></span> <span class="toc-text">有关发布订阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Feed%E6%B5%81"><span class="toc-number"></span> <span class="toc-text">Feed流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%EF%BC%9A%E6%9C%AC%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%8E%A8"><span class="toc-number">1.</span> <span class="toc-text">实践：本项目中使用推</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E9%94%81%E4%BB%8E%E9%9D%A2%E8%AF%95%E8%BF%9E%E7%8E%AF%E7%82%AE%E8%81%8A%E5%88%B0%E7%A5%9E%E4%BB%99%E6%89%93%E6%9E%B6%E3%80%82"><span class="toc-number"></span> <span class="toc-text">Redis锁从面试连环炮聊到神仙打架。</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E4%B8%AD%EF%BC%8Cconsumer-%E6%98%AF%E6%8E%A8%E8%BF%98%E6%98%AF%E6%8B%89"><span class="toc-number">1.</span> <span class="toc-text">Kafka中，consumer 是推还是拉?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Java%E4%B8%AD%E5%8F%91%E9%80%81kafka%E6%B6%88%E6%81%AF"><span class="toc-number"></span> <span class="toc-text">在Java中发送kafka消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kafka%E9%9B%86%E7%BE%A4%E6%B6%88%E6%81%AF%E7%A7%AF%E5%8E%8B%E9%97%AE%E9%A2%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E9%97%AE%E9%A2%98%E5%8F%8A%E5%A4%84%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-number"></span> <span class="toc-text">Kafka集群消息积压问题和数据倾斜问题及处理策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kafka%E6%B6%88%E6%81%AF%E7%A7%AF%E5%8E%8B%E7%9A%84%E5%85%B8%E5%9E%8B%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">Kafka消息积压的典型场景：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6-x2F-%E6%B6%88%E8%B4%B9%E4%BB%BB%E5%8A%A1%E6%8C%82%E6%8E%89"><span class="toc-number">1.</span> <span class="toc-text">实时&#x2F;消费任务挂掉</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E5%88%86%E5%8C%BA%E6%95%B0%E8%AE%BE%E7%BD%AE%E7%9A%84%E4%B8%8D%E5%90%88%E7%90%86%EF%BC%88%E5%A4%AA%E5%B0%91%EF%BC%89%E5%92%8C%E6%B6%88%E8%B4%B9%E8%80%85%E2%80%9D%E6%B6%88%E8%B4%B9%E8%83%BD%E5%8A%9B%E2%80%9D%E4%B8%8D%E8%B6%B3"><span class="toc-number">2.</span> <span class="toc-text">Kafka分区数设置的不合理（太少）和消费者”消费能力”不足</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E6%B6%88%E6%81%AF%E7%9A%84key%E4%B8%8D%E5%9D%87%E5%8C%80%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%88%86%E5%8C%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E4%B8%8D%E5%9D%87%E8%A1%A1"><span class="toc-number">3.</span> <span class="toc-text">Kafka消息的key不均匀，导致分区间数据不均衡</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E9%92%88%E5%AF%B9%E6%80%A7%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%E6%9C%89%E4%BB%A5%E4%B8%8B%E5%87%A0%E7%A7%8D%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">一般情况下，针对性的解决办法有以下几种：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6-x2F-%E6%B6%88%E8%B4%B9%E4%BB%BB%E5%8A%A1%E6%8C%82%E6%8E%89%E5%AF%BC%E8%87%B4%E7%9A%84%E6%B6%88%E8%B4%B9%E6%BB%9E%E5%90%8E"><span class="toc-number">1.</span> <span class="toc-text">实时&#x2F;消费任务挂掉导致的消费滞后</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E5%88%86%E5%8C%BA%E5%B0%91%E4%BA%86"><span class="toc-number">2.</span> <span class="toc-text">Kafka分区少了</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B1%E4%BA%8EKafka%E6%B6%88%E6%81%AFkey%E8%AE%BE%E7%BD%AE%E7%9A%84%E4%B8%8D%E5%90%88%E7%90%86%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%88%86%E5%8C%BA%E6%95%B0%E6%8D%AE%E4%B8%8D%E5%9D%87%E8%A1%A1"><span class="toc-number">3.</span> <span class="toc-text">由于Kafka消息key设置的不合理，导致分区数据不均衡</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%B6%88%E8%B4%B9%E6%B5%B7%E9%87%8FKafka-Topic%E6%97%B6%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E7%9A%84%E6%96%B9%E6%A1%88"><span class="toc-number"></span> <span class="toc-text">一种解决消费海量Kafka Topic时数据倾斜的方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88Redis%E7%9A%84%E6%93%8D%E4%BD%9C%E6%98%AF%E5%8E%9F%E5%AD%90%E6%80%A7%E7%9A%84%EF%BC%8C%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7%E7%9A%84%EF%BC%9F"><span class="toc-number"></span> <span class="toc-text">为什么Redis的操作是原子性的，怎么保证原子性的？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88Redis%E7%9A%84%E6%93%8D%E4%BD%9C%E6%98%AF%E5%8E%9F%E5%AD%90%E6%80%A7%E7%9A%84%EF%BC%8C%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7%E7%9A%84%EF%BC%9F-1"><span class="toc-number"></span> <span class="toc-text">为什么Redis的操作是原子性的，怎么保证原子性的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%91%BD%E4%BB%A4%E5%9C%A8%E5%B9%B6%E5%8F%91%E4%B8%AD%E4%B9%9F%E6%98%AF%E5%8E%9F%E5%AD%90%E6%80%A7%E7%9A%84%E5%90%97%EF%BC%9F"><span class="toc-number"></span> <span class="toc-text">多个命令在并发中也是原子性的吗？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E2%80%94%E2%80%94Redis%E4%B8%AD%E7%9A%84bitmap"><span class="toc-number"></span> <span class="toc-text">数据结构——Redis中的bitmap</span></a>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#String"><span class="toc-number">1.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hash"><span class="toc-number">2.</span> <span class="toc-text">Hash</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List"><span class="toc-number">3.</span> <span class="toc-text">List</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set"><span class="toc-number">4.</span> <span class="toc-text">Set</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SortedSet-ZSet"><span class="toc-number">5.</span> <span class="toc-text">SortedSet(ZSet)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8redis%E5%81%9A%E5%BB%B6%E8%BF%9F%E9%98%9F%E5%88%97"><span class="toc-number">5.1.</span> <span class="toc-text">使用redis做延迟队列</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GEO%E5%92%8CBitMap"><span class="toc-number">6.</span> <span class="toc-text">GEO和BitMap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8BStream%EF%BC%8C%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-number">7.</span> <span class="toc-text">新的数据类型Stream，消息队列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-Pipeline-%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number"></span> <span class="toc-text">Redis Pipeline 原理及注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F"><span class="toc-number"></span> <span class="toc-text">缓存穿透</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9"><span class="toc-number"></span> <span class="toc-text">缓存雪崩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF"><span class="toc-number"></span> <span class="toc-text">缓存击穿</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">持久化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E4%BB%8E%E5%92%8C%E5%93%A8%E5%85%B5%EF%BC%88%E9%AB%98%E5%8F%AF%E7%94%A8%E3%80%81%E9%AB%98%E5%B9%B6%E5%8F%91%E8%AF%BB%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">主从和哨兵（高可用、高并发读）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%89%87%EF%BC%88%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E9%AB%98%E5%B9%B6%E5%8F%91%E5%86%99%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">分片（海量数据存储、高并发写）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="toc-number">4.</span> <span class="toc-text">多级缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#OpenResty"><span class="toc-number">4.1.</span> <span class="toc-text">OpenResty</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Redis%E7%BC%93%E5%AD%98%E9%A2%84%E7%83%AD"><span class="toc-number">4.2.</span> <span class="toc-text">Redis缓存预热</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%90%8C%E6%AD%A5"><span class="toc-number">5.</span> <span class="toc-text">缓存同步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AOP%EF%BC%9A%E4%BA%8B%E5%8A%A1%E3%80%81%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-number">6.</span> <span class="toc-text">AOP：事务、动态代理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SDS%E5%8A%A8%E6%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">7.</span> <span class="toc-text">SDS动态字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IntSet"><span class="toc-number">8.</span> <span class="toc-text">IntSet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dict"><span class="toc-number">9.</span> <span class="toc-text">Dict</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ZipList"><span class="toc-number">10.</span> <span class="toc-text">ZipList</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#QuickList"><span class="toc-number">11.</span> <span class="toc-text">QuickList</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SkipList%E8%B7%B3%E8%A1%A8"><span class="toc-number">12.</span> <span class="toc-text">SkipList跳表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RedisObject"><span class="toc-number">13.</span> <span class="toc-text">RedisObject</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%98%AF%E5%A6%82%E4%BD%95%E7%9A%84"><span class="toc-number">14.</span> <span class="toc-text">五种数据结构是如何的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6"><span class="toc-number">15.</span> <span class="toc-text">内存回收</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%85%B3%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85"><span class="toc-number"></span> <span class="toc-text">有关发布订阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Feed%E6%B5%81"><span class="toc-number"></span> <span class="toc-text">Feed流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%EF%BC%9A%E6%9C%AC%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%8E%A8"><span class="toc-number">1.</span> <span class="toc-text">实践：本项目中使用推</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E9%94%81%E4%BB%8E%E9%9D%A2%E8%AF%95%E8%BF%9E%E7%8E%AF%E7%82%AE%E8%81%8A%E5%88%B0%E7%A5%9E%E4%BB%99%E6%89%93%E6%9E%B6%E3%80%82"><span class="toc-number"></span> <span class="toc-text">Redis锁从面试连环炮聊到神仙打架。</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E4%B8%AD%EF%BC%8Cconsumer-%E6%98%AF%E6%8E%A8%E8%BF%98%E6%98%AF%E6%8B%89"><span class="toc-number">1.</span> <span class="toc-text">Kafka中，consumer 是推还是拉?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Java%E4%B8%AD%E5%8F%91%E9%80%81kafka%E6%B6%88%E6%81%AF"><span class="toc-number"></span> <span class="toc-text">在Java中发送kafka消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kafka%E9%9B%86%E7%BE%A4%E6%B6%88%E6%81%AF%E7%A7%AF%E5%8E%8B%E9%97%AE%E9%A2%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E9%97%AE%E9%A2%98%E5%8F%8A%E5%A4%84%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-number"></span> <span class="toc-text">Kafka集群消息积压问题和数据倾斜问题及处理策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kafka%E6%B6%88%E6%81%AF%E7%A7%AF%E5%8E%8B%E7%9A%84%E5%85%B8%E5%9E%8B%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">Kafka消息积压的典型场景：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6-x2F-%E6%B6%88%E8%B4%B9%E4%BB%BB%E5%8A%A1%E6%8C%82%E6%8E%89"><span class="toc-number">1.</span> <span class="toc-text">实时&#x2F;消费任务挂掉</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E5%88%86%E5%8C%BA%E6%95%B0%E8%AE%BE%E7%BD%AE%E7%9A%84%E4%B8%8D%E5%90%88%E7%90%86%EF%BC%88%E5%A4%AA%E5%B0%91%EF%BC%89%E5%92%8C%E6%B6%88%E8%B4%B9%E8%80%85%E2%80%9D%E6%B6%88%E8%B4%B9%E8%83%BD%E5%8A%9B%E2%80%9D%E4%B8%8D%E8%B6%B3"><span class="toc-number">2.</span> <span class="toc-text">Kafka分区数设置的不合理（太少）和消费者”消费能力”不足</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E6%B6%88%E6%81%AF%E7%9A%84key%E4%B8%8D%E5%9D%87%E5%8C%80%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%88%86%E5%8C%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E4%B8%8D%E5%9D%87%E8%A1%A1"><span class="toc-number">3.</span> <span class="toc-text">Kafka消息的key不均匀，导致分区间数据不均衡</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E9%92%88%E5%AF%B9%E6%80%A7%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%E6%9C%89%E4%BB%A5%E4%B8%8B%E5%87%A0%E7%A7%8D%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">一般情况下，针对性的解决办法有以下几种：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6-x2F-%E6%B6%88%E8%B4%B9%E4%BB%BB%E5%8A%A1%E6%8C%82%E6%8E%89%E5%AF%BC%E8%87%B4%E7%9A%84%E6%B6%88%E8%B4%B9%E6%BB%9E%E5%90%8E"><span class="toc-number">1.</span> <span class="toc-text">实时&#x2F;消费任务挂掉导致的消费滞后</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E5%88%86%E5%8C%BA%E5%B0%91%E4%BA%86"><span class="toc-number">2.</span> <span class="toc-text">Kafka分区少了</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B1%E4%BA%8EKafka%E6%B6%88%E6%81%AFkey%E8%AE%BE%E7%BD%AE%E7%9A%84%E4%B8%8D%E5%90%88%E7%90%86%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%88%86%E5%8C%BA%E6%95%B0%E6%8D%AE%E4%B8%8D%E5%9D%87%E8%A1%A1"><span class="toc-number">3.</span> <span class="toc-text">由于Kafka消息key设置的不合理，导致分区数据不均衡</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%B6%88%E8%B4%B9%E6%B5%B7%E9%87%8FKafka-Topic%E6%97%B6%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E7%9A%84%E6%96%B9%E6%A1%88"><span class="toc-number"></span> <span class="toc-text">一种解决消费海量Kafka Topic时数据倾斜的方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88Redis%E7%9A%84%E6%93%8D%E4%BD%9C%E6%98%AF%E5%8E%9F%E5%AD%90%E6%80%A7%E7%9A%84%EF%BC%8C%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7%E7%9A%84%EF%BC%9F"><span class="toc-number"></span> <span class="toc-text">为什么Redis的操作是原子性的，怎么保证原子性的？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88Redis%E7%9A%84%E6%93%8D%E4%BD%9C%E6%98%AF%E5%8E%9F%E5%AD%90%E6%80%A7%E7%9A%84%EF%BC%8C%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7%E7%9A%84%EF%BC%9F-1"><span class="toc-number"></span> <span class="toc-text">为什么Redis的操作是原子性的，怎么保证原子性的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%91%BD%E4%BB%A4%E5%9C%A8%E5%B9%B6%E5%8F%91%E4%B8%AD%E4%B9%9F%E6%98%AF%E5%8E%9F%E5%AD%90%E6%80%A7%E7%9A%84%E5%90%97%EF%BC%9F"><span class="toc-number"></span> <span class="toc-text">多个命令在并发中也是原子性的吗？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E2%80%94%E2%80%94Redis%E4%B8%AD%E7%9A%84bitmap"><span class="toc-number"></span> <span class="toc-text">数据结构——Redis中的bitmap</span></a>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="Redis-Remote-Dictionary-Server"><a href="#Redis-Remote-Dictionary-Server" class="headerlink" title="Redis(Remote Dictionary Server)"></a>Redis(Remote Dictionary Server)</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1cr4y1671t?spm_id_from=333.337.search-card.all.click">视频教程：全面透析redis底层原理+redis分布式锁+企业解决方案+redis实战</a></p>
+<p>redis是基于内存的，速度快；IO多路复用；有丰富的数据类型，合适的选择可以提高运行效率。</p>
+<h4 id="String"><a href="#String" class="headerlink" title="String"></a>String</h4><p>setnx加ex超时，配合lua，分布式锁。</p>
+<p>有自增自减操作（INCR -1），SETNX，将对象序列化为JSON字符串后存储</p>
+<p>缓存击穿中热点key加互斥锁的时候可以用SETNX来实现（）</p>
+<p>分布式中全局唯一ID，每天一个key（方便统计）、ID构造是 时间戳 + 计数器（自增实现）</p>
+<p>MSET、MGET、INCRBY、SETNX</p>
+<h4 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h4><p>可重入锁，field是threadid，value是次数，配合lua。</p>
+<p>无序字典，里面会有对应域和值，可对单个字段做独立的CRUD</p>
+<p>批量：HMSET、HMGET</p>
+<h4 id="List"><a href="#List" class="headerlink" title="List"></a>List</h4><p>异步队列，生产者消费者，下的单进行消费，但是单一消费者。</p>
+<p>双向链表，插入和删除快</p>
+<p>可用BLPOP和RPUSH，或者BRPOP和LPUSH，实现阻塞队列，缺点：</p>
+<h4 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h4><p>与hashset，可看作value为null的hashmap，无序、不重复，查找快，交集、并集、差集等</p>
+<p>比如看自己跟别人的共同关注列表</p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_C90E028F35B5-1.jpeg" alt="IMG_C90E028F35B5-1"></p>
+<h4 id="SortedSet-ZSet"><a href="#SortedSet-ZSet" class="headerlink" title="SortedSet(ZSet)"></a>SortedSet(ZSet)</h4><p>每一条博客下面，按照用户点赞时间排序给用户排序。</p>
+<p>底层实现是skiplist跳表+hash表</p>
+<p>根据score排序，比如用来做排行榜等，不重复，查询快，里面有一个指令是<strong>incrementScore</strong>，每次查询这个key之后都会自增1，而不是说我每次自己取出来+1再放回去。</p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_C1D12C84936E-1.jpeg" alt="IMG_C1D12C84936E-1"></p>
+<h5 id="使用redis做延迟队列"><a href="#使用redis做延迟队列" class="headerlink" title="使用redis做延迟队列"></a>使用redis做延迟队列</h5><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zmqSiili/p/15631474.html"><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zmqSiili/p/15631474.html">使用redis的zset实现简单的延时队列</a></a></p>
+<blockquote>
+<p>使用一个延时队列，利用redis的zset（sort set，有序不重复集合，关联分数score进行排序），将提醒时间作为分数，提取符合条件的score对应的集合发起提醒（本文所述也是围绕这个方案）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Boolean</span> <span class="variable">addFlag</span> <span class="operator">=</span> redisTemplate.opsForZSet().add(QUEUE_NAME, messageStr, queueMessage.getDelayTime());</span><br><span class="line"></span><br><span class="line">Set&lt;String&gt; strings = redisTemplate.opsForZSet().rangeByScore(QUEUE_NAME, <span class="number">0</span>, System.currentTimeMillis());</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="GEO和BitMap"><a href="#GEO和BitMap" class="headerlink" title="GEO和BitMap"></a>GEO和BitMap</h4><p>&#x3D;&#x3D;geo&#x3D;&#x3D;获取附近商铺信息</p>
+<p>&#x3D;&#x3D;bitmap&#x3D;&#x3D;比如每日签到，签到统计</p>
+<p>注意</p>
+<p>GEO是sortedset的实现</p>
+<p>bitmap其实是&#x3D;&#x3D;string数据类型&#x3D;&#x3D;实现</p>
+<h4 id="新的数据类型Stream，消息队列"><a href="#新的数据类型Stream，消息队列" class="headerlink" title="新的数据类型Stream，消息队列"></a>新的数据类型Stream，消息队列</h4><h3 id="Redis-Pipeline-原理及注意事项"><a href="#Redis-Pipeline-原理及注意事项" class="headerlink" title="Redis Pipeline 原理及注意事项"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/chenqiushi123/article/details/109486150">Redis Pipeline 原理及注意事项</a></h3><img src="/Users/dinosaur/Library/Application Support/typora-user-images/image-20220909162340144.png" alt="image-20220909162340144" style="zoom:50%;" />
+
+<img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Sf400z.png" alt="Sf400z" style="zoom:50%;" />
+
+<h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzUyNjQxNjYyMg==&mid=2247485011&idx=1&sn=a3031a3d3ad033e44439d42d72753e16&chksm=fa0e69d2cd79e0c45b1eb017c65b60662890f67ec70ef44e92ef7f5cddfc313ea6ab353952f4&scene=21#wechat_redirect">拜托，面试官别问我「布隆」了</a></p>
+<p>客户端请求的，在缓存中和数据库中都不存在</p>
+<ol>
+<li>缓存空对象（+TTL）</li>
+<li>布隆过滤（BitMap实现）（多一层前置过滤，存在误判）</li>
+</ol>
+<h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>同一时间大量缓存的key同时失效 或 Redis服务宕机，大量的请求到达服务器</p>
+<p>针对不同的有不同的方法，给不同的key的TTL添加波动的随机值；Redis主从集群哨兵（能解决高并发读，高可用），分片集群（高并发写，海量数据存储）。</p>
+<p>但是如果真的出现了，也要考虑。给缓存业务添加降级限流策略（消息队列固定请求大小，削峰填谷。判失败，拒绝服务器），给业务添加多级缓存。</p>
+<h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><p>热点key都会首先缓存到redis中的。</p>
+<p>热点key问题，被高并发访问并且缓存重建业务复杂（重建的时间内大量的访问）的key失效了。</p>
+<p>解决：互斥锁（SETNX（），需要TTL防止程序异常。一致性）（加锁是查询数据库的时候加锁，而且这个key最好是加适当的时间呀，如果说他是在1天内秒杀，然后提前一天上架，那么久TTL设置成2天呗？）；逻辑过期（不用TTl自己维护一个expire，也要获锁新开线程。可用性，无需等待，但是期间拿到的是旧数据）</p>
+<p>HyperLogLog做UV统计</p>
+<p>pipeline批量导入数据，pipeline的多个命令之间不具备原子性，mset和pipeline这样的批处理，如果是在集群中，那么批处理命令的多个key必须落在一个插槽中。</p>
+<h4 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h4><p>RDB和AOF</p>
+<h4 id="主从和哨兵（高可用、高并发读）"><a href="#主从和哨兵（高可用、高并发读）" class="headerlink" title="主从和哨兵（高可用、高并发读）"></a>主从和哨兵（高可用、高并发读）</h4><p><img src="https://pic.tyzhang.top/images/2022/05/26/IMG_0301A08F2931-1.jpg" alt="IMG_0301A08F2931-1.jpg"></p>
+<p><img src="https://pic.tyzhang.top/images/2022/05/26/IMG_5AD953718C41-1.jpg" alt="IMG_5AD953718C41-1.jpg"></p>
+<p><img src="https://pic.tyzhang.top/images/2022/05/26/IMG_F7B6AAA32E9D-1.jpg" alt="IMG_F7B6AAA32E9D-1.jpg"></p>
+<p><img src="https://pic.tyzhang.top/images/2022/05/26/IMG_2015.jpg" alt="IMG_2015.jpg"></p>
+<h4 id="分片（海量数据存储、高并发写）"><a href="#分片（海量数据存储、高并发写）" class="headerlink" title="分片（海量数据存储、高并发写）"></a>分片（海量数据存储、高并发写）</h4><p>散列插槽，数据key与插槽绑定（16384个插槽分配到不同的实例，根据有小部分计算哈希值，取余）</p>
+<h4 id="多级缓存"><a href="#多级缓存" class="headerlink" title="多级缓存"></a>多级缓存</h4><h5 id="OpenResty"><a href="#OpenResty" class="headerlink" title="OpenResty"></a>OpenResty</h5><h5 id="Redis缓存预热"><a href="#Redis缓存预热" class="headerlink" title="Redis缓存预热"></a>Redis缓存预热</h5><h4 id="缓存同步"><a href="#缓存同步" class="headerlink" title="缓存同步"></a>缓存同步</h4><p>数据库的主从同步原理</p>
+<p><img src="https://pic.tyzhang.top/images/2022/05/26/IMG_09705D2FEE35-1.jpg" alt="IMG_09705D2FEE35-1.jpg"></p>
+<p>设置有效期外失效，同步双写强一致性（修改完数据库修改缓存形成事务），异步通知</p>
+<p>异步通知，第一种是基于&#x3D;&#x3D;MQ&#x3D;&#x3D;的异步通知，需要手写发布监听，然后更新；第二种是canal，把自己伪装成一个MYSQL的slave节点，从而坚挺binary log的变化，再把得到的变化信息通知给canal的客户端，进而完成对其他数据库的同步。所以要用canal，要先实现mysql的主从。</p>
+<p><img src="https://pic.tyzhang.top/images/2022/05/26/IMG_33E435DAFCBC-1.jpg" alt="IMG_33E435DAFCBC-1.jpg"></p>
+<h4 id="AOP：事务、动态代理"><a href="#AOP：事务、动态代理" class="headerlink" title="AOP：事务、动态代理"></a>AOP：事务、动态代理</h4><h4 id="SDS动态字符串"><a href="#SDS动态字符串" class="headerlink" title="SDS动态字符串"></a>SDS动态字符串</h4><p>redis没有直接使用c的字符串（获取长度需要遍历，非二进制安全，不可修改）</p>
+<p>SDS中有buf[]，一保存字符串长度，申请总字节数，不同头类型大小，可以动态扩容</p>
+<h4 id="IntSet"><a href="#IntSet" class="headerlink" title="IntSet"></a>IntSet</h4><p>唯一、长度可变、有序、二分查找来查询</p>
+<h4 id="Dict"><a href="#Dict" class="headerlink" title="Dict"></a>Dict</h4><p>dict由三部分组成：哈希表、哈希节点、字典。一个dict中有两个哈希表bictht，一个用于存储，一个用于扩容再哈希使用。哈希表中是数组结合单向链表实现解决hash冲突，类似java的hashtable，当个数到达一定的时候，会扩容收缩（伴随再hash）。</p>
+<p>非连续，碎片多</p>
+<h4 id="ZipList"><a href="#ZipList" class="headerlink" title="ZipList"></a>ZipList</h4><p>一个特殊的“双端链表”，由一系列特殊编码的连续内存组成，用1字节或者5字节保存前一节点的长度而不是用指针记录前后节点。</p>
+<h4 id="QuickList"><a href="#QuickList" class="headerlink" title="QuickList"></a>QuickList</h4><p>一个双端链表，链表中的每一个节点都是一个ziplist。（LinkedList+ZipList）使用的ziplist，解决了传统链表的内存占用问题（碎片），控制每一个zipilst大小，解决了连续内存空间申请的效率问题，中间节点可以压缩进一步节省内存。</p>
+<h4 id="SkipList跳表"><a href="#SkipList跳表" class="headerlink" title="SkipList跳表"></a>SkipList跳表</h4><p>链表，升序排序，节点包含多个后指针，跨度不同，前驱指针只有一个</p>
+<h4 id="RedisObject"><a href="#RedisObject" class="headerlink" title="RedisObject"></a>RedisObject</h4><p>Redis的任意数据类型的键和值都会被封装为一个RedisObject，也叫Redis对象。</p>
+<h4 id="五种数据结构是如何的"><a href="#五种数据结构是如何的" class="headerlink" title="五种数据结构是如何的"></a>五种数据结构是如何的</h4><p><img src="https://pic.tyzhang.top/images/2022/05/26/IMG_2026.jpg" alt="IMG_2026.jpg"></p>
+<p>网络模型</p>
+<p><img src="https://pic.tyzhang.top/images/2022/05/26/IMG_2047.jpg" alt="IMG_2047.jpg"></p>
+<p>为什么redis单线程</p>
+<p><img src="https://pic.tyzhang.top/images/2022/05/26/IMG_2056.jpg" alt="IMG_2056.jpg"></p>
+<h4 id="内存回收"><a href="#内存回收" class="headerlink" title="内存回收"></a>内存回收</h4><p><img src="https://pic.tyzhang.top/images/2022/05/26/IMG_2060.jpg" alt="IMG_2060.jpg"></p>
+<h3 id="有关发布订阅"><a href="#有关发布订阅" class="headerlink" title="有关发布订阅"></a>有关发布订阅</h3><p>首先要知道，<strong>redis</strong>也是可以做到消息队列的发布订阅的，一般的发布订阅是直接消息队列<strong>rabbitmq</strong>或者<strong>Kafka</strong>这些。</p>
+<blockquote>
+<p>发布订阅：<strong>发布订阅</strong>是一种<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B6%88%E6%81%AF?fromModule=lemma_inlink">消息</a><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%8C%83%E5%BC%8F?fromModule=lemma_inlink">范式</a>，消息的发送者（称为发布者）不会将消息直接发送给特定的接收者（称为订阅者）。而是将发布的消息分为不同的类别，无需了解哪些订阅者（如果有的话）可能存在。同样的，订阅者可以表达对一个或多个类别的兴趣，只接收感兴趣的消息，无需了解哪些发布者（如果有的话）存在。</p>
+</blockquote>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_774E6EEFDCFA-1.jpeg" alt="IMG_774E6EEFDCFA-1"></p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_0938744922C1-1.jpeg" alt="IMG_0938744922C1-1"></p>
+<p><strong>redis</strong>：       轻量级，低延迟，高并发，低可靠性；<br><strong>rabbitmq</strong>：重量级，高可靠，异步，不保证实时；<br>rabbitmq是一个专门的AMQP协议队列，他的优势就在于提供<strong>可靠</strong>的队列服务，并且可做到<strong>异步</strong>，而redis主要是用于缓存的，redis的发布订阅模块，可用于实现及时性，且可靠性低的功能。</p>
+<h3 id="Feed流"><a href="#Feed流" class="headerlink" title="Feed流"></a>Feed流</h3><p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_AA378D9760E3-1.jpeg" alt="IMG_AA378D9760E3-1"></p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_FB0211CF5CF3-1.jpeg" alt="IMG_FB0211CF5CF3-1"></p>
+<h4 id="实践：本项目中使用推"><a href="#实践：本项目中使用推" class="headerlink" title="实践：本项目中使用推"></a>实践：本项目中使用推</h4><p>作者写好后，查找到他的所有粉丝，然后给所有的粉丝对应的key中增加这篇文章，当然此处使用了zset，根据文章发布时间排序。</p>
+<p>当然如果作者删除什么的需要处理。（我觉得可以懒处理，粉丝要看的时候从redis里面取出来然后比较存不存在，不存在的话redis删除，但是这样的话多次查询数据库还是累的）。</p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/jIjxBw.png" alt="jIjxBw"></p>
+<h2 id="Redis锁从面试连环炮聊到神仙打架。"><a href="#Redis锁从面试连环炮聊到神仙打架。" class="headerlink" title="Redis锁从面试连环炮聊到神仙打架。"></a><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3NjU3NTkwMQ==&mid=2247505097&idx=1&sn=5c03cb769c4458350f4d4a321ad51f5a&source=41#wechat_redirect">Redis锁从面试连环炮聊到神仙打架。</a></h2><blockquote>
+<ol>
+<li>Redis 做分布式锁的时候有需要注意的问题？</li>
+<li>如果是 Redis 是单点部署的，会带来什么问题？</li>
+<li>那你准备怎么解决单点问题呢？</li>
+<li>集群模式下，比如主从模式，有没有什么问题呢？</li>
+<li>你知道 Redis 是怎么解决集群模式也不靠谱的问题的吗？</li>
+<li>那你简单的介绍一下 Redlock 吧？</li>
+<li>你觉得 Redlock 有什么问题呢？</li>
+</ol>
+</blockquote>
+<h4 id="Kafka中，consumer-是推还是拉"><a href="#Kafka中，consumer-是推还是拉" class="headerlink" title="Kafka中，consumer 是推还是拉?"></a>Kafka中，<strong>consumer</strong> <strong>是推还是拉?</strong></h4><blockquote>
+<p>customer 应该从 brokes 拉取消息还是 brokers 将消息推送到 consumer，也就是 pull 还 push。在这方面，Kafka 遵循了一种大部分消息系统共同的传统的设计:<strong>producer 将消 息推送到 broker，consumer 从 broker 拉取消息</strong>。</p>
+<p>push 模式，将消息推送到下游的 consumer。这样做有好处也有坏处:由 broker 决定 消息推送的速率，对于不同消费速率的 consumer 就不太好处理了。消息系统都致力于让 consumer 以最大的速率最快速的消费消息，但不幸的是，push 模式下，当 broker 推送的 速率远大于 consumer 消费的速率时，consumer 恐怕就要崩溃了。最终 Kafka 还是选取了 传统的 pull 模式。</p>
+</blockquote>
+<h2 id="在Java中发送kafka消息"><a href="#在Java中发送kafka消息" class="headerlink" title="在Java中发送kafka消息"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38515961/article/details/124585270">在Java中发送kafka消息</a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">producer.send(<span class="keyword">new</span> <span class="title class_">ProducerRecord</span>&lt;&gt;(<span class="string">&quot;my-replicated-topic&quot;</span>,<span class="string">&quot;key&quot;</span>+i,<span class="string">&quot;value&quot;</span>+i));</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Kafka集群消息积压问题和数据倾斜问题及处理策略"><a href="#Kafka集群消息积压问题和数据倾斜问题及处理策略" class="headerlink" title="Kafka集群消息积压问题和数据倾斜问题及处理策略"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41982570/article/details/123422067">Kafka集群消息积压问题和数据倾斜问题及处理策略</a></h2><h3 id="Kafka消息积压的典型场景："><a href="#Kafka消息积压的典型场景：" class="headerlink" title="Kafka消息积压的典型场景："></a>Kafka消息积压的典型场景：</h3><ol>
+<li><h4 id="实时-x2F-消费任务挂掉"><a href="#实时-x2F-消费任务挂掉" class="headerlink" title="实时&#x2F;消费任务挂掉"></a>实时&#x2F;消费任务挂掉</h4></li>
+</ol>
+<p>比如，我们写的实时应用因为某种原因挂掉了，并且这个任务没有被监控程序监控发现通知相关负责人，负责人又没有写自动拉起任务的脚本进行重启。</p>
+<p>那么在我们重新启动这个实时应用进行消费之前，这段时间的消息就会被滞后处理，如果数据量很大，可就不是简单重启应用直接消费就能解决的。</p>
+<ol start="2">
+<li><h4 id="Kafka分区数设置的不合理（太少）和消费者”消费能力”不足"><a href="#Kafka分区数设置的不合理（太少）和消费者”消费能力”不足" class="headerlink" title="Kafka分区数设置的不合理（太少）和消费者”消费能力”不足"></a>Kafka分区数设置的不合理（太少）和消费者”消费能力”不足</h4></li>
+</ol>
+<p>Kafka单分区生产消息的速度qps通常很高，如果消费者因为某些原因（比如受业务逻辑复杂度影响，消费时间会有所不同），就会出现消费滞后的情况。</p>
+<p>此外，Kafka分区数是Kafka并行度调优的最小单元，如果Kafka分区数设置的太少，会影响Kafka consumer消费的吞吐量。</p>
+<ol start="3">
+<li><h4 id="Kafka消息的key不均匀，导致分区间数据不均衡"><a href="#Kafka消息的key不均匀，导致分区间数据不均衡" class="headerlink" title="Kafka消息的key不均匀，导致分区间数据不均衡"></a>Kafka消息的key不均匀，导致分区间数据不均衡</h4></li>
+</ol>
+<p>在使用Kafka producer消息时，可以为消息指定key，但是要求key要均匀，否则会出现Kafka分区间数据不均衡。</p>
+<p>那么，针对上述的情况，有什么好的办法处理数据积压呢？</p>
+<h3 id="一般情况下，针对性的解决办法有以下几种："><a href="#一般情况下，针对性的解决办法有以下几种：" class="headerlink" title="一般情况下，针对性的解决办法有以下几种："></a>一般情况下，针对性的解决办法有以下几种：</h3><ol>
+<li><h4 id="实时-x2F-消费任务挂掉导致的消费滞后"><a href="#实时-x2F-消费任务挂掉导致的消费滞后" class="headerlink" title="实时&#x2F;消费任务挂掉导致的消费滞后"></a>实时&#x2F;消费任务挂掉导致的消费滞后</h4></li>
+</ol>
+<p>a. 任务重新启动后直接消费最新的消息，对于”滞后”的历史数据采用离线程序进行”补漏”。</p>
+<p>此外，建议将任务纳入监控体系，当任务出现问题时，及时通知相关负责人处理。当然任务重启脚本也是要有的，还要求实时框架异常处理能力要强，避免数据不规范导致的不能重新拉起任务。</p>
+<p>b. 任务启动从上次提交offset处开始消费处理</p>
+<p>如果积压的数据量很大，需要增加任务的处理能力，比如增加资源，让任务能尽可能的快速消费处理，并赶上消费最新的消息</p>
+<ol start="2">
+<li><h4 id="Kafka分区少了"><a href="#Kafka分区少了" class="headerlink" title="Kafka分区少了"></a>Kafka分区少了</h4></li>
+</ol>
+<p>如果数据量很大，合理的增加Kafka分区数是关键。如果利用的是Spark流和Kafka direct approach方式，也可以对KafkaRDD进行repartition重分区，增加并行度处理。</p>
+<ol start="3">
+<li><h4 id="由于Kafka消息key设置的不合理，导致分区数据不均衡"><a href="#由于Kafka消息key设置的不合理，导致分区数据不均衡" class="headerlink" title="由于Kafka消息key设置的不合理，导致分区数据不均衡"></a>由于Kafka消息key设置的不合理，导致分区数据不均衡</h4></li>
+</ol>
+<p>可以在Kafka producer处，给key加随机后缀，使其均衡。</p>
+<h2 id="一种解决消费海量Kafka-Topic时数据倾斜的方案"><a href="#一种解决消费海量Kafka-Topic时数据倾斜的方案" class="headerlink" title="一种解决消费海量Kafka Topic时数据倾斜的方案"></a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1930841">一种解决消费海量Kafka Topic时数据倾斜的方案</a></h2><h2 id="为什么Redis的操作是原子性的，怎么保证原子性的？"><a href="#为什么Redis的操作是原子性的，怎么保证原子性的？" class="headerlink" title="为什么Redis的操作是原子性的，怎么保证原子性的？"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_51684972/article/details/111152134">为什么Redis的操作是原子性的，怎么保证原子性的？</a></h2><h3 id="为什么Redis的操作是原子性的，怎么保证原子性的？-1"><a href="#为什么Redis的操作是原子性的，怎么保证原子性的？-1" class="headerlink" title="为什么Redis的操作是原子性的，怎么保证原子性的？"></a>为什么Redis的操作是原子性的，怎么保证原子性的？</h3><p>对于Redis而言，命令的原子性指的是：<br>一个操作的不可以再分，操作要么执行，要么不执行。</p>
+<p>Redis的操作之所以是原子性的，是因为Redis是单线程的。</p>
+<p>Redis本身提供的所有API都是原子操作，<br>Redis中的<strong>事务</strong>其实是要<strong>保证批量操作</strong>的原子性。</p>
+<h3 id="多个命令在并发中也是原子性的吗？"><a href="#多个命令在并发中也是原子性的吗？" class="headerlink" title="多个命令在并发中也是原子性的吗？"></a>多个命令在并发中也是原子性的吗？</h3><p>不一定， 将get和set改成单命令操作，incr 。<br>使用Redis的事务，或者使用Redis+Lua&#x3D;&#x3D;的方式实现</p>
+<h2 id="数据结构——Redis中的bitmap"><a href="#数据结构——Redis中的bitmap" class="headerlink" title="数据结构——Redis中的bitmap"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44700810/article/details/124907052">数据结构——Redis中的bitmap</a></h2><blockquote>
+<p>redis中bit映射被限制在512MB之内，所以最大是2^32位。建议每个key的位数都控制下，因为读取时候时间复杂度O(n)，越大的串读的时间花销越多。</p>
+</blockquote>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2022/07/15/%E5%85%AB%E8%82%A1redis%E5%9F%BA%E7%A1%80/">http://example.com/2022/07/15/%E5%85%AB%E8%82%A1redis%E5%9F%BA%E7%A1%80/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-10-15</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Java/" class="post-tags__link button"># Java</a><a href="/tags/Redis/" class="post-tags__link button"># Redis</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/07/16/%E5%85%AB%E8%82%A1mysql/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            八股Mysql
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/06/25/%E9%A1%B9%E7%9B%AEredis-practice/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            项目Redispractice
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2022 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

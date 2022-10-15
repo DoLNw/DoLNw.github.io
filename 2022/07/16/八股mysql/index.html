@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>八股Mysql | 穿过海的声音</title>
+
+
+    <meta name="keywords" content="mysql">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="慢查询优化、索引、事务，Elastic Search。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="八股Mysql">
+<meta property="og:url" content="http://example.com/2022/07/16/%E5%85%AB%E8%82%A1mysql/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="慢查询优化、索引、事务，Elastic Search。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/%E7%B4%A2%E5%BC%95%E6%80%BB%E7%BB%93.drawio.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/06/ifpRJK5vzec4jh6.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/06/ThdnPEwA2Su7vki.jpg">
+<meta property="og:image" content="https://pic.tyzhang.top/images/2022/07/19/IMG_2075.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/08/06/dvIjm4FeM7VJXpG.png">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/XRK1gp.jpg">
+<meta property="article:published_time" content="2022-07-16T01:34:42.000Z">
+<meta property="article:modified_time" content="2022-10-15T06:13:20.679Z">
+<meta property="article:author" content="jcwang">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/%E7%B4%A2%E5%BC%95%E6%80%BB%E7%BB%93.drawio.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        八股Mysql
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/07/" class="post-meta__date button">2022-07-16</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%85%A2%E6%9F%A5%E8%AF%A2%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%EF%BC%9F%EF%BC%88%E5%AE%9E%E6%88%98%E6%85%A2%E6%9F%A5%E8%AF%A2%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">慢查询如何优化？（实战慢查询）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8"><span class="toc-number">2.</span> <span class="toc-text">索引下推</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">3.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E9%94%81"><span class="toc-number">4.</span> <span class="toc-text">行锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E8%BF%98%E6%98%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">mysql是单线程还是多线程？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HAVING%E5%92%8CWHERE%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9"><span class="toc-number">6.</span> <span class="toc-text">HAVING和WHERE的异同点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL10-%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E9%9D%9Emanager%E7%9A%84%E5%91%98%E5%B7%A5emp-no"><span class="toc-number">6.0.1.</span> <span class="toc-text">SQL10 获取所有非manager的员工emp_no</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">MySQL数据库索引总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%81%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="toc-number">8.</span> <span class="toc-text">锁的种类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">9.</span> <span class="toc-text">sql语句的执行流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">10.</span> <span class="toc-text">分库分表出现的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E4%B8%BE%E5%87%A0%E7%A7%8D%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E7%9A%84%E6%83%85%E5%86%B5%EF%BC%8C%E5%B9%B6%E8%A7%A3%E9%87%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%80%BE%E6%96%9C%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="toc-number">11.</span> <span class="toc-text">列举几种数据倾斜的情况，并解释为什么会倾斜，以及如何解决？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%A4%E4%B8%AA%E5%A4%A7%E6%96%87%E4%BB%B6%E4%B8%AD%E6%89%BE%E5%87%BA%E7%9B%B8%E5%90%8C%E7%9A%84%E8%AE%B0%E5%BD%95"><span class="toc-number">12.</span> <span class="toc-text">PHP如何在两个大文件中找出相同的记录?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-%E4%B8%8D%E5%90%8C%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%EF%BC%8C%E9%83%BD%E4%BD%BF%E7%94%A8%E4%BA%86%E4%BB%80%E4%B9%88%E9%94%81%EF%BC%9F"><span class="toc-number">13.</span> <span class="toc-text">MySQL 不同隔离级别，都使用了什么锁？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E6%9C%AA%E6%8F%90%E4%BA%A4"><span class="toc-number">13.1.</span> <span class="toc-text">读未提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%B7%B2%E6%8F%90%E4%BA%A4"><span class="toc-number">13.2.</span> <span class="toc-text">读已提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB"><span class="toc-number">13.3.</span> <span class="toc-text">可重复读</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E8%AF%AD%E5%8F%A5%E5%9C%A8Mysql%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">14.</span> <span class="toc-text">SQL语句在Mysql中的执行过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3MySQL%EF%BC%9Acount-%E3%80%81count-1-%E3%80%81count-%E4%B8%BB%E9%94%AE%E5%AD%97%E6%AE%B5-%E3%80%81count-%E5%AD%97%E6%AE%B5%EF%BC%89%E5%93%AA%E4%B8%AA%E6%80%A7%E8%83%BD%E6%9C%80%E5%A5%BD%EF%BC%9F"><span class="toc-number">15.</span> <span class="toc-text">图解MySQL：count(*) 、count(1) 、count(主键字段)、count(字段）哪个性能最好？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BF%9D%E8%AF%81%E6%9C%BA%E5%88%B6"><span class="toc-number">16.</span> <span class="toc-text">MySQL事务的保证机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL160-%E5%9B%BD%E5%BA%86%E6%9C%9F%E9%97%B4%E6%AF%8F%E7%B1%BB%E8%A7%86%E9%A2%91%E7%82%B9%E8%B5%9E%E9%87%8F%E5%92%8C%E8%BD%AC%E5%8F%91%E9%87%8F"><span class="toc-number">17.</span> <span class="toc-text">SQL160 国庆期间每类视频点赞量和转发量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DISTINCT%E4%B8%8D%E8%83%BD%E5%92%8Corder-by%E4%B8%80%E8%B5%B7%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">18.</span> <span class="toc-text">DISTINCT不能和order by一起使用的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#elasticsearch%E4%B9%8B%E7%B4%A2%E5%BC%95%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9CAPIs"><span class="toc-number">19.</span> <span class="toc-text">elasticsearch之索引基本操作APIs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch%E4%B9%8B%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">20.</span> <span class="toc-text">ElasticSearch之基础数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Elasticsearch-%E4%B8%80-%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95"><span class="toc-number">21.</span> <span class="toc-text">Elasticsearch(一)倒排索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Elasticsearch%EF%BC%8D%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90"><span class="toc-number">22.</span> <span class="toc-text">Elasticsearch－基础介绍及索引原理分析</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%85%A2%E6%9F%A5%E8%AF%A2%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%EF%BC%9F%EF%BC%88%E5%AE%9E%E6%88%98%E6%85%A2%E6%9F%A5%E8%AF%A2%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">慢查询如何优化？（实战慢查询）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8"><span class="toc-number">2.</span> <span class="toc-text">索引下推</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">3.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E9%94%81"><span class="toc-number">4.</span> <span class="toc-text">行锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E8%BF%98%E6%98%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">mysql是单线程还是多线程？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HAVING%E5%92%8CWHERE%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9"><span class="toc-number">6.</span> <span class="toc-text">HAVING和WHERE的异同点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL10-%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E9%9D%9Emanager%E7%9A%84%E5%91%98%E5%B7%A5emp-no"><span class="toc-number">6.0.1.</span> <span class="toc-text">SQL10 获取所有非manager的员工emp_no</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">MySQL数据库索引总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%81%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="toc-number">8.</span> <span class="toc-text">锁的种类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">9.</span> <span class="toc-text">sql语句的执行流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">10.</span> <span class="toc-text">分库分表出现的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E4%B8%BE%E5%87%A0%E7%A7%8D%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E7%9A%84%E6%83%85%E5%86%B5%EF%BC%8C%E5%B9%B6%E8%A7%A3%E9%87%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%80%BE%E6%96%9C%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="toc-number">11.</span> <span class="toc-text">列举几种数据倾斜的情况，并解释为什么会倾斜，以及如何解决？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%A4%E4%B8%AA%E5%A4%A7%E6%96%87%E4%BB%B6%E4%B8%AD%E6%89%BE%E5%87%BA%E7%9B%B8%E5%90%8C%E7%9A%84%E8%AE%B0%E5%BD%95"><span class="toc-number">12.</span> <span class="toc-text">PHP如何在两个大文件中找出相同的记录?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-%E4%B8%8D%E5%90%8C%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%EF%BC%8C%E9%83%BD%E4%BD%BF%E7%94%A8%E4%BA%86%E4%BB%80%E4%B9%88%E9%94%81%EF%BC%9F"><span class="toc-number">13.</span> <span class="toc-text">MySQL 不同隔离级别，都使用了什么锁？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E6%9C%AA%E6%8F%90%E4%BA%A4"><span class="toc-number">13.1.</span> <span class="toc-text">读未提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%B7%B2%E6%8F%90%E4%BA%A4"><span class="toc-number">13.2.</span> <span class="toc-text">读已提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB"><span class="toc-number">13.3.</span> <span class="toc-text">可重复读</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E8%AF%AD%E5%8F%A5%E5%9C%A8Mysql%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">14.</span> <span class="toc-text">SQL语句在Mysql中的执行过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3MySQL%EF%BC%9Acount-%E3%80%81count-1-%E3%80%81count-%E4%B8%BB%E9%94%AE%E5%AD%97%E6%AE%B5-%E3%80%81count-%E5%AD%97%E6%AE%B5%EF%BC%89%E5%93%AA%E4%B8%AA%E6%80%A7%E8%83%BD%E6%9C%80%E5%A5%BD%EF%BC%9F"><span class="toc-number">15.</span> <span class="toc-text">图解MySQL：count(*) 、count(1) 、count(主键字段)、count(字段）哪个性能最好？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BF%9D%E8%AF%81%E6%9C%BA%E5%88%B6"><span class="toc-number">16.</span> <span class="toc-text">MySQL事务的保证机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL160-%E5%9B%BD%E5%BA%86%E6%9C%9F%E9%97%B4%E6%AF%8F%E7%B1%BB%E8%A7%86%E9%A2%91%E7%82%B9%E8%B5%9E%E9%87%8F%E5%92%8C%E8%BD%AC%E5%8F%91%E9%87%8F"><span class="toc-number">17.</span> <span class="toc-text">SQL160 国庆期间每类视频点赞量和转发量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DISTINCT%E4%B8%8D%E8%83%BD%E5%92%8Corder-by%E4%B8%80%E8%B5%B7%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">18.</span> <span class="toc-text">DISTINCT不能和order by一起使用的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#elasticsearch%E4%B9%8B%E7%B4%A2%E5%BC%95%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9CAPIs"><span class="toc-number">19.</span> <span class="toc-text">elasticsearch之索引基本操作APIs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch%E4%B9%8B%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">20.</span> <span class="toc-text">ElasticSearch之基础数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Elasticsearch-%E4%B8%80-%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95"><span class="toc-number">21.</span> <span class="toc-text">Elasticsearch(一)倒排索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Elasticsearch%EF%BC%8D%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90"><span class="toc-number">22.</span> <span class="toc-text">Elasticsearch－基础介绍及索引原理分析</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <meta name="referrer" content="no-referrer" />
+
+<h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><h2 id="慢查询如何优化？（实战慢查询）"><a href="#慢查询如何优化？（实战慢查询）" class="headerlink" title="慢查询如何优化？（实战慢查询）"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/jj89929665/article/details/125199904">慢查询如何优化？（实战慢查询）</a></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、若未开启慢查询，用“set global slow_query_log=&#x27;ON&#x27;;”开启慢；2、用“set global slow_query_log_file=路径”设置慢查询文件保存位置；3、用“subl 路径”查询文件即可。</span><br><span class="line"></span><br><span class="line">show variables like &#x27;slow_query_log&#x27;;</span><br><span class="line">show variableslike &#x27;long_query_time&#x27;;</span><br><span class="line"></span><br><span class="line">SELECT * FROM `slow_log` where start_time &gt; &#x27;2019/05/19 00:00:00&#x27;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>首先在配置文件开启慢查询日志</p>
+<p>然后使用explain进行查询语句的分析</p>
+<p>1 如果没索引，加索引；有索引看是否失效？函数使用，最左原则，模糊查询等</p>
+<p>2 分页查询，越往后分页，LIMIT语句的偏移量就会越大，速度也会明显变慢。</p>
+<p>​    <strong>此在进行分页查询的时候，我们会直接通过叶子节点的双向链表进行查询，问题就出在了这里，由于页码过大，而且查询字段过多，每次查询时候需要回表，所以链表在遍历的时候时间过长，造成了性能瓶颈。</strong>这个主要出现在了需要回表</p>
+<p>​    应为查询的时候需要先查询出前面的所有记录，然后舍弃前面所有的，拿到后面的页。</p>
+<p>​    所以最好的解决办法是使用<strong>覆盖索引</strong>，先查询出该页的所有主键，然后根据主键查询。</p>
+<p>3 拆分关联查询</p>
+<p>4 分库分表</p>
+<p>5 ES中间件查询</p>
+<h2 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/mffandxx/article/details/111916252">索引知识系列二：联合索引、索引覆盖和索引下推详解</a></p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/%E7%B4%A2%E5%BC%95%E6%80%BB%E7%BB%93.drawio.png" alt="索引总结.drawio"></p>
+<h2 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_52622200/article/details/119647571">MySQL 表锁和行锁机制 分析</a></p>
+<p>在执行DML操作时，会对涉及的行加锁，同时也会对该表加上意向锁。（意向共享锁：与表共享兼容，表拍他互斥。意向排它锁：都互斥。但是意向拍他之间，不会互斥，行锁可以保证的。）</p>
+<p>后面对这张表加表锁的时候，会根据该表上的意向锁来判定是否可以加锁成功，而不用逐行在判断行锁。</p>
+<p>总结：<strong>InnoDB的行锁是针对索引加的锁，不是针对记录加的锁。并且该索引不能失效，否则都会从行锁升级为表锁</strong>。</p>
+<p>当你需要更新一张较大表的大部分甚至全表的数据时。而你又傻乎乎地用索引作为检索条件。一不小心开启了行锁(没毛病啊！保证数据的一致性！)。可MySQL却认为大量对一张表使用行锁，会导致事务执行效率低，从而可能造成其他事务长时间锁等待和更多的锁冲突问题，性能严重下降。所以MySQL会将行锁升级为表锁，即实际上并没有使用索引。</p>
+<p>行锁的劣势：开销大；加锁慢；会出现死锁<br>行锁的优势：锁的粒度小，发生锁冲突的概率低；处理并发的能力强<br>加锁的方式：自动加锁。对于UPDATE、DELETE和INSERT语句，InnoDB会自动给涉及数据集加排他锁；对于普通SELECT语句，InnoDB不会加任何锁；当然我们也可以显示的加锁：<br>共享锁：select * from tableName where … + lock in share more<br>排他锁：select * from tableName where … + for update<br>InnoDB和MyISAM的最大不同点有两个：一，InnoDB支持事务(transaction)；二，默认采用行级锁。加锁可以保证事务的一致性，可谓是有人(锁)的地方，就有江湖(事务)；我们先简单了解一下事务知识。</p>
+<p><strong>行锁</strong>：</p>
+<p><strong>间隙锁</strong>：防止其他事务在间隙insert，防止了了RR隔离级别的幻读。</p>
+<p><strong>临间锁</strong>：上俩综合。</p>
+<p><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1663660217432859548&wfr=spider&for=pc">程序员经典面试题，Mysql并发读写的时候，都是需要加锁的么？</a></p>
+<p>在Mysql中有行锁，如果有多个事务同时修改同一行数据，那么需要加锁来防止并发问题。那么，如果有事务修改数据，又有事务读取这个数据，需要加锁么？</p>
+<p>答案是不一定，事实上，Mysql的很多数据库引擎为了提升并发性能，都做了多版本并发控制，也就是我们常说的MVCC。</p>
+<p>在Mysql的每一行数据中，除了我们定义的数据列，还有2个隐藏的列，一个是数据的变更时间，一个是这行数据的删除时间，当然，这个时间并不是简单的时间戳，而是一个严格递增的系统版本号。</p>
+<p>当InnoDB发生Insert事件的时候，会插入当前行并且以取得的系统版本号作为数据版本号。</p>
+<p>当InnoDB发生Delete时间的时候，不会删除当前行，而是把对应的行如果未删除，那么打上删除标记位为当前的版本号。</p>
+<p>当InnoDB发生Select操作的时候，会取当前的系统版本号，然后到数据库中进行查询，他只会查询比自己当前版本号更小的，并且没有删除版本号或者删除版本号比当前版本号更小的数据。</p>
+<p>当InnoDB发生Update事件的时候，不是直接更新旧的数据，而是插入一条新的数据，并且把版本号小于这条记录的并且没有被打上删除标记的同一主键的记录更新打上删除标记，删除版本号为当前的版本号。</p>
+<p>很显然，在这样的一种数据中，同一行数据其实在数据库中是多行的存在。这本质上是一种空间换时间的方案，在多版本控制中，我们几乎可以做到所有的读操作都是无阻塞的，可以避免加锁，这与互联网业务中，多读少写是非常契合的。当然了，在Mysql的InnoDB引擎中，只有事务级别为可重复读跟读提交才可以使用。这是为什么呢？欢迎大家关注我，共同学习，共同进步。大家的支持是我继续唠嗑的动力。</p>
+<h2 id="mysql是单线程还是多线程？"><a href="#mysql是单线程还是多线程？" class="headerlink" title="mysql是单线程还是多线程？"></a><a target="_blank" rel="noopener" href="https://www.gxlcms.com/mysql-380884.html">mysql是单线程还是多线程？</a></h2><p>mysql是多线程的。mysql是一个单进程多线程的数据库，在innodb中大概3种线程为：1、主线程Master Thread；2、IO Thread线程，用于异步处理写请求；3、purge Thread线程，用于删除undo日志。</p>
+<p>主从复制的时候，从节点将从主节点read到的二进制日志通过IOThread写入到中继日志。</p>
+<h2 id="HAVING和WHERE的异同点"><a href="#HAVING和WHERE的异同点" class="headerlink" title="HAVING和WHERE的异同点"></a>HAVING和WHERE的异同点</h2><p>执行时机不同，一个在分组前，不满足where不参与分组，having对分组之后的结果进行过滤。</p>
+<p>判断条件不同，where不能对聚合函数进行判断。</p>
+<p>顺序：where &gt; 聚合函数 &gt; having。</p>
+<p>语法上:where 用表中列名，having 用 select 结果别名。</p>
+<p>影响结果范围:where 从表读出数据的行数，having 返回客户端的行数。</p>
+<p>where 可以使用索引，having 不能使用索引，只能在临时结果集操作。</p>
+<p>where后面不能使用聚集函数，having是专门使用聚集函数的。</p>
+<h4 id="SQL10-获取所有非manager的员工emp-no"><a href="#SQL10-获取所有非manager的员工emp-no" class="headerlink" title="SQL10 获取所有非manager的员工emp_no"></a><strong>SQL10</strong> <strong>获取所有非manager的员工emp_no</strong></h4><p>MySQL官方文档有说明，in关键字适合确定数量的情况，一般效率较低，不推荐使用。能用in关键字的语句都可以转化为使用join的语句，推荐使用join关键字。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/database/mysql/transaction-isolation-level">事务隔离级别(图文详解)</a></li>
+</ul>
+<p>MYSQL的隔离级别是基于锁和MVCC共同实现的。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/database/mysql/mysql-logs">MySQL三大日志(binlog、redo log和undo log)详解</a></li>
+</ul>
+<p>binlog、redolog、undolog</p>
+<p><img src="https://s2.loli.net/2022/08/06/ifpRJK5vzec4jh6.png" alt="ifpRJK5vzec4jh6"></p>
+<p>redolog用于主机的重启恢复，会有一个二阶段提交过程（将<code>redo log</code>的写入拆成了两个步骤<code>prepare</code>和<code>commit</code>，这就是<strong>两阶段提交</strong>），先会有redolog的准备节点，在binlog写入，再redolog的commit</p>
+<p>binlog主要用于备份</p>
+<blockquote>
+<p>MySQL InnoDB 引擎使用 <strong>redo log(重做日志)</strong> 保证事务的<strong>持久性</strong>，使用 <strong>undo log(回滚日志)</strong> 来保证事务的<strong>原子性</strong>。</p>
+<p><code>MySQL</code>数据库的<strong>数据备份、主备、主主、主从</strong>都离不开<code>binlog</code>，需要依靠<code>binlog</code>来同步数据，保证数据一致性。</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2022/08/06/ThdnPEwA2Su7vki.jpg" alt="ThdnPEwA2Su7vki"></p>
+<p><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/database/mysql/innodb-implementation-of-mvcc?id=innodb-%E5%AF%B9-mvcc-%E7%9A%84%E5%AE%9E%E7%8E%B0">InnoDB存储引擎对MVCC的实现</a></p>
+<p>在 <code>InnoDB</code> 存储引擎中，<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/innodb-multi-versioning.html">多版本控制 (multi versioning)</a> 就是对<strong>非锁定读</strong>的实现。如果读取的行正在执行 <code>DELETE</code> 或 <code>UPDATE</code> 操作，这时读取操作不会去等待行上锁的释放。相反地，<code>InnoDB</code> 存储引擎会去读取行的一个快照数据，对于这种读取历史数据的方式，我们叫它快照读 (snapshot read)</p>
+<p>所以说，insert是在提交事务后，undolog就能删除的，但是delete和update是需要mvcc的。</p>
+<p><code>MVCC</code> 的实现依赖于：<strong>隐藏字段、Read View、undo log</strong>。</p>
+<p><img src="https://pic.tyzhang.top/images/2022/07/19/IMG_2075.jpg" alt="IMG_2075.jpg"></p>
+<ul>
+<li><h2 id="MySQL数据库索引总结"><a href="#MySQL数据库索引总结" class="headerlink" title="MySQL数据库索引总结"></a><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/database/mysql/mysql-index">MySQL数据库索引总结</a></h2></li>
+</ul>
+<p>索引</p>
+<p>用B+，而不是B-（深度深），而不是HashMap（哈希冲突，顺序和范围查找）</p>
+<p>而不是平衡二叉树（创建删除增加更麻烦，深度太深）。而不是普通二叉树（深度太深），而不是红黑树（深度太深，末端也没有双向链表）。</p>
+<p>磁盘IO代价主要花费在查找所需的柱面上，树的深度过大会造成磁盘IO频繁读写。根据磁盘查找存取的次数往往由树的高度所决定，所以，只要我们通过某种较好的树结构减少树的结构尽量减少树的高度。</p>
+<p><img src="https://s2.loli.net/2022/08/06/dvIjm4FeM7VJXpG.png" alt="dvIjm4FeM7VJXpG"></p>
+<h2 id="锁的种类"><a href="#锁的种类" class="headerlink" title="锁的种类"></a>锁的种类</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/478bc84a7721">MySQL记录锁、间隙锁、临键锁（Next-Key Locks）详解</a></p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/XRK1gp.jpg" alt="XRK1gp"></p>
+<h2 id="sql语句的执行流程"><a href="#sql语句的执行流程" class="headerlink" title="sql语句的执行流程"></a>sql语句的执行流程</h2><blockquote>
+<p>1、在打开客户端后，最初需要和sql服务器建立连接，账号认证和校验权限。</p>
+<p>2、认证后，客户端发生查询sql脚本给服务器</p>
+<p>3、服务器先检查查询缓存，如果命中了缓存，则立刻返回存储在缓存中的结果。否则进入下一阶段。</p>
+<p>4、服务器端进行SQL解析、预处理，再由优化器生成对应的执行计划。</p>
+<p>5、MySQL根据优化器生成的执行计划，再调用存储引擎的API来执行查询。</p>
+<p>6、将结果返回给客户端。</p>
+</blockquote>
+<h2 id="分库分表出现的问题"><a href="#分库分表出现的问题" class="headerlink" title="分库分表出现的问题"></a>分库分表出现的问题</h2><p>数据的的自增主键没办法满足生成的主键唯一了，所以需要用分布式ID。</p>
+<h2 id="列举几种数据倾斜的情况，并解释为什么会倾斜，以及如何解决？"><a href="#列举几种数据倾斜的情况，并解释为什么会倾斜，以及如何解决？" class="headerlink" title="列举几种数据倾斜的情况，并解释为什么会倾斜，以及如何解决？"></a><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/56801332">列举几种数据倾斜的情况，并解释为什么会倾斜，以及如何解决？</a></h2><h2 id="PHP如何在两个大文件中找出相同的记录"><a href="#PHP如何在两个大文件中找出相同的记录" class="headerlink" title="PHP如何在两个大文件中找出相同的记录?"></a><a target="_blank" rel="noopener" href="https://www.php.cn/php-weizijiaocheng-478501.html">PHP如何在两个大文件中找出相同的记录?</a></h2><blockquote>
+<ul>
+<li>处理该问题的困难主要是无法将这海量数据一次性读内内存中.</li>
+<li>一次性读不进内存中，那么是否可以考虑多次呢？如果可以，那么多次读入要怎么计算相同的值呢？</li>
+<li>我们可以用分治思想， 大而化小。相同字符串的值hash过后是相等的, 那么我们可以考虑使用hash取模, 将记录分散到n个文件中。这个n怎么取呢？ PHP 100M内存，数组大约可以存100w的数据, 那么按a,b记录都只有10亿行来算, n至少要大于200。</li>
+<li>此时有200个文件，相同的记录肯定在同一个文件中，并且每个文件都可以全部读进内存。那么可以依次找出这200个文件中各自相同的记录，然后输出到同一个文件中，得到的最终结果就是a, b两个文件中相同的记录。</li>
+<li>找一个小文件中相同的记录很简单了吧，将每行记录作为hash表的key, 统计key的出现次数&gt;&#x3D;2就可以了。</li>
+</ul>
+</blockquote>
+<h2 id="MySQL-不同隔离级别，都使用了什么锁？"><a href="#MySQL-不同隔离级别，都使用了什么锁？" class="headerlink" title="MySQL 不同隔离级别，都使用了什么锁？"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013190417/article/details/126762306">MySQL 不同隔离级别，都使用了什么锁？</a></h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42500831/article/details/123652307?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_ecpm_v1~rank_v31_ecpm-1-123652307-null-null.pc_agg_new_rank&utm_term=mysql%20%E4%B8%B2%E8%A1%8C%E5%8C%96%20%E9%94%81%E6%9C%BA%E5%88%B6&spm=1000.2123.3001.4430">MySQL串行化隔离级别（间隙锁实现）</a></p>
+<h3 id="读未提交"><a href="#读未提交" class="headerlink" title="读未提交"></a>读未提交</h3><p><strong>在「读未提交」隔离级别下，读写操作可以同时进行，但写写操作无法同时进行。与此同时，该隔离级别下只会使用行级别的记录锁，并不会用间隙锁。</strong></p>
+<h3 id="读已提交"><a href="#读已提交" class="headerlink" title="读已提交"></a>读已提交</h3><p>还是只有一个行级别的记录锁，并没有间隙锁。</p>
+<p><strong>其实他们的最大区别，就是「读已提交」解决了脏读的问题。</strong></p>
+<h3 id="可重复读"><a href="#可重复读" class="headerlink" title="可重复读"></a>可重复读</h3><p>当前读，记录锁+间隙锁</p>
+<p>快照读：MVCC</p>
+<p>next-key锁就是 记录所和间隙锁的结合体</p>
+<p>写：写一条的时候记录锁，写范围的时候 next-key锁。</p>
+<p>可重复读级别下条件列有索引时会添加间隙锁，阻止在此间隙内的insert操作，防止出现幻读。</p>
+<p><strong>InnoDB引擎在执行查询语句SELECT时，不会加锁。但是update、insert、delete操作会加行锁限制其他事物更新</strong></p>
+<h2 id="SQL语句在Mysql中的执行过程"><a href="#SQL语句在Mysql中的执行过程" class="headerlink" title="SQL语句在Mysql中的执行过程"></a><a target="_blank" rel="noopener" href="https://javaguide.cn/database/mysql/how-sql-executed-in-mysql.html#_2-2-%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5">SQL语句在Mysql中的执行过程</a></h2><p>总结</p>
+<ul>
+<li>MySQL 主要分为 Server 层和引擎层，Server 层主要包括连接器、查询缓存、分析器、优化器、执行器，同时还有一个日志模块（binlog），这个日志模块所有执行引擎都可以共用，redolog 只有 InnoDB 有。</li>
+<li>引擎层是插件式的，目前主要包括，MyISAM,InnoDB,Memory 等。</li>
+<li>查询语句的执行流程如下：权限校验（如果命中缓存）—&gt;查询缓存—&gt;分析器—&gt;优化器—&gt;权限校验—&gt;执行器—&gt;引擎</li>
+<li>更新语句执行流程如下：分析器—-&gt;权限校验—-&gt;执行器—&gt;引擎—redo log(prepare 状态)—&gt;binlog—&gt;redo log(commit状态)</li>
+</ul>
+<h2 id="图解MySQL：count-、count-1-、count-主键字段-、count-字段）哪个性能最好？"><a href="#图解MySQL：count-、count-1-、count-主键字段-、count-字段）哪个性能最好？" class="headerlink" title="图解MySQL：count(*) 、count(1) 、count(主键字段)、count(字段）哪个性能最好？"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaolincoding/p/15769721.html">图解MySQL：count(*) 、count(1) 、count(主键字段)、count(字段）哪个性能最好？</a></h2><p>count(*)   &#x3D; count(1)   ＞    count(主键字段）＞count(字段）</p>
+<h2 id="MySQL事务的保证机制"><a href="#MySQL事务的保证机制" class="headerlink" title="MySQL事务的保证机制"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/promsing/article/details/126207813">MySQL事务的保证机制</a></h2><p>原子性是有undoLog来保证</p>
+<p>持久性是由redolog来保证</p>
+<p>隔离性是有锁机制和MVCC机制保证</p>
+<p><strong>一致性是有以上三个机制保证的。</strong></p>
+<h2 id="SQL160-国庆期间每类视频点赞量和转发量"><a href="#SQL160-国庆期间每类视频点赞量和转发量" class="headerlink" title="SQL160 国庆期间每类视频点赞量和转发量"></a><a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/f90ce4ee521f400db741486209914a11?tpId=268&tqId=2285070&ru=/exam/oj&qru=/ta/sql-factory-interview/question-ranking&sourceUrl=/exam/oj?page=1&tab=SQL%25E7%25AF%2587&topicId=268"><strong>SQL160</strong> <strong>国庆期间每类视频点赞量和转发量</strong></a></h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"># <span class="keyword">select</span> tag,dt,</span><br><span class="line">#      <span class="built_in">sum</span>(like_cnt) <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> tag <span class="keyword">order</span> <span class="keyword">by</span> t3.dt <span class="keyword">rows</span> <span class="number">6</span> preceding) total_like,</span><br><span class="line">#      <span class="built_in">max</span>(retweet_cnt) <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> tag <span class="keyword">order</span> <span class="keyword">by</span> t3.dt <span class="keyword">rows</span> <span class="number">6</span> preceding) max_retweet</span><br><span class="line"># <span class="keyword">from</span> (</span><br><span class="line">#     <span class="keyword">select</span> tag,</span><br><span class="line">#     <span class="type">date</span>(start_time) dt, </span><br><span class="line">#     <span class="built_in">sum</span>(if_like) like_cnt,</span><br><span class="line">#     <span class="built_in">sum</span>(if_retweet) retweet_cnt</span><br><span class="line">#     <span class="keyword">from</span> tb_user_video_log t1 </span><br><span class="line">#     <span class="keyword">inner</span> <span class="keyword">join</span> tb_video_info t2 </span><br><span class="line">#     <span class="keyword">on</span> t1.video_id<span class="operator">=</span>t2.video_id</span><br><span class="line">#     <span class="keyword">where</span> <span class="type">date</span>(start_time) <span class="keyword">between</span> <span class="string">&#x27;2021-09-25&#x27;</span> <span class="keyword">and</span> <span class="string">&#x27;2021-10-03&#x27;</span></span><br><span class="line">#     <span class="keyword">group</span> <span class="keyword">by</span> tag,<span class="type">date</span>(start_time)</span><br><span class="line">#     ) t3</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> (</span><br><span class="line"><span class="keyword">select</span> tag,</span><br><span class="line">dt,</span><br><span class="line"></span><br><span class="line"><span class="built_in">sum</span>(like_cnt) </span><br><span class="line"><span class="keyword">over</span> </span><br><span class="line">(<span class="keyword">partition</span> <span class="keyword">by</span> tag <span class="keyword">order</span> <span class="keyword">by</span> t1.dt <span class="keyword">rows</span> <span class="keyword">between</span> <span class="number">6</span> preceding <span class="keyword">and</span> <span class="keyword">current</span> <span class="type">row</span>) sum_like_cnt_7d,</span><br><span class="line"></span><br><span class="line"><span class="built_in">max</span>(retweet_cnt)</span><br><span class="line"><span class="keyword">over</span></span><br><span class="line">(<span class="keyword">partition</span> <span class="keyword">by</span> tag <span class="keyword">order</span> <span class="keyword">by</span> t1.dt <span class="keyword">rows</span> <span class="keyword">between</span> <span class="number">6</span> preceding <span class="keyword">and</span> <span class="keyword">current</span> <span class="type">row</span>) max_retweet_cnt_7d</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> (</span><br><span class="line">    <span class="keyword">select</span> tag, </span><br><span class="line">    <span class="type">date</span>(start_time) dt,</span><br><span class="line">    <span class="built_in">sum</span>(if_like) like_cnt, </span><br><span class="line">    <span class="built_in">sum</span>(if_retweet) retweet_cnt</span><br><span class="line">    <span class="keyword">from</span> tb_user_video_log a</span><br><span class="line">    <span class="keyword">join</span> tb_video_info b</span><br><span class="line">    <span class="keyword">on</span> a.video_id <span class="operator">=</span> b.video_id</span><br><span class="line">    # <span class="keyword">where</span> <span class="type">date</span>(start_time) <span class="keyword">between</span> <span class="string">&#x27;2021-09-25&#x27;</span> <span class="keyword">and</span> <span class="string">&#x27;2021-10-03&#x27;</span></span><br><span class="line">    <span class="keyword">group</span> <span class="keyword">by</span> tag, <span class="type">date</span>(start_time)</span><br><span class="line">) t1 ) t2</span><br><span class="line"></span><br><span class="line"><span class="keyword">where</span> dt <span class="keyword">between</span> &quot;2021-10-01&quot; <span class="keyword">and</span> &quot;2021-10-03&quot;</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> tag <span class="keyword">desc</span>,</span><br><span class="line">sum_like_cnt_7d <span class="keyword">asc</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># <span class="keyword">group</span> <span class="keyword">by</span>和窗口函数不能一起用吧</span><br><span class="line"># 像这种需要<span class="number">1</span>～<span class="number">3</span>号的累加，但是累加需要<span class="number">1</span>～<span class="number">3</span>前面几号的，用子查询，先窗口查好，然后在外面用<span class="keyword">where</span>,</span><br><span class="line"># 而且，直接在外层<span class="keyword">where</span>还不行，要再套一层注意上面的<span class="keyword">select</span><span class="operator">*</span></span><br><span class="line"># 注意 <span class="keyword">group</span> <span class="keyword">by</span>用了之后，<span class="keyword">select</span>选择的字段要么是在groupby里面的，要是是用了聚合函数的</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="DISTINCT不能和order-by一起使用的问题"><a href="#DISTINCT不能和order-by一起使用的问题" class="headerlink" title="DISTINCT不能和order by一起使用的问题"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38837032/article/details/118219731">DISTINCT不能和order by一起使用的问题</a></h2><p>select查询中如果没有需要order的，那么会出错，使用子查询；也可以使用group by 子句代替distinct解决(不一定对)。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 利用子查询，但需要注意<span class="keyword">null</span>的处理，最好使用<span class="keyword">NOT</span> <span class="keyword">IN</span>剔除自己喜欢的音乐，而不是<span class="operator">&lt;&gt;</span>。当自己没有喜欢的音乐时候，使用不等于进行剔除就可能出现问题。</span><br><span class="line"># <span class="keyword">distinct</span>不能写在外侧，就写在里面</span><br><span class="line"><span class="keyword">select</span> music_name</span><br><span class="line"><span class="keyword">from</span> music</span><br><span class="line"><span class="keyword">where</span> id <span class="keyword">in</span> (</span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">distinct</span> music_id</span><br><span class="line">    <span class="keyword">from</span> music_likes</span><br><span class="line">    <span class="keyword">where</span> user_id <span class="keyword">in</span> (</span><br><span class="line">        <span class="keyword">select</span> follower_id</span><br><span class="line">        <span class="keyword">from</span> follow</span><br><span class="line">        <span class="keyword">where</span> user_id <span class="operator">=</span> <span class="number">1</span></span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"><span class="keyword">and</span> id <span class="keyword">not</span> <span class="keyword">in</span> (</span><br><span class="line">    <span class="keyword">select</span> music_id</span><br><span class="line">    <span class="keyword">from</span> music_likes</span><br><span class="line">    <span class="keyword">where</span> user_id <span class="operator">=</span> <span class="number">1</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> id</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="elasticsearch之索引基本操作APIs"><a href="#elasticsearch之索引基本操作APIs" class="headerlink" title="elasticsearch之索引基本操作APIs"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_18218071/article/details/114324860?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522166567540616781432968531%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&request_id=166567540616781432968531&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-21-114324860-null-null.nonecase&utm_term=elastic&spm=1018.2226.3001.4450">elasticsearch之索引基本操作APIs</a></h2><h2 id="ElasticSearch之基础数据类型"><a href="#ElasticSearch之基础数据类型" class="headerlink" title="ElasticSearch之基础数据类型"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_18218071/article/details/113482142">ElasticSearch之基础数据类型</a></h2><h2 id="Elasticsearch-一-倒排索引"><a href="#Elasticsearch-一-倒排索引" class="headerlink" title="Elasticsearch(一)倒排索引"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45695974/article/details/125583641">Elasticsearch(一)倒排索引</a></h2><h2 id="Elasticsearch－基础介绍及索引原理分析"><a href="#Elasticsearch－基础介绍及索引原理分析" class="headerlink" title="Elasticsearch－基础介绍及索引原理分析"></a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74234766">Elasticsearch－基础介绍及索引原理分析</a></h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">关系数据库     ⇒ 数据库 ⇒ 表    ⇒ 行    ⇒ 列(Columns)</span><br><span class="line"></span><br><span class="line">Elasticsearch  ⇒ 索引(Index)   ⇒ 类型(type)  ⇒ 文档(Docments)  ⇒ 字段(Fields)  </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2022/07/16/%E5%85%AB%E8%82%A1mysql/">http://example.com/2022/07/16/%E5%85%AB%E8%82%A1mysql/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-10-15</p></div> 
+    <div class="post-entry__tags"><a href="/tags/mysql/" class="post-tags__link button"># mysql</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/07/17/%E5%85%AB%E8%82%A1JVM/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            八股JVM
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/07/15/%E5%85%AB%E8%82%A1redis%E5%9F%BA%E7%A1%80/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            八股redis基础
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2022 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
