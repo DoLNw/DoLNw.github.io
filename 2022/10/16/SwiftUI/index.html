@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>SwiftUI | 穿过海的声音</title>
+
+
+    <meta name="keywords" content="SwiftUI">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="此处收集一些有关Swift的内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SwiftUI">
+<meta property="og:url" content="http://example.com/2022/10/16/SwiftUI/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="此处收集一些有关Swift的内容。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-16T10:06:23.000Z">
+<meta property="article:modified_time" content="2022-11-02T01:20:04.067Z">
+<meta property="article:author" content="jcwang">
+<meta property="article:tag" content="SwiftUI">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        SwiftUI
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/10/" class="post-meta__date button">2022-10-16</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Project1WeSplit"><span class="toc-number">1.</span> <span class="toc-text">Project1WeSplit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88navigationTitle%E6%98%AF%E6%94%BE%E5%9C%A8NavigationView%E9%87%8C%E9%9D%A2%E8%80%8C%E4%B8%8D%E6%98%AF%E5%A4%96%E9%9D%A2%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">为什么navigationTitle是放在NavigationView里面而不是外面？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alert-%E6%94%BE%E5%9C%A8%E5%93%AA%E9%87%8C%E8%B2%8C%E4%BC%BC%E4%B9%9F%E4%B8%8D%E6%89%93%E7%B4%A7"><span class="toc-number">1.2.</span> <span class="toc-text">.alert()放在哪里貌似也不打紧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E7%8A%B6%E6%80%81%E6%B3%A8%E8%A7%A3-Property-wrappers"><span class="toc-number">1.3.</span> <span class="toc-text">一些状态注解, Property wrappers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-number">1.3.1.</span> <span class="toc-text">区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project2-GuesstheFlag"><span class="toc-number">2.</span> <span class="toc-text">Project2 GuesstheFlag</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A7%86%E5%9B%BE%E5%9C%A8swiftUI%E4%B8%AD%E6%98%AF%E7%BB%93%E6%9E%84%E4%BD%93%E8%80%8C%E4%B8%8D%E6%98%AF%E7%B1%BB"><span class="toc-number">2.1.</span> <span class="toc-text">为什么视图在swiftUI中是结构体而不是类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project3-Views-and-Modifiers"><span class="toc-number">3.</span> <span class="toc-text">Project3 Views and Modifiers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Views-and-Modifiers%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-number">3.1.</span> <span class="toc-text">Views and Modifiers的结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Environment-modifiers"><span class="toc-number">3.2.</span> <span class="toc-text">Environment modifiers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-happens-if-we-send-back-two-views-directly-from-our-body-property-without-wrapping-them-in-a-stack"><span class="toc-number">3.3.</span> <span class="toc-text">What happens if we send back two views directly from our body property, without wrapping them in a stack?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Custom-modifiers"><span class="toc-number">3.4.</span> <span class="toc-text">Custom modifiers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project4-BetterRest"><span class="toc-number">4.</span> <span class="toc-text">Project4 BetterRest</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E8%97%8FDatePicker%E7%9A%84-label"><span class="toc-number">4.1.</span> <span class="toc-text">隐藏DatePicker的 label</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EDate%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%AD%E6%B3%95"><span class="toc-number">4.2.</span> <span class="toc-text">关于Date的一些语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project5-WordScramble"><span class="toc-number">5.</span> <span class="toc-text">Project5 WordScramble</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project6-Animations"><span class="toc-number">6.</span> <span class="toc-text">Project6 Animations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Remember"><span class="toc-number">6.1.</span> <span class="toc-text">Remember</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%8A%A8%E7%94%BB"><span class="toc-number">6.2.</span> <span class="toc-text">设置动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#implicitly-animations"><span class="toc-number">6.3.</span> <span class="toc-text">implicitly animations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#explicitly-animations"><span class="toc-number">6.4.</span> <span class="toc-text">explicitly animations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AEorder%E6%9D%A5%E5%AE%9E%E7%8E%B0%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%95%88%E6%9E%9C"><span class="toc-number">6.5.</span> <span class="toc-text">根据order来实现不一样的效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project7-iExpense"><span class="toc-number">7.</span> <span class="toc-text">Project7 iExpense</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Published-StateObject-ObservedObject"><span class="toc-number">7.1.</span> <span class="toc-text">Published, @StateObject, @ObservedObject</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Environment"><span class="toc-number">7.2.</span> <span class="toc-text">@Environment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AppStorage-UserDefaults"><span class="toc-number">7.3.</span> <span class="toc-text">@AppStorage , UserDefaults</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Codable-JSONEncoder-encode"><span class="toc-number">7.4.</span> <span class="toc-text">Codable, JSONEncoder.encode()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project8-Moonshot"><span class="toc-number">8.</span> <span class="toc-text">Project8 Moonshot</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sheet-and-NavigationLink"><span class="toc-number">8.1.</span> <span class="toc-text">sheet() and NavigationLink</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON%E7%9A%84string%E7%B1%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%88%90%E5%AE%9E%E4%BE%8B%E7%B1%BB"><span class="toc-number">8.2.</span> <span class="toc-text">JSON的string类型数据转成实例类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project9-Drawing"><span class="toc-number">9.</span> <span class="toc-text">Project9 Drawing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Path-and-Shape"><span class="toc-number">9.1.</span> <span class="toc-text">Path and Shape</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stroke-to-strokeBorder"><span class="toc-number">9.2.</span> <span class="toc-text">stroke() to strokeBorder()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#drawingGroup"><span class="toc-number">9.3.</span> <span class="toc-text">drawingGroup()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Project10CupcakeCorner"><span class="toc-number">9.4.</span> <span class="toc-text">Project10CupcakeCorner</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%B7%B1%E5%9C%A8%E7%B1%BB%E4%B8%AD%E5%86%99decode%E3%80%81encode-add-Codable-conformance-by-hand"><span class="toc-number">9.5.</span> <span class="toc-text">自己在类中写decode、encode, add Codable conformance by hand</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project11-BookWorm"><span class="toc-number">10.</span> <span class="toc-text">Project11 BookWorm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Binding"><span class="toc-number">10.1.</span> <span class="toc-text">@Binding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Core-Data"><span class="toc-number">10.2.</span> <span class="toc-text">Core Data</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project12CoreDataProject"><span class="toc-number">11.</span> <span class="toc-text">Project12CoreDataProject</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#self"><span class="toc-number">11.1.</span> <span class="toc-text">\.self</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSManaged"><span class="toc-number">11.2.</span> <span class="toc-text">@NSManaged</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%9B%E9%80%89-%E6%8E%92%E5%BA%8F"><span class="toc-number">11.3.</span> <span class="toc-text">筛选 + 排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E7%AD%9B%E9%80%89"><span class="toc-number">11.4.</span> <span class="toc-text">动态筛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B%E4%B9%8B%E5%90%8E%E7%9A%84%EF%BC%8C%E5%8A%A8%E6%80%81%E5%88%A0%E9%80%89-%E6%8E%92%E5%BA%8F-enum-conten%E9%97%AD%E5%8C%85"><span class="toc-number">11.5.</span> <span class="toc-text">改进之后的，动态删选+排序+enum+conten闭包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project13-Instafilter"><span class="toc-number">12.</span> <span class="toc-text">Project13 Instafilter</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#onChange"><span class="toc-number">12.1.</span> <span class="toc-text">onChange</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">12.1.1.</span> <span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sheet-alert-confirmationDialog"><span class="toc-number">12.2.</span> <span class="toc-text">Sheet(), alert(), confirmationDialog()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIImage%EF%BC%8CCGImage%EF%BC%8CCIImage"><span class="toc-number">12.3.</span> <span class="toc-text">UIImage，CGImage，CIImage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CoorDinator"><span class="toc-number">12.4.</span> <span class="toc-text">CoorDinator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%90%88UIKit%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">12.5.</span> <span class="toc-text">整合UIKit的例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project15-BucketList"><span class="toc-number">13.</span> <span class="toc-text">Project15 BucketList</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E6%96%B9%E6%A1%88"><span class="toc-number">13.1.</span> <span class="toc-text">存储方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#FileManager"><span class="toc-number">13.1.1.</span> <span class="toc-text">FileManager</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#returning-different-kinds-of-view"><span class="toc-number">13.2.</span> <span class="toc-text">returning different kinds of view</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Binding%E7%BB%91%E5%AE%9Aoptional-value%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E7%94%A8-escapting"><span class="toc-number">13.3.</span> <span class="toc-text">@Binding绑定optional value的时候，用@escapting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MainActor%EF%BC%8CMVVM%EF%BC%8CViewModel"><span class="toc-number">13.4.</span> <span class="toc-text">@MainActor，MVVM，ViewModel</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project15-Accessibility"><span class="toc-number">14.</span> <span class="toc-text">Project15 Accessibility</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project16-HotProspects"><span class="toc-number">15.</span> <span class="toc-text">Project16 HotProspects</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TabView"><span class="toc-number">15.1.</span> <span class="toc-text">TabView</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project17-Flashzzilla"><span class="toc-number">16.</span> <span class="toc-text">Project17 Flashzzilla</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#highPriorityGesture-%E3%80%81-simultaneousGesture"><span class="toc-number">16.1.</span> <span class="toc-text">**highPriorityGesture()**、 simultaneousGesture()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gesture-sequences"><span class="toc-number">16.2.</span> <span class="toc-text">gesture sequences</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Timer%EF%BC%8CCombine"><span class="toc-number">16.3.</span> <span class="toc-text">Timer，Combine</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project18-LayoutAndGeometry"><span class="toc-number">17.</span> <span class="toc-text">Project18 LayoutAndGeometry</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step"><span class="toc-number">17.1.</span> <span class="toc-text">Step</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Project1WeSplit"><span class="toc-number">1.</span> <span class="toc-text">Project1WeSplit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88navigationTitle%E6%98%AF%E6%94%BE%E5%9C%A8NavigationView%E9%87%8C%E9%9D%A2%E8%80%8C%E4%B8%8D%E6%98%AF%E5%A4%96%E9%9D%A2%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">为什么navigationTitle是放在NavigationView里面而不是外面？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alert-%E6%94%BE%E5%9C%A8%E5%93%AA%E9%87%8C%E8%B2%8C%E4%BC%BC%E4%B9%9F%E4%B8%8D%E6%89%93%E7%B4%A7"><span class="toc-number">1.2.</span> <span class="toc-text">.alert()放在哪里貌似也不打紧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E7%8A%B6%E6%80%81%E6%B3%A8%E8%A7%A3-Property-wrappers"><span class="toc-number">1.3.</span> <span class="toc-text">一些状态注解, Property wrappers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-number">1.3.1.</span> <span class="toc-text">区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project2-GuesstheFlag"><span class="toc-number">2.</span> <span class="toc-text">Project2 GuesstheFlag</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A7%86%E5%9B%BE%E5%9C%A8swiftUI%E4%B8%AD%E6%98%AF%E7%BB%93%E6%9E%84%E4%BD%93%E8%80%8C%E4%B8%8D%E6%98%AF%E7%B1%BB"><span class="toc-number">2.1.</span> <span class="toc-text">为什么视图在swiftUI中是结构体而不是类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project3-Views-and-Modifiers"><span class="toc-number">3.</span> <span class="toc-text">Project3 Views and Modifiers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Views-and-Modifiers%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-number">3.1.</span> <span class="toc-text">Views and Modifiers的结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Environment-modifiers"><span class="toc-number">3.2.</span> <span class="toc-text">Environment modifiers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-happens-if-we-send-back-two-views-directly-from-our-body-property-without-wrapping-them-in-a-stack"><span class="toc-number">3.3.</span> <span class="toc-text">What happens if we send back two views directly from our body property, without wrapping them in a stack?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Custom-modifiers"><span class="toc-number">3.4.</span> <span class="toc-text">Custom modifiers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project4-BetterRest"><span class="toc-number">4.</span> <span class="toc-text">Project4 BetterRest</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E8%97%8FDatePicker%E7%9A%84-label"><span class="toc-number">4.1.</span> <span class="toc-text">隐藏DatePicker的 label</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EDate%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%AD%E6%B3%95"><span class="toc-number">4.2.</span> <span class="toc-text">关于Date的一些语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project5-WordScramble"><span class="toc-number">5.</span> <span class="toc-text">Project5 WordScramble</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project6-Animations"><span class="toc-number">6.</span> <span class="toc-text">Project6 Animations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Remember"><span class="toc-number">6.1.</span> <span class="toc-text">Remember</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%8A%A8%E7%94%BB"><span class="toc-number">6.2.</span> <span class="toc-text">设置动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#implicitly-animations"><span class="toc-number">6.3.</span> <span class="toc-text">implicitly animations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#explicitly-animations"><span class="toc-number">6.4.</span> <span class="toc-text">explicitly animations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AEorder%E6%9D%A5%E5%AE%9E%E7%8E%B0%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%95%88%E6%9E%9C"><span class="toc-number">6.5.</span> <span class="toc-text">根据order来实现不一样的效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project7-iExpense"><span class="toc-number">7.</span> <span class="toc-text">Project7 iExpense</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Published-StateObject-ObservedObject"><span class="toc-number">7.1.</span> <span class="toc-text">Published, @StateObject, @ObservedObject</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Environment"><span class="toc-number">7.2.</span> <span class="toc-text">@Environment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AppStorage-UserDefaults"><span class="toc-number">7.3.</span> <span class="toc-text">@AppStorage , UserDefaults</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Codable-JSONEncoder-encode"><span class="toc-number">7.4.</span> <span class="toc-text">Codable, JSONEncoder.encode()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project8-Moonshot"><span class="toc-number">8.</span> <span class="toc-text">Project8 Moonshot</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sheet-and-NavigationLink"><span class="toc-number">8.1.</span> <span class="toc-text">sheet() and NavigationLink</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON%E7%9A%84string%E7%B1%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%88%90%E5%AE%9E%E4%BE%8B%E7%B1%BB"><span class="toc-number">8.2.</span> <span class="toc-text">JSON的string类型数据转成实例类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project9-Drawing"><span class="toc-number">9.</span> <span class="toc-text">Project9 Drawing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Path-and-Shape"><span class="toc-number">9.1.</span> <span class="toc-text">Path and Shape</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stroke-to-strokeBorder"><span class="toc-number">9.2.</span> <span class="toc-text">stroke() to strokeBorder()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#drawingGroup"><span class="toc-number">9.3.</span> <span class="toc-text">drawingGroup()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Project10CupcakeCorner"><span class="toc-number">9.4.</span> <span class="toc-text">Project10CupcakeCorner</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%B7%B1%E5%9C%A8%E7%B1%BB%E4%B8%AD%E5%86%99decode%E3%80%81encode-add-Codable-conformance-by-hand"><span class="toc-number">9.5.</span> <span class="toc-text">自己在类中写decode、encode, add Codable conformance by hand</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project11-BookWorm"><span class="toc-number">10.</span> <span class="toc-text">Project11 BookWorm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Binding"><span class="toc-number">10.1.</span> <span class="toc-text">@Binding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Core-Data"><span class="toc-number">10.2.</span> <span class="toc-text">Core Data</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project12CoreDataProject"><span class="toc-number">11.</span> <span class="toc-text">Project12CoreDataProject</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#self"><span class="toc-number">11.1.</span> <span class="toc-text">\.self</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSManaged"><span class="toc-number">11.2.</span> <span class="toc-text">@NSManaged</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%9B%E9%80%89-%E6%8E%92%E5%BA%8F"><span class="toc-number">11.3.</span> <span class="toc-text">筛选 + 排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E7%AD%9B%E9%80%89"><span class="toc-number">11.4.</span> <span class="toc-text">动态筛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B%E4%B9%8B%E5%90%8E%E7%9A%84%EF%BC%8C%E5%8A%A8%E6%80%81%E5%88%A0%E9%80%89-%E6%8E%92%E5%BA%8F-enum-conten%E9%97%AD%E5%8C%85"><span class="toc-number">11.5.</span> <span class="toc-text">改进之后的，动态删选+排序+enum+conten闭包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project13-Instafilter"><span class="toc-number">12.</span> <span class="toc-text">Project13 Instafilter</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#onChange"><span class="toc-number">12.1.</span> <span class="toc-text">onChange</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">12.1.1.</span> <span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sheet-alert-confirmationDialog"><span class="toc-number">12.2.</span> <span class="toc-text">Sheet(), alert(), confirmationDialog()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIImage%EF%BC%8CCGImage%EF%BC%8CCIImage"><span class="toc-number">12.3.</span> <span class="toc-text">UIImage，CGImage，CIImage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CoorDinator"><span class="toc-number">12.4.</span> <span class="toc-text">CoorDinator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%90%88UIKit%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">12.5.</span> <span class="toc-text">整合UIKit的例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project15-BucketList"><span class="toc-number">13.</span> <span class="toc-text">Project15 BucketList</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E6%96%B9%E6%A1%88"><span class="toc-number">13.1.</span> <span class="toc-text">存储方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#FileManager"><span class="toc-number">13.1.1.</span> <span class="toc-text">FileManager</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#returning-different-kinds-of-view"><span class="toc-number">13.2.</span> <span class="toc-text">returning different kinds of view</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Binding%E7%BB%91%E5%AE%9Aoptional-value%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E7%94%A8-escapting"><span class="toc-number">13.3.</span> <span class="toc-text">@Binding绑定optional value的时候，用@escapting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MainActor%EF%BC%8CMVVM%EF%BC%8CViewModel"><span class="toc-number">13.4.</span> <span class="toc-text">@MainActor，MVVM，ViewModel</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project15-Accessibility"><span class="toc-number">14.</span> <span class="toc-text">Project15 Accessibility</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project16-HotProspects"><span class="toc-number">15.</span> <span class="toc-text">Project16 HotProspects</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TabView"><span class="toc-number">15.1.</span> <span class="toc-text">TabView</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project17-Flashzzilla"><span class="toc-number">16.</span> <span class="toc-text">Project17 Flashzzilla</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#highPriorityGesture-%E3%80%81-simultaneousGesture"><span class="toc-number">16.1.</span> <span class="toc-text">**highPriorityGesture()**、 simultaneousGesture()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gesture-sequences"><span class="toc-number">16.2.</span> <span class="toc-text">gesture sequences</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Timer%EF%BC%8CCombine"><span class="toc-number">16.3.</span> <span class="toc-text">Timer，Combine</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project18-LayoutAndGeometry"><span class="toc-number">17.</span> <span class="toc-text">Project18 LayoutAndGeometry</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step"><span class="toc-number">17.1.</span> <span class="toc-text">Step</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <meta name="referrer" content="no-referrer" />
+
+<h1 id="SwiftUI"><a href="#SwiftUI" class="headerlink" title="SwiftUI"></a>SwiftUI</h1><h2 id="Project1WeSplit"><a href="#Project1WeSplit" class="headerlink" title="Project1WeSplit"></a>Project1WeSplit</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/wesplit-introduction">WeSplit: Introduction</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/understanding-the-basic-structure-of-a-swiftui-app">Understanding the basic structure of a SwiftUI app</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/creating-a-form">Creating a form</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/adding-a-navigation-bar">Adding a navigation bar</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/modifying-program-state">Modifying program state</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/binding-state-to-user-interface-controls">Binding state to user interface controls</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/creating-views-in-a-loop">Creating views in a loop</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/reading-text-from-the-user-with-textfield">Reading text from the user with TextField</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/creating-pickers-in-a-form">Creating pickers in a form</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/adding-a-segmented-control-for-tip-percentages">Adding a segmented control for tip percentages</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/calculating-the-total-per-person">Calculating the total per person</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/hiding-the-keyboard">Hiding the keyboard</a></li>
+</ul>
+<h3 id="为什么navigationTitle是放在NavigationView里面而不是外面？"><a href="#为什么navigationTitle是放在NavigationView里面而不是外面？" class="headerlink" title="为什么navigationTitle是放在NavigationView里面而不是外面？"></a>为什么navigationTitle是放在<strong>NavigationView</strong>里面而不是外面？</h3><blockquote>
+<p>It’s tempting to think that modifier should be attached to the end of the <code>NavigationView</code>, but it needs to be attached to the end of the <code>Form</code> instead. The reason is that navigation views are capable of showing many views as your program runs, so by attaching the title to the thing <em>inside</em> the navigation view we’re allowing iOS to change titles freely.</p>
+</blockquote>
+<h3 id="alert-放在哪里貌似也不打紧"><a href="#alert-放在哪里貌似也不打紧" class="headerlink" title=".alert()放在哪里貌似也不打紧"></a>.alert()放在哪里貌似也不打紧</h3><p>That attaches the alert to the button, but honestly it doesn’t matter where the <code>alert()</code> modifier is used – all we’re doing is saying that an alert exists and is shown when <code>showingAlert</code> is true.</p>
+<h3 id="一些状态注解-Property-wrappers"><a href="#一些状态注解-Property-wrappers" class="headerlink" title="一些状态注解, Property wrappers"></a>一些状态注解, Property wrappers</h3><p><strong>Property wrappers</strong> have that name because they wrap our property inside another struct. What this means is that when we use <code>@State</code> to wrap a string, the actual type of property we end up with is a <code>State&lt;String&gt;</code>. Similarly, when we use <code>@Environment</code> and others we end up with a struct of type <code>Environment</code> that contains some other value inside it.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// cmd + shift + O</span></span><br><span class="line"><span class="keyword">@propertyWrapper</span> <span class="keyword">public</span> <span class="keyword">struct</span> <span class="title class_">State</span>&lt;<span class="title class_">Value</span>&gt; : <span class="title class_">DynamicProperty</span> &#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">var</span> wrappedValue: <span class="type">Value</span> &#123; <span class="keyword">get</span> <span class="keyword">nonmutating</span> <span class="keyword">set</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/how-property-wrappers-become-structs">How property wrappers become structs</a></p>
+<p>就是说，Slider这种two-way绑定的，用didSet是看不到变化的，因为property wrapper是将比如String封装在一个新的struct中，然后slider变了的话，他是直接传到绑定的UI里面去了。用onChange() modifier可以代替didSet。(Project13)</p>
+<p>That wrapped value is the actual value we’re trying to store, such as a string. What this generated interface is telling us is that the property can be read (get), and written (set), but that when we set the value it won’t actually change the struct itself. Behind the scenes, it sends that value off to SwiftUI for storage in a place where it can be modified freely, so it’s true that the struct itself never changes.</p>
+<p><code>@State</code>配合$，可以组成two-way binding，designed for simple data that is local to the current view</p>
+<p><code>@Binding</code>，lets us connect an <code>@State</code> property of one view to some underlying model data.</p>
+<p><code>Published(objectWillChange.send()两者选一个，这个可以添加一些额外的操作)（属性）</code>, <code>@StateObject（创建）</code>, <code>@ObservedObject（取出）</code>，@ObservableObject（协议），放入是当作构造参数放入的。<code>User</code> is a <strong>class</strong> the property itself isn’t changing, so <code>@State</code> doesn’t notice anything and can’t reload the view. Yes, the values <em>inside</em> the class are changing, but <code>@State</code> doesn’t monitor those, so effectively what’s happening is that the values inside our class are being changed but the view isn’t being reloaded to reflect that change.</p>
+<p>用objectWillChange.send()代替@Published。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value <span class="operator">=</span> <span class="number">0</span> &#123;</span><br><span class="line">    <span class="keyword">willSet</span> &#123;</span><br><span class="line">        objectWillChange.send()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>@EnvironmentObject（取出）</code>, @StateObject（创建）, @ObservableObject（协议）, @Published（属性）, .environmentObject()（放入）</p>
+<p><code>@Environment</code></p>
+ <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Environment</span>(\.dismiss) <span class="keyword">var</span> dismiss</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>@FocusState</code></p>
+<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><p> <code>@State</code> is used to work with state that is local to a single view, and how</p>
+<p> <code>@ObservedObject</code> lets us pass one object from view to view so we can share it. Well, </p>
+<p><code>@EnvironmentObject</code> takes that one step further: we can place an object into the environment so that any child view can automatically have access to it.</p>
+<p>Imagine we had multiple views in an app, all lined up in a chain: view A shows view B, view B shows view C, C shows D, and D shows E. View A and E both want to access the same object, but to get from A to E you need to go through B, C, and D, and they <em>don’t</em> care about that object. If we were using <code>@ObservedObject</code> we’d need to pass our object from each view to the next until it finally reached view E where it could be used, which is annoying because B, C, and D don’t care about it. With <code>@EnvironmentObject</code> view A can put the object into the environment, view E can read the object out from the environment, and views B, C, and D don’t have to know anything happened – it’s much nicer.</p>
+<p>There’s one last thing before I show you some code: environment objects use the same <code>ObservableObject</code> protocol you’ve already learned, and SwiftUI will automatically make sure all views that share the same environment object get updated when it changes.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MainActor</span> <span class="keyword">class</span> <span class="title class_">User</span>: <span class="title class_">ObservableObject</span> &#123;</span><br><span class="line">    <span class="meta">@Published</span> <span class="keyword">var</span> name <span class="operator">=</span> <span class="string">&quot;Taylor Swift&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>how SwiftUI makes the connection between <code>.environmentObject(user)</code>and <code>@EnvironmentObject var user: User</code> – how does it know to place that object into the correct property?</p>
+<p>Well, you’ve seen how dictionaries let us use one type for the key and another for the value. The environment effectively lets us use <strong>data types themselves for the key</strong>, and <strong>instances of the type as the value</strong>. This is a bit mind bending at first, but imagine it like this: the keys are things like <code>Int</code>, <code>String</code>, and <code>Bool</code>, with the values being things like 5, “Hello”, and true, which means we can say “give me the <code>Int</code>” and we’d get back 5.</p>
+<h2 id="Project2-GuesstheFlag"><a href="#Project2-GuesstheFlag" class="headerlink" title="Project2 GuesstheFlag"></a>Project2 GuesstheFlag</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/guess-the-flag-introduction">Guess the Flag: Introduction</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/using-stacks-to-arrange-views">Using stacks to arrange views</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/colors-and-frames">Colors and frames</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/gradients">Gradients</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/buttons-and-images">Buttons and images</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/showing-alert-messages">Showing alert messages</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/stacking-up-buttons">Stacking up buttons</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/showing-the-players-score-with-an-alert">Showing the player’s score with an alert</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/styling-our-flags">Styling our flags</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/upgrading-our-design">Upgrading our design</a></p>
+</li>
+</ul>
+<h3 id="为什么视图在swiftUI中是结构体而不是类"><a href="#为什么视图在swiftUI中是结构体而不是类" class="headerlink" title="为什么视图在swiftUI中是结构体而不是类"></a>为什么视图在swiftUI中是结构体而不是类</h3><blockquote>
+<p>If you ever programmed for UIKit or AppKit (Apple’s original user interface frameworks for iOS and macOS) you’ll know that they use <em>classes</em> for views rather than structs. SwiftUI does not: we prefer to use structs for views across the board, and there are a couple of reasons why.</p>
+<p>First, there is <strong>an element of performance: structs are simpler and faster than classes.</strong> I say <em>an element</em> of performance because lots of people think this is the primary reason SwiftUI uses structs, when really it’s just one part of the bigger picture.</p>
+<p>In UIKit, <strong>every view descended from a class called <code>UIView</code> that had many properties and methods</strong> – a background color, constraints that determined how it was positioned, a layer for rendering its contents into, and more. There were <em>lots</em> of these, and every <code>UIView</code> and <code>UIView</code> subclass had to have them, because that’s how inheritance works.</p>
+<p>In SwiftUI, all our views are trivial structs and are almost free to create. Think about it: if you make a struct that holds a single integer, the entire size of your struct is… that one integer. Nothing else. No surprise extra values inherited from parent classes, or grandparent classes, or great-grandparent classes, etc – <strong>they contain exactly what you can see and nothing more</strong>.</p>
+<p>Thanks to the power of modern iPhones, I wouldn’t think twice about creating 1000 integers or even 100,000 integers – it would happen in the blink of an eye. The same is true of 1000 SwiftUI views or even 100,000 SwiftUI views; they are so fast it stops being worth thinking about.</p>
+<p>However, even though performance is important there’s something <strong>much more important about views as structs:</strong> <strong>it forces us to think about isolating state in a clean way.</strong> <strong>You see, classes are able to change their values freely, which can lead to messier code – how would SwiftUI be able to know when a value changed in order to update the UI?</strong></p>
+<p>By producing views that don’t mutate over time, SwiftUI encourages us to move to a more functional design approach: our views become simple, inert things that convert data into UI, rather than intelligent things that can grow out of control.</p>
+<p>You can see this in action when you look at the kinds of things that can be a view. We already used <code>Color.red</code> and <code>LinearGradient</code> as views – trivial types that hold very little data. In fact, you can’t get a great deal simpler than using <code>Color.red</code> as a view: it holds no information other than “fill my space with red”.</p>
+<p>In comparison, Apple’s <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/uikit/uiview">documentation for UIView</a> lists about 200 properties and methods that <code>UIView</code>has, all of which get passed on to its subclasses whether they need them or not.</p>
+</blockquote>
+<h2 id="Project3-Views-and-Modifiers"><a href="#Project3-Views-and-Modifiers" class="headerlink" title="Project3 Views and Modifiers"></a>Project3 Views and Modifiers</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/views-and-modifiers-introduction">Views and modifiers: Introduction</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/why-does-swiftui-use-structs-for-views">Why does SwiftUI use structs for views?</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/what-is-behind-the-main-swiftui-view">What is behind the main SwiftUI view?</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/why-modifier-order-matters">Why modifier order matters</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/why-does-swiftui-use-some-view-for-its-view-type">Why does SwiftUI use “some View” for its view type?</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/conditional-modifiers">Conditional modifiers</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/environment-modifiers">Environment modifiers</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/views-as-properties">Views as properties</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/view-composition">View composition</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/custom-modifiers">Custom modifiers</a></li>
+</ul>
+<h3 id="Views-and-Modifiers的结构"><a href="#Views-and-Modifiers的结构" class="headerlink" title="Views and Modifiers的结构"></a>Views and Modifiers的结构</h3><blockquote>
+<p>Whenever we apply a modifier to a SwiftUI view, we actually create a new view with that change applied – we don’t just modify the existing view in place. If you think about it, this behavior makes sense: our views only hold the exact properties we give them, so if we set the background color or font size there is no place to store that data. </p>
+<p>We’re going to look at <em>why</em> this happens shortly, but first I want to look at the practical implications of this behavior. Take a look at this code:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Button</span>(<span class="string">&quot;Hello, world!&quot;</span>) &#123;</span><br><span class="line">    <span class="comment">// do nothing</span></span><br><span class="line">&#125;    </span><br><span class="line">.background(.red)</span><br><span class="line">.frame(width: <span class="number">200</span>, height: <span class="number">200</span>)</span><br></pre></td></tr></table></figure>
+
+<p>What do you think that will look like when it runs?</p>
+<p>Chances are you guessed wrong: you <em>won’t</em> see a 200x200 red button with “Hello, world!” in the middle. Instead, you’ll see a 200x200 empty square, with “Hello, world!” in the middle and with a red rectangle directly around “Hello, world!”.</p>
+<p>You can understand what’s happening here if you think about the way modifiers work: each one creates a new struct with that modifier applied, rather than just setting a property on the view.</p>
+<p><strong>Of course, this isn’t <em>actually</em> how SwiftUI works, because if it did it would be a performance nightmare, but it’s a neat mental shortcut to use while you’re learning.</strong></p>
+<p>An important side effect of using modifiers is that we can apply the same effect multiple times: each one simply adds to whatever was there before.</p>
+</blockquote>
+<h3 id="Environment-modifiers"><a href="#Environment-modifiers" class="headerlink" title="Environment modifiers"></a>Environment modifiers</h3><blockquote>
+<p>Many modifiers can be applied to containers, which allows us to apply the same modifier to many views at the same time. </p>
+<p>For example, if we have four text views in a <code>VStack</code> and want to give them all the same font modifier, we could apply the modifier to the <code>VStack</code> directly and have that change apply to all four text views:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">VStack</span> &#123;</span><br><span class="line">    <span class="type">Text</span>(<span class="string">&quot;Gryffindor&quot;</span>)</span><br><span class="line">    <span class="type">Text</span>(<span class="string">&quot;Hufflepuff&quot;</span>)</span><br><span class="line">    <span class="type">Text</span>(<span class="string">&quot;Ravenclaw&quot;</span>)</span><br><span class="line">    <span class="type">Text</span>(<span class="string">&quot;Slytherin&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">.font(.title)</span><br></pre></td></tr></table></figure>
+
+<p>This is called an environment modifier, and is different from a regular modifier that is applied to a view. </p>
+<p>From a coding perspective these modifiers are used exactly the same way as regular modifiers. However, they behave subtly differently because if any of those child views override the same modifier, the child’s version takes priority.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">VStack</span> &#123;</span><br><span class="line">    <span class="type">Text</span>(<span class="string">&quot;Gryffindor&quot;</span>)</span><br><span class="line">        .font(.largeTitle)</span><br><span class="line">    <span class="type">Text</span>(<span class="string">&quot;Hufflepuff&quot;</span>)</span><br><span class="line">    <span class="type">Text</span>(<span class="string">&quot;Ravenclaw&quot;</span>)</span><br><span class="line">    <span class="type">Text</span>(<span class="string">&quot;Slytherin&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">.font(.title)</span><br></pre></td></tr></table></figure>
+
+<p><code>font()</code> is an <strong>environment modifier</strong>, which means the Gryffindor text view can override it with a custom font.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">VStack</span> &#123;</span><br><span class="line">    <span class="type">Text</span>(<span class="string">&quot;Gryffindor&quot;</span>)</span><br><span class="line">        .blur(radius: <span class="number">0</span>)</span><br><span class="line">    <span class="type">Text</span>(<span class="string">&quot;Hufflepuff&quot;</span>)</span><br><span class="line">    <span class="type">Text</span>(<span class="string">&quot;Ravenclaw&quot;</span>)</span><br><span class="line">    <span class="type">Text</span>(<span class="string">&quot;Slytherin&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">.blur(radius: <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Above won’t work the same way: <code>blur()</code> is a <strong>regular modifier</strong>, so any blurs applied to child views are <em>added</em> to the <code>VStack</code> blur rather than replacing it.</p>
+</blockquote>
+<h3 id="What-happens-if-we-send-back-two-views-directly-from-our-body-property-without-wrapping-them-in-a-stack"><a href="#What-happens-if-we-send-back-two-views-directly-from-our-body-property-without-wrapping-them-in-a-stack" class="headerlink" title="What happens if we send back two views directly from our body property, without wrapping them in a stack?"></a>What happens if we send back two views directly from our <code>body</code> property, without wrapping them in a stack?</h3><blockquote>
+<p>Swift silently applies a special attribute to the <code>body</code> property called <code>@ViewBuilder</code>. This has the effect of silently wrapping multiple views in one of those <code>TupleView</code>containers, so that even though it looks like we’re sending back multiple views they get combined into one <code>TupleView</code>.</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/views-as-properties">Views as properties</a></p>
+<h3 id="Custom-modifiers"><a href="#Custom-modifiers" class="headerlink" title="Custom modifiers"></a>Custom modifiers</h3><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/custom-modifiers">Custom modifiers</a></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Watermark</span>: <span class="title class_">ViewModifier</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> text: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">func</span> <span class="title function_">body</span>(<span class="params">content</span>: <span class="type">Content</span>) -&gt; <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">ZStack</span>(alignment: .bottomTrailing) &#123;</span><br><span class="line">            content</span><br><span class="line">            <span class="type">Text</span>(text)</span><br><span class="line">                .font(.caption)</span><br><span class="line">                .foregroundColor(.white)</span><br><span class="line">                .padding(<span class="number">5</span>)</span><br><span class="line">                .background(.black)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line">    .modifier(<span class="type">Watermark</span>(text: <span class="string">&quot;Hacking with Swift&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extension</span> <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="keyword">func</span> <span class="title function_">watermarked</span>(<span class="params">with</span> <span class="params">text</span>: <span class="type">String</span>) -&gt; <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        modifier(<span class="type">Watermark</span>(text: text))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Color</span>.blue</span><br><span class="line">    .frame(width: <span class="number">300</span>, height: <span class="number">200</span>)</span><br><span class="line">    .watermarked(with: <span class="string">&quot;Hacking with Swift&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>Tip:</strong> Often folks wonder when it’s better to add a custom view modifier versus just adding a new method to <code>View</code>, and really it comes down to one main reason: custom view modifiers can have their own stored properties, whereas extensions to <code>View</code> cannot.</p>
+</blockquote>
+<h2 id="Project4-BetterRest"><a href="#Project4-BetterRest" class="headerlink" title="Project4 BetterRest"></a>Project4 BetterRest</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/betterrest-introduction">BetterRest: Introduction</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/entering-numbers-with-stepper">Entering numbers with Stepper</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/selecting-dates-and-times-with-datepicker">Selecting dates and times with DatePicker</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/working-with-dates">Working with dates</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/training-a-model-with-create-ml">Training a model with Create ML</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/building-a-basic-layout">Building a basic layout</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/connecting-swiftui-to-core-ml">Connecting SwiftUI to Core ML</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/cleaning-up-the-user-interface">Cleaning up the user interface</a></li>
+</ul>
+<h3 id="隐藏DatePicker的-label"><a href="#隐藏DatePicker的-label" class="headerlink" title="隐藏DatePicker的 label"></a>隐藏DatePicker的 label</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DatePicker</span>(<span class="string">&quot;Please enter a date&quot;</span>, selection: <span class="variable">$wakeUp</span>)</span><br><span class="line">    .labelsHidden()</span><br></pre></td></tr></table></figure>
+
+<p>虽然讲label隐藏，但是旁白还是能读取的。</p>
+<p>That still includes the original label so screen readers can use it for VoiceOver, but now they aren’t visible onscreen any more – the date picker won’t be pushed to one side by some empty text.</p>
+<h3 id="关于Date的一些语法"><a href="#关于Date的一些语法" class="headerlink" title="关于Date的一些语法"></a>关于Date的一些语法</h3><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/working-with-dates">Working with dates</a></p>
+<h2 id="Project5-WordScramble"><a href="#Project5-WordScramble" class="headerlink" title="Project5 WordScramble"></a>Project5 WordScramble</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/word-scramble-introduction">Word Scramble: Introduction</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/introducing-list-your-best-friend">Introducing List, your best friend</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/loading-resources-from-your-app-bundle">Loading resources from your app bundle</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/working-with-strings">Working with strings</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/adding-to-a-list-of-words">Adding to a list of words</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/running-code-when-our-app-launches">Running code when our app launches</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/validating-words-with-uitextchecker">Validating words with UITextChecker</a></li>
+</ul>
+<p>Form和List区别</p>
+<blockquote>
+<p>The job of <code>List</code> is to provide a scrolling table of data. In fact, it’s pretty much identical to <code>Form</code>, except it’s used for presentation of data rather than requesting user input. Don’t get me wrong: you’ll use <code>Form</code>quite a lot too, but really it’s just a specialized type of <code>List</code>.</p>
+<p>Now, everything you’ve seen so far works fine with <code>Form</code> as well as <code>List</code> – even the dynamic content. But one thing <code>List</code> can do that <code>Form</code> can’t is to generate its rows entirely from dynamic content without needing a <code>ForEach</code>.</p>
+</blockquote>
+<h2 id="Project6-Animations"><a href="#Project6-Animations" class="headerlink" title="Project6 Animations"></a>Project6 Animations</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/animation-introduction">Animation: Introduction</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/creating-implicit-animations">Creating implicit animations</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/customizing-animations-in-swiftui">Customizing animations in SwiftUI</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/animating-bindings">Animating bindings</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/creating-explicit-animations">Creating explicit animations</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/controlling-the-animation-stack">Controlling the animation stack</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/animating-gestures">Animating gestures</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/showing-and-hiding-views-with-transitions">Showing and hiding views with transitions</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/building-custom-transitions-using-viewmodifier">Building custom transitions using ViewModifier</a></li>
+</ul>
+<h3 id="Remember"><a href="#Remember" class="headerlink" title="Remember"></a>Remember</h3><p><strong>Remember: the order in which you apply modifiers *matters*, and nowhere is this more true than when working with offsets and rotations.</strong></p>
+<p>If we rotate then offset, then the offset is applied based on the rotated axis of our view. For example, if we move something 100 pixels to its left then rotate 90 degrees, we’d end up with it being 100 pixels to the left and rotated 90 degrees. But if we rotated 90 degrees then moved it 100 pixels to its left, we’d end up with something rotated 90 degrees and moved 100 pixels directly down, because its concept of “left” got rotated.</p>
+<h3 id="设置动画"><a href="#设置动画" class="headerlink" title="设置动画"></a>设置动画</h3><h3 id="implicitly-animations"><a href="#implicitly-animations" class="headerlink" title="implicitly animations"></a><strong>implicitly animations</strong></h3><blockquote>
+<p>These binding animations effectively turn the tables on implicit animations: rather than setting the animation on a view and <strong>implicitly animating it with a state change</strong>, we now set nothing on the view and explicitly animate it with a state change. In the former, the state change has no idea it will trigger an animation, and in the latter the view has no idea it will be animated – both work and both are important.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Stepper</span>(<span class="string">&quot;Scale amount&quot;</span>, value: <span class="variable">$animationAmount</span>.animation(), in: <span class="number">1</span><span class="operator">...</span><span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.animation(.easeInOut(duration: <span class="number">2</span>), value: animationAmount)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 隐式动画，直接加在lineargradient后面，dragAmount变了那个直接加在lineargradient后面就会有动画</span></span><br><span class="line">.animation(.spring(), value: dragAmount)</span><br></pre></td></tr></table></figure>
+
+<h3 id="explicitly-animations"><a href="#explicitly-animations" class="headerlink" title="explicitly animations"></a><strong>explicitly animations</strong></h3><blockquote>
+<p>explicitly asking SwiftUI to animate changes occurring as the result of a state change.</p>
+<p>This still doesn’t mean we create each frame of the animation by hand – that remains SwiftUI’s job, and it continues to figure out the animation by looking at the state of our views before and after the state change was applied.</p>
+<p>Now, though, we’re being explicit that we want an animation to occur when some arbitrary state change occurs: it’s <strong>not attached to a binding, and it’s not attached to a view</strong>, it’s just us explicitly asking for a particular animation to occur because of a state change.</p>
+<p>If we just write <code>animationAmount += 360</code> then the change will happen immediately, because there is no animation modifier attached to the button. This is where explicit animations come in: if we use a <code>withAnimation()</code> closure then SwiftUI will ensure any changes resulting from the new state will automatically be animated.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Button</span>(<span class="string">&quot;Tap&quot;</span>) &#123;</span><br><span class="line">  withAnimation(.interpolatingSpring(stiffness: <span class="number">5</span>, damping: <span class="number">1</span>)) &#123;</span><br><span class="line">    animationAmount <span class="operator">+=</span> <span class="number">360</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示动画，把dragAmount这个参数变的时候用withAnimation包住</span></span><br><span class="line">.onEnded &#123; <span class="keyword">_</span> <span class="keyword">in</span></span><br><span class="line">    withAnimation(.spring()) &#123;</span><br><span class="line">        dragAmount <span class="operator">=</span> .zero</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="根据order来实现不一样的效果"><a href="#根据order来实现不一样的效果" class="headerlink" title="根据order来实现不一样的效果"></a>根据order来实现不一样的效果</h3><blockquote>
+<p><strong>You can attach the <code>animation()</code> modifier several times, and the order in which you use it matters.</strong></p>
+<p>So, the order in which we apply animations matters: only changes that occur <em>before</em> the <code>animation()</code>modifier get animated.</p>
+<p>Now for the fun part: if we apply multiple <code>animation()</code> modifiers, <strong>each one controls everything before it up to the next animation.</strong>(每一个就控制该animation和上一个animation之间的控件) This allows us to animate state changes in all sorts of different ways rather than uniformly for all properties.</p>
+<p>For even more control, it’s possible to disable animations entirely by passing <code>nil</code> to the modifier. For example, you might want the color change to happen immediately but the clip shape to retain its animation, in which case you’d write this:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Button</span>(<span class="string">&quot;Tap Me&quot;</span>) &#123;</span><br><span class="line">    enabled.toggle()</span><br><span class="line">&#125;</span><br><span class="line">.frame(width: <span class="number">200</span>, height: <span class="number">200</span>)</span><br><span class="line">.background(enabled <span class="operator">?</span> .blue : .red)</span><br><span class="line">.animation(<span class="literal">nil</span>, value: enabled)</span><br><span class="line">.foregroundColor(.white)</span><br><span class="line">.clipShape(<span class="type">RoundedRectangle</span>(cornerRadius: enabled <span class="operator">?</span> <span class="number">60</span> : <span class="number">0</span>))</span><br><span class="line">.animation(.interpolatingSpring(stiffness: <span class="number">10</span>, damping: <span class="number">1</span>), value: enabled)</span><br></pre></td></tr></table></figure>
+
+<p>That kind of control wouldn’t be possible without multiple <code>animation()</code> modifiers – if you tried to move <code>background()</code> after the animation you’d find that it would just undo the work of <code>clipShape()</code>.</p>
+</blockquote>
+<h2 id="Project7-iExpense"><a href="#Project7-iExpense" class="headerlink" title="Project7 iExpense"></a>Project7 iExpense</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/iexpense-introduction">iExpense: Introduction</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/why-state-only-works-with-structs">Why @State only works with structs</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/sharing-swiftui-state-with-stateobject">Sharing SwiftUI state with @StateObject</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/showing-and-hiding-views">Showing and hiding views</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/deleting-items-using-ondelete">Deleting items using onDelete()</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/storing-user-settings-with-userdefaults">Storing user settings with UserDefaults</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/archiving-swift-objects-with-codable">Archiving Swift objects with Codable</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/building-a-list-we-can-delete-from">Building a list we can delete from</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/working-with-identifiable-items-in-swiftui">Working with Identifiable items in SwiftUI</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/sharing-an-observed-object-with-a-new-view">Sharing an observed object with a new view</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/making-changes-permanent-with-userdefaults">Making changes permanent with UserDefaults</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/final-polish">Final polish</a></li>
+</ul>
+<h3 id="Published-StateObject-ObservedObject"><a href="#Published-StateObject-ObservedObject" class="headerlink" title="Published, @StateObject, @ObservedObject"></a><code>Published</code>, <code>@StateObject</code>, <code>@ObservedObject</code></h3><p>if we want to share data <strong>between multiple views</strong> – if we want two or more views to point to the same data so that when one changes they all get those changes – we need to use <strong>classes</strong> rather than structs.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>: <span class="title class_">ObservableObject</span> &#123;</span><br><span class="line">    <span class="meta">@Published</span> <span class="keyword">var</span> firstName <span class="operator">=</span> <span class="string">&quot;Bilbo&quot;</span></span><br><span class="line">    <span class="meta">@Published</span> <span class="keyword">var</span> lastName <span class="operator">=</span> <span class="string">&quot;Baggins&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@StateObject</span> <span class="keyword">var</span> user <span class="operator">=</span> <span class="type">User</span>() <span class="comment">// 创建</span></span><br><span class="line"><span class="meta">@ObservedObject</span> <span class="keyword">var</span> user  <span class="comment">// 声明？</span></span><br></pre></td></tr></table></figure>
+
+<p>As you’ve seen, rather than just using <code>@State</code> to declare local state, we now take three steps:</p>
+<ul>
+<li>Make a class that conforms to the <code>ObservableObject</code> protocol.</li>
+<li>Mark some properties with <code>@Published</code> so that any views using the class get updated when they change.</li>
+<li>Create an instance of our class using the <code>@StateObject</code> property wrapper.</li>
+</ul>
+<p>When you want to use a class instance elsewhere – when you’ve created it in view A using <code>@StateObject</code> and want to use that same object in view B – you use a slightly different property wrapper called <code>@ObservedObject</code>. That’s the only difference: when <em>creating</em> the shared data use <code>@StateObject</code>, but when you’re just <em>using</em> it in a different view you should use <code>@ObservedObject</code>instead.</p>
+<h3 id="Environment"><a href="#Environment" class="headerlink" title="@Environment"></a><code>@Environment</code></h3><p>it allows us to create properties that store values provided to us <strong>externally</strong></p>
+<h3 id="AppStorage-UserDefaults"><a href="#AppStorage-UserDefaults" class="headerlink" title="@AppStorage , UserDefaults"></a><code>@AppStorage </code>, <code>UserDefaults</code></h3><p>SwiftUI provides an <code>@AppStorage</code> property wrapper around <code>UserDefaults</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> tapCount <span class="operator">=</span> <span class="type">UserDefaults</span>.standard.integer(forKey: <span class="string">&quot;Tap&quot;</span>)</span><br><span class="line"><span class="type">UserDefaults</span>.standard.set(<span class="keyword">self</span>.tapCount, forKey: <span class="string">&quot;Tap&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AppStorage</span>(<span class="string">&quot;tapCount&quot;</span>) <span class="keyword">private</span> <span class="keyword">var</span> tapCount <span class="operator">=</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>Our access to the <code>UserDefaults</code> system is through the <code>@AppStorage</code> property wrapper. This works like <code>@State</code>: when the value changes, it will reinvoked the <code>body</code> property so our UI reflects the new data.</p>
+<h3 id="Codable-JSONEncoder-encode"><a href="#Codable-JSONEncoder-encode" class="headerlink" title="Codable, JSONEncoder.encode()"></a>Codable, <strong>JSONEncoder.encode()</strong></h3><p> <code>Codable</code>is just an alias for two separate protocols: <code>Encodable</code> and <code>Decodable</code>. </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">User</span>: <span class="title class_">Codable</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> firstName: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> lastName: <span class="type">String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> user <span class="operator">=</span> <span class="type">User</span>(firstName: <span class="string">&quot;Taylor&quot;</span>, lastName: <span class="string">&quot;Swift&quot;</span>)</span><br><span class="line"><span class="type">Button</span>(<span class="string">&quot;Save User&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> encoder <span class="operator">=</span> <span class="type">JSONEncoder</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> data <span class="operator">=</span> <span class="keyword">try?</span> encoder.encode(user) &#123;</span><br><span class="line">        <span class="type">UserDefaults</span>.standard.set(data, forKey: <span class="string">&quot;UserData&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Project8-Moonshot"><a href="#Project8-Moonshot" class="headerlink" title="Project8 Moonshot"></a>Project8 Moonshot</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/moonshot-introduction">Moonshot: Introduction</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/resizing-images-to-fit-the-screen-using-geometryreader">Resizing images to fit the screen using GeometryReader</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/how-scrollview-lets-us-work-with-scrolling-data">How ScrollView lets us work with scrolling data</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/pushing-new-views-onto-the-stack-using-navigationlink">Pushing new views onto the stack using NavigationLink</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/working-with-hierarchical-codable-data">Working with hierarchical Codable data</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/how-to-lay-out-views-in-a-scrolling-grid">How to lay out views in a scrolling grid</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/loading-a-specific-kind-of-codable-data">Loading a specific kind of Codable data</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/using-generics-to-load-any-kind-of-codable-data">Using generics to load any kind of Codable data</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/formatting-our-mission-view">Formatting our mission view</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/showing-mission-details-with-scrollview-and-geometryreader">Showing mission details with ScrollView and GeometryReader</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/merging-codable-structs">Merging Codable structs</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/finishing-up-with-one-last-view">Finishing up with one last view</a></p>
+</li>
+</ul>
+<h3 id="sheet-and-NavigationLink"><a href="#sheet-and-NavigationLink" class="headerlink" title="sheet() and NavigationLink"></a><code>sheet()</code> and <code>NavigationLink</code></h3><p>So, both <code>sheet()</code> and <code>NavigationLink</code> allow us to show a new view from the current one, but the <em>way</em> they do it is different and you should choose them carefully: </p>
+<ul>
+<li><code>NavigationLink</code> is for showing details about the user’s selection, like you’re digging deeper into a topic.</li>
+<li><code>sheet()</code> is for showing unrelated content, such as settings or a compose window.</li>
+</ul>
+<h3 id="JSON的string类型数据转成实例类"><a href="#JSON的string类型数据转成实例类" class="headerlink" title="JSON的string类型数据转成实例类"></a>JSON的string类型数据转成实例类</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">User</span>: <span class="title class_">Codable</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> address: <span class="type">Address</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Address</span>: <span class="title class_">Codable</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> street: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> city: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> input <span class="operator">=</span> <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">  &quot;name&quot;: &quot;Taylor Swift&quot;,</span></span><br><span class="line"><span class="string">  &quot;address&quot;: &#123;</span></span><br><span class="line"><span class="string">    &quot;street&quot;: &quot;555, Taylor Swift Avenue&quot;,</span></span><br><span class="line"><span class="string">    &quot;city&quot;: &quot;Nashville&quot;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment">// input里面的jason转成user实例</span></span><br><span class="line"><span class="keyword">let</span> data <span class="operator">=</span> <span class="type">Data</span>(input.utf8)</span><br><span class="line"><span class="keyword">let</span> decoder <span class="operator">=</span> <span class="type">JSONDecoder</span>()</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> user <span class="operator">=</span> <span class="keyword">try?</span> decoder.decode(<span class="type">User</span>.<span class="keyword">self</span>, from: data) &#123;</span><br><span class="line">    <span class="built_in">print</span>(user.address.street)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Project9-Drawing"><a href="#Project9-Drawing" class="headerlink" title="Project9 Drawing"></a>Project9 Drawing</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/drawing-introduction">Drawing: Introduction</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/creating-custom-paths-with-swiftui">Creating custom paths with SwiftUI</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/paths-vs-shapes-in-swiftui">Paths vs shapes in SwiftUI</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/adding-strokeborder-support-with-insettableshape">Adding strokeBorder() support with InsettableShape</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/transforming-shapes-using-cgaffinetransform-and-even-odd-fills">Transforming shapes using CGAffineTransform and even-odd fills</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/creative-borders-and-fills-using-imagepaint">Creative borders and fills using ImagePaint</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/enabling-high-performance-metal-rendering-with-drawinggroup">Enabling high-performance Metal rendering with drawingGroup()</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/special-effects-in-swiftui-blurs-blending-and-more">Special effects in SwiftUI: blurs, blending, and more</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/animating-simple-shapes-with-animatabledata">Animating simple shapes with animatableData</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/animating-complex-shapes-with-animatablepair">Animating complex shapes with AnimatablePair</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/creating-a-spirograph-with-swiftui">Creating a spirograph with SwiftUI(繁花规)</a></p>
+</li>
+</ul>
+<h3 id="Path-and-Shape"><a href="#Path-and-Shape" class="headerlink" title="Path and Shape"></a><code>Path</code> and <code>Shape</code></h3><p>The key to understanding the difference between <code>Path</code> and <code>Shape</code> is reusability: <strong>paths</strong> are designed to do <strong>one specific thing</strong>, whereas <strong>shapes</strong> have the <strong>flexibility</strong> of drawing space and can also accept parameters to let us customize them further.</p>
+<h3 id="stroke-to-strokeBorder"><a href="#stroke-to-strokeBorder" class="headerlink" title="stroke() to strokeBorder()"></a><code>stroke()</code> to <code>strokeBorder()</code></h3><p>stroke()，trace the exact line of the circle – about half the pen would be inside the line, and half outside</p>
+<p>That changes <code>stroke()</code> to <code>strokeBorder()</code> and now we get a better result: all our border is visible, because Swift strokes the inside of the circle rather than centering on the line.</p>
+<h3 id="drawingGroup"><a href="#drawingGroup" class="headerlink" title="drawingGroup()"></a>drawingGroup()</h3><p>That now renders a gentle gradient, showing bright colors at the top of the circle down to darker colors at the bottom. And <em>now</em> when you run the app you’ll find it runs much slower – SwiftUI is struggling to render 100 gradients as part of 100 separate views.</p>
+<p>We can fix this by applying one new modifier, called <code>drawingGroup()</code>. This tells SwiftUI it should render the contents of the view into an off-screen image before putting it back onto the screen as a single rendered output, which is significantly faster. Behind the scenes this is powered by Metal, which is Apple’s framework for working directly with the GPU for extremely fast graphics.</p>
+<h3 id="Project10CupcakeCorner"><a href="#Project10CupcakeCorner" class="headerlink" title="Project10CupcakeCorner"></a>Project10CupcakeCorner</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/cupcake-corner-introduction">Cupcake Corner: Introduction</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/adding-codable-conformance-for-published-properties">Adding Codable conformance for @Published properties</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/sending-and-receiving-codable-data-with-urlsession-and-swiftui">Sending and receiving Codable data with URLSession and SwiftUI</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/loading-an-image-from-a-remote-server">Loading an image from a remote server</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/validating-and-disabling-forms">Validating and disabling forms</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/taking-basic-order-details">Taking basic order details</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/checking-for-a-valid-address">Checking for a valid address</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/preparing-for-checkout">Preparing for checkout</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/encoding-an-observableobject-class">Encoding an ObservableObject class</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/sending-and-receiving-orders-over-the-internet">Sending and receiving orders over the internet</a></li>
+</ul>
+<h3 id="自己在类中写decode、encode-add-Codable-conformance-by-hand"><a href="#自己在类中写decode、encode-add-Codable-conformance-by-hand" class="headerlink" title="自己在类中写decode、encode, add Codable conformance by hand"></a>自己在类中写decode、encode, add <code>Codable</code> conformance by hand</h3><p>I hope you’re able to see some real advantages here compared to the stringly typed API of <code>UserDefaults</code> – it’s much harder to make a mistake with <code>Codable</code> because we don’t use strings, and it automatically checks our data types are correct.（因为可以用CodingKey变成枚举？）</p>
+<p>iOS gives us built-in tools for sending and receiving data from the internet, and if we combine it with <code>Codable</code> support then it’s possible to convert Swift objects to JSON for sending, then receive back JSON to be converted back to Swift objects. Even better, when the request completes we can immediately assign its data to properties in SwiftUI views, causing our user interface to update.</p>
+<h2 id="Project11-BookWorm"><a href="#Project11-BookWorm" class="headerlink" title="Project11 BookWorm"></a>Project11 BookWorm</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/bookworm-introduction">Bookworm: Introduction</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/creating-a-custom-component-with-binding">Creating a custom component with @Binding</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/accepting-multi-line-text-input-with-texteditor">Accepting multi-line text input with TextEditor</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/how-to-combine-core-data-and-swiftui">How to combine Core Data and SwiftUI</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/creating-books-with-core-data">Creating books with Core Data</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/adding-a-custom-star-rating-component">Adding a custom star rating component</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/building-a-list-with-fetchrequest">Building a list with @FetchRequest</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/showing-book-details">Showing book details</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/sorting-fetch-requests-with-sortdescriptor">Sorting fetch requests with SortDescriptor</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/deleting-from-a-core-data-fetch-request">Deleting from a Core Data fetch request</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/using-an-alert-to-pop-a-navigationlink-programmatically">Using an alert to pop a NavigationLink programmatically</a></p>
+</li>
+</ul>
+<h3 id="Binding"><a href="#Binding" class="headerlink" title="@Binding"></a>@Binding</h3><p>it lets us store a mutable value in a view that actually points to some other value from elsewhere. In the case of <code>Toggle</code>, the switch changes its own local binding to a Boolean, but behind the scenes that’s actually manipulating the <code>@State</code> property in our view.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 未使用，Text不会变</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">PushButton</span>: <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> title: <span class="type">String</span></span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">var</span> isOn: <span class="type">Bool</span></span><br><span class="line">    <span class="operator">...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ContentView</span>: <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> remember <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">VStack</span> &#123;</span><br><span class="line">            <span class="type">PushButton</span>(title: <span class="string">&quot;Remember me&quot;</span>, isOn: remember)</span><br><span class="line">            <span class="type">Text</span>(remember <span class="operator">?</span> <span class="string">&quot;On&quot;</span> : <span class="string">&quot;Off&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This is a problem, because we now have two sources of truth: <code>ContentView</code> is storing one value, and <code>PushButton</code> another. Fortunately, this is where <code>@Binding</code> comes in: it allows us to create <strong>a two-way connection</strong> between <code>PushButton</code> and whatever is using it, so that when one value changes the other does too.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用，Text会变</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">PushButton</span>: <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> title: <span class="type">String</span></span><br><span class="line">    <span class="meta">@Binding</span> <span class="keyword">var</span> isOn: <span class="type">Bool</span></span><br><span class="line">    <span class="operator">...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">PushButtonView</span>: <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> remember <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">VStack</span> &#123;</span><br><span class="line">            <span class="type">PushButton</span>(title: <span class="string">&quot;Remember me&quot;</span>, isOn: <span class="variable">$remember</span>)</span><br><span class="line">            <span class="type">Text</span>(remember <span class="operator">?</span> <span class="string">&quot;On&quot;</span> : <span class="string">&quot;Off&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Core-Data"><a href="#Core-Data" class="headerlink" title="Core Data"></a>Core Data</h3><p>On the surface this sounds like using <code>Codable</code> and <code>UserDefaults</code>, but it’s much more advanced than that: Core Data is capable of sorting and filtering of our data, and can work with much larger data – there’s effectively no limit to how much data it can store. Even better, Core Data implements all sorts of more advanced functionality for when you really need to lean on it: data validation, lazy loading of data, undo and redo, and much more.</p>
+<p>When we defined the “Student” entity, what actually happened was that Core Data created a class for us that inherits from one of its own classes: <code>NSManagedObject</code>. We can’t see this class in our code, because it’s generated automatically when we build our project, just like Core ML’s models. These objects are called <em>managed</em> because Core Data is looking after them: it loads them from the persistent container and writes their changes back too.</p>
+<h2 id="Project12CoreDataProject"><a href="#Project12CoreDataProject" class="headerlink" title="Project12CoreDataProject"></a>Project12CoreDataProject</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/core-data-introduction">Core Data: Introduction</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/why-does-self-work-for-foreach">Why does .self work for ForEach?</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/creating-nsmanagedobject-subclasses">Creating NSManagedObject subclasses</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/conditional-saving-of-nsmanagedobjectcontext">Conditional saving of NSManagedObjectContext</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/ensuring-core-data-objects-are-unique-using-constraints">Ensuring Core Data objects are unique using constraints</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/filtering-fetchrequest-using-nspredicate">Filtering @FetchRequest using NSPredicate</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/dynamically-filtering-fetchrequest-with-swiftui">Dynamically filtering @FetchRequest with SwiftUI</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/one-to-many-relationships-with-core-data-swiftui-and-fetchrequest">One-to-many relationships with Core Data, SwiftUI, and @FetchRequest</a></p>
+</li>
+</ul>
+<h3 id="self"><a href="#self" class="headerlink" title="\.self"></a>\.self</h3><p>When we use <code>\.self</code> as an identifier, we mean “the whole object”, but in practice that doesn’t mean much – a struct is a struct, so it doesn’t have any sort of specific identifying information other than its contents. So what actually happens is that Swift computes the <em>hash value</em> of the struct, which is a way of representing complex data in fixed-size values, then uses that hash as an identifier.</p>
+<p>All this matters because when Xcode generates a class for our <strong>managed objects</strong>, it makes that class conform to <code>Hashable</code>, which is a protocol that means Swift can generate hash values for it, which in turn means we can use <code>\.self</code> for the identifier. This is also why <code>String</code> and <code>Int</code> work with <code>\.self</code>: they also conform to <code>Hashable</code>.</p>
+<p><code>Hashable</code> is a bit like <code>Codable</code>: if we want to make a custom type conform to <code>Hashable</code>, then as long as everything it contains also conforms to <code>Hashable</code> then we don’t need to do any work. To demonstrate this, we could create a custom struct that conforms to <code>Hashable</code> rather than <code>Identifiable</code>, and use <code>\.self</code> to identify it:</p>
+<p>Core Data does something really smart here: the objects it creates for us actually have a selection of other properties beyond those we defined in our data model, including one called the object ID – an identifier that is unique to that object, regardless of what properties it contains. These IDs are similar to <code>UUID</code>, although Core Data generates them sequentially as we create objects.</p>
+<h3 id="NSManaged"><a href="#NSManaged" class="headerlink" title="@NSManaged"></a>@NSManaged</h3><p><code>@NSManaged</code> is <em>not</em> a property wrapper – this is much older than property wrappers in SwiftUI. Instead, this reveals a little of how Core Data works internally: rather than those values actually existing as properties in the class, they are really just there to read and write from a dictionary that Core Data uses to store its information. When we read or write the value of a property that is <code>@NSManaged</code>, Core Data catches that and handles it internally – it’s far from a simple Swift string.</p>
+<h3 id="筛选-排序"><a href="#筛选-排序" class="headerlink" title="筛选 + 排序"></a>筛选 + 排序</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FetchRequest</span>(sortDescriptors: [</span><br><span class="line">        <span class="type">SortDescriptor</span>(\.universe, order: .reverse)], predicate:</span><br><span class="line">    <span class="type">NSPredicate</span>(format: <span class="string">&quot;universe == %@&quot;</span>, <span class="string">&quot;Star Wars&quot;</span>)) <span class="keyword">var</span> ships: <span class="type">FetchedResults</span>&lt;<span class="type">Ship</span>&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="动态筛选"><a href="#动态筛选" class="headerlink" title="动态筛选"></a>动态筛选</h3><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/dynamically-filtering-fetchrequest-with-swiftui">Dynamically filtering @FetchRequest with SwiftUI</a></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 动态筛选， 在另写一个类</span></span><br><span class="line"><span class="comment">// 这里面的传入的filter参数在外面使用@State修饰的</span></span><br><span class="line"><span class="keyword">import</span> CoreData</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">DynamicFilteredList</span>: <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="meta">@FetchRequest</span> <span class="keyword">var</span> fetchRequest: <span class="type">FetchedResults</span>&lt;<span class="type">Singer</span>&gt;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(<span class="params">filter</span>: <span class="type">String</span>) &#123;</span><br><span class="line">        _fetchRequest <span class="operator">=</span> <span class="type">FetchRequest</span>&lt;<span class="type">Singer</span>&gt;(sortDescriptors: [], predicate: <span class="type">NSPredicate</span>(format: <span class="string">&quot;lastName BEGINSWITCH %@&quot;</span>, filter))</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">List</span>(fetchRequest, id: \.<span class="keyword">self</span>) &#123; singer <span class="keyword">in</span></span><br><span class="line">            <span class="type">Text</span>(<span class="string">&quot;<span class="subst">\(singer.warppedFirstName)</span> <span class="subst">\(singer.wrappedLastName)</span>&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="改进之后的，动态删选-排序-enum-conten闭包"><a href="#改进之后的，动态删选-排序-enum-conten闭包" class="headerlink" title="改进之后的，动态删选+排序+enum+conten闭包"></a>改进之后的，动态删选+排序+enum+conten闭包</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"><span class="keyword">import</span> CoreData</span><br><span class="line"></span><br><span class="line"><span class="comment">// not and这些没有加上去</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">PredicateEnum</span>: <span class="title class_">String</span> &#123;</span><br><span class="line">    <span class="keyword">case</span> equal <span class="operator">=</span> <span class="string">&quot;==&quot;</span></span><br><span class="line">    <span class="keyword">case</span> beginWith <span class="operator">=</span> <span class="string">&quot;BEGINSWITH&quot;</span></span><br><span class="line">    <span class="keyword">case</span> inside <span class="operator">=</span> <span class="string">&quot;IN&quot;</span></span><br><span class="line">    <span class="keyword">case</span> lower <span class="operator">=</span> <span class="string">&quot;&lt;&quot;</span></span><br><span class="line">    <span class="keyword">case</span> greater <span class="operator">=</span> <span class="string">&quot;&gt;&quot;</span></span><br><span class="line">    <span class="keyword">case</span> beginWithNonCaseSensitive <span class="operator">=</span> <span class="string">&quot;BEGINSWITH[c]&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">DynamicFilteredList</span>&lt;<span class="title class_">T</span>: <span class="title class_">NSManagedObject</span>, <span class="title class_">Content</span>: <span class="title class_">View</span>&gt;: <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="meta">@FetchRequest</span> <span class="keyword">var</span> fetchRequest: <span class="type">FetchedResults</span>&lt;<span class="type">T</span>&gt;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// this is our content closure; we&#x27;ll call this once for each item in the list</span></span><br><span class="line">    <span class="keyword">let</span> content: (<span class="type">T</span>) -&gt; <span class="type">Content</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(<span class="params">sortDescriptors</span>: [<span class="type">NSSortDescriptor</span>], <span class="params">predicateEnum</span>: <span class="type">PredicateEnum</span>, <span class="params">filterKey</span>: <span class="type">String</span>, <span class="params">filterValue</span>: <span class="type">String</span>, <span class="meta">@ViewBuilder</span> <span class="params">content</span>: <span class="keyword">@escaping</span> (<span class="type">T</span>) -&gt; <span class="type">Content</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> predicate <span class="operator">=</span> <span class="type">NSPredicate</span>(format: <span class="string">&quot;%K <span class="subst">\(predicateEnum.rawValue)</span> %@&quot;</span>, filterKey, filterValue)</span><br><span class="line">        </span><br><span class="line">        _fetchRequest <span class="operator">=</span> <span class="type">FetchRequest</span>&lt;<span class="type">T</span>&gt;(sortDescriptors: [], predicate: predicate)</span><br><span class="line">        <span class="keyword">self</span>.content <span class="operator">=</span> content</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">List</span>(fetchRequest, id: \.<span class="keyword">self</span>) &#123; data <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">self</span>.content(data)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Project13-Instafilter"><a href="#Project13-Instafilter" class="headerlink" title="Project13 Instafilter"></a>Project13 Instafilter</h2><p> lets the user import photos from their library, then modify them using various image effects. We’ll cover a number of new techniques, but at the center of it all are one useful app development skill – using Apple’s Core Image framework – and one important SwiftUI skill – integrating with UIKit. There are other things too, but those two are the big takeaways.</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/instafilter-introduction">Instafilter: Introduction</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/how-property-wrappers-become-structs">How property wrappers become structs</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/responding-to-state-changes-using-onchange">Responding to state changes using onChange()</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/showing-multiple-options-with-confirmationdialog">Showing multiple options with confirmationDialog()</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/integrating-core-image-with-swiftui">Integrating Core Image with SwiftUI</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/wrapping-a-uiviewcontroller-in-a-swiftui-view">Wrapping a UIViewController in a SwiftUI view</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/using-coordinators-to-manage-swiftui-view-controllers">Using coordinators to manage SwiftUI view controllers</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/how-to-save-images-to-the-users-photo-library">How to save images to the user’s photo library</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/building-our-basic-ui">Building our basic UI</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/importing-an-image-into-swiftui-using-phpickerviewcontroller">Importing an image into SwiftUI using PHPickerViewController</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/basic-image-filtering-using-core-image">Basic image filtering using Core Image</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/customizing-our-filter-using-confirmationdialog">Customizing our filter using confirmationDialog()</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/saving-the-filtered-image-using-uiimagewritetosavedphotosalbum">Saving the filtered image using UIImageWriteToSavedPhotosAlbum()</a></p>
+</li>
+</ul>
+<h3 id="onChange"><a href="#onChange" class="headerlink" title="onChange"></a>onChange</h3><p><strong>Property wrappers</strong> have that name because they wrap our property inside another struct. What this means is that when we use <code>@State</code> to wrap a string, the actual type of property we end up with is a <code>State&lt;String&gt;</code>. Similarly, when we use <code>@Environment</code> and others we end up with a struct of type <code>Environment</code> that contains some other value inside it.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// cmd + shift + O</span></span><br><span class="line"><span class="keyword">@propertyWrapper</span> <span class="keyword">public</span> <span class="keyword">struct</span> <span class="title class_">State</span>&lt;<span class="title class_">Value</span>&gt; : <span class="title class_">DynamicProperty</span> &#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">var</span> wrappedValue: <span class="type">Value</span> &#123; <span class="keyword">get</span> <span class="keyword">nonmutating</span> <span class="keyword">set</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/how-property-wrappers-become-structs">How property wrappers become structs</a></p>
+<p>就是说，Slider这种two-way绑定的，用didSet是看不到变化的，因为property wrapper是将比如String封装在一个新的struct中，然后slider变了的话，他是直接传到绑定的UI里面去了。用onChange() modifier可以代替didSet。(Project13)</p>
+<p>That wrapped value is the actual value we’re trying to store, such as a string. What this generated interface is telling us is that the property can be read (get), and written (set), but that when we set the value it won’t actually change the struct itself. Behind the scenes, it sends that value off to SwiftUI for storage in a place where it can be modified freely, so it’s true that the struct itself never changes.</p>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 由于inputImage，是twoway，里面改了，用didset看不到，所以用onChange</span></span><br><span class="line">.sheet(isPresented: <span class="variable">$showingImagePicker</span>) &#123;</span><br><span class="line">    <span class="type">ImagePicker</span>(image: <span class="variable">$inputImage</span>)</span><br><span class="line">&#125;</span><br><span class="line">.onChange(of: inputImage) &#123; <span class="keyword">_</span> <span class="keyword">in</span></span><br><span class="line">    loadImage()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> <span class="title function_">loadImage</span>() &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> inputImage <span class="operator">=</span> inputImage <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    image <span class="operator">=</span> <span class="type">Image</span>(uiImage: inputImage)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="Sheet-alert-confirmationDialog"><a href="#Sheet-alert-confirmationDialog" class="headerlink" title="Sheet(), alert(), confirmationDialog()"></a>Sheet(), alert(), confirmationDialog()</h3><p>Visually alerts and confirmation dialogs are very different: on iPhones, alerts appear in the center of the screen and must actively be dismissed by choosing a button, whereas confirmation dialogs slide up from the bottom, can contain multiple buttons, and can be dismissed by tapping on Cancel or by tapping outside of the options.</p>
+<h3 id="UIImage，CGImage，CIImage"><a href="#UIImage，CGImage，CIImage" class="headerlink" title="UIImage，CGImage，CIImage"></a>UIImage，CGImage，CIImage</h3><ul>
+<li><code>UIImage</code>, which comes from UIKit. This is an extremely powerful image type capable of working with a variety of image types, including bitmaps (like PNG), vectors (like SVG), and even sequences that form an animation. <code>UIImage</code> is the standard image type for UIKit, and of the three it’s closest to SwiftUI’s <code>Image</code> type.</li>
+<li><code>CGImage</code>, which comes from Core Graphics. This is a simpler image type that is really just a two-dimensional array of pixels.</li>
+<li><code>CIImage</code>, which comes from Core Image. This stores all the information required to produce an image but doesn’t actually turn that into pixels unless it’s asked to. Apple calls <code>CIImage</code> “an image recipe” rather than an actual image.</li>
+</ul>
+<p>There is some interoperability between the various image types:</p>
+<ul>
+<li>We can create a <code>UIImage</code> from a <code>CGImage</code>, and create a <code>CGImage</code> from a <code>UIImage</code>.</li>
+<li>We can create a <code>CIImage</code> from a <code>UIImage</code> and from a <code>CGImage</code>, and can create a <code>CGImage</code> from a <code>CIImage</code>.</li>
+<li>We can create a SwiftUI <code>Image</code> from both a <code>UIImage</code> and a <code>CGImage</code>.</li>
+</ul>
+<p>I know, I know: it’s confusing, but hopefully once you see the code you’ll feel better. What matters is that these image types are pure <em>data</em> – we can’t place them into a SwiftUI view hierarchy, but we can manipulate them freely then present the results in a SwiftUI <code>Image</code>.</p>
+<ul>
+<li>Read the output image from our filter, which will be a <code>CIImage</code>. This might fail, so it returns an optional.</li>
+<li>Ask our context to create a <code>CGImage</code> from that output image. This also might fail, so again it returns an optional.</li>
+<li>Convert that <code>CGImage</code> into a <code>UIImage</code>.</li>
+<li>Convert that <code>UIImage</code> into a SwiftUI <code>Image</code>.</li>
+</ul>
+<p>You <em>can</em> go direct from a <code>CGImage</code> to a SwiftUI <code>Image</code> but it requires extra parameters and it just adds even more complexity!</p>
+<h3 id="CoorDinator"><a href="#CoorDinator" class="headerlink" title="CoorDinator"></a>CoorDinator</h3><p>SwiftUI’s coordinators are designed to act as delegates for UIKit view controllers. Remember, “delegates” are objects that respond to events that occur elsewhere. For example, UIKit lets us attach a delegate object to its text field view, and that delegate will be notified when the user types anything, when they press return, and so on. This meant that UIKit developers could modify the way their text field behaved without having to create a custom text field type of their own.</p>
+<h3 id="整合UIKit的例子"><a href="#整合UIKit的例子" class="headerlink" title="整合UIKit的例子"></a>整合UIKit的例子</h3><p>I realize at this point you’re probably sick of UIKit and coordinators, but before we move on I want to sum up the complete process:</p>
+<ul>
+<li>We created a SwiftUI view that conforms to <code>UIViewControllerRepresentable</code>.</li>
+<li>We gave it a <code>makeUIViewController()</code> method that created some sort of <code>UIViewController</code>, which in our example was a <code>PHPickerViewController</code>.</li>
+<li>We added a nested <code>Coordinator</code> class to act as a bridge between the UIKit view controller and our SwiftUI view.</li>
+<li>We gave that coordinator a <code>didFinishPicking</code> method, which will be triggered by iOS when an image was selected.</li>
+<li>Finally, we gave our <code>ImagePicker</code> an <code>@Binding</code> property so that it can send changes back to a parent view.</li>
+</ul>
+<h2 id="Project15-BucketList"><a href="#Project15-BucketList" class="headerlink" title="Project15 BucketList"></a>Project15 BucketList</h2><p>lets the user build a private list of places on the map that they intend to visit one day, add a description for that place, look up interesting places that are nearby, and save it all to the iOS storage for later.</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/bucket-list-introduction">Bucket List: Introduction</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/adding-conformance-to-comparable-for-custom-types">Adding conformance to Comparable for custom types</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/writing-data-to-the-documents-directory">Writing data to the documents directory</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/switching-view-states-with-enums">Switching view states with enums</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/integrating-mapkit-with-swiftui">Integrating MapKit with SwiftUI</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/using-touch-id-and-face-id-with-swiftui">Using Touch ID and Face ID with SwiftUI</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/adding-user-locations-to-a-map">Adding user locations to a map</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/improving-our-map-annotations">Improving our map annotations</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/selecting-and-editing-map-annotations">Selecting and editing map annotations</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/downloading-data-from-wikipedia">Downloading data from Wikipedia</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/sorting-wikipedia-results">Sorting Wikipedia results</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/introducing-mvvm-into-your-swiftui-project">Introducing MVVM into your SwiftUI project</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/locking-our-ui-behind-face-id">Locking our UI behind Face ID</a></p>
+</li>
+</ul>
+<h3 id="存储方案"><a href="#存储方案" class="headerlink" title="存储方案"></a>存储方案</h3><p>1 UserDefaults</p>
+<p>2 CoreData</p>
+<p>3 FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)，String(contentsOf:)<code>and</code>Data(contentsOf:)</p>
+<p>4  in project 8 we looked at how to create a generic extension on <code>Bundle</code> that let us find, load, and decode any <code>Codable</code> data from our app bundle. </p>
+<h4 id="FileManager"><a href="#FileManager" class="headerlink" title="FileManager"></a>FileManager</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extension</span> <span class="title class_">FileManager</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> documentsDirectory: <span class="type">URL</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> paths <span class="operator">=</span> <span class="type">FileManager</span>.default.urls(for: .documentDirectory, in: .userDomainMask)</span><br><span class="line">        <span class="keyword">return</span> paths[<span class="number">0</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> savePath <span class="operator">=</span> <span class="type">FileManager</span>.documentsDirectory.appendingPathComponent(<span class="string">&quot;SavedPlaces&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">init</span>() &#123;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> data <span class="operator">=</span> <span class="keyword">try</span> <span class="type">Data</span>(contentsOf: savePath)</span><br><span class="line">        locations <span class="operator">=</span> <span class="keyword">try</span> <span class="type">JSONDecoder</span>().decode([<span class="type">Location</span>].<span class="keyword">self</span>, from: data)</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">        locations <span class="operator">=</span> []</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> <span class="title function_">save</span>() &#123;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> data <span class="operator">=</span> <span class="keyword">try</span> <span class="type">JSONEncoder</span>().encode(locations)</span><br><span class="line">        <span class="keyword">try</span> data.write(to: savePath, options: [.atomic, .completeFileProtection])</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Unable to save data.&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>FIleManager Using this approach we can write any amount of data in any number of files – it’s much more flexible than <code>UserDefaults</code>, and also allows us to load and save data as needed rather than immediately when the app launches as with <code>UserDefaults</code>.</p>
+<h3 id="returning-different-kinds-of-view"><a href="#returning-different-kinds-of-view" class="headerlink" title="returning different kinds of view"></a>returning different kinds of view</h3><p>When returning different kinds of view, make sure you’re either inside the <code>body</code> property or using something like <code>@ViewBuilder</code> or <code>Group</code>.</p>
+<h3 id="Binding绑定optional-value的时候，用-escapting"><a href="#Binding绑定optional-value的时候，用-escapting" class="headerlink" title="@Binding绑定optional value的时候，用@escapting"></a>@Binding绑定optional value的时候，用@escapting</h3><p>when we’re done editing the location, how can we pass the new location data back? We <em>could</em> use something like <code>@Binding</code> to pass in a remote value, but that creates problems with our optional in <code>ContentView</code> – we want <code>EditView</code> to be bound to a real value rather than an optional value, because otherwise it would get confusing.</p>
+<p>We’re going to take simplest solution we can: we’ll require a function to call where we can pass back whatever new location we want. This means any other SwiftUI can send us some data, and get back some new data to process however we want.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> onSave: (<span class="type">Location</span>) -&gt; <span class="type">Void</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">init</span>(<span class="params">location</span>: <span class="type">Location</span>, <span class="params">onSave</span>: <span class="keyword">@escaping</span> (<span class="type">Location</span>) -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.location <span class="operator">=</span> location</span><br><span class="line">    <span class="keyword">self</span>.onSave <span class="operator">=</span> onSave</span><br><span class="line"></span><br><span class="line">    _name <span class="operator">=</span> <span class="type">State</span>(initialValue: location.name)</span><br><span class="line">    _description <span class="operator">=</span> <span class="type">State</span>(initialValue: location.description)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Remember, <code>@escaping</code> means the function is being stashed away for user later on, rather than being called immediately, and it’s needed here because the <code>onSave</code> function will get called only when the user presses Save.</p>
+<h3 id="MainActor，MVVM，ViewModel"><a href="#MainActor，MVVM，ViewModel" class="headerlink" title="@MainActor，MVVM，ViewModel"></a>@MainActor，MVVM，ViewModel</h3><p>We’ll explore that definition as we go, but for now let’s start with the big stuff: make a new Swift file called ContentView-ViewModel.swift, then give it an extra import for MapKit. We’re going to use this to create a new class that manages our data, and manipulates it on behalf of the <code>ContentView</code> struct so that our view doesn’t really care how the underlying data system works.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ViewModel</span>: <span class="title class_">ObservableObject</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extension</span> <span class="title class_">ContentView</span> &#123;</span><br><span class="line">    <span class="meta">@MainActor</span> <span class="keyword">class</span> <span class="title class_">ViewModel</span>: <span class="title class_">ObservableObject</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Now, we’ve used <code>ObservableObject</code> classes before, but <em>didn’t</em> have <code>@MainActor</code> – how come they worked? Well, behind the scenes whenever we use <code>@StateObject</code> or <code>@ObservedObject</code> Swift was silently inferring the <code>@MainActor</code> attribute for us – it knows that both mean a SwiftUI view is relying on an external object to trigger its UI updates, and so it will make sure all the work automatically happens on the main actor without us asking for it.</p>
+<p>The main actor is responsible for running all user interface updates, and adding that attribute to the class means we want all its code – any time it runs anything, unless we specifically ask otherwise – to run on that main actor. This is important because it’s responsible for making UI updates, and those must happen on the main actor. In practice this isn’t quite so easy, but we’ll come to that later on.</p>
+<h2 id="Project15-Accessibility"><a href="#Project15-Accessibility" class="headerlink" title="Project15 Accessibility"></a>Project15 Accessibility</h2><p>给三个项目，增加了Accessibility。</p>
+<p>Project2 Guess the Flag，读出每一面国旗的描述。</p>
+<p>Project5 Word Scamble，读出自己写的单词的描述，就是用.ignore和accessLabel那个合用。</p>
+<p>Project11 BookWorm，就是星评级，使用一下四句话，来达到上下滑动，增加或者减少的效果。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">accessibilityElement()</span><br><span class="line">.accessibilityLabel(label)</span><br><span class="line">.accessibilityValue(rating <span class="operator">==</span> <span class="number">1</span> <span class="operator">?</span> <span class="string">&quot;1 star&quot;</span> : <span class="string">&quot;<span class="subst">\(rating)</span> stars&quot;</span>)</span><br><span class="line">.accessibilityAdjustableAction &#123; direction <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">switch</span> direction &#123;</span><br><span class="line">    <span class="keyword">case</span> .increment:</span><br><span class="line">        <span class="keyword">if</span> rating <span class="operator">&lt;</span> maximumRating &#123; rating <span class="operator">+=</span> <span class="number">1</span> &#125;</span><br><span class="line">    <span class="keyword">case</span> .decrement:</span><br><span class="line">        <span class="keyword">if</span> rating <span class="operator">&gt;</span> <span class="number">1</span> &#123; rating <span class="operator">-=</span> <span class="number">1</span> &#125;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>自己练习的三个：</p>
+<ol>
+<li>The check out view in Cupcake Corner uses an image and loading spinner that don’t add anything to the UI, so find a way to make the screenreader not read them out.</li>
+</ol>
+<p>​        下面这个写的不知道对不对</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">AsyncImage</span>(url: <span class="type">URL</span>(string: <span class="string">&quot;https://hws.dev/img/cupcakes@3x.jpg&quot;</span>), scale: <span class="number">3</span>) &#123; image <span class="keyword">in</span></span><br><span class="line">                    image</span><br><span class="line">                        .resizable()</span><br><span class="line">                        .scaledToFit()</span><br><span class="line">                &#125; placeholder: &#123;</span><br><span class="line">                    <span class="type">ProgressView</span>()</span><br><span class="line">                &#125;</span><br><span class="line">                .frame(height: <span class="number">233</span>)</span><br><span class="line">                .accessibilityElement(children: .ignore)</span><br><span class="line"><span class="comment">//                .accessibility(hidden: true)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>Fix the list rows in iExpense so they read out the name and value in one single VoiceOver label, and their type in a hint.</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">List</span> &#123;</span><br><span class="line">    <span class="type">ForEach</span>(expenses.items) &#123; item <span class="keyword">in</span></span><br><span class="line">        <span class="type">HStack</span> &#123;</span><br><span class="line">            <span class="type">VStack</span>(alignment: .leading) &#123;</span><br><span class="line">                <span class="type">Text</span>(item.name)</span><br><span class="line">                    .font(.headline)</span><br><span class="line">                <span class="type">Text</span>(item.type)</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="type">Spacer</span>()</span><br><span class="line">            <span class="type">Text</span>(item.amount, format: .currency(code: <span class="type">Locale</span>.current.currency<span class="operator">?</span>.identifier <span class="operator">??</span> <span class="string">&quot;USD&quot;</span>))</span><br><span class="line">        &#125;</span><br><span class="line">        .accessibilityElement(children: .ignore)</span><br><span class="line">        .accessibilityLabel(<span class="string">&quot;<span class="subst">\(item.name)</span>, amount is <span class="subst">\(Locale.current.currency<span class="operator">?</span>.identifier <span class="operator">??</span> <span class="string">&quot;USD&quot;</span>)</span> + <span class="subst">\(String(format: <span class="string">&quot;%.2f&quot;</span>, item.amount))</span>&quot;</span>)</span><br><span class="line">        .accessibilityHint(item.type)</span><br><span class="line">    &#125;</span><br><span class="line">    .onDelete(perform: removeItems(at:))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Project16-HotProspects"><a href="#Project16-HotProspects" class="headerlink" title="Project16 HotProspects"></a>Project16 HotProspects</h2><p>track who you meet at conferences. You’ve probably seen apps like it before: it will show a QR code that stores your attendee information, then others can scan that code to add you to their list of possible leads for later follow up.</p>
+<p>This app is going to display four SwiftUI views inside a tab bar: one to show everyone that you met, one to show people you have contacted, another to show people you <em>haven’t</em> contacted, and a final one showing your personal information for others to scan.</p>
+<p>In this project we want users to see a card with some prompt text for whatever they want to learn, such as “What is the capital city of Scotland?”, and when they tap it we’ll reveal the answer, which in this case is of course Edinburgh.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/hot-prospects-introduction">Hot Prospects: Introduction</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/reading-custom-values-from-the-environment-with-environmentobject">Reading custom values from the environment with @EnvironmentObject</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/creating-tabs-with-tabview-and-tabitem">Creating tabs with TabView and tabItem()</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/manually-publishing-observableobject-changes">Manually publishing ObservableObject changes</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/understanding-swifts-result-type">Understanding Swift’s Result type</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/controlling-image-interpolation-in-swiftui">Controlling image interpolation in SwiftUI</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/creating-context-menus">Creating context menus</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/adding-custom-row-swipe-actions-to-a-list">Adding custom row swipe actions to a List</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/scheduling-local-notifications">Scheduling local notifications</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/adding-swift-package-dependencies-in-xcode">Adding Swift package dependencies in Xcode</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/building-our-tab-bar">Building our tab bar</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/sharing-data-across-tabs-using-environmentobject">Sharing data across tabs using @EnvironmentObject</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/dynamically-filtering-a-swiftui-list">Dynamically filtering a SwiftUI List</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/generating-and-scaling-up-a-qr-code">Generating and scaling up a QR code</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/scanning-qr-codes-with-swiftui">Scanning QR codes with SwiftUI</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/adding-options-with-swipe-actions">Adding options with swipe actions</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/saving-and-loading-data-with-userdefaults">Saving and loading data with UserDefaults</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/adding-a-context-menu-to-an-image">Adding a context menu to an image</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/posting-notifications-to-the-lock-screen">Posting notifications to the lock screen</a></li>
+</ul>
+<h3 id="TabView"><a href="#TabView" class="headerlink" title="TabView"></a>TabView</h3><p>It’s common to want to use <code>NavigationView</code> and <code>TabView</code> at the same time, but you should be careful: <code>TabView</code> should be the parent view, with the tabs inside it having a <code>NavigationView</code> as necessary, rather than the other way around.</p>
+<h2 id="Project17-Flashzzilla"><a href="#Project17-Flashzzilla" class="headerlink" title="Project17 Flashzzilla"></a>Project17 Flashzzilla</h2><p>This new app we’re building is going to rely heavily on gestures, and after only a few seconds of using it you’ll be using the gestures at light speed. That’s exactly what we’re aiming for: gestures that feel so natural that you struggle to imagine them working any other way.</p>
+<p><strong>Today you have four topics to work through, in which you’ll learn about gestures, haptics, hit testing, and more.</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/flashzilla-introduction">Flashzilla: Introduction</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/how-to-use-gestures-in-swiftui">How to use gestures in SwiftUI</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/making-vibrations-with-uinotificationfeedbackgenerator-and-core-haptics">Making vibrations with UINotificationFeedbackGenerator and Core Haptics</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/disabling-user-interactivity-with-allowshittesting">Disabling user interactivity with allowsHitTesting()</a></li>
+</ul>
+<h3 id="highPriorityGesture-、-simultaneousGesture"><a href="#highPriorityGesture-、-simultaneousGesture" class="headerlink" title="**highPriorityGesture()**、 simultaneousGesture()"></a>**highPriorityGesture()**、 <code>simultaneousGesture()</code></h3><p>In this situation SwiftUI will always give the child’s gesture priority, which means when you tap the text view above you’ll see “Text tapped”. However, if you want to change that you can use the <code>highPriorityGesture()</code> modifier to force the parent’s gesture to trigger instead.</p>
+<p><code>simultaneousGesture()</code> modifier to tell SwiftUI you want both the parent and child gestures to trigger at the same time.</p>
+<h3 id="gesture-sequences"><a href="#gesture-sequences" class="headerlink" title="gesture sequences"></a>gesture sequences</h3><p> one gesture will only become active if another gesture has first succeeded. This takes a little more thinking because the gestures need to be able to reference each other, so you can’t just attach them directly to a view.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">ContentView</span>: <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="comment">// how far the circle has been dragged</span></span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> offset <span class="operator">=</span> <span class="type">CGSize</span>.zero</span><br><span class="line"></span><br><span class="line">    <span class="comment">// whether it is currently being dragged or not</span></span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> isDragging <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="comment">// a drag gesture that updates offset and isDragging as it moves around</span></span><br><span class="line">        <span class="keyword">let</span> dragGesture <span class="operator">=</span> <span class="type">DragGesture</span>()</span><br><span class="line">            .onChanged &#123; value <span class="keyword">in</span> offset <span class="operator">=</span> value.translation &#125;</span><br><span class="line">            .onEnded &#123; <span class="keyword">_</span> <span class="keyword">in</span></span><br><span class="line">                withAnimation &#123;</span><br><span class="line">                    offset <span class="operator">=</span> .zero</span><br><span class="line">                    isDragging <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// a long press gesture that enables isDragging</span></span><br><span class="line">        <span class="keyword">let</span> pressGesture <span class="operator">=</span> <span class="type">LongPressGesture</span>()</span><br><span class="line">            .onEnded &#123; value <span class="keyword">in</span></span><br><span class="line">                withAnimation &#123;</span><br><span class="line">                    isDragging <span class="operator">=</span> <span class="literal">true</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// a combined gesture that forces the user to long press then drag</span></span><br><span class="line">        <span class="keyword">let</span> combined <span class="operator">=</span> pressGesture.sequenced(before: dragGesture)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// a 64x64 circle that scales up when it&#x27;s dragged, sets its offset to whatever we had back from the drag gesture, and uses our combined gesture</span></span><br><span class="line">        <span class="type">Circle</span>()</span><br><span class="line">            .fill(.red)</span><br><span class="line">            .frame(width: <span class="number">64</span>, height: <span class="number">64</span>)</span><br><span class="line">            .scaleEffect(isDragging <span class="operator">?</span> <span class="number">1.5</span> : <span class="number">1</span>)</span><br><span class="line">            .offset(offset)</span><br><span class="line">            .gesture(combined)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="Timer，Combine"><a href="#Timer，Combine" class="headerlink" title="Timer，Combine"></a><code>Timer</code>，<code>Combine</code></h3><p>iOS comes with a built-in <code>Timer</code> class that lets us run code on a regular basis. This uses a system of <em>publishers</em> that comes from an Apple framework called Combine. </p>
+<p>Apple’s core system library is called Foundation, and it gives us things like <code>Data</code>, <code>Date</code>, <code>SortDescriptor</code>, <code>UserDefaults</code>, and much more. It also gives us the <code>Timer</code> class, which is designed to run a function after a certain number of seconds, but it can also run code repeatedly. <strong><code>Combine</code> adds an extension to this so that <code>timers</code> can become <em>publishers</em>, which are things that announce when their value changes.</strong> This is where the <code>@Published</code> property wrapper gets its name from, and timer publishers work the same way: when your time interval is reached, Combine will send an announcement out containing the current date and time.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">ContentView</span>: <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> timer <span class="operator">=</span> <span class="type">Timer</span>.publish(every: <span class="number">1</span>, on: .main, in: .common).autoconnect()</span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> counter <span class="operator">=</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">Text</span>(<span class="string">&quot;Hello, World!&quot;</span>)</span><br><span class="line">            .onReceive(timer) &#123; time <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">if</span> counter <span class="operator">==</span> <span class="number">5</span> &#123;</span><br><span class="line">                    timer.upstream.connect().cancel()</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;The time is now <span class="subst">\(time)</span>&quot;</span>)</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                counter <span class="operator">+=</span> <span class="number">1</span></span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Project18-LayoutAndGeometry"><a href="#Project18-LayoutAndGeometry" class="headerlink" title="Project18 LayoutAndGeometry"></a>Project18 LayoutAndGeometry</h2><p>how SwiftUI handles layout and geometry</p>
+<p>For example, it’s easy to spot when one thing is centered and another thing isn’t, but what if two things are aligned to slightly different leading edges?</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/layout-and-geometry-introduction">Layout and geometry: Introduction</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/how-layout-works-in-swiftui">How layout works in SwiftUI</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/alignment-and-alignment-guides">Alignment and alignment guides</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/how-to-create-a-custom-alignment-guide">How to create a custom alignment guide</a></li>
+</ul>
+<h3 id="Step"><a href="#Step" class="headerlink" title="Step"></a>Step</h3><p>If we put this into the three-step layout system, we end up with a conversation a bit like this:</p>
+<ul>
+<li>SwiftUI: “Hey, ContentView, you have the whole screen to yourself – how much of it do you need?” (Parent view proposes a size)</li>
+<li>ContentView: “I don’t care; I’m layout neutral. Let me ask my child: hey, background, you have the whole screen to yourself – how much of it do you need?” (Parent view proposes a size)</li>
+<li>Background: “I also don’t care; I’m layout neutral too. Let me ask <em>my</em> child: hey, text, you can have the whole screen to yourself – how much of it do you need?” (Parent view proposes a size)</li>
+<li>Text: “Well, I have the letters ‘Hello, World’ in the default font, so I need exactly X pixels width by Y pixels height. I don’t need the whole screen, just that.” (Child chooses its size.)</li>
+<li>Background: “Got it. Hey, ContentView: I need X by Y pixels, please.”</li>
+<li>ContentView: “Right on. Hey, SwiftUI: I need X by Y pixels.”</li>
+<li>SwiftUI: “Nice. Well, that leaves lots of space, so I’m going to put you at your size in the center.” (Parent positions the child in its coordinate space.)</li>
+</ul>
+<p><strong>So, when we say <code>Text(&quot;Hello, World!&quot;).background(.red)</code>, the text view becomes a child of its background.</strong> SwiftUI effectively works its way from bottom to top when it comes to a view and its modifiers.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">&quot;Hello, World!&quot;</span>)</span><br><span class="line">    .padding(<span class="number">20</span>)</span><br><span class="line">    .background(.red)</span><br></pre></td></tr></table></figure>
+
+<p>So, it’s more like this:</p>
+<ul>
+<li>SwiftUI: You can have the whole screen, how much of it do you need, ContentView?</li>
+<li>ContentView: You can have the whole screen, how much of it do you need, background?</li>
+<li>Background: You can have the whole screen, how much of it do you need, padding?</li>
+<li>Padding: You can have the whole screen minus 20 points on each side, how much of it do you need, text?</li>
+<li>Text: I need X by Y.</li>
+<li>Padding: I need X by Y plus 20 points on each side.</li>
+<li>Background: I need X by Y plus 20 points on each side.</li>
+<li>ContentView: I need X by Y plus 20 points on each side.</li>
+<li>SwiftUI: OK; I’ll center you.</li>
+</ul>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2022/10/16/SwiftUI/">http://example.com/2022/10/16/SwiftUI/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-11-02</p></div> 
+    <div class="post-entry__tags"><a href="/tags/SwiftUI/" class="post-tags__link button"># SwiftUI</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/10/15/hexo-upic-gitee-%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            hexo-upic-gitee-问题解决
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2022 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
