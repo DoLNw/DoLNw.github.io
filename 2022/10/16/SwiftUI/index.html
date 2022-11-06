@@ -43,7 +43,7 @@
 <meta property="og:description" content="跟着Hacking with Swift做的一些小项目。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-10-16T10:06:23.000Z">
-<meta property="article:modified_time" content="2022-11-06T15:02:51.637Z">
+<meta property="article:modified_time" content="2022-11-06T15:04:51.089Z">
 <meta property="article:author" content="jcwang">
 <meta property="article:tag" content="SwiftUI">
 <meta name="twitter:card" content="summary_large_image">
@@ -189,21 +189,30 @@
 <p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/how-property-wrappers-become-structs">How property wrappers become structs</a></p>
 <p>就是说，Slider这种two-way绑定的，用didSet是看不到变化的，因为property wrapper是将比如String封装在一个新的struct中，然后slider变了的话，他是直接传到绑定的UI里面去了。用onChange() modifier可以代替didSet。(Project13)</p>
 <p>That wrapped value is the actual value we’re trying to store, such as a string. What this generated interface is telling us is that the property can be read (get), and written (set), but that when we set the value it won’t actually change the struct itself. Behind the scenes, it sends that value off to SwiftUI for storage in a place where it can be modified freely, so it’s true that the struct itself never changes.</p>
-<p><code>@State</code>配合$，可以组成two-way binding，designed for simple data that is local to the current view</p>
-<p><code>@Binding</code>，lets us connect an <code>@State</code> property of one view to some underlying model data.</p>
-<p><code>Published(objectWillChange.send()两者选一个，这个可以添加一些额外的操作)（属性）</code>, <code>@StateObject（创建）</code>, <code>@ObservedObject（取出）</code>，@ObservableObject（协议），放入是当作构造参数放入的。<code>User</code> is a <strong>class</strong> the property itself isn’t changing, so <code>@State</code> doesn’t notice anything and can’t reload the view. Yes, the values <em>inside</em> the class are changing, but <code>@State</code> doesn’t monitor those, so effectively what’s happening is that the values inside our class are being changed but the view isn’t being reloaded to reflect that change.</p>
+<ul>
+<li><p><code>@State</code>配合$，可以组成two-way binding，designed for simple data that is local to the current view</p>
+</li>
+<li><p><code>@Binding</code>，lets us connect an <code>@State</code> property of one view to some underlying model data.</p>
+</li>
+<li><p><code>Published(objectWillChange.send()两者选一个，这个可以添加一些额外的操作)（属性）</code>, <code>@StateObject（创建）</code>, <code>@ObservedObject（取出）</code>，@ObservableObject（协议），放入是当作构造参数放入的。<code>User</code> is a <strong>class</strong> the property itself isn’t changing, so <code>@State</code> doesn’t notice anything and can’t reload the view. Yes, the values <em>inside</em> the class are changing, but <code>@State</code> doesn’t monitor those, so effectively what’s happening is that the values inside our class are being changed but the view isn’t being reloaded to reflect that change.</p>
+</li>
+</ul>
 <p>用objectWillChange.send()代替@Published。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value <span class="operator">=</span> <span class="number">0</span> &#123;</span><br><span class="line">    <span class="keyword">willSet</span> &#123;</span><br><span class="line">        objectWillChange.send()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<p><code>@EnvironmentObject（取出）</code>, @StateObject（创建）, @ObservableObject（协议）, @Published（属性）, .environmentObject()（放入）</p>
-<p><code>@Environment</code></p>
+<ul>
+<li><p><code>@EnvironmentObject（取出）</code>, @StateObject（创建）, @ObservableObject（协议）, @Published（属性）, .environmentObject()（放入）</p>
+</li>
+<li><p><code>@Environment</code></p>
+</li>
+</ul>
  <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Environment</span>(\.dismiss) <span class="keyword">var</span> dismiss</span><br></pre></td></tr></table></figure>
 
-
-
-<p><code>@FocusState</code></p>
+<ul>
+<li><code>@FocusState</code></li>
+</ul>
 <h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><p> <code>@State</code> is used to work with state that is local to a single view, and how</p>
 <p> <code>@ObservedObject</code> lets us pass one object from view to view so we can share it. Well, </p>
 <p><code>@EnvironmentObject</code> takes that one step further: we can place an object into the environment so that any child view can automatically have access to it.</p>
