@@ -33,15 +33,15 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="Handoop教程现状分析（现在）、实时分析（流式处理，秒级别、毫秒级别） 原因分析（过去）、离线分析（批处理） 预测分析（机器学习） 数据分析的基本步骤：（采集、处理、分析、应用） 明确分析目的和思路（分析框架体系化） 数据收集 数据（预）处理（变成干净规整的结构化数据） 数据分析 数据展现 报告撰写 大数据5V特征： Volume，数据体量大 Variety，种类、来源多样化 Value，低价">
+    <meta name="description" content="Handoop教程3.0中有hdfs、yarn、mapreduce三部分，合为hadoop。 介绍现状分析（现在）、实时分析（流式处理，秒级别、毫秒级别） 原因分析（过去）、离线分析（批处理） 预测分析（机器学习） 数据分析的基本步骤：（采集、处理、分析、应用） 明确分析目的和思路（分析框架体系化） 数据收集 数据（预）处理（变成干净规整的结构化数据） 数据分析 数据展现 报告撰写 大数据5V">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Handoop">
 <meta property="og:url" content="http://example.com/2022/11/29/handoop/index.html">
 <meta property="og:site_name" content="穿过海的声音">
-<meta property="og:description" content="Handoop教程现状分析（现在）、实时分析（流式处理，秒级别、毫秒级别） 原因分析（过去）、离线分析（批处理） 预测分析（机器学习） 数据分析的基本步骤：（采集、处理、分析、应用） 明确分析目的和思路（分析框架体系化） 数据收集 数据（预）处理（变成干净规整的结构化数据） 数据分析 数据展现 报告撰写 大数据5V特征： Volume，数据体量大 Variety，种类、来源多样化 Value，低价">
+<meta property="og:description" content="Handoop教程3.0中有hdfs、yarn、mapreduce三部分，合为hadoop。 介绍现状分析（现在）、实时分析（流式处理，秒级别、毫秒级别） 原因分析（过去）、离线分析（批处理） 预测分析（机器学习） 数据分析的基本步骤：（采集、处理、分析、应用） 明确分析目的和思路（分析框架体系化） 数据收集 数据（预）处理（变成干净规整的结构化数据） 数据分析 数据展现 报告撰写 大数据5V">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-29T12:21:34.000Z">
-<meta property="article:modified_time" content="2022-11-30T03:08:17.608Z">
+<meta property="article:modified_time" content="2023-02-14T14:16:43.601Z">
 <meta property="article:author" content="jcwang">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -142,7 +142,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%EF%BC%8C%E9%83%A8%E7%BD%B2%EF%BC%8C%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%8Cformat%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.1.</span> <span class="toc-text">安装，部署，配置文件，format初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E5%90%AF%E5%81%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.</span> <span class="toc-text">手动启停命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hdfs%E9%9B%86%E7%BE%A4"><span class="toc-number">2.2.1.</span> <span class="toc-text">hdfs集群</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#yarn%E9%9B%86%E7%BE%A4"><span class="toc-number">2.2.2.</span> <span class="toc-text">yarn集群</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hdfs%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">hdfs命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yarn-mapreduce"><span class="toc-number">4.</span> <span class="toc-text">yarn+mapreduce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number">4.1.</span> <span class="toc-text">三个问题：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">5.</span> <span class="toc-text">HDFS分布式文件系统基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE"><span class="toc-number">5.1.</span> <span class="toc-text">数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-number">5.2.</span> <span class="toc-text">元数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E5%B1%9E%E6%80%A7"><span class="toc-number">6.</span> <span class="toc-text">分布式存储系统核心属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%EF%BC%88Hadoop-DIstributed-FIle-System%EF%BC%89%E7%AE%80%E4%BB%8B"><span class="toc-number">7.</span> <span class="toc-text">HDFS（Hadoop DIstributed FIle System）简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E9%87%8D%E8%A6%81%E7%89%B9%E6%80%A7"><span class="toc-number">8.</span> <span class="toc-text">HDFS重要特性</span></a></li></ol>
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -152,14 +152,17 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">Article Directory</div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%EF%BC%8C%E9%83%A8%E7%BD%B2%EF%BC%8C%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%8Cformat%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.1.</span> <span class="toc-text">安装，部署，配置文件，format初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E5%90%AF%E5%81%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.</span> <span class="toc-text">手动启停命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hdfs%E9%9B%86%E7%BE%A4"><span class="toc-number">2.2.1.</span> <span class="toc-text">hdfs集群</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#yarn%E9%9B%86%E7%BE%A4"><span class="toc-number">2.2.2.</span> <span class="toc-text">yarn集群</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hdfs%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">hdfs命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yarn-mapreduce"><span class="toc-number">4.</span> <span class="toc-text">yarn+mapreduce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number">4.1.</span> <span class="toc-text">三个问题：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">5.</span> <span class="toc-text">HDFS分布式文件系统基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE"><span class="toc-number">5.1.</span> <span class="toc-text">数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-number">5.2.</span> <span class="toc-text">元数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E5%B1%9E%E6%80%A7"><span class="toc-number">6.</span> <span class="toc-text">分布式存储系统核心属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%EF%BC%88Hadoop-DIstributed-FIle-System%EF%BC%89%E7%AE%80%E4%BB%8B"><span class="toc-number">7.</span> <span class="toc-text">HDFS（Hadoop DIstributed FIle System）简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E9%87%8D%E8%A6%81%E7%89%B9%E6%80%A7"><span class="toc-number">8.</span> <span class="toc-text">HDFS重要特性</span></a></li></ol>
     </div>
 
 
 <article class="post post__with-toc content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <h1 id="Handoop教程"><a href="#Handoop教程" class="headerlink" title="Handoop教程"></a>Handoop教程</h1><p>现状分析（现在）、实时分析（流式处理，秒级别、毫秒级别）</p>
+        <meta name="referrer" content="no-referrer" />
+
+<h1 id="Handoop教程"><a href="#Handoop教程" class="headerlink" title="Handoop教程"></a>Handoop教程</h1><p>3.0中有hdfs、yarn、mapreduce三部分，合为hadoop。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>现状分析（现在）、实时分析（流式处理，秒级别、毫秒级别）</p>
 <p>原因分析（过去）、离线分析（批处理）</p>
 <p>预测分析（机器学习）</p>
 <p>数据分析的基本步骤：（采集、处理、分析、应用）</p>
@@ -178,6 +181,50 @@
 <p>分布式：多台机器，每台机器上部署不同组件。</p>
 <p>集群：多台机器，每台机器部署相同组件。</p>
 <p>![Screenshot2022-11-29at20.47.43](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot</a> 2022-11-29 at 20.47.43.png)</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><h3 id="安装，部署，配置文件，format初始化"><a href="#安装，部署，配置文件，format初始化" class="headerlink" title="安装，部署，配置文件，format初始化"></a>安装，部署，配置文件，format初始化</h3><h3 id="手动启停命令"><a href="#手动启停命令" class="headerlink" title="手动启停命令"></a>手动启停命令</h3><p>![Screenshot2023-02-13at21.39.08](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot</a> 2023-02-13 at 21.39.08.png)</p>
+<p>![Screenshot2023-02-13at21.39.28](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot</a> 2023-02-13 at 21.39.28.png)</p>
+<p>jps查看进程是否启动成功，因为hadoop是用java写的。</p>
+<p>hadoop启动日志路径：&#x2F;export&#x2F;server&#x2F;hadoop-3.3.0&#x2F;logs，注意前面的是安装路径。</p>
+<h4 id="hdfs集群"><a href="#hdfs集群" class="headerlink" title="hdfs集群"></a>hdfs集群</h4><p>访问地址：<a target="_blank" rel="noopener" href="http://namenode_host:9870/">http://namenode_host:9870</a></p>
+<p>其中namenode_host是namenode运行机器的主机名或者ip。</p>
+<h4 id="yarn集群"><a href="#yarn集群" class="headerlink" title="yarn集群"></a>yarn集群</h4><p>访问地址：<a target="_blank" rel="noopener" href="http://namenode_host:8088/">http://namenode_host:8088</a></p>
+<p>里面可以有hadoop，spark，flink等等。</p>
+<h2 id="hdfs命令"><a href="#hdfs命令" class="headerlink" title="hdfs命令"></a>hdfs命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir -p /wordcount/input</span><br><span class="line">hadoop fs -put hello.txt /wordcount/input</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="yarn-mapreduce"><a href="#yarn-mapreduce" class="headerlink" title="yarn+mapreduce"></a>yarn+mapreduce</h2><p>程序先找resourcemanager（yearn，资源），然后两个阶段，先map阶段再reduce阶段。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /export/server/hadoop-3.3.0/share/hadoop/mapreduce/   #安装包下的share文件夹下面会有一些mapreduce示例</span><br><span class="line">hadoop jar hadoop-mapreduce-examples-3.3.0.jar wordcount /wordcount/input /wordcount/input</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="三个问题："><a href="#三个问题：" class="headerlink" title="三个问题："></a>三个问题：</h3><p>1、执行mapreduce的时候，为什么现请求yarn</p>
+<p>2、mapreduce看上去好像是两个阶段？先map，再reduce？</p>
+<p>3、处理小数据的时候，mapreduce速度快吗？</p>
+<h2 id="HDFS分布式文件系统基础知识"><a href="#HDFS分布式文件系统基础知识" class="headerlink" title="HDFS分布式文件系统基础知识"></a>HDFS分布式文件系统基础知识</h2><p>分布式体现在哪里呢？</p>
+<p>文件系统：存储，组织数据，实现了数据的存储、分级组织、访问、获取等操作。用户只需要关注逻辑，不用去管物理层面。</p>
+<p>传统的文件系统，基本上是指单机的文件系统，底层不会横跨多台机器。</p>
+<h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><p>存储的内容本身，比如文件图片等。数据底层最终存储在磁盘等存储介质上，一般用户无需关心，只需要给予目录树进行增删改啥，针对数据的操作由文件系统完成。</p>
+<h3 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h3><p>元数据又称之为解释性数据，记录数据的数据；</p>
+<p>文件大小、最后修改时间、底层存储位置、属性、所属用户、权限等信息。</p>
+<p>传统的文件系统，在海量数据下，有哪些挑战？</p>
+<p>数据量大，单机纵向扩展，存储不下。 所以使用多机横向扩展。</p>
+<p>成本高、后期维护、升级扩容成本高。</p>
+<p>无法支撑高效率的计算分析。<strong>传统的存储是存储，计算是计算，当需要处理数据的时候，把数据移动过来</strong>。<strong>程序和数据存储属于不同的技术厂商实现，无法有机统一整合在一起</strong>。</p>
+<p>性能低，单一节点I&#x2F;O性能瓶颈无法逾越，难以支撑海量数据的高并发高吞吐两场景。</p>
+<p>可扩展性差，无法实现快速部署和弹性扩展，动态扩容、缩容成本高，技术实现难度大。</p>
+<h2 id="分布式存储系统核心属性"><a href="#分布式存储系统核心属性" class="headerlink" title="分布式存储系统核心属性"></a>分布式存储系统核心属性</h2><ul>
+<li>分布式存储。数据量大，单机纵向扩展，存储不下。 所以使用多机横向扩展。</li>
+<li>元数据记录。文件分布在不同机器上不利于寻找，所以元数据记录下文件及其存储位置信息（文件名、大小、存储机器IP），快速定位文件位置。</li>
+<li>分块存储。文件过大导致单机存储不下，上传下载效率低。所以文件分块存储在不同机器，针对块<strong>并行</strong>操作提高效率。</li>
+<li>副本机制。硬件故障难以避免，数据容易丢失。所以不同机器之间设置备份，冗余存储，保障数据安全。</li>
+</ul>
+<h2 id="HDFS（Hadoop-DIstributed-FIle-System）简介"><a href="#HDFS（Hadoop-DIstributed-FIle-System）简介" class="headerlink" title="HDFS（Hadoop DIstributed FIle System）简介"></a>HDFS（Hadoop DIstributed FIle System）简介</h2><p>Hadoop是Apache Hadoop核心组件之一，作为大数据生态圈最底层的分布式存储服务而存在，也可以说大数据首先要解决的问题就是海量数据的存储问题。</p>
+<p>HDFS使用多台计算机存储文件，并且提供<strong>统一的访问接口</strong>。</p>
+<p>![Screenshot2023-02-13at22.26.24](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot</a> 2023-02-13 at 22.26.24.png)</p>
+<h2 id="HDFS重要特性"><a href="#HDFS重要特性" class="headerlink" title="HDFS重要特性"></a>HDFS重要特性</h2><p>![Screenshot2023-02-14at22.14.46](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot</a> 2023-02-14 at 22.14.46.png)</p>
 
     </div>
     
@@ -194,7 +241,7 @@
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-11-30</p></div> 
+    <div class="post-footer__meta"><p>updated at 2023-02-14</p></div> 
     <div class="post-entry__tags"></div> 
 </article>
 
