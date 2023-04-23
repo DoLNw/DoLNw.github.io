@@ -43,8 +43,10 @@
 <meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202022-12-20%20at%2011.47.26.png">
 <meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/nDRGbl.png">
 <meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/CXdqjU.png">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_3785.PNG">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_3786.PNG">
 <meta property="article:published_time" content="2022-12-19T14:17:45.000Z">
-<meta property="article:modified_time" content="2023-04-23T15:00:29.606Z">
+<meta property="article:modified_time" content="2023-04-23T15:19:40.897Z">
 <meta property="article:author" content="jcwang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202022-12-20%20at%2011.47.26.png">
@@ -172,7 +174,7 @@
 <p>查看 hostname</p>
 <p>1、修改 sudo nano &#x2F;etc&#x2F;hostname，dinosaur-pi4b1</p>
 <p>2、然后修改 sudo nano &#x2F;etc&#x2F;hosts，127.0.0.1 dinosaur-pi4b1</p>
-<p>使用ssh连接可以：ssh <a href="mailto:&#100;&#x69;&#x6e;&#x6f;&#115;&#97;&#x75;&#114;&#64;&#x64;&#105;&#110;&#x6f;&#115;&#x61;&#x75;&#114;&#x2d;&#x70;&#105;&#x34;&#x62;&#49;&#x2e;&#x6c;&#x6f;&#99;&#97;&#108;">&#100;&#x69;&#x6e;&#x6f;&#115;&#97;&#x75;&#114;&#64;&#x64;&#105;&#110;&#x6f;&#115;&#x61;&#x75;&#114;&#x2d;&#x70;&#105;&#x34;&#x62;&#49;&#x2e;&#x6c;&#x6f;&#99;&#97;&#108;</a></p>
+<p>使用ssh连接可以：ssh <a href="mailto:&#x64;&#x69;&#x6e;&#111;&#115;&#97;&#x75;&#114;&#x40;&#x64;&#105;&#110;&#111;&#115;&#97;&#x75;&#x72;&#45;&#x70;&#x69;&#x34;&#98;&#49;&#x2e;&#x6c;&#111;&#x63;&#97;&#108;">&#x64;&#x69;&#x6e;&#111;&#115;&#97;&#x75;&#114;&#x40;&#x64;&#105;&#110;&#111;&#115;&#97;&#x75;&#x72;&#45;&#x70;&#x69;&#x34;&#98;&#49;&#x2e;&#x6c;&#111;&#x63;&#97;&#108;</a></p>
 <h2 id="更改Wi-Fi密码"><a href="#更改Wi-Fi密码" class="headerlink" title="更改Wi-Fi密码"></a>更改Wi-Fi密码</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># </span><span class="language-bash">扫描Wi-Fi</span></span><br><span class="line">sudo iwlist wlan0 scan</span><br><span class="line"></span><br><span class="line">wpa_passphrase &quot;TP-LINK_9A27&quot; &quot;***********&quot;</span><br><span class="line"></span><br><span class="line">sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</span><br><span class="line"><span class="meta"># </span><span class="language-bash">然后可以将生成的以ASCII码显示的psk复制下来。</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">去该文件下面增加Wi-Fi信息</span></span><br><span class="line">sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</span><br><span class="line"></span><br><span class="line">network=&#123;</span><br><span class="line">        ssid=&quot;TP-LINK_9A27&quot;</span><br><span class="line">        #psk=&quot;&quot;***********&quot;&quot;</span><br><span class="line">        psk=****************************************</span><br><span class="line">        priority=1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -269,9 +271,16 @@
 
 
 
+
+
+<p><a target="_blank" rel="noopener" href="https://hub.docker.com/r/fmartingr/minidlna-arm">fmartingr&#x2F;minidlna-arm</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># </span><span class="language-bash">上面这个比较慢，没成功</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">下面这个成功了。</span></span><br><span class="line">docker run -d --name minidlna \</span><br><span class="line">       --net host \</span><br><span class="line">       -v /mnt/EXTERNALHDD:/mymedia \</span><br><span class="line">       -e &quot;MINIDLNA_FRIENDLY_NAME=My DLNA server&quot; \</span><br><span class="line">       -e &quot;MINIDLNA_MEDIA_DIR=V,/mymedia&quot; \</span><br><span class="line">       -e &quot;MINIDLNA_ROOT_CONTAINER=B&quot; \</span><br><span class="line">       fmartingr/minidlna-arm</span><br><span class="line">       </span><br><span class="line">sudo docker run -d --name minidlna \</span><br><span class="line">       --net host \</span><br><span class="line">       -v /home/dinosaur/SharingDir/my-minidlan:/mymedia \</span><br><span class="line">       -e &quot;MINIDLNA_FRIENDLY_NAME=My DLNA server&quot; \</span><br><span class="line">       -e &quot;MINIDLNA_MEDIA_DIR=V,/mymedia&quot; \</span><br><span class="line">       -e &quot;MINIDLNA_ROOT_CONTAINER=B&quot; \</span><br><span class="line">       fmartingr/minidlna-arm</span><br></pre></td></tr></table></figure>
 
-
+<p>使用infuse软件，点击添加共享，会自动跳出如下：</p>
+<center class="half">
+    <img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_3785.PNG" width="300"/>
+    <img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/IMG_3786.PNG" width="300"/>
+</center>
 
 
 
