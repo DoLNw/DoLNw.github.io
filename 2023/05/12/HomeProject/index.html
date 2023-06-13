@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>HomeProject | 穿过海的声音</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="HomeProjectJava篇首先使用MybatisPlus，连接数据库，并且搭建各类底层操作。 注意，SpringBoot3的Mybatisplus版本需要在3.5.3及之后。 然后注意一下primarykey，数据库的字段名字和Java程序的属性名字区别，@TableField等等。 Swift篇前端搭建iOS app。 MQTT单独的类，监听到消息后，如何实时反馈到View？Com">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HomeProject">
+<meta property="og:url" content="http://example.com/2023/05/12/HomeProject/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="HomeProjectJava篇首先使用MybatisPlus，连接数据库，并且搭建各类底层操作。 注意，SpringBoot3的Mybatisplus版本需要在3.5.3及之后。 然后注意一下primarykey，数据库的字段名字和Java程序的属性名字区别，@TableField等等。 Swift篇前端搭建iOS app。 MQTT单独的类，监听到消息后，如何实时反馈到View？Com">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-05-12T04:14:10.000Z">
+<meta property="article:modified_time" content="2023-05-28T02:03:17.980Z">
+<meta property="article:author" content="jcwang">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        HomeProject
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2023/05/" class="post-meta__date button">2023-05-12</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">Java篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Swift%E7%AF%87"><span class="toc-number">2.</span> <span class="toc-text">Swift篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MQTT%E5%8D%95%E7%8B%AC%E7%9A%84%E7%B1%BB%EF%BC%8C%E7%9B%91%E5%90%AC%E5%88%B0%E6%B6%88%E6%81%AF%E5%90%8E%EF%BC%8C%E5%A6%82%E4%BD%95%E5%AE%9E%E6%97%B6%E5%8F%8D%E9%A6%88%E5%88%B0View%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">MQTT单独的类，监听到消息后，如何实时反馈到View？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87HTTP%E5%90%91%E5%90%8E%E5%8F%B0%E8%AF%B7%E6%B1%82"><span class="toc-number">2.2.</span> <span class="toc-text">通过HTTP向后台请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iBeacon%E6%89%AB%E6%8F%8F%E5%92%8C%E6%A8%A1%E6%8B%9F"><span class="toc-number">2.3.</span> <span class="toc-text">iBeacon扫描和模拟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E9%AB%98%E6%B5%8B%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text">音高测量</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">Java篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Swift%E7%AF%87"><span class="toc-number">2.</span> <span class="toc-text">Swift篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MQTT%E5%8D%95%E7%8B%AC%E7%9A%84%E7%B1%BB%EF%BC%8C%E7%9B%91%E5%90%AC%E5%88%B0%E6%B6%88%E6%81%AF%E5%90%8E%EF%BC%8C%E5%A6%82%E4%BD%95%E5%AE%9E%E6%97%B6%E5%8F%8D%E9%A6%88%E5%88%B0View%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">MQTT单独的类，监听到消息后，如何实时反馈到View？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87HTTP%E5%90%91%E5%90%8E%E5%8F%B0%E8%AF%B7%E6%B1%82"><span class="toc-number">2.2.</span> <span class="toc-text">通过HTTP向后台请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iBeacon%E6%89%AB%E6%8F%8F%E5%92%8C%E6%A8%A1%E6%8B%9F"><span class="toc-number">2.3.</span> <span class="toc-text">iBeacon扫描和模拟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E9%AB%98%E6%B5%8B%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text">音高测量</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <meta name="referrer" content="no-referrer" />
+
+
+
+<h1 id="HomeProject"><a href="#HomeProject" class="headerlink" title="HomeProject"></a>HomeProject</h1><h2 id="Java篇"><a href="#Java篇" class="headerlink" title="Java篇"></a>Java篇</h2><p>首先使用MybatisPlus，连接数据库，并且搭建各类底层操作。</p>
+<p>注意，SpringBoot3的Mybatisplus版本需要在3.5.3及之后。</p>
+<p>然后注意一下primarykey，数据库的字段名字和Java程序的属性名字区别，@TableField等等。</p>
+<h2 id="Swift篇"><a href="#Swift篇" class="headerlink" title="Swift篇"></a>Swift篇</h2><p>前端搭建iOS app。</p>
+<h3 id="MQTT单独的类，监听到消息后，如何实时反馈到View？"><a href="#MQTT单独的类，监听到消息后，如何实时反馈到View？" class="headerlink" title="MQTT单独的类，监听到消息后，如何实时反馈到View？"></a>MQTT单独的类，监听到消息后，如何实时反馈到View？</h3><p><a target="_blank" rel="noopener" href="https://www.waldo.com/blog/swiftui-combine">Combine for SwiftUi Developers: What It Is And Why You Should Use </a></p>
+<p>Combine</p>
+<blockquote>
+<p>“The Combine framework provides a declarative Swift API for processing values over time. … Combine declares <em>publishers</em> to expose values that can change over time, and <em>subscribers</em> to receive those values from the publishers.”</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.artemnovichkov.com/bluetooth-and-swiftui">Bluetooth and SwiftUI. Developing app for RGB stripe control</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hY411W7TZ/?spm_id_from=333.337.search-card.all.click&vd_source=2db7773e62bee422b77e762249f63ae3">视频，在SwiftUI中使用Combine的一点心得</a></p>
+<h3 id="通过HTTP向后台请求"><a href="#通过HTTP向后台请求" class="headerlink" title="通过HTTP向后台请求"></a>通过HTTP向后台请求</h3><p> <a target="_blank" rel="noopener" href="https://moe.jimmy0w0.me/2022/02/16/swift5-call-http-api/">在 Swift 5 和 SwiftUI 中通过 URLRequest 与 URLSession 请求 JSON 并反序列化</a></p>
+<h3 id="iBeacon扫描和模拟"><a href="#iBeacon扫描和模拟" class="headerlink" title="iBeacon扫描和模拟"></a>iBeacon扫描和模拟</h3><p>UUID为了隐私，电量消耗等考虑，一定要指定uuid才能扫描的，不能扫描所有。安卓应该可以。</p>
+<h2 id="音高测量"><a href="#音高测量" class="headerlink" title="音高测量"></a>音高测量</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30824985">如何基于 Web Audio API 实现一个 Tuner（调音器）？</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7058084046298939428">乐器调音器</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/jpsim">jpsim</a>&#x2F;<strong><a target="_blank" rel="noopener" href="https://github.com/jpsim/ZenTuner">ZenTuner</a></strong></p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2023/05/12/HomeProject/">http://example.com/2023/05/12/HomeProject/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2023-05-28</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2023/05/10/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8-3-%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            树莓派使用-3-功能整理
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2023 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
