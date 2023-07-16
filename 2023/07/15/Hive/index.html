@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>Hive | 穿过海的声音</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Hive数据仓库数据仓库，面相分析的集成化数据环境，分析结果为企业提供决策支持（Decision Support）。 数据仓库本身并不生产任何数据，其数据来源于不同外部系统。 不需要消费任何数据，其结果开放给各个外部应用使用。 基于业务数据开展数据分析，基于分析的结果给决策提供支持。 OLTP系统（mysql、oracle）核心是面向业务、支持业务、支持事务，可以分为读写。一般来说读的压力比较大。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive">
+<meta property="og:url" content="http://example.com/2023/07/15/Hive/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="Hive数据仓库数据仓库，面相分析的集成化数据环境，分析结果为企业提供决策支持（Decision Support）。 数据仓库本身并不生产任何数据，其数据来源于不同外部系统。 不需要消费任何数据，其结果开放给各个外部应用使用。 基于业务数据开展数据分析，基于分析的结果给决策提供支持。 OLTP系统（mysql、oracle）核心是面向业务、支持业务、支持事务，可以分为读写。一般来说读的压力比较大。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-15%20at%2017.42.36.png">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-15%20at%2017.53.44.png">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-15%20at%2018.02.43.png">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-15%20at%2018.18.17.png">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-15%20at%2018.20.59.png">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-15%20at%2018.25.55.png">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-16%20at%2019.00.41.png">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-16%20at%2019.07.52.png">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-16%20at%2019.27.54.png">
+<meta property="article:published_time" content="2023-07-15T09:15:56.000Z">
+<meta property="article:modified_time" content="2023-07-16T11:42:35.411Z">
+<meta property="article:author" content="jcwang">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-15%20at%2017.42.36.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        Hive
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2023/07/" class="post-meta__date button">2023-07-15</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">数据仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E4%B8%AA%E7%89%B9%E5%BE%81"><span class="toc-number">2.</span> <span class="toc-text">四个特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OLTP%E7%B3%BB%E7%BB%9F%E5%92%8COLAP%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.</span> <span class="toc-text">OLTP系统和OLAP系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8C%BA%E5%88%AB"><span class="toc-number">4.</span> <span class="toc-text">数据仓库和数据库区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%92%8C%E6%95%B0%E6%8D%AE%E9%9B%86%E5%B8%82"><span class="toc-number">5.</span> <span class="toc-text">数据仓库和数据集市</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84"><span class="toc-number">6.</span> <span class="toc-text">数据仓库分层架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ETL%E5%92%8CELT%E5%8C%BA%E5%88%AB"><span class="toc-number">7.</span> <span class="toc-text">ETL和ELT区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BE%8E%E5%9B%A2%E7%82%B9%E8%AF%84%E9%85%92%E6%97%85%E6%95%B0%E4%BB%93%E5%BB%BA%E8%AE%BE%E5%AE%9E%E8%B7%B5"><span class="toc-number">8.</span> <span class="toc-text">美团点评酒旅数仓建设实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache-Hive"><span class="toc-number">9.</span> <span class="toc-text">Apache Hive</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-number">9.1.</span> <span class="toc-text">元数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%83%E6%95%B0%E6%8D%AE%E4%BF%A1%E6%81%AF%E5%8C%85%E6%8B%AC%EF%BC%9A"><span class="toc-number">9.1.1.</span> <span class="toc-text">元数据信息包括：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E6%A1%88%E4%BE%8B%EF%BC%88%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0Hive%E5%8A%9F%E8%83%BD%EF%BC%89"><span class="toc-number">9.2.</span> <span class="toc-text">最终案例（模拟实现Hive功能）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache-Hive%E6%9E%B6%E6%9E%84%E3%80%81%E7%BB%84%E4%BB%B6"><span class="toc-number">9.3.</span> <span class="toc-text">Apache Hive架构、组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%EF%BC%88%E5%BA%93%E3%80%81%E8%A1%A8%E3%80%81%E5%88%86%E5%8C%BA%E3%80%81%E5%88%86%E6%A1%B6%EF%BC%89"><span class="toc-number">9.4.</span> <span class="toc-text">Apache数据模型（库、表、分区、分桶）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive%E4%B8%8EMySql%E5%8C%BA%E5%88%AB"><span class="toc-number">9.5.</span> <span class="toc-text">Hive与MySql区别</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">数据仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E4%B8%AA%E7%89%B9%E5%BE%81"><span class="toc-number">2.</span> <span class="toc-text">四个特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OLTP%E7%B3%BB%E7%BB%9F%E5%92%8COLAP%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.</span> <span class="toc-text">OLTP系统和OLAP系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8C%BA%E5%88%AB"><span class="toc-number">4.</span> <span class="toc-text">数据仓库和数据库区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%92%8C%E6%95%B0%E6%8D%AE%E9%9B%86%E5%B8%82"><span class="toc-number">5.</span> <span class="toc-text">数据仓库和数据集市</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84"><span class="toc-number">6.</span> <span class="toc-text">数据仓库分层架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ETL%E5%92%8CELT%E5%8C%BA%E5%88%AB"><span class="toc-number">7.</span> <span class="toc-text">ETL和ELT区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BE%8E%E5%9B%A2%E7%82%B9%E8%AF%84%E9%85%92%E6%97%85%E6%95%B0%E4%BB%93%E5%BB%BA%E8%AE%BE%E5%AE%9E%E8%B7%B5"><span class="toc-number">8.</span> <span class="toc-text">美团点评酒旅数仓建设实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache-Hive"><span class="toc-number">9.</span> <span class="toc-text">Apache Hive</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-number">9.1.</span> <span class="toc-text">元数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%83%E6%95%B0%E6%8D%AE%E4%BF%A1%E6%81%AF%E5%8C%85%E6%8B%AC%EF%BC%9A"><span class="toc-number">9.1.1.</span> <span class="toc-text">元数据信息包括：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E6%A1%88%E4%BE%8B%EF%BC%88%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0Hive%E5%8A%9F%E8%83%BD%EF%BC%89"><span class="toc-number">9.2.</span> <span class="toc-text">最终案例（模拟实现Hive功能）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache-Hive%E6%9E%B6%E6%9E%84%E3%80%81%E7%BB%84%E4%BB%B6"><span class="toc-number">9.3.</span> <span class="toc-text">Apache Hive架构、组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%EF%BC%88%E5%BA%93%E3%80%81%E8%A1%A8%E3%80%81%E5%88%86%E5%8C%BA%E3%80%81%E5%88%86%E6%A1%B6%EF%BC%89"><span class="toc-number">9.4.</span> <span class="toc-text">Apache数据模型（库、表、分区、分桶）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive%E4%B8%8EMySql%E5%8C%BA%E5%88%AB"><span class="toc-number">9.5.</span> <span class="toc-text">Hive与MySql区别</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a>Hive</h1><h2 id="数据仓库"><a href="#数据仓库" class="headerlink" title="数据仓库"></a>数据仓库</h2><p>数据仓库，面相分析的集成化数据环境，<strong>分析</strong>结果为企业提供决策支持（Decision Support）。</p>
+<p>数据仓库本身并不生产任何数据，其数据来源于不同外部系统。</p>
+<p>不需要消费任何数据，其结果开放给各个外部应用使用。</p>
+<p>基于业务数据开展数据分析，基于分析的结果给决策提供支持。</p>
+<p><strong>OLTP系统</strong>（mysql、oracle）核心是面向业务、支持业务、支持事务，可以分为读写。一般来说读的压力比较大。所以如果直接在OLTP系统上面展开分析，会让读取压力倍增。</p>
+<p>所以说，如果数据规模比较小，在业务低峰期可以在OLTP系统上开展直接分析。但是为了更好的进行各种规模的数据分析，同时也不影响OLTP系统运行，此时需要构建一个集成统一的数据分析平台。该平台：面向分析、支持分析，并且和OLTP系统解耦合。</p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-15%20at%2017.42.36.png" alt="Screenshot2023-07-15at17.42.36"></p>
+<h2 id="四个特征"><a href="#四个特征" class="headerlink" title="四个特征"></a>四个特征</h2><p>面向主题</p>
+<p>集成性（ETL，抽取、转换、加载）</p>
+<p>非易变性</p>
+<p>时变性（数据是按照时间顺序追加的，都带有时间属性）</p>
+<h2 id="OLTP系统和OLAP系统"><a href="#OLTP系统和OLAP系统" class="headerlink" title="OLTP系统和OLAP系统"></a>OLTP系统和OLAP系统</h2><p>联机事务处理，OLTP（Online Transaction Processing）：保证响应时间、安全等等。</p>
+<p>联机分析处理。OLAP（Online Analytical Processing）：一个典型事例就是数据仓库。</p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-15%20at%2017.53.44.png" alt="Screenshot2023-07-15at17.53.44"></p>
+<h2 id="数据仓库和数据库区别"><a href="#数据仓库和数据库区别" class="headerlink" title="数据仓库和数据库区别"></a>数据仓库和数据库区别</h2><p>一个是OLAP（面向分析），一个是OLTP（面向分析）。</p>
+<p>OLTP典型是RDBMS，当然此处强调关系型数据库。</p>
+<p>OLAP核心在于DW，俗称的数据仓库。</p>
+<p>数据仓库不是大型的数据库，虽然数据仓库存储数据规模大。</p>
+<p>数据库是面向事务的设计，数据仓库是面向主题设计。</p>
+<p>数据库一般存储业务数据，数据仓库一般存储历史数据。</p>
+<p>数据库捕获数据，数据仓库分析数据。</p>
+<h2 id="数据仓库和数据集市"><a href="#数据仓库和数据集市" class="headerlink" title="数据仓库和数据集市"></a>数据仓库和数据集市</h2><p>数据仓库是 面向整个集团组织的数据，数据集市面向单个部门使用。</p>
+<p>数据集市叫做小型数据仓库，是数据仓库的一个子集。</p>
+<h2 id="数据仓库分层架构"><a href="#数据仓库分层架构" class="headerlink" title="数据仓库分层架构"></a>数据仓库分层架构</h2><p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-15%20at%2018.02.43.png" alt="Screenshot2023-07-15at18.02.43"></p>
+<p>ODS层：原数据层、数据引入层、数据暂存层。</p>
+<p>DW层：数据仓库层。</p>
+<p>DA层：数据应用层，面向业务定制提供给产品和数据分析使用的数据。</p>
+<h2 id="ETL和ELT区别"><a href="#ETL和ELT区别" class="headerlink" title="ETL和ELT区别"></a>ETL和ELT区别</h2><p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-15%20at%2018.18.17.png" alt="Screenshot2023-07-15at18.18.17"></p>
+<p>在数仓的分层架构中，ETL是什么动作？</p>
+<p>从各个数据源获取数据及在数据仓库内的流转和流动。（ETL）</p>
+<p>ELT的话直接E获取到数据仓库，没有ODS，然后数据转化根据不同的需要进行不同的转换等。</p>
+<h2 id="美团点评酒旅数仓建设实践"><a href="#美团点评酒旅数仓建设实践" class="headerlink" title="美团点评酒旅数仓建设实践"></a>美团点评酒旅数仓建设实践</h2><p>![Screenshot2023-07-15at18.19.04](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot</a> 2023-07-15 at 18.19.04.png)</p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-15%20at%2018.20.59.png" alt="Screenshot2023-07-15at18.20.59"></p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-15%20at%2018.25.55.png" alt="Screenshot2023-07-15at18.25.55"></p>
+<h2 id="Apache-Hive"><a href="#Apache-Hive" class="headerlink" title="Apache Hive"></a>Apache Hive</h2><ul>
+<li><p>是一款建立在Hadoop之上的开源<strong>数据仓库</strong>系统，可以讲存储在Hadoop文件（HDFS）中的<strong>结构化、半结构化数据文件映射为一张数据库表</strong>，基于表提供了一种类似SQL的查询，称为<strong>Hive查询语言（HQL）</strong>，用于访问和分析存储在Hadoop文件中的大型数据集。</p>
+</li>
+<li><p>Hive核心是将<strong>HQL转换为MqpReduce程序</strong>，然后将程序提交到Hadoop群集执行。</p>
+</li>
+<li><p>Hive由Facebook实现并开源。</p>
+</li>
+</ul>
+<p>直接使用hadoop处理数据学习成本太高，需要Java语言，实现复杂查询逻辑开发难度太大。</p>
+<p>Hive好处，操作接口采用类似SQL语法，提供快速开发的能力；避免直接写MapReduce，减少开发人员的学习成本；支持自定义函数，功能扩展方便；背靠Hadoop，擅长存储分析海量数据集。</p>
+<p>![Screenshot2023-07-15at18.34.28](<a target="_blank" rel="noopener" href="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot">https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot</a> 2023-07-15 at 18.34.28.png)</p>
+<p>Hive利用<strong>HDFS</strong>存储数据，利用<strong>MapReduce</strong>查询分析数据。</p>
+<p>Hive让用户专注于编写HQL，Hive帮助转换成MapReduce程序完成对数据的分析。</p>
+<h3 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h3><p>1、Hive能将数据文件映射称为一张表，映射指的是什么？文件和表之间的对应关系。</p>
+<p>在Hive中能写sql处理的前提是针对表，而不是针对文件，因此需要将文件和表之间的对应关系描述记录清楚，<strong>映射</strong>信息专业的叫法称之为<strong>元数据信息</strong>。（元数据是指用来描述数据的数据）</p>
+<h4 id="元数据信息包括："><a href="#元数据信息包括：" class="headerlink" title="元数据信息包括："></a>元数据信息包括：</h4><p>表对应哪个文件。</p>
+<p>表的列对应哪一个字段。</p>
+<p>文件字段之间的分隔符。</p>
+<p>2、Hive软件本身承担了什么功能职责？SQL语法解析编译成为MapReduce。</p>
+<h3 id="最终案例（模拟实现Hive功能）"><a href="#最终案例（模拟实现Hive功能）" class="headerlink" title="最终案例（模拟实现Hive功能）"></a>最终案例（模拟实现Hive功能）</h3><p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-16%20at%2019.00.41.png" alt="Screenshot2023-07-16at19.00.41"></p>
+<h3 id="Apache-Hive架构、组件"><a href="#Apache-Hive架构、组件" class="headerlink" title="Apache Hive架构、组件"></a>Apache Hive架构、组件</h3><ul>
+<li>用户接口（访问Hive的方式）</li>
+<li>元数据存储</li>
+<li>Driver驱动程序，包括语法解析器、计划编译器、优化器、执行器</li>
+<li>执行引擎（默认是MapReduce、Tez、Spark3）</li>
+</ul>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-16%20at%2019.07.52.png" alt="Screenshot2023-07-16at19.07.52"></p>
+<h3 id="Apache数据模型（库、表、分区、分桶）"><a href="#Apache数据模型（库、表、分区、分桶）" class="headerlink" title="Apache数据模型（库、表、分区、分桶）"></a>Apache数据模型（库、表、分区、分桶）</h3><p>Hive的数据默认存储在HDFS上，默认有一个子目录。因此Hive的数据库在HDFS上面的存储路径为：${hive.metastore.warehouse.dir}&#x2F;databasename.db（）。比如名为itcast的数据库的存储路径为：&#x2F;user&#x2F;hive&#x2F;warehouse&#x2F;itcast。</p>
+<p>${hive.metastore.warehouse.dir}是一个参数，默认为&#x2F;user&#x2F;hive&#x2F;warehouse。</p>
+<p>Hive表与关系数据库中的表相同。Hive中的表对应的数据通常存储在HDFS中，而表相关的元数据是存储在RDBMS中。</p>
+<p>Bucket分桶表在HDFS中表现为同一个表目录下数据根据hash三列之后变成多个文件。</p>
+<p>分桶的好处是可以优化join的查询和方便抽样查询。</p>
+<h3 id="Hive与MySql区别"><a href="#Hive与MySql区别" class="headerlink" title="Hive与MySql区别"></a>Hive与MySql区别</h3><p>应用场景不同。Hive只适合使用做海量数据的<strong>离线分析</strong>。Hive的定位是数据仓库，面相分析的OLAP系统。</p>
+<p>Hive不是大型数据库，也不是要取代MySQL承担业务数据处理。</p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-16%20at%2019.27.54.png" alt="Screenshot2023-07-16at19.27.54"></p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2023/07/15/Hive/">http://example.com/2023/07/15/Hive/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2023-07-16</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2023/05/12/HomeProject/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            HomeProject
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2023 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
