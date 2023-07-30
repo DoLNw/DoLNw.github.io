@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>Flink | 穿过海的声音</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Flink流式计算 大数据四大：Hadoop，Hive HBase，Spark，Flink 初识流处理：来一条处理一条，实时。 批处理：是一个吞吐量，和计算的高效。 公认最好的流设式计算 无界流：qq消息，发不完。 有界流：一周内的消息，也叫批处理。 适用场景对于流处理：低延迟，Excactly-once。   Storm 对于批处理：高吞吐、高效处理。          MapReduce典型批">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink">
+<meta property="og:url" content="http://example.com/2023/07/29/Flink/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="Flink流式计算 大数据四大：Hadoop，Hive HBase，Spark，Flink 初识流处理：来一条处理一条，实时。 批处理：是一个吞吐量，和计算的高效。 公认最好的流设式计算 无界流：qq消息，发不完。 有界流：一周内的消息，也叫批处理。 适用场景对于流处理：低延迟，Excactly-once。   Storm 对于批处理：高吞吐、高效处理。          MapReduce典型批">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-29%20at%2013.36.46.png">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-29%20at%2013.39.07.png">
+<meta property="article:published_time" content="2023-07-29T03:40:00.000Z">
+<meta property="article:modified_time" content="2023-07-30T06:04:17.738Z">
+<meta property="article:author" content="jcwang">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-29%20at%2013.36.46.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        Flink
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2023/07/" class="post-meta__date button">2023-07-29</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">初识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">2.</span> <span class="toc-text">适用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E5%BC%8F%E8%AE%A1%E7%AE%97"><span class="toc-number">3.</span> <span class="toc-text">流式计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">部署方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flink%E8%BF%90%E8%A1%8C%E6%9E%B6%E6%9E%84"><span class="toc-number">5.</span> <span class="toc-text">Flink运行架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E5%BA%A6%E4%B8%8ESlots"><span class="toc-number">6.</span> <span class="toc-text">并发度与Slots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flink-DataStream-API"><span class="toc-number">7.</span> <span class="toc-text">Flink DataStream API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Source%EF%BC%8C%E8%BE%93%E5%85%A5"><span class="toc-number">8.</span> <span class="toc-text">Source，输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sink%EF%BC%8C%E8%BE%93%E5%87%BA"><span class="toc-number">9.</span> <span class="toc-text">Sink，输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transformation%E3%80%81%E6%95%B0%E6%8D%AE%E5%8F%98%E6%8D%A2%E6%93%8D%E4%BD%9C"><span class="toc-number">10.</span> <span class="toc-text">Transformation、数据变换操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Window%E5%BC%80%E7%AA%97%E6%88%B7"><span class="toc-number">10.1.</span> <span class="toc-text">Window开窗户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E7%AA%97%E8%81%9A%E5%90%88%E7%AE%97%E5%AD%90"><span class="toc-number">10.2.</span> <span class="toc-text">开窗聚合算子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flink-CEP%EF%BC%88Flink-Complex-Event-Processing%EF%BC%89"><span class="toc-number">11.</span> <span class="toc-text">Flink CEP（Flink Complex Event Processing）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E5%99%A8"><span class="toc-number">11.1.</span> <span class="toc-text">匹配器</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">初识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">2.</span> <span class="toc-text">适用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E5%BC%8F%E8%AE%A1%E7%AE%97"><span class="toc-number">3.</span> <span class="toc-text">流式计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">部署方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flink%E8%BF%90%E8%A1%8C%E6%9E%B6%E6%9E%84"><span class="toc-number">5.</span> <span class="toc-text">Flink运行架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E5%BA%A6%E4%B8%8ESlots"><span class="toc-number">6.</span> <span class="toc-text">并发度与Slots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flink-DataStream-API"><span class="toc-number">7.</span> <span class="toc-text">Flink DataStream API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Source%EF%BC%8C%E8%BE%93%E5%85%A5"><span class="toc-number">8.</span> <span class="toc-text">Source，输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sink%EF%BC%8C%E8%BE%93%E5%87%BA"><span class="toc-number">9.</span> <span class="toc-text">Sink，输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transformation%E3%80%81%E6%95%B0%E6%8D%AE%E5%8F%98%E6%8D%A2%E6%93%8D%E4%BD%9C"><span class="toc-number">10.</span> <span class="toc-text">Transformation、数据变换操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Window%E5%BC%80%E7%AA%97%E6%88%B7"><span class="toc-number">10.1.</span> <span class="toc-text">Window开窗户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E7%AA%97%E8%81%9A%E5%90%88%E7%AE%97%E5%AD%90"><span class="toc-number">10.2.</span> <span class="toc-text">开窗聚合算子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flink-CEP%EF%BC%88Flink-Complex-Event-Processing%EF%BC%89"><span class="toc-number">11.</span> <span class="toc-text">Flink CEP（Flink Complex Event Processing）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E5%99%A8"><span class="toc-number">11.1.</span> <span class="toc-text">匹配器</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="Flink"><a href="#Flink" class="headerlink" title="Flink"></a>Flink</h1><p>流式计算</p>
+<p>大数据四大：Hadoop，Hive HBase，Spark，Flink</p>
+<h2 id="初识"><a href="#初识" class="headerlink" title="初识"></a>初识</h2><p><strong>流处理</strong>：来一条处理一条，实时。</p>
+<p><strong>批处理</strong>：是一个吞吐量，和计算的高效。</p>
+<p>公认最好的流设式计算</p>
+<p>无界流：qq消息，发不完。</p>
+<p>有界流：一周内的消息，也叫批处理。</p>
+<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><p>对于流处理：低延迟，Excactly-once。   <strong>Storm</strong></p>
+<p>对于批处理：高吞吐、高效处理。          MapReduce典型批量数据处理。</p>
+<p>Flink在实现流和批的时候，将二者统一，流批统一。将批处理视为一种特殊的流处理，只是他的输入数据流被定义为有界的。</p>
+<p>基于同一个Flink运行环境，分别提供了流处理和批处理API。</p>
+<p>适用场景：实时监控系统、推荐系统、日志分析系统等等。</p>
+<h2 id="流式计算"><a href="#流式计算" class="headerlink" title="流式计算"></a>流式计算</h2><p>两种流式计算，到时候与Flink对比。</p>
+<h2 id="部署方式"><a href="#部署方式" class="headerlink" title="部署方式"></a>部署方式</h2><p>多种，Local、Standalone、Yarn、Mesos、Docker、Kubernetes、AWS等等。</p>
+<p>后面的几个相比于Standalone就是其他的进行资源管理，更高效。但是Standalone的外部依赖最小。</p>
+<h2 id="Flink运行架构"><a href="#Flink运行架构" class="headerlink" title="Flink运行架构"></a>Flink运行架构</h2><p><strong>JobManager</strong>：  Master，协调分布式任务执行，调度task进行具体的任务。</p>
+<p><strong>TaskManager：Worker</strong>，执行实际任务。</p>
+<p>JobManager和TaskManager都是单独的JVM进程。</p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-29%20at%2013.36.46.png" alt="Screenshot2023-07-29at13.36.46"></p>
+<p>JobManager接收到任务后，整体的流程（yarn模式，其中的resourcemanager可以是yarn）：</p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-07-29%20at%2013.39.07.png" alt="Screenshot2023-07-29at13.39.07"></p>
+<h2 id="并发度与Slots"><a href="#并发度与Slots" class="headerlink" title="并发度与Slots"></a>并发度与Slots</h2><p><strong>并行度</strong>：是任务的（比如java程序）。setParallelsm(2)。然后配置文件也有，然后网页版本的控制也有。</p>
+<p>应用程序的优先，然后网页提交任务时候的第二，最后是配置文件中的。</p>
+<p><strong>Slots</strong>：是TaskManage的。r每一个TaskManager是一个独立的JVM进程，可以独立的在线程上执行一个或者多个任务task，为了控制一个taskmanager能接受多少个task，划分出来多个slot。默认slot是1。</p>
+<p>flink会对slots进行灵活的调度，如果parallelsm的slots比可用的slots稍多，也会灵活调度运行成功的。</p>
+<p>如果parallelsm比可用slots多，那么需要的并行度比可用的slots多，可能有问题了。会等有空的slots。注意这是在standalone下面，因为slots固定的。这种情况要么调整每一个taskmanage人的slot，要么调整程序的parallelsm。</p>
+<p>而yarn模式下可以协调资源，可以生成新的slots可供使用。所以yarn比standalone的要好。</p>
+<h2 id="Flink-DataStream-API"><a href="#Flink-DataStream-API" class="headerlink" title="Flink DataStream API"></a>Flink DataStream API</h2><p>DataStream重的数据在创建了之后就不能在增删改了，流批统一。</p>
+<p>1、获取一个执行环境Environment。</p>
+<p>2、通过Source，定义数据的来源。（file文件、Socket、kafka、rabbitMQ、ES、JDBC等等很多都支持）</p>
+<p>3、对数据定义一系列的操作，Transformations</p>
+<p>4、通过Sink，定义程序处理的结果要输出到哪里。</p>
+<p>5、最后，提交并启动任务。（execute。）</p>
+<p>setRuntimeMode()</p>
+<p> STREAMING，流式模式，所有的task在应用执行时就完成部署，后续所有任务会连续不断运行。数据来一个处理一个。</p>
+<p>BATCH，task周期性部署。</p>
+<p>AUTOMATIC，自动。</p>
+<p>从socket读的并行度只能是1。</p>
+<h2 id="Source，输入"><a href="#Source，输入" class="headerlink" title="Source，输入"></a>Source，输入</h2><p>来自文件、Socket等等。</p>
+<p>自定义Source</p>
+<h2 id="Sink，输出"><a href="#Sink，输出" class="headerlink" title="Sink，输出"></a>Sink，输出</h2><p>输出到文件：writeAs，不过deprecated，可以使用StreamFileSink，不过要有依赖</p>
+<p>Socket。</p>
+<p>kafka，输出到kafka是需要一个生产者。获取数据是需要一个消费者。</p>
+<p>JDBC，也有JDBCSink包。</p>
+<p>自定义Sink。</p>
+<h2 id="Transformation、数据变换操作"><a href="#Transformation、数据变换操作" class="headerlink" title="Transformation、数据变换操作"></a>Transformation、数据变换操作</h2><p>可以查阅相关文档。</p>
+<p>map，takes one element and produces one element。</p>
+<p>flatmap, 拉平。就是take的element里面可能是嵌套的map。</p>
+<p>filter，过滤。</p>
+<p>keyBy，（DataStream -&gt; KeyedStream），将key相同的value聚合成相同的value。一般会接一个reduce或者aggregations。</p>
+<p>reduce，A “rolling” reduce on a keyed data stream</p>
+<p>aggregations, 统计。最大值最小值，sum等等</p>
+<p>connect，处理其实分开的两个流。</p>
+<p>union，数据和在一起了。</p>
+<p>这两个算子用的也挺多的，就是帮助改进数据倾斜问题，把数据均匀一下，防止一个节点很繁忙。</p>
+<p>shuffle()，（DataStream -&gt; DataStream），</p>
+<p>rebalance()，（DataStream -&gt; DataStream），</p>
+<h3 id="Window开窗户"><a href="#Window开窗户" class="headerlink" title="Window开窗户"></a>Window开窗户</h3><p>拆成多个Bucket</p>
+<p>一类是keyed windows（要先有keyedBy）</p>
+<p>另一类是non-keyed windows（不能并行貌似）</p>
+<p>CountWindow（固定消息个数）</p>
+<p>TumblingWindow（拼的可能不对，窗口大小，还有偏移）</p>
+<p>SlideWindow（窗口大小和滑动大小）</p>
+<p>SessionWindow（session gap，这个gap以后再开窗）</p>
+<p>globalWindow（所有数据在一个窗口，相当于没有窗口么？）trigger函数告诉怎么分，evictor函数剔除器可以告诉那些保留那些不要。</p>
+<p>上面的几个窗口是globalWindow的子集。</p>
+<h3 id="开窗聚合算子"><a href="#开窗聚合算子" class="headerlink" title="开窗聚合算子"></a>开窗聚合算子</h3><p>Window Apply （WindowedStream -&gt; DataStream）</p>
+<p>Window Reduce</p>
+<p>Aggregations on windows</p>
+<h2 id="Flink-CEP（Flink-Complex-Event-Processing）"><a href="#Flink-CEP（Flink-Complex-Event-Processing）" class="headerlink" title="Flink CEP（Flink Complex Event Processing）"></a>Flink CEP（Flink Complex Event Processing）</h2><p>1、首先引入maven依赖</p>
+<p>2、获取原始事件流</p>
+<p>3、定义匹配器pattern</p>
+<p>4、获取匹配流</p>
+<p>5、将匹配流中的数据处理形成结果数据流，process</p>
+<p>其中，最关键的是定义匹配器，其次处理process。</p>
+<p>就是匹配到的，放到这个流里面处理。</p>
+<h3 id="匹配器"><a href="#匹配器" class="headerlink" title="匹配器"></a>匹配器</h3><p>next，times，严格连续。</p>
+<p>followeby，松散连续，两个之间可以有别的数据。</p>
+<p>followedbyany</p>
+<p>next.witnin(10)，在10s之内</p>
+<p>where，or，until，greedy贪心等等</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2023/07/29/Flink/">http://example.com/2023/07/29/Flink/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2023-07-30</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2023/07/15/Hive/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            Hive
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2023 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
