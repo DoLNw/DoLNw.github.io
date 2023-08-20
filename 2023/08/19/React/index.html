@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>React | 穿过海的声音</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="React全家桶官网 https:&#x2F;&#x2F;reactjs.org&#x2F; https:&#x2F;&#x2F;react.docschina.org&#x2F; React：用于构建用户界面的JavaScript库。React是啊一个将数据渲染为HTML视图的开源JavaScript库。 Facebook开发且开源。 以前的基本操作1、发送请求获取数据 2、处理数据（过滤、整理格式等） 3、操作DOM呈现页面 为什么要学React1、原">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React">
+<meta property="og:url" content="http://example.com/2023/08/19/React/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="React全家桶官网 https:&#x2F;&#x2F;reactjs.org&#x2F; https:&#x2F;&#x2F;react.docschina.org&#x2F; React：用于构建用户界面的JavaScript库。React是啊一个将数据渲染为HTML视图的开源JavaScript库。 Facebook开发且开源。 以前的基本操作1、发送请求获取数据 2、处理数据（过滤、整理格式等） 3、操作DOM呈现页面 为什么要学React1、原">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-08-19%20at%2018.51.59.png">
+<meta property="article:published_time" content="2023-08-19T02:44:01.000Z">
+<meta property="article:modified_time" content="2023-08-20T09:48:12.732Z">
+<meta property="article:author" content="jcwang">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-08-19%20at%2018.51.59.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        React
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2023/08/" class="post-meta__date button">2023-08-19</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#React%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%9E%84%E5%BB%BA%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E7%9A%84JavaScript%E5%BA%93%E3%80%82"><span class="toc-number">1.</span> <span class="toc-text">React：用于构建用户界面的JavaScript库。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A5%E5%89%8D%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">以前的基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6React"><span class="toc-number">1.2.</span> <span class="toc-text">为什么要学React</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#React%E7%89%B9%E7%82%B9"><span class="toc-number">1.3.</span> <span class="toc-text">React特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E7%94%A8%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">不用组件的流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Js%E5%92%8CJsx"><span class="toc-number">2.</span> <span class="toc-text">Js和Jsx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Jsx%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99"><span class="toc-number">2.1.</span> <span class="toc-text">Jsx语法规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Jsx%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99-1"><span class="toc-number">2.1.1.</span> <span class="toc-text">Jsx语法规则</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9FDOM%E5%92%8C%E7%9C%9F%E5%AE%9EDOM"><span class="toc-number">3.</span> <span class="toc-text">虚拟DOM和真实DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E7%82%B9debugger"><span class="toc-number">3.1.</span> <span class="toc-text">断点debugger</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E4%B8%8E%E6%A8%A1%E5%9D%97"><span class="toc-number">4.</span> <span class="toc-text">组件与模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97"><span class="toc-number">4.1.</span> <span class="toc-text">模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6"><span class="toc-number">4.2.</span> <span class="toc-text">组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React%E9%9D%A2%E5%90%91%E7%BB%84%E4%BB%B6%E7%BC%96%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">React面向组件编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6"><span class="toc-number">5.1.</span> <span class="toc-text">函数式组件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">5.1.1.</span> <span class="toc-text">用函数式组件的流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%BC%8F%E7%BB%84%E4%BB%B6"><span class="toc-number">5.2.</span> <span class="toc-text">类式组件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E4%B9%A0%E7%B1%BB%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="toc-number">5.2.1.</span> <span class="toc-text">复习类相关知识</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%BC%8F%E7%BB%84%E4%BB%B6-1"><span class="toc-number">5.3.</span> <span class="toc-text">类式组件</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#React%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%9E%84%E5%BB%BA%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E7%9A%84JavaScript%E5%BA%93%E3%80%82"><span class="toc-number">1.</span> <span class="toc-text">React：用于构建用户界面的JavaScript库。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A5%E5%89%8D%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">以前的基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6React"><span class="toc-number">1.2.</span> <span class="toc-text">为什么要学React</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#React%E7%89%B9%E7%82%B9"><span class="toc-number">1.3.</span> <span class="toc-text">React特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E7%94%A8%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">不用组件的流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Js%E5%92%8CJsx"><span class="toc-number">2.</span> <span class="toc-text">Js和Jsx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Jsx%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99"><span class="toc-number">2.1.</span> <span class="toc-text">Jsx语法规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Jsx%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99-1"><span class="toc-number">2.1.1.</span> <span class="toc-text">Jsx语法规则</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9FDOM%E5%92%8C%E7%9C%9F%E5%AE%9EDOM"><span class="toc-number">3.</span> <span class="toc-text">虚拟DOM和真实DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E7%82%B9debugger"><span class="toc-number">3.1.</span> <span class="toc-text">断点debugger</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E4%B8%8E%E6%A8%A1%E5%9D%97"><span class="toc-number">4.</span> <span class="toc-text">组件与模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97"><span class="toc-number">4.1.</span> <span class="toc-text">模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6"><span class="toc-number">4.2.</span> <span class="toc-text">组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React%E9%9D%A2%E5%90%91%E7%BB%84%E4%BB%B6%E7%BC%96%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">React面向组件编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6"><span class="toc-number">5.1.</span> <span class="toc-text">函数式组件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">5.1.1.</span> <span class="toc-text">用函数式组件的流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%BC%8F%E7%BB%84%E4%BB%B6"><span class="toc-number">5.2.</span> <span class="toc-text">类式组件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E4%B9%A0%E7%B1%BB%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="toc-number">5.2.1.</span> <span class="toc-text">复习类相关知识</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%BC%8F%E7%BB%84%E4%BB%B6-1"><span class="toc-number">5.3.</span> <span class="toc-text">类式组件</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="React全家桶"><a href="#React全家桶" class="headerlink" title="React全家桶"></a>React全家桶</h1><p>官网</p>
+<p><a target="_blank" rel="noopener" href="https://reactjs.org/">https://reactjs.org/</a></p>
+<p><a target="_blank" rel="noopener" href="https://react.docschina.org/">https://react.docschina.org/</a></p>
+<h2 id="React：用于构建用户界面的JavaScript库。"><a href="#React：用于构建用户界面的JavaScript库。" class="headerlink" title="React：用于构建用户界面的JavaScript库。"></a>React：用于构建用户界面的JavaScript库。</h2><p>React是啊一个将数据渲染为HTML视图的开源JavaScript库。</p>
+<p>Facebook开发且开源。</p>
+<h3 id="以前的基本操作"><a href="#以前的基本操作" class="headerlink" title="以前的基本操作"></a>以前的基本操作</h3><p>1、发送请求获取数据</p>
+<p>2、处理数据（过滤、整理格式等）</p>
+<p>3、操作DOM呈现页面</p>
+<h3 id="为什么要学React"><a href="#为什么要学React" class="headerlink" title="为什么要学React"></a>为什么要学React</h3><p>1、原生JS操作DOM繁琐、效率低（DOM-API操作UI）。</p>
+<p>2、使用JS直接操作DOM，浏览器会进行大量的重绘重排。</p>
+<p>3、原生JS，没有<strong>组件化</strong>编码方案（不是<strong>模块化</strong>，模块化就是写成a.js啥的，但是组件化其实就是结构样式都拆出来css等），代码复用率低。</p>
+<h3 id="React特点"><a href="#React特点" class="headerlink" title="React特点"></a>React特点</h3><p>1、采用<strong>组件化</strong>模式、<strong>声明式编码</strong>、提高开发效率以及组件复用率。</p>
+<p>2、在React Native中可以使用React语法进行<strong>移动端开发</strong>。</p>
+<p>3、使用<strong>虚拟DOM</strong>+优秀的<strong>Diffing算法</strong>，尽量减少与真实DOM的交互，最小化页面重绘。</p>
+<p><img src="https://gitee.com/JiaChengCC/u-pic-chart-bed/raw/master/uPic/Screenshot%202023-08-19%20at%2018.51.59.png" alt="Screenshot2023-08-19at18.51.59"></p>
+<h3 id="不用组件的流程"><a href="#不用组件的流程" class="headerlink" title="不用组件的流程"></a>不用组件的流程</h3><p>1、创建虚拟DOM</p>
+<p>2、渲染虚拟DOM到页面 </p>
+<h2 id="Js和Jsx"><a href="#Js和Jsx" class="headerlink" title="Js和Jsx"></a>Js和Jsx</h2><p>Js和Jsx都能创建虚拟DOM，然后放到容器DOM节点。</p>
+<p>但是Js通过React.createElement，需要嵌套创建，麻烦。</p>
+<p>Jsx可以直接跟h5一样写标签，还能看清层级结构，且不需要加引号。</p>
+<h3 id="Jsx语法规则"><a href="#Jsx语法规则" class="headerlink" title="Jsx语法规则"></a>Jsx语法规则</h3><p>JavaScript XML，类似于XML的JS扩展语法。</p>
+<p>XML：早期用于存储和传输数据。后面被Json取代了。</p>
+<p><strong>parse</strong>：快速把Json字符串解析成js对应的数组和对象</p>
+<p><strong>stringfy</strong>：快速把Js对应的数组和对象解析成字符串</p>
+<h4 id="Jsx语法规则-1"><a href="#Jsx语法规则-1" class="headerlink" title="Jsx语法规则"></a>Jsx语法规则</h4><p>在Jsx中，写的都是Jsx标签，会被转成html标签。</p>
+<p>1、定义虚拟DOM时，不要写引号。</p>
+<p>2、标签中混入JS<strong>表达式</strong>时要用{}，引入css啥的不需要的。</p>
+<p>3、样式的类名指定不要用class，要用className。</p>
+<p>4、内联样式。正常的css中style，是style&#x3D;”color: orange; width: 100px;”。然后在Jsx中的style，不应该写引号，而是两个{ {key: value} }花括号。<strong>外面花括号表示你要写js表达式，里面的花括号表示，你要写一个js对象</strong>。</p>
+<p>5、虚拟DOM必须只有一个根标签，要写两个，用div标签包一下。</p>
+<p>6、标签必须闭合，没有标签体么，自闭合。</p>
+<p>7、标签首字母</p>
+<p>​            （1）若小写字母开头，则将该标签转为html中同名元素。若html中无该标签对应的同名元素，则报错。</p>
+<p>​            （2）若大写字母开头，react就会去渲染对应的组件（component），若组件没有定义，则报错。</p>
+<p>8、表达式、语句（代码）。</p>
+<p>​        在虚拟DOM中，只能写<strong>表达式</strong>。<br>​        （1）表达式：一个表达式，会产生一个值，可以放在任何一个需要值的地方。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span>) a</span><br><span class="line">(<span class="number">2</span>) a+b</span><br><span class="line">(<span class="number">3</span>) <span class="title function_">demo</span>(<span class="number">1</span>)</span><br><span class="line">(<span class="number">4</span>) </span><br><span class="line">arrs.<span class="title function_">map</span>((<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> item</span><br><span class="line">&#125;))</span><br><span class="line">(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 就是用一个const x = 去接，能接到就是一个表达式</span></span><br></pre></td></tr></table></figure>
+
+<p>​        （2）语句（代码）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span>) <span class="keyword">if</span> () &#123;&#125;</span><br><span class="line">(<span class="number">2</span>) <span class="keyword">for</span> () &#123;&#125;</span><br><span class="line">(<span class="number">3</span>) <span class="keyword">switch</span> () &#123; <span class="attr">case</span>: xxxx &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>此处abc等等编号是视频中没有写的，自己写一下。</p>
+<p>a、虚拟DOM，each child in a list should have a unique key。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  data.<span class="title function_">map</span>((item, index)) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;iten&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>     <span class="comment">// 注意这个key，现在用index，可能还会有一点问题的。</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>b、给react数组，可以帮忙自动遍历，如果给他一个对象，是遍历不了的。那么我自己遍历呗，但是貌似不能用for循环。</p>
+<h2 id="虚拟DOM和真实DOM"><a href="#虚拟DOM和真实DOM" class="headerlink" title="虚拟DOM和真实DOM"></a>虚拟DOM和真实DOM</h2><p><strong>虚拟DOM</strong>：</p>
+<p>1、Js里面的一个普通的一般对象，Object</p>
+<p>2、虚拟DOM比较轻，真实DOM比较“重”，因为虚拟DOM是React内部在用，无需真实DOM那么多的属性。</p>
+<p>3、虚拟DOM最终会被React转化为真实DOM，呈现在页面上</p>
+<h3 id="断点debugger"><a href="#断点debugger" class="headerlink" title="断点debugger"></a>断点debugger</h3><p>真实DOM通过console.log打印出来，浏览器直接打出标签的，可以加断点，debugger。</p>
+<h2 id="组件与模块"><a href="#组件与模块" class="headerlink" title="组件与模块"></a>组件与模块</h2><h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><p>（1）：向外提供特定功能的js程序，一般就是一个js文件。</p>
+<p>（2）：为什么要拆成膜快：随着业务逻辑增加，代码越来越多且复杂。</p>
+<p>（3）：作用：复用js，简化js的编写，提高js运行效率。</p>
+<p>模块化：当应用的js都以模块来编写，这就是一个模块化的应用。</p>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>（1）用来实现局部功能效果的的代码加资源的集合：html、css、js、img、video、font等等。</p>
+<p>（2）为什么：一个界面的功能更复杂。</p>
+<p>（3）复用编码，简化项目编码，提高运行效率。</p>
+<p>组件化：当应用是以多组件的方式实现，这个应用就是一个组件化的应用。</p>
+<h2 id="React面向组件编程"><a href="#React面向组件编程" class="headerlink" title="React面向组件编程"></a>React面向组件编程</h2><p>函数式组件</p>
+<p>类式组件</p>
+<p><strong>组件首字母大写。</strong></p>
+<h3 id="函数式组件"><a href="#函数式组件" class="headerlink" title="函数式组件"></a>函数式组件</h3><h4 id="用函数式组件的流程"><a href="#用函数式组件的流程" class="headerlink" title="用函数式组件的流程"></a>用函数式组件的流程</h4><p>1、创建函数式组件</p>
+<p>2、渲染组件到页面</p>
+<p>a、首字母必须大写。</p>
+<p>b、函数必须有返回值。</p>
+<p>c、ReactDOM.render里面必须有组件标签，不能直接写组件名字。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1、创建函数式组件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">MyFunctionConponent</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 此处的this是undefined，因为babel编译后开启了严格模式。use &#x27;strict&#x27;</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>这是展示的内容<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 2、渲染组件到页面</span></span><br><span class="line"><span class="comment">// 注意，下面这么些没有调用函数，react会帮我们自己调用的。</span></span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">MyFunctionConponent</span>/&gt;</span></span>, <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;test&quot;</span>));  <span class="comment">// 后面的那个是父容器</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// a、2中执行了React解析组件标签，找到了MyFunctionConponent组件</span></span><br><span class="line"><span class="comment">// b、发现组件时使用函数定义的，随后调用该函数，将返回的虚拟DOM专为真实DOM，然后呈现在页面中。</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h3 id="类式组件"><a href="#类式组件" class="headerlink" title="类式组件"></a>类式组件</h3><h4 id="复习类相关知识"><a href="#复习类相关知识" class="headerlink" title="复习类相关知识"></a>复习类相关知识</h4><p>总结：</p>
+<p>1、类中的构造器不是必须写的，要对实例进行一些初始化的操作，如添加指定属性才行</p>
+<p>2、如果A类继承了B类，且A类中写了构造器，那么A类构造器中的super必须要调用。</p>
+<p>3、类中所定义的方法，都是放在了类的原型对象上，供实例去使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个Person类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Persion</span> &#123;</span><br><span class="line">  <span class="comment">// 构造器方法</span></span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">name, age</span>) &#123;</span><br><span class="line">    <span class="comment">// 此处的this指的是：类的实例对象</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">age</span> = age</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 一般方法</span></span><br><span class="line">  <span class="title function_">speak</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// speak方法放在了哪里？放在了Person这个类的原型对象上</span></span><br><span class="line">    <span class="comment">// speak方法供实例使用</span></span><br><span class="line">    <span class="comment">// 通过Person实例调用speak时，speak中的this就是Person实例。因为比如p1.speak.call 或者apply或者bind可以改变this的指向。</span></span><br><span class="line">  	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`我叫<span class="subst">$&#123;name&#125;</span>，我的年龄是<span class="subst">$&#123;<span class="variable language_">this</span>.age&#125;</span>`</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个Person的实例对象</span></span><br><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="title class_">Persion</span>(<span class="string">&#x27;tom&#x27;</span>, <span class="number">18</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个Student类，继承Person类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Person</span> &#123;</span><br><span class="line">  <span class="comment">// 构造器一定要调用super</span></span><br><span class="line">	<span class="title function_">constructor</span>(<span class="params">name, age, grade</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(name, age)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">grade</span> = grade</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 重写从父类继承过来的方法</span></span><br><span class="line">  <span class="title function_">speak</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`我叫<span class="subst">$&#123;name&#125;</span>，我的年龄是<span class="subst">$&#123;<span class="variable language_">this</span>.age&#125;</span>，我的年级是$(this.grade)`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="title function_">study</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// study方法放在了哪里？类的原型对象上，供实例使用</span></span><br><span class="line">    <span class="comment">// 但是通过Student实例调用study时，study中的this就是Student实例</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;我很努力的学习&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> s1 = <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;小张&quot;</span>, <span class="number">13</span>, <span class="string">&quot;高一&quot;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(s1);</span><br><span class="line">s1.<span class="title function_">speak</span>();    <span class="comment">// 原型链找speak，从下往上</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h3 id="类式组件-1"><a href="#类式组件-1" class="headerlink" title="类式组件"></a>类式组件</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1、创建类式组件，类名就是组件名，需要继承，需要写render，render一定要有返回值</span></span><br><span class="line"><span class="comment">// 可以打开React中文网，看例子等等</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClassComponent</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// render方法放在了哪里？类的原型对象上MyClassComponent，供实例使用</span></span><br><span class="line">    <span class="comment">// 但是2中我没有显示创建呀？</span></span><br><span class="line">    <span class="comment">// render中的this是谁？MyClassComponent实例对象</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>这是显示的内容<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2、渲染组件到页面</span></span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">MyClassComponent</span>/&gt;</span></span>, <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;test&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行了ReactDOM.render后发生了什么？</span></span><br><span class="line"><span class="comment">// a、2中执行了React解析组件标签，找到了MyClassComponent组件</span></span><br><span class="line"><span class="comment">// b、发现组件时使用类定义的，随后new出来该类的实例，并通过该实例调用到原型上的render方法。</span></span><br><span class="line"><span class="comment">// 将render返回的虚拟DOM专为真实DOM，然后呈现在页面中。</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2023/08/19/React/">http://example.com/2023/08/19/React/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2023-08-20</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2023/07/29/Flink/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            Flink
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2023 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
