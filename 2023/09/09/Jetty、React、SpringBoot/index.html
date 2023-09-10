@@ -41,7 +41,7 @@
 <meta property="og:description" content="Jetty、React、SpringBoot在SpringBoot中，使用Jettyy轻量级可配置服务器，而不是自带的Tomcat配置Jettyjetty轻量级服务器介绍,运行命令及pom配置 Maven中配置jetty插件 Jetty Maven插件可用于快速开发和测试。您可以将它添加到根据Maven POM配置的任何webapp项目中。该插件可以定期扫描项目中的更改，并自动重新部署webapp">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-09T10:32:30.000Z">
-<meta property="article:modified_time" content="2023-09-10T13:51:09.938Z">
+<meta property="article:modified_time" content="2023-09-10T13:54:44.668Z">
 <meta property="article:author" content="jcwang">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -220,6 +220,10 @@
 
 <p>另外两种在上面的链接，就不贴了，因为感觉第一个有用。</p>
 <h2 id="整合之后"><a href="#整合之后" class="headerlink" title="整合之后"></a>整合之后</h2><p>在同一个工程中写前端代码，写完之后build，然后后端jetty运行，访问相应的端口和contextPath下的路径，就能访问到react的build之后的静态资源了。</p>
+<p>TODO：</p>
+<p>然后后面还需要探索一下，npm run start之后运行一下前端，因为react代码改了之后前端能直接看到，而不是一直build之后运行后端这样。</p>
+<p>然后公司的前端运行时候，需要先运行后端的端口，注册一下，才能前端出来，这个需要考虑一下看看嘛。</p>
+<p>下周可以尝试：重新整合一个，上一个当作例子。整合进来新的前端react的成熟的网页例子，然后使用antd组件，进行一些开发，和尝试。</p>
 
     </div>
     
