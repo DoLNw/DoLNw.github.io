@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>Jetty、React、SpringBoot | 穿过海的声音</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Jetty、React、SpringBoot在SpringBoot中，使用Jettyy轻量级可配置服务器，而不是自带的Tomcat配置Jettyjetty轻量级服务器介绍,运行命令及pom配置 Maven中配置jetty插件 Jetty Maven插件可用于快速开发和测试。您可以将它添加到根据Maven POM配置的任何webapp项目中。该插件可以定期扫描项目中的更改，并自动重新部署webapp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jetty、React、SpringBoot">
+<meta property="og:url" content="http://example.com/2023/09/09/Jetty%E3%80%81React%E3%80%81SpringBoot/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="Jetty、React、SpringBoot在SpringBoot中，使用Jettyy轻量级可配置服务器，而不是自带的Tomcat配置Jettyjetty轻量级服务器介绍,运行命令及pom配置 Maven中配置jetty插件 Jetty Maven插件可用于快速开发和测试。您可以将它添加到根据Maven POM配置的任何webapp项目中。该插件可以定期扫描项目中的更改，并自动重新部署webapp">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-09T10:32:30.000Z">
+<meta property="article:modified_time" content="2023-09-10T13:51:09.938Z">
+<meta property="article:author" content="jcwang">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        Jetty、React、SpringBoot
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2023/09/" class="post-meta__date button">2023-09-09</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8SpringBoot%E4%B8%AD%EF%BC%8C%E4%BD%BF%E7%94%A8Jettyy%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%8F%AF%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E8%87%AA%E5%B8%A6%E7%9A%84Tomcat"><span class="toc-number">1.</span> <span class="toc-text">在SpringBoot中，使用Jettyy轻量级可配置服务器，而不是自带的Tomcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEJetty"><span class="toc-number">2.</span> <span class="toc-text">配置Jetty</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E5%90%88React"><span class="toc-number">3.</span> <span class="toc-text">整合React</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#build"><span class="toc-number">3.1.</span> <span class="toc-text">build</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#build%E6%94%BE%E5%88%B0Spriongboot%E6%B3%A8%E6%84%8F"><span class="toc-number">3.2.</span> <span class="toc-text">build放到Spriongboot注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9%E6%89%93%E5%8C%85%E8%B7%AF%E5%BE%84"><span class="toc-number">3.3.</span> <span class="toc-text">更改打包路径</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E5%90%88%E4%B9%8B%E5%90%8E"><span class="toc-number">4.</span> <span class="toc-text">整合之后</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8SpringBoot%E4%B8%AD%EF%BC%8C%E4%BD%BF%E7%94%A8Jettyy%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%8F%AF%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E8%87%AA%E5%B8%A6%E7%9A%84Tomcat"><span class="toc-number">1.</span> <span class="toc-text">在SpringBoot中，使用Jettyy轻量级可配置服务器，而不是自带的Tomcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEJetty"><span class="toc-number">2.</span> <span class="toc-text">配置Jetty</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E5%90%88React"><span class="toc-number">3.</span> <span class="toc-text">整合React</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#build"><span class="toc-number">3.1.</span> <span class="toc-text">build</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#build%E6%94%BE%E5%88%B0Spriongboot%E6%B3%A8%E6%84%8F"><span class="toc-number">3.2.</span> <span class="toc-text">build放到Spriongboot注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9%E6%89%93%E5%8C%85%E8%B7%AF%E5%BE%84"><span class="toc-number">3.3.</span> <span class="toc-text">更改打包路径</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E5%90%88%E4%B9%8B%E5%90%8E"><span class="toc-number">4.</span> <span class="toc-text">整合之后</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="Jetty、React、SpringBoot"><a href="#Jetty、React、SpringBoot" class="headerlink" title="Jetty、React、SpringBoot"></a>Jetty、React、SpringBoot</h1><h2 id="在SpringBoot中，使用Jettyy轻量级可配置服务器，而不是自带的Tomcat"><a href="#在SpringBoot中，使用Jettyy轻量级可配置服务器，而不是自带的Tomcat" class="headerlink" title="在SpringBoot中，使用Jettyy轻量级可配置服务器，而不是自带的Tomcat"></a>在SpringBoot中，使用Jettyy轻量级可配置服务器，而不是自带的Tomcat</h2><h2 id="配置Jetty"><a href="#配置Jetty" class="headerlink" title="配置Jetty"></a>配置Jetty</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ling888feng/article/details/89371350">jetty轻量级服务器介绍,运行命令及pom配置</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43486332/article/details/105329439">Maven中配置jetty插件</a></p>
+<p>Jetty Maven插件可用于快速开发和测试。您可以将它添加到根据Maven POM配置的任何webapp项目中。该插件可以定期扫描项目中的更改，并自动重新部署webapp(启动中的)。通过消除构建和部署步骤，允许您直接测试它们，这使得开发周期更加高效。</p>
+<p>jetty更推荐于开发环境而非生成环境。</p>
+<p>pom配置。</p>
+<p>可以去<a target="_blank" rel="noopener" href="https://mvnrepository.com/">Maven服务器网址</a>找对应的依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-maven-plugin --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.eclipse.jetty<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jetty-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>9.4.52.v20230823<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.eclipse.jetty<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jetty-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>10.0.16<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">supportedPackagings</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">supportedPackagings</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">webApp</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">contextPath</span>&gt;</span>/test<span class="tag">&lt;/<span class="name">contextPath</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">webApp</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- webx表示停止程序的命令 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stopKey</span>&gt;</span>webx<span class="tag">&lt;/<span class="name">stopKey</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 执行关闭功能的端口，一般不对外 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stopPort</span>&gt;</span>9999<span class="tag">&lt;/<span class="name">stopPort</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">connectors</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">connector</span> <span class="attr">implementation</span>=<span class="string">&quot;org.eclipse.jetty.server.nio.SelectChannelConnector&quot;</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 设置端口号：8081 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">port</span>&gt;</span>8081<span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 响应的最大空闲时间 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">maxIdleTime</span>&gt;</span>60000<span class="tag">&lt;/<span class="name">maxIdleTime</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">connector</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">connectors</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 记录日志 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">requestLog</span> <span class="attr">implementation</span>=<span class="string">&quot;org.eclipse.jetty.server.NCSARequestLog&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 日志的存放位置 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filename</span>&gt;</span>target/access.log<span class="tag">&lt;/<span class="name">filename</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 日志的存放的时间 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">retainDays</span>&gt;</span>90<span class="tag">&lt;/<span class="name">retainDays</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 增加的方式 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">append</span>&gt;</span>false<span class="tag">&lt;/<span class="name">append</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 有无扩展信息 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">extended</span>&gt;</span>false<span class="tag">&lt;/<span class="name">extended</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 时区 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">logTimeZone</span>&gt;</span>GMT+8:00<span class="tag">&lt;/<span class="name">logTimeZone</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">requestLog</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，<contextPath>&#x2F;test</contextPath>之后是访问&#x2F;test才能到项目中的webapp目录。</p>
+<p>需要在src-&gt;main下创建一个webapp文件夹。</p>
+<p>可配置启动端口，默认8080</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn jetty:run -Djetty.http.port=9999</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 启动后如果出现：packaging type [jar] is unsupported --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- add下面的到configuration标签中去 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">supportedPackagings</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">supportedPackagings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># </span><span class="language-bash">安装maven环境，其实不需要，IDEA自带</span></span><br><span class="line">export MAVEN_HOME=/Users/dinosaur/jcwang/software/apache-maven-3.8.8</span><br><span class="line">export PATH=$MAVEN_HOME/bin:$PATH:.</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="整合React"><a href="#整合React" class="headerlink" title="整合React"></a>整合React</h2><h3 id="build"><a href="#build" class="headerlink" title="build"></a>build</h3><p>npm run build之后，会生成一个build文件夹。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i serve -g</span><br></pre></td></tr></table></figure>
+
+<p>全局安装serve，用serve就可以将build的静态文件开一个服务器运行起来。</p>
+<p>然后到build文件夹下面（有index.html）运行下面命令就行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serve [文件夹名字]</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="build放到Spriongboot注意"><a href="#build放到Spriongboot注意" class="headerlink" title="build放到Spriongboot注意"></a>build放到Spriongboot注意</h3><p>然后使用命令创建一个react应用，放到IDEA自己创建的文件夹中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create-react-app jetty-react-test</span><br></pre></td></tr></table></figure>
+
+<p>然后build之后的静态文件，放到webapp中去。</p>
+<p>注意，打包之前需要在react工程的package.json里面加入一句话，</p>
+<p>否则的话，所有的资源的路径都是绝对路径，会加载失败。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;homepage&quot;</span><span class="punctuation">:</span> <span class="string">&quot;.&quot;</span> <span class="comment">//新增此项，打包后的静态文件引入路径改为相对路径&#x27;./&#x27;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="更改打包路径"><a href="#更改打包路径" class="headerlink" title="更改打包路径"></a>更改打包路径</h3><p>打包的时候默认是 .&#x2F; 访问, 部署的时候会有问题</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_29491885/article/details/120767632">creat-react-app 修改打包路径</a></p>
+<p>1、新建 .env 文件，并添加以下配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BUILD_PATH = &quot;../src/main/webapp/&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>另外两种在上面的链接，就不贴了，因为感觉第一个有用。</p>
+<h2 id="整合之后"><a href="#整合之后" class="headerlink" title="整合之后"></a>整合之后</h2><p>在同一个工程中写前端代码，写完之后build，然后后端jetty运行，访问相应的端口和contextPath下的路径，就能访问到react的build之后的静态资源了。</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2023/09/09/Jetty%E3%80%81React%E3%80%81SpringBoot/">http://example.com/2023/09/09/Jetty%E3%80%81React%E3%80%81SpringBoot/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2023-09-10</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2023/08/19/React/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            React
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2023 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
