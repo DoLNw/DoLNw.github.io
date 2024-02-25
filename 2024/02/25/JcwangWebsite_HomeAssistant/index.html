@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>no title | 穿过海的声音</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="JcwangWebsite_HomeAssistantHome Assistant Home Assistant Installation 树莓派搭建homeassistant，连接米家显示器灯。 删除docker首先删除之前的docker 12345sudo docker stop $(sudo docker ps -a -q)sudo docker rm $(sudo docker ps -a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="穿过海的声音">
+<meta property="og:url" content="http://example.com/2024/02/25/JcwangWebsite_HomeAssistant/index.html">
+<meta property="og:site_name" content="穿过海的声音">
+<meta property="og:description" content="JcwangWebsite_HomeAssistantHome Assistant Home Assistant Installation 树莓派搭建homeassistant，连接米家显示器灯。 删除docker首先删除之前的docker 12345sudo docker stop $(sudo docker ps -a -q)sudo docker rm $(sudo docker ps -a">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-02-25T03:57:41.704Z">
+<meta property="article:modified_time" content="2024-02-25T13:46:22.879Z">
+<meta property="article:author" content="jcwang">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">欢迎</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/page/" class="navbar-menu button">Page</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/page/" class="dropdown-menu button">Page</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        no title
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2024/02/" class="post-meta__date button">2024-02-25</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4docker"><span class="toc-number">1.</span> <span class="toc-text">删除docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85docker"><span class="toc-number">2.</span> <span class="toc-text">安装docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%A2%E6%BA%90"><span class="toc-number">3.</span> <span class="toc-text">换源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7"><span class="toc-number">4.</span> <span class="toc-text">可视化工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85HomeAssistant"><span class="toc-number">5.</span> <span class="toc-text">安装HomeAssistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">5.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85HACS%E5%95%86%E5%BA%97"><span class="toc-number">5.2.</span> <span class="toc-text">安装HACS商店</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8hacs%E4%B8%8B%E8%BD%BD"><span class="toc-number">5.3.</span> <span class="toc-text">在hacs下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E6%8E%A5%E5%85%A5"><span class="toc-number">5.4.</span> <span class="toc-text">设备接入</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4docker"><span class="toc-number">1.</span> <span class="toc-text">删除docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85docker"><span class="toc-number">2.</span> <span class="toc-text">安装docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%A2%E6%BA%90"><span class="toc-number">3.</span> <span class="toc-text">换源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7"><span class="toc-number">4.</span> <span class="toc-text">可视化工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85HomeAssistant"><span class="toc-number">5.</span> <span class="toc-text">安装HomeAssistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">5.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85HACS%E5%95%86%E5%BA%97"><span class="toc-number">5.2.</span> <span class="toc-text">安装HACS商店</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8hacs%E4%B8%8B%E8%BD%BD"><span class="toc-number">5.3.</span> <span class="toc-text">在hacs下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E6%8E%A5%E5%85%A5"><span class="toc-number">5.4.</span> <span class="toc-text">设备接入</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="JcwangWebsite-HomeAssistant"><a href="#JcwangWebsite-HomeAssistant" class="headerlink" title="JcwangWebsite_HomeAssistant"></a>JcwangWebsite_HomeAssistant</h1><p><a target="_blank" rel="noopener" href="https://www.home-assistant.io/installation/">Home Assistant</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.home-assistant.io/installation/linux#install-home-assistant-container">Home Assistant Installation</a></p>
+<p>树莓派搭建homeassistant，连接米家显示器灯。</p>
+<h2 id="删除docker"><a href="#删除docker" class="headerlink" title="删除docker"></a>删除docker</h2><p><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_16213435/7332358">首先删除之前的docker</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo docker stop $(sudo docker ps -a -q)</span><br><span class="line">sudo docker rm $(sudo docker ps -a -q)</span><br><span class="line">sudo apt-get purge docker-ce docker-ce-cli containerd.io</span><br><span class="line">sudo rm -rf /var/lib/docker</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ssh dinosaur@dinosaur-pi4b1.local</span><br><span class="line"></span><br><span class="line">sudo curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</span><br><span class="line">sudo systemctl enable docker</span><br><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h2><p><a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors?accounttraceid=c4edf00191034195996b4e44351ad525rilv">阿里云镜像加速</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://b4kotewg.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">查看当前源</span></span><br><span class="line">sudo docker info</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">末尾会出现下面的信息</span></span><br><span class="line">Registry Mirrors:</span><br><span class="line">  https://b4kotewg.mirror.aliyuncs.com/</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="可视化工具"><a href="#可视化工具" class="headerlink" title="可视化工具"></a>可视化工具</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2383403?areaId=106001">Docker可视化工具portainer</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># </span><span class="language-bash">创建可视化界面</span></span><br><span class="line">sudo docker run -d --name docker-web -p 9000:9000 \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    --restart=always \</span><br><span class="line">    -v portainer_db:/data \</span><br><span class="line">    portainer/portainer</span><br><span class="line"></span><br><span class="line">dinosaur-pi4b1.local:9000</span><br><span class="line">账号是dinosaur，密码是***（最后带v的）</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="安装HomeAssistant"><a href="#安装HomeAssistant" class="headerlink" title="安装HomeAssistant"></a>安装HomeAssistant</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/453394211">树莓派Zero 2W安装Home Assistant智能家居控制系统</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sudo docker -v</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo docker run -d \</span><br><span class="line">   --name homeassistant \</span><br><span class="line">   --privileged \</span><br><span class="line">   -p 8123:8123 \</span><br><span class="line">   --restart=always \</span><br><span class="line">   -e TZ=CET \</span><br><span class="line">   -v /home/dinosaur/docker/homeassistant:/config \</span><br><span class="line">   --network=host \</span><br><span class="line">   ghcr.io/home-assistant/home-assistant:stable</span><br><span class="line">   </span><br><span class="line"><span class="meta"># </span><span class="language-bash">–-network=host</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">与宿主机共享网络，也就是在网络这块不会与宿主机隔离，而是共享宿主机的网络配置，并且 容器不会分配自己的ip地址</span></span><br><span class="line"></span><br><span class="line">dinosaur-pi4b1.local:8123</span><br><span class="line">账号是dinosaur，密码是***（最后带v的）</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="安装HACS商店"><a href="#安装HACS商店" class="headerlink" title="安装HACS商店"></a>安装HACS商店</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42672685/article/details/131164142">Docker版Home Assistant 如何安装HACS</a> (由于需要科学上网，这个不行)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget -O - https://hacs.vip/get | bash -</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">如果上面的命令执行后卡住不动，或没有提示安装成功，请尝试下面的命令</span></span><br><span class="line"></span><br><span class="line">wget -O - https://hacs.vip/get | HUB_DOMAIN=ghproxy.com/github.com bash -</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">如果是haos/hassio/supervisor版本的HA，可直接在宿主机或Terminal &amp; SSH加载项中执行上面的命令</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43768851/article/details/132343591">【自用】云服务器 docker 环境下 HomeAssistant 安装 HACS 教程.</a> (github下载并解压)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it homeassistant bash</span><br><span class="line">cd /config/custom_components</span><br><span class="line">mkdir hacs</span><br><span class="line">cd hacs</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">从url下载zip传入：https://github.com/hacs/integration/releases/</span></span><br><span class="line">scp /Users/dinosaur/Downloads/hacs.zip dinosaur@dinosaur-pi4b1.local:/home/dinosaur</span><br><span class="line">sudo docker cp /home/dinosaur/hacs.zip homeassistant:/config/custom_components/hacs</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">unzip hacs.zip</span><br><span class="line">exit</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo docker restart homeassistant</span><br><span class="line">dinosaur-pi4b1.local:8123    # 然后去配置，设备里面搜索即成hacs，绑定github。6280-643A</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="在hacs下载"><a href="#在hacs下载" class="headerlink" title="在hacs下载"></a>在hacs下载</h3><p>Xiaomi Miot Auto</p>
+<blockquote>
+<p>Xiaomi Miot Auto</p>
+<p>When downloaded, this will be located in <code>&#39;/config/custom_components/xiaomi_miot&#39;</code></p>
+<p>Remember that you need to restart Home Assistant before changes to integrations (custom_components) are applied.</p>
+</blockquote>
+<h3 id="设备接入"><a href="#设备接入" class="headerlink" title="设备接入"></a>设备接入</h3><p><a target="_blank" rel="noopener" href="https://post.smzdm.com/p/a96ol3eo/">米家接入苹果Homekit教程</a></p>
+<p>然后去设备里面添加Xiaomi Miot Auto。账号集成。</p>
+<p>试了一下，账号是15167*，密码末尾v。</p>
+<p>添加 Yeelight Screen Light Bar。</p>
+<p>然后添加homekit bridge。</p>
+<p>然后网站的通知中会有二维码，打开home app扫码配对。</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Jcwang
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://example.com/2024/02/25/JcwangWebsite_HomeAssistant/">http://example.com/2024/02/25/JcwangWebsite_HomeAssistant/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2024-02-25</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2024/02/14/JcwangWebsite/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            no title
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2019&nbsp;-&nbsp;2024 <a href="/">穿过海的声音</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
